@@ -21,7 +21,7 @@ Description:
 		<!--/ END TITLE SECTION -->
 
 		<!-- START STYLESHEET SECTION -->
-		<?php include "Css.php" ?><
+		<?php include "css.php" ?><
 		!-- INCLUDE CORE CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2_metro.css" />
 		<link rel="stylesheet" type="text/css" href="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css"/>
