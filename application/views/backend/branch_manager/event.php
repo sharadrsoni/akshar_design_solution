@@ -1,4 +1,3 @@
-<!-- by dips -->
 <section id="main">
 	<!-- START Bootstrap Navbar -->
 	<div class="navbar navbar-static-top">
@@ -9,7 +8,7 @@
 					<a href="#">Dashboard</a><span class="divider"></span>
 				</li>
 				<li class="active">
-					Batch
+					Event
 				</li>
 			</ul>
 			<!--/ Breadcrumb -->
@@ -24,20 +23,20 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Batch <small>This is the place where everything started</small></h4>
+					<h4>Event <small>This is the place where everything started</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
 		</div>
 		<!--/ END Row -->
 		<!--Page Content Here  -->
-		<div id="Batch">
+		<div id="Branch">
 
 			<!-- START Row -->
 			<div class="row-fluid">
 				<!-- START Form Validation - Inline -->
 
-				<form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed yellow" style="left:-10%;" aria-hidden="false" id="form_batch">
+				<form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed yellow" style="left:-10%;" aria-hidden="false" id="form_event">
 					<header>
 						<h4 class="title">Form Validation - Inline</h4>
 						<ul class="nav nav-tabs nav-stacked pull-right">
@@ -58,26 +57,12 @@
 						</div>
 
 						<div class="body-inner">
-							<h3 class="form-section">Batch Info</h3>
-							<!-- Branch -->
-							<!--div class="control-group">
-							<label class="control-label">Branch<span class="required">*</span></label>
-							<div class="controls">
-							<select class="span4" name="branch_id" id="branch_id">
-							<option value="">Select...</option>
-							<option value="Category 1">Category 1</option>
-							<option value="Category 2">Category 2</option>
-							<option value="Category 3">Category 5</option>
-							<option value="Category 4">Category 4</option>
-							</select>
-							</div>
-							</div><!--/ Branch -->
-
-							<!-- Course -->
+							<h3 class="form-section">Event Info</h3>
+							<!-- Event Type -->
 							<div class="control-group">
-								<label class="control-label">Course<span class="required">*</span></label>
+								<label class="control-label">Event Type<span class="required">*</span></label>
 								<div class="controls">
-									<select class="span4" name="course_id" id="course_id">
+									<select class="span4" name="event_type" id="event_type">
 										<option value="">Select...</option>
 										<option value="Category 1">Category 1</option>
 										<option value="Category 2">Category 2</option>
@@ -85,21 +70,7 @@
 										<option value="Category 4">Category 4</option>
 									</select>
 								</div>
-							</div><!--/ Course -->
-
-							<!-- Faculty -->
-							<div class="control-group">
-								<label class="control-label">Faculty<span class="required">*</span></label>
-								<div class="controls">
-									<select class="span4" name="faculty_id" id="faculty_id">
-										<option value="">Select...</option>
-										<option value="Category 1">Category 1</option>
-										<option value="Category 2">Category 2</option>
-										<option value="Category 3">Category 5</option>
-										<option value="Category 4">Category 4</option>
-									</select>
-								</div>
-							</div><!--/ Faculty -->
+							</div><!--/ Event Type -->
 
 							<!-- Start Date -->
 							<div class="control-group">
@@ -112,21 +83,82 @@
 								</div>
 							</div><!--/ Start Date -->
 
-							<!-- Strength -->
+							<!-- End Date -->
 							<div class="control-group">
-								<label class="control-label">Strength<span class="required">*</span></label>
+								<label class="control-label">End Date<span class="required">*</span></label>
 								<div class="controls">
-									<input type="text" name="strength" id="strength" class="span2"/>
+									<div class="input-append span6" id="end_date_datepicker">
+										<input type="text" name="end_date" id="end_date" class="m-wrap span7">
+										<span class="add-on"><i class="icon-calendar"></i></span>
+									</div>
 								</div>
-							</div><!--/ Strength-->
+							</div><!--/ End Date -->
 
-							<h3 class="form-section">Batch Timing</h3>
-
-							<!-- weekday -->
+							<!-- Description -->
 							<div class="control-group">
-								<label class="control-label">weekday<span class="required">*</span></label>
+								<label class="control-label">Description<span class="required">*</span></label>
 								<div class="controls">
-									<select class="span4" name="weekday" id="weekday">
+									<input type="text" name="description" id="description" class="span8"/>
+								</div>
+							</div><!--/ Description	 -->
+
+							<h3 class="form-section">Event Venue</h3>
+
+							<!-- Street -->
+							<div class="control-group">
+								<label class="control-label">Street<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" name="street_1" id="street_1" class="span8"/>
+								</div>
+
+							</div>
+							<div class="control-group">
+								<label class="control-label"><span class="required"></span></label>
+								<div class="controls">
+									<input type="text" name="street_2" id="street_2" class="span8"/>
+								</div>
+							</div><!--/ Street -->
+							<!-- City -->
+							<div class="control-group">
+								<label class="control-label">City<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" name="city" id="city" class="span8"/>
+								</div>
+							</div><!--/ City -->
+							<!-- State -->
+							<div class="control-group">
+								<label class="control-label">State<span class="required">*</span></label>
+								<div class="controls">
+									<div class="span4">
+										<select class="span12" name="state" id="state">
+											<option value="">Select...</option>
+											<option value="Category 1">Category 1</option>
+											<option value="Category 2">Category 2</option>
+											<option value="Category 3">Category 5</option>
+											<option value="Category 4">Category 4</option>
+										</select>
+									</div>
+									<div class="span4">
+										<input type="text" name="pin_code" id="pin_code" class="span12"/>
+									</div>
+								</div>
+							</div><!--/ State -->
+
+							<h3 class="form-section">Other Info</h3>
+
+							<!-- Organize By -->
+							<div class="control-group">
+								<label class="control-label">Organize By<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" name="organize_by" id="organize_by" class="span8"/>
+								</div>
+							</div><!--/ Organize By -->
+
+							<!-- Faculty -->
+							<div class="control-group">
+								<label class="control-label">Responsible Person <span class="required">*</span></label>
+								<div class="controls">
+									<select class="span4" name="responsible_person" id="responsible_person">
 										<option value="">Select...</option>
 										<option value="Category 1">Category 1</option>
 										<option value="Category 2">Category 2</option>
@@ -134,61 +166,7 @@
 										<option value="Category 4">Category 4</option>
 									</select>
 								</div>
-							</div><!--/ weekday -->
-
-							<!-- Batch Time -->
-							<div class="control-group">
-								<label class="control-label">Batch Time<span class="required">*</span></label>
-								<div class="controls">
-									<input type="text" name="start_time" id="start_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-									<span class="help-inline">To &nbsp;</span>
-									<input type="text" name="end_time" id="end_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-								</div>
-							</div><!--/ Batch Time -->
-
-							<div class="control-group">
-								<label class="control-label"></label>
-								<div class="controls">
-									<button type="button" class="btn green span4">
-										Success
-									</button>
-									<div class="span8"></div>
-								</div>
-							</div>
-
-							<h3 class="form-section">List OF Time Schedule</h3>
-
-							<!-- LIst -->
-							<div class="control-group">
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th style="width:8px;">
-											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-											</th>
-											<th>EventDate</th>
-											<th class="hidden-480">Address</th>
-											<th class="hidden-480">Organize by</th>
-											<th class="hidden-480">Description</th>
-											<th class="hidden-480">Edit</th>
-											<th >View</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="odd gradeX">
-											<td>
-											<input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>shuxer</td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-											<td class="hidden-480">120</td>
-											<td class="hidden-480"></td>
-											<td class="center hidden-480">12 Jan 2012</td>
-											<td ><span class="label label-success">Approved</span></td>
-										</tr>
-									</tbody>
-								</table>
-							</div><!--/ List-->
+							</div><!--/ Faculty -->
 
 							<!-- Form Action -->
 							<div class="form-actions">
@@ -217,7 +195,7 @@
 						<!--/ END Label/Badge -->
 						<ul class="nav nav-tabs nav-stacked pull-right">
 							<li>
-								<a role="button" data-toggle="modal" href="#form_batch"><span class="icon icone-home"></span> Add Batch</a>
+								<a role="button" data-toggle="modal" href="#form_event"><span class="icon icone-home"></span> Add Event</a>
 							</li>
 						</ul>
 						<!-- START Button Group -->
@@ -242,7 +220,7 @@
 					<section class="body">
 						<div class="body-inner">
 							<div class="portlet-body">
-								<table class="table table-striped table-bordered table-hover" id="tblBatch">
+								<table class="table table-striped table-bordered table-hover" id="tblEvent">
 									<thead>
 										<tr>
 											<th style="width:8px;">
