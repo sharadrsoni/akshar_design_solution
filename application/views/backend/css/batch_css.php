@@ -6,6 +6,6 @@
 
 <!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="assets/plugins/clockface/css/clockface.css" />
-<!-- END PAGE LEVEL STYLES -->
+
 
 <!--/ END STYLESHEET SECTION -->
