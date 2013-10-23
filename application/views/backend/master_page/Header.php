@@ -1,4 +1,10 @@
-			<header id="header">
+</head>
+<body>
+	<div id="wrapper" class="fixed-header fixed-sidebar">
+		<!-- START Template Canvas -->
+		<div id="canvas">
+			<!-- START Template Header -->
+						<header id="header">
                 <!-- START Logo -->
                 <div class="logo hidden-phone hidden-tablet">
                     <a href="#"><img src="img/logo-white.png" alt=""></a>
@@ -215,4 +221,209 @@
                 </ul>
                 <!--/ END Toolbar -->
             </header>
-            
+					<aside id="sidebar">
+                <!-- START Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- START Sidebar Tab -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-menu" data-toggle="tab"><span class="icon icone-file"></span></a></li>
+                        <li class=""><a href="#tab-overview" data-toggle="tab"><span class="icon icone-beaker"></span></a></li>
+                    </ul>
+                    <!--/ END Sidebar Tab -->
+
+                    <!-- START Tab Content -->
+                    <div class="tab-content">
+                        <!-- START Tab Pane(menu) -->
+                        <div class="tab-pane active" id="tab-menu">
+                            <!-- START Sidebar Menu -->
+                            <nav id="nav" class="accordion">
+                                <ul id="navigation">
+                                    <!-- START Menu Divider -->
+                                    <li class="divider">Main Menu</li>
+                                    <!--/ END Menu Divider -->
+
+                                    <!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Dashboard.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Branch.php">
+                                            <span class="icon icone-th-list"></span>
+                                            <span class="text">Branch</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Batch.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Batch</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Search.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Search</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group ">
+                                        <a data-toggle="collapse" data-parent="#navigation" href="#submenu2">
+                                            <span class="icon icone-beaker"></span>
+                                            <span class="text">Student Details</span>
+                                            <span class="arrow icone-caret-down"></span>
+                                        </a>
+                                        <!-- START Submenu Menu -->
+                                        <ul id="submenu2" class="collapse ">
+                                            <li class=""><a href="Studentregister.php"><span class="icon icone-angle-right"></span>Registration</a></li>
+                                            <li class=""><a href="Studentfees.php"><span class="icon icone-angle-right"></span>Fees Receipt</a></li>
+                                        </ul>
+                                        <!--/ END Submenu Menu -->
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Staff.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Staff</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Event.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Event</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Staff.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Book Inventory</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Target.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Target</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Targeteedback.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Target Feedback</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Sendnotification.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Send Notification</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+									
+									<!-- START Menu -->
+                                    <li class="accordion-group">
+                                        <a href="Inquiry.php">
+                                            <span class="icon icone-dashboard"></span>
+                                            <span class="text">Inquiry</span>
+                                        </a>
+                                    </li>
+                                    <!--/ END Menu -->
+                                </ul>
+                            </nav>
+                            <!--/ END Sidebar Menu -->
+                        </div>
+                        <!--/ END Tab Pane(menu) -->
+
+                        <!-- START Tab Pane(overview) -->
+                        <div class="tab-pane" id="tab-overview">
+                            <!-- START Accound Status -->
+                            <div class="divider">Accound Status</div>
+                            <!-- START sparkline 1 -->
+                            <figure class="stats sparkline">
+                                <span class="chart sparkline-bar" sparkBarColor="#dc143c">5,6,7,2,9,2,1,4,8</span>
+                                <figcaption>
+                                    <h4><small>My Balance</small>$16,763</h4>
+                                </figcaption>
+                            </figure><!--/ END sparkline 1 -->
+
+                            <!-- START sparkline 2 -->
+                            <figure class="stats sparkline">
+                                <span class="chart sparkline-bar" sparkBarColor="#2E8DEF">2,7,3,8,3,2,1,2,4</span>
+                                <figcaption>
+                                    <h4><small>Impression</small>125k+</h4>
+                                </figcaption>
+                            </figure><!--/ END sparkline 2 -->
+                            <!--/ END Accound Status -->
+
+                            <!-- START sparkline 2 -->
+                            <figure class="stats sparkline">
+                                <span class="chart sparkline-bar" sparkBarColor="#8CBF26">5,2,8,8,2,1,1,6,4</span>
+                                <figcaption>
+                                    <h4><small>Subscribers</small>5,212</h4>
+                                </figcaption>
+                            </figure><!--/ END sparkline 2 -->
+                            <!--/ END Accound Status -->
+
+                            <!-- START Other Stuff -->
+                            <div class="divider">Other Stuff</div>
+                            <!-- START Summary 1 -->
+                            <figure class="stats summary stacked">
+                                <div class="up"><span class="icon icone-caret-up"></span></div>
+                                <div class="icon circle red"><span class="icone-ticket"></span></div>
+                                <figcaption>
+                                    <h3>+230<small>Open tickets</small></h3>
+                                </figcaption>
+                            </figure><!--/ END Summary 1 -->
+
+                            <!-- START Summary 2 -->
+                            <figure class="stats summary stacked">
+                                <div class="down"><span class="icon icone-caret-down"></span></div>
+                                <div class="icon circle lime"><span class="icone-bug"></span></div>
+                                <figcaption>
+                                    <h3>-20<small>Bug Killed</small></h3>
+                                </figcaption>
+                            </figure><!--/ END Summary 2 -->
+                            
+                            <!-- START Summary 3 -->
+                            <figure class="stats summary stacked">
+                                <div class="icon circle teal"><span class="icone-trophy"></span></div>
+                                <figcaption>
+                                    <h3>1,432<small>Trophy Won</small></h3>
+                                </figcaption>
+                            </figure><!--/ END Summary 3 -->
+                            <!--/ END Other Stuff -->
+                        </div>
+                        <!--/ END Tab Pane(overview) -->
+                    </div>
+                    <!--/ END Tab Content -->
+                </div>
+                <!--/ END Sidebar Content -->
+            </aside>

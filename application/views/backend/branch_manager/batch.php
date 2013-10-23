@@ -1,7 +1,3 @@
-<!-- INCLUDE CORE CSS -->
-<!--/ END Template Sidebar -->
-
-<!-- START Template Main Content -->
 <section id="main">
 	<!-- START Bootstrap Navbar -->
 	<div class="navbar navbar-static-top">
