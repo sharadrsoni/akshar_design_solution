@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 class Branch_Manager extends CI_Controller {
 
 	public function index() {
-		$this -> load -> view('branch_manager/batch');
+		$this -> load -> view('backend/branch_manager/batch');
 	}
 
 }
