@@ -182,7 +182,7 @@
 											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
 											<td class="hidden-480">120</td>
 											<td class="hidden-480"></td>
-											
+
 											<td ><span class="label label-success">Delete</span></td>
 										</tr>
 									</tbody>
@@ -221,20 +221,20 @@
 						</ul>
 						<!-- START Button Group -->
 						<!--<div class="btn-group pull-right">
-							<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-								With Selected <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Option 1</a>
-								</li>
-								<li>
-									<a href="#">Option 2</a>
-								</li>
-								<li>
-									<a href="#">Option 3</a>
-								</li>
-							</ul>
+						<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+						With Selected <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+						<li>
+						<a href="#">Option 1</a>
+						</li>
+						<li>
+						<a href="#">Option 2</a>
+						</li>
+						<li>
+						<a href="#">Option 3</a>
+						</li>
+						</ul>
 						</div>-->
 						<!--/ END Button Group -->
 					</header>
@@ -249,24 +249,27 @@
 											</th>
 											<th>Batch Name</th>
 											<th class="hidden-480">Weekdays</th>
-											<th class="hidden-480">Time</th>
 											<th class="hidden-480">Course</th>
 											<th class="hidden-480">Faculty</th>
 											<th >Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="odd gradeX">
-											<td>
-											<input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>shuxer</td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-											<td class="hidden-480">120</td>
-											<td class="hidden-480"></td>
-											<td class="center hidden-480">12 Jan 2012</td>
-											<td ><span class="label label-success">Delete</span></td>
-										</tr>
+										<?php
+										if (isset($batch_list)) {
+											foreach ($batch_list as $key) {
+												echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+<td>{$key->batchId}</td>
+<td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
+<td class=\"hidden-480\">{$key->courseName}</td>
+<td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
+<td ><span class=\"label label-success\">Delete</span> <span class=\"label label-success\">Delete</span></td></tr>
+";
+											}
+										}
+										?>
 									</tbody>
 								</table>
 							</div>
