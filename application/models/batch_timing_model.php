@@ -6,18 +6,6 @@ if (!defined('BASEPATH'))
  */
 class batch_timing_model extends CI_Model {
 
-	public function getAllDetails() {
-
-	}
-
-	public function getAllDetailsByBranch($branchId) {
-
-	}
-
-	public function getDetailsByBranchAndBatch($branchId, $batchId) {
-
-	}
-
 	public function getWeekDays($batchId) {
 		if (isset($batchId)) {
 			$data = $this -> db -> where("batchId", $batchId) -> get("batch_timing") -> result();
