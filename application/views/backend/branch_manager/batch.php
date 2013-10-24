@@ -149,8 +149,8 @@
 							<div class="control-group">
 								<label class="control-label"></label>
 								<div class="controls">
-									<button type="button" class="btn green span4">
-										Success
+									<button type="button" class="btn green span4" id="btn_add_batch_timing">
+										Add Batch Timing
 									</button>
 									<div class="span8"></div>
 								</div>
@@ -166,25 +166,14 @@
 											<th style="width:8px;">
 											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 											</th>
-											<th>EventDate</th>
 											<th class="hidden-480">Weekday</th>
 											<th class="hidden-480">Start Time</th>
 											<th class="hidden-480">End Time</th>
 											<th class="hidden-480">Action</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr class="odd gradeX">
-											<td>
-											<input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>shuxer</td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-											<td class="hidden-480">120</td>
-											<td class="hidden-480"></td>
-											
-											<td ><span class="label label-success">Approved</span></td>
-										</tr>
+									<tbody id="lst_batch_timing">
+										
 									</tbody>
 								</table>
 							</div><!--/ List-->
