@@ -180,7 +180,7 @@
                     <!-- START Profile -->
                     <li class="profile">
                         <a href="#" data-toggle="dropdown">
-                            <span class="avatar"><img src="img/avatar/avatar4.jpg" alt=""></span>
+                            <span class="avatar"><img src="<?php echo base_url() . "img/avatar/avatar4.jpg"; ?>"  alt=""></span>
                             <span class="text hidden-phone">JOHN POZY<span class="role">Admin</span></span>
                             <span class="arrow icone-caret-down"></span>
                         </a>
