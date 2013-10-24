@@ -39,7 +39,7 @@
 
 				<form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed yellow" style="left:-10%;" aria-hidden="false" id="form_batch">
 					<header>
-						<h4 class="title">Form Validation - Inline</h4>
+						<h4 class="title">Add Batch</h4>
 						<ul class="nav nav-tabs nav-stacked pull-right">
 							<li>
 								<a role="button" data-dismiss="modal" aria-hidden="true" href="#"><span class="icon icone-close"></span>close</a>
@@ -211,9 +211,9 @@
 				<!-- START Datatable 2 -->
 				<div class="span12 widget lime">
 					<header>
-						<h4 class="title"><span class="icon icone-crop"></span>Rich DataTable</h4>
+						<h4 class="title"><span class="icon icone-crop"></span>List of batches</h4>
 						<!-- START Label/Badge -->
-						<span class="label label-important">-21 Outdated Browser</span>
+						<!--<span class="label label-important">-21 Outdated Browser</span>-->
 						<!--/ END Label/Badge -->
 						<ul class="nav nav-tabs nav-stacked pull-right">
 							<li>
@@ -221,7 +221,7 @@
 							</li>
 						</ul>
 						<!-- START Button Group -->
-						<div class="btn-group pull-right">
+						<!--<div class="btn-group pull-right">
 							<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
 								With Selected <span class="caret"></span>
 							</button>
@@ -236,7 +236,7 @@
 									<a href="#">Option 3</a>
 								</li>
 							</ul>
-						</div>
+						</div>-->
 						<!--/ END Button Group -->
 					</header>
 					<section class="body">
@@ -248,11 +248,11 @@
 											<th style="width:8px;">
 											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 											</th>
-											<th>EventDate</th>
-											<th class="hidden-480">Address</th>
-											<th class="hidden-480">Organize by</th>
-											<th class="hidden-480">Description</th>
-											<th class="hidden-480">Edit</th>
+											<th>Batch Name</th>
+											<th class="hidden-480">Weekdays</th>
+											<th class="hidden-480">Time</th>
+											<th class="hidden-480">Course</th>
+											<th class="hidden-480">Faculty</th>
 											<th >View</th>
 										</tr>
 									</thead>
@@ -277,7 +277,6 @@
 				<!--/ END Datatable 2 -->
 			</div>
 			<!--/ END Row -->
-
 		</div>
 		<!--Page Content End  -->
 	</div>

@@ -5,7 +5,8 @@ if (!defined('BASEPATH'))
 class Branch_Manager extends CI_Controller {
 
 	public function index() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Dashboard";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/dashboard');
@@ -15,7 +16,8 @@ class Branch_Manager extends CI_Controller {
 	}
 	
 	public function event() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Event";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/event_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/event');
@@ -26,7 +28,8 @@ class Branch_Manager extends CI_Controller {
 	
 	
 	public function search() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Search";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/search_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/search');
@@ -36,7 +39,8 @@ class Branch_Manager extends CI_Controller {
 	}
 	
 	public function staff() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Staff";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/staff_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/staff');
@@ -46,7 +50,8 @@ class Branch_Manager extends CI_Controller {
 	}
 	
 	public function inquiry() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Inquiry";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/inquiry_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/inquiry');
@@ -56,7 +61,8 @@ class Branch_Manager extends CI_Controller {
 	}
 	
 	public function branch() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Branch";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/branch_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/branch');
@@ -66,7 +72,8 @@ class Branch_Manager extends CI_Controller {
 	}
 	
 	public function batch() {
-		$this -> load -> view('backend/master_page/top');
+		$data['title'] = "ADS | Batch";
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/batch_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/batch');

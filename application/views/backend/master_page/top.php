@@ -7,7 +7,7 @@
 <!--<![endif]-->
 <head>
 <!-- START TITLE SECTION -->
-<title>ADS | Batch</title>
+<title><?php echo $title; ?></title>
 <!--/ END TITLE SECTION -->
 
 <!-- START STYLESHEET SECTION -->
