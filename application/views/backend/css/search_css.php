@@ -1,1 +1,1 @@
-<link href="css/pagecss/search.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url() . "css/pagecss/search.css"; ?>" rel="stylesheet" type="text/css"/>
