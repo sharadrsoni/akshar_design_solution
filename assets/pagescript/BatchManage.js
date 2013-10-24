@@ -1,187 +1,192 @@
-var EventTable = function () {
-    return {
-        //main function to initiate the module
-        init: function () {
-            if (!jQuery().dataTable) {
-                return;
-            }
-            // begin tblEvent table
-            $('#tblBatch').dataTable({
-                "aoColumns": [
-                  { "bSortable": false },
-                  null,
-                  { "bSortable": false },
-                  null,
-				  null,	
-                  { "bSortable": false },
-                  { "bSortable": false }
-                ],
-                "aLengthMenu": [
-                    [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
-                ],
-                // set the initial value
-                "iDisplayLength": 5,
-                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-                "sPaginationType": "bootstrap",
-                "oLanguage": {
-                    "sLengthMenu": "_MENU_ records per page",
-                    "oPaginate": {
-                        "sPrevious": "Prev",
-                        "sNext": "Next"
-                    }
-                },
-                "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
-                ]
-            });
-
-            jQuery('#tblBatch .group-checkable').change(function () {
-                var set = jQuery(this).attr("data-set");
-                var checked = jQuery(this).is(":checked");
-                jQuery(set).each(function () {
-                    if (checked) {
-                        $(this).attr("checked", true);
-                    } else {
-                        $(this).attr("checked", false);
-                    }
-                });
-                jQuery.uniform.update(set);
-            });
-
-            jQuery('#tblBatch .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
-            jQuery('#tblBatch .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
-            //jQuery('#tblEvent .dataTables_length select').select2(); // initialize select2 dropdown
-        }
-    };
-}();
-var EventValidation = function () {
-    var handleValidation1 = function() {
-        // for more info visit the official plugin documentation: 
-            // http://docs.jquery.com/Plugins/Validation
-            var form1 = $('#form_batch');
-            var error1 = $('.alert-error', form1);
-            var success1 = $('.alert-success', form1);
-            form1.validate({
-                errorElement: 'span', //default input error message container
-                errorClass: 'help-inline', // default input error message class
-                focusInvalid: false, // do not focus the last invalid input
-                ignore: "",
-                rules: {
-                    course_id: {
-                        required: true,
-                    },
-					faculty_id:{
-						required: true,
-					},
-					start_date:{
-						required: true,
-					},
-					strength:{
-						required: true,
+var EventTable = function() {
+	return {
+		//main function to initiate the module
+		init : function() {
+			if (!jQuery().dataTable) {
+				return;
+			}
+			// begin tblEvent table
+			$('#tblBatch').dataTable({
+				"aoColumns" : [{
+					"bSortable" : false
+				}, null, {
+					"bSortable" : false
+				}, null, null, {
+					"bSortable" : false
+				}, {
+					"bSortable" : false
+				}],
+				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
+				],
+				// set the initial value
+				"iDisplayLength" : 5,
+				"sDom" : "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+				"sPaginationType" : "bootstrap",
+				"oLanguage" : {
+					"sLengthMenu" : "_MENU_ records per page",
+					"oPaginate" : {
+						"sPrevious" : "Prev",
+						"sNext" : "Next"
 					}
-                },
+				},
+				"aoColumnDefs" : [{
+					'bSortable' : false,
+					'aTargets' : [0]
+				}]
+			});
 
-                invalidHandler: function (event, validator) { //display error alert on form submit              
-                    success1.hide();
-                    error1.show();
-                    App.scrollTo(error1, -200);
-                },
+			jQuery('#tblBatch .group-checkable').change(function() {
+				var set = jQuery(this).attr("data-set");
+				var checked = jQuery(this).is(":checked");
+				jQuery(set).each(function() {
+					if (checked) {
+						$(this).attr("checked", true);
+					} else {
+						$(this).attr("checked", false);
+					}
+				});
+				jQuery.uniform.update(set);
+			});
 
-                highlight: function (element) { // hightlight error inputs
-                    $(element)
-                        .closest('.help-inline').removeClass('ok'); // display OK icon
-                    $(element)
-                        .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
-                },
+			jQuery('#tblBatch .dataTables_filter input').addClass("m-wrap medium");
+			// modify table search input
+			jQuery('#tblBatch .dataTables_length select').addClass("m-wrap small");
+			// modify table per page dropdown
+			//jQuery('#tblEvent .dataTables_length select').select2(); // initialize select2 dropdown
+		}
+	};
+}();
+var EventValidation = function() {
+	var handleValidation1 = function() {
+		// for more info visit the official plugin documentation:
+		// http://docs.jquery.com/Plugins/Validation
+		var form1 = $('#form_batch');
+		var error1 = $('.alert-error', form1);
+		var success1 = $('.alert-success', form1);
+		form1.validate({
+			errorElement : 'span', //default input error message container
+			errorClass : 'help-inline', // default input error message class
+			focusInvalid : false, // do not focus the last invalid input
+			ignore : "",
+			rules : {
+				course_id : {
+					required : true,
+				},
+				faculty_id : {
+					required : true,
+				},
+				start_date : {
+					required : true,
+				},
+				strength : {
+					required : true,
+				}
+			},
 
-                unhighlight: function (element) { // revert the change done by hightlight
-                    $(element)
-                        .closest('.control-group').removeClass('error'); // set error class to the control group
-                },
+			invalidHandler : function(event, validator) {//display error alert on form submit
+				success1.hide();
+				error1.show();
+				App.scrollTo(error1, -200);
+			},
 
-                success: function (label) {
-                    label
-                        .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
-                    .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
-                },
+			highlight : function(element) {// hightlight error inputs
+				$(element).closest('.help-inline').removeClass('ok');
+				// display OK icon
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+				// set error class to the control group
+			},
 
-                submitHandler: function (form) {
-                    success1.show();
-                    error1.hide();
-                }
-            });
-    }
-    return {
-        //main function to initiate the module
-        init: function () {
+			unhighlight : function(element) {// revert the change done by hightlight
+				$(element).closest('.control-group').removeClass('error');
+				// set error class to the control group
+			},
 
-            handleValidation1();
-   
-        }
+			success : function(label) {
+				label.addClass('valid').addClass('help-inline ok')// mark the current input as valid and display OK icon
+				.closest('.control-group').removeClass('error').addClass('success');
+				// set success class to the control group
+			},
 
-    };
+			submitHandler : function(form) {
+				success1.show();
+				error1.hide();
+			}
+		});
+	};
+	return {
+		//main function to initiate the module
+		init : function() {
+
+			handleValidation1();
+
+		}
+	};
 }();
 
-var EventUIJQueryUI = function () {
-	
-	 var handleDatePickers = function () {
+var EventUIJQueryUI = function() {
 
-	    $("#start_date_datepicker input").datepicker({
-	    	isRTL: App.isRTL()
-	    });
-	    
-	    $("#start_date_datepicker .add-on").click(function(){
-	    	$("#start_date_datepicker input").datepicker("show");
-	    });
-    }
-	
-    var handleClockfaceTimePickers = function () {
+	var handleDatePickers = function() {
 
-        if (!jQuery().clockface) {
-            return;
-        }
+		$("#start_date_datepicker input").datepicker({
+			isRTL : App.isRTL()
+		});
 
-        $('.clockface_1').clockface();
+		$("#start_date_datepicker .add-on").click(function() {
+			$("#start_date_datepicker input").datepicker("show");
+		});
+	};
+	var handleClockfaceTimePickers = function() {
 
-        $('#clockface_2').clockface({
-            format: 'HH:mm',
-            trigger: 'manual'
-        });
+		if (!jQuery().clockface) {
+			return;
+		}
 
-        $('#clockface_2_toggle').click(function (e) {
-            e.stopPropagation();
-            $('#clockface_2').clockface('toggle');
-        });
+		$('.clockface_1').clockface();
 
-        $('#clockface_2_modal').clockface({
-            format: 'HH:mm',
-            trigger: 'manual'
-        });
+		$('#clockface_2').clockface({
+			format : 'HH:mm',
+			trigger : 'manual'
+		});
 
-        $('#clockface_2_modal_toggle').click(function (e) {
-            e.stopPropagation();
-            $('#clockface_2_modal').clockface('toggle');
-        });
+		$('#clockface_2_toggle').click(function(e) {
+			e.stopPropagation();
+			$('#clockface_2').clockface('toggle');
+		});
 
-        $('.clockface_3').clockface({
-            format: 'H:mm'
-        }).clockface('show', '14:30');
-    }
+		$('#clockface_2_modal').clockface({
+			format : 'HH:mm',
+			trigger : 'manual'
+		});
 
-    return {
-        //main function to initiate the module
-        init: function () {
-            handleDatePickers();
-            handleClockfaceTimePickers();
-            
-            
-        }
+		$('#clockface_2_modal_toggle').click(function(e) {
+			e.stopPropagation();
+			$('#clockface_2_modal').clockface('toggle');
+		});
 
-    };
-    
-   
+		$('.clockface_3').clockface({
+			format : 'H:mm'
+		}).clockface('show', '14:30');
+	};
+
+	var addBatchTiming = function() {
+		$('#btn_add_batch_timing').click(function() {
+			if ($('#weekday').val() != "" && $('#weekday').val() != "Select..." && $('#start_time').val() != "" && $('#end_time').val() != "") {
+				$('#lst_batch_timing').append("<tr class='odd gradeX'><td><input type='checkbox' class='checkboxes' value='1' /></td><td>" + $('#weekday').val() + "</td><td class='hidden-480'>" + $('#start_time').val() + "</td><td class='hidden-480'>" + $('#end_time').val() + "</td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+			}
+		});
+	};
+
+	return {
+		//main function to initiate the module
+		init : function() {
+			handleDatePickers();
+			handleClockfaceTimePickers();
+			addBatchTiming();
+		}
+	};
 
 }();
+
+function removebatchtime(e) {
+	$(e).parent().parent().remove();
+}

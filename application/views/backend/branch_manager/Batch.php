@@ -149,8 +149,8 @@
 							<div class="control-group">
 								<label class="control-label"></label>
 								<div class="controls">
-									<button type="button" class="btn green span4">
-										Add
+									<button type="button" class="btn green span4" id="btn_add_batch_timing">
+										Add Batch Timing
 									</button>
 									<div class="span8"></div>
 								</div>
@@ -166,13 +166,13 @@
 											<th style="width:8px;">
 											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 											</th>
-											<th>EventDate</th>
 											<th class="hidden-480">Weekday</th>
 											<th class="hidden-480">Start Time</th>
 											<th class="hidden-480">End Time</th>
 											<th class="hidden-480">Action</th>
 										</tr>
 									</thead>
+
 									<tbody>
 										<tr class="odd gradeX">
 											<td>
@@ -185,6 +185,9 @@
 
 											<td ><span class="label label-success">Delete</span></td>
 										</tr>
+										
+									<tbody id="lst_batch_timing">
+										
 									</tbody>
 								</table>
 							</div><!--/ List-->

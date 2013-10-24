@@ -14,7 +14,18 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
+	
+	public function studentattendance() {
+		$data['title'] = "ADS | Student Attendance";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/student_attendance_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/student_attendance');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/student_attendance_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+	
 	public function event() {
 		$data['title'] = "ADS | Event";
 		$this -> load -> view('backend/master_page/top', $data);
