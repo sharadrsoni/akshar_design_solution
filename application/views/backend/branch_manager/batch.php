@@ -24,7 +24,7 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Batch <small>This is the place where everything started</small></h4>
+					<h4>Batch <small>Maintain batch details over here.</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
@@ -156,7 +156,7 @@
 								</div>
 							</div>
 
-							<h3 class="form-section">List OF Time Schedule</h3>
+							<h3 class="form-section">List of Time Schedule</h3>
 
 							<!-- LIst -->
 							<div class="control-group">
@@ -167,11 +167,10 @@
 											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 											</th>
 											<th>EventDate</th>
-											<th class="hidden-480">Address</th>
-											<th class="hidden-480">Organize by</th>
-											<th class="hidden-480">Description</th>
-											<th class="hidden-480">Edit</th>
-											<th >View</th>
+											<th class="hidden-480">Weekday</th>
+											<th class="hidden-480">Start Time</th>
+											<th class="hidden-480">End Time</th>
+											<th class="hidden-480">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -183,7 +182,7 @@
 											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
 											<td class="hidden-480">120</td>
 											<td class="hidden-480"></td>
-											<td class="center hidden-480">12 Jan 2012</td>
+											
 											<td ><span class="label label-success">Approved</span></td>
 										</tr>
 									</tbody>
