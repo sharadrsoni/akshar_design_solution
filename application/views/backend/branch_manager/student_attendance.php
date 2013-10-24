@@ -88,7 +88,7 @@
 										<tr>
 										<tr>
 											<th>Student ID</th>
-											<th class="hidden-480">Present/Absent 	<input type="checkbox" class="group-checkable" data-set="#attendance .checkboxes" /></th>
+											<th class="hidden-480">Present/Absent </th>
 										</tr>
 									</thead>
 									<tbody>
