@@ -241,7 +241,7 @@
 											<th class="hidden-480">Time</th>
 											<th class="hidden-480">Course</th>
 											<th class="hidden-480">Faculty</th>
-											<th >View</th>
+											<th >Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -254,7 +254,7 @@
 											<td class="hidden-480">120</td>
 											<td class="hidden-480"></td>
 											<td class="center hidden-480">12 Jan 2012</td>
-											<td ><span class="label label-success">Approved</span></td>
+											<td ><span class="label label-success">Delete</span></td>
 										</tr>
 									</tbody>
 								</table>
