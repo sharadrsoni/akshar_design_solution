@@ -172,20 +172,7 @@
 											<th class="hidden-480">Action</th>
 										</tr>
 									</thead>
-
-									<tbody>
-										<tr class="odd gradeX">
-											<td>
-											<input type="checkbox" class="checkboxes" value="1" />
-											</td>
-											<td>shuxer</td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-											<td class="hidden-480">120</td>
-											<td class="hidden-480"></td>
-
-											<td ><span class="label label-success">Delete</span></td>
-										</tr>
-										
+									
 									<tbody id="lst_batch_timing">
 										
 									</tbody>
