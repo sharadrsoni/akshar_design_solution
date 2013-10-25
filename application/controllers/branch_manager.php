@@ -81,6 +81,18 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function target(){
+		
+		$data['title']="ADS | Target";
+		$this->load->view('backend/master_page/top',$data);
+		$this->load->view('backend/css/target_css');
+		$this->load->view('backend/master_page/header');
+		$this->load->view('backend/branch_manager/target');
+		$this->load->view('backend/master_page/footer');
+		$this->load->view('backend/js/target_js');
+		$this->load->view('backend/master_page/bottom');
+		
+	}
 	public function batch() {
 		$data['title'] = "ADS | Batch";
 		$this -> load -> view('backend/master_page/top', $data);
