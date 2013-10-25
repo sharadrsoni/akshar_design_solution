@@ -98,7 +98,7 @@ class Branch_Manager extends CI_Controller {
 			$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
 		}
 		$data['batch_list'] = $batch_data;
-		//die(print_r($weekdays));
+		//die(print_r($weekdays)); 
 		$data['weekdays'] = $weekdays;
 		$this -> load -> view('backend/branch_manager/batch', $data);
 		$this -> load -> view('backend/master_page/footer');
