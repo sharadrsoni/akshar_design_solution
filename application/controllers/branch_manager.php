@@ -87,7 +87,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/css/batch_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("batch_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1
+		//Logic of getting Branch Id. Here I am assuming id = 1 
 		$branchId = 1;
 		$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
 		//die(print_r($batch_data));
