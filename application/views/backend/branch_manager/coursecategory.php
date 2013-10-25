@@ -137,8 +137,6 @@
 											<input type="checkbox" class="checkboxes" value="1" />
 											</td>
 											<td>shuxer</td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-											<td class="hidden-480">120</td>
 											<td class="center hidden-480">12 Jan 2012</td>
 											<td ><span class="label label-success">Approved</span></td>
 										</tr>
