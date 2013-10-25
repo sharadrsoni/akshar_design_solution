@@ -124,5 +124,16 @@ class Branch_Manager extends CI_Controller {
 		redirect(base_url() . "branch_manager/batch");
 	}
 
+	public function coursecategory() {
+		$data['title'] = "ADS | Course Category";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/coursecategory_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/coursecategory');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/coursecategory_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 }
 ?>
