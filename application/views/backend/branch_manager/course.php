@@ -75,7 +75,7 @@
 										</div><!--/ CourseCategory ID -->
 							<!-- Course Name -->
 							<div class="control-group">
-								<label class="control-label">Course Name</label>
+								<label class="control-label">Course Name<span class="required">*</span></label>
 								<div class="controls">
 									<input type="text" name="course_name" id="course_name" class="span8">
 								</div>
