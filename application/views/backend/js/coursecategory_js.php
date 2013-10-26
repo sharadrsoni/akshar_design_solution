@@ -11,6 +11,5 @@
 		App.init();
 		CourseCategoryTable.init();
 		CourseCategoryValidation.init();
-		CourseCategoryUIJQueryUI.init();
 	}); 
 </script>

@@ -60,7 +60,7 @@ var CourseCategoryValidation = function () {
     var handleValidation1 = function() {
         // for more info visit the official plugin documentation: 
             // http://docs.jquery.com/Plugins/Validation
-            var form1 = $('#form_staff');
+            var form1 = $('#form_coursecategory');
             var error1 = $('.alert-error', form1);
             var success1 = $('.alert-success', form1);
             form1.validate({
@@ -114,37 +114,4 @@ var CourseCategoryValidation = function () {
         }
 
     };
-}();
-
-var CourseCategoryUIJQueryUI = function () {
-
-    
-    var handleDatePickers = function () {
-
-	    $("#dob_datepicker input").datepicker({
-	    	isRTL: App.isRTL()
-	    });
-	    
-	    $("#dob_datepicker .add-on").click(function(){
-	    	$("#dob_datepicker input").datepicker("show");
-	    });
-		
-		 $("#doj_datepicker input").datepicker({
-	    	isRTL: App.isRTL()
-	    });
-	    
-	    $("#doj_datepicker .add-on").click(function(){
-	    	$("#doj_datepicker input").datepicker("show");
-	    });
-    }
-
- 
-    return {
-        //main function to initiate the module
-        init: function () {
-            handleDatePickers();
-        }
-
-    };
-
 }();
