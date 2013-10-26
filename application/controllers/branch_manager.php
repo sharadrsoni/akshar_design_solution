@@ -14,8 +14,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
-	public function Studentregistation() {
+	public function studentregistation() {
 		$data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/student_register_css');
@@ -25,7 +24,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/student_register_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function studentattendance() {
 		$data['title'] = "ADS | Student Attendance";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -36,7 +35,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/student_attendance_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function event() {
 		$data['title'] = "ADS | Event";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -92,13 +91,24 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function target(){
+		$data['title']="ADS | Target";
+		$this->load->view('backend/master_page/top',$data);
+		$this->load->view('backend/css/target_css');
+		$this->load->view('backend/master_page/header');
+		$this->load->view('backend/branch_manager/target');
+		$this->load->view('backend/master_page/footer');
+		$this->load->view('backend/js/target_js');
+		$this->load->view('backend/master_page/bottom');
+		
+	}
 	public function batch() {
 		$data['title'] = "ADS | Batch";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/batch_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("batch_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1
+		//Logic of getting Branch Id. Here I am assuming id = 1 
 		$branchId = 1;
 		$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
 		//die(print_r($batch_data));
@@ -109,12 +119,18 @@ class Branch_Manager extends CI_Controller {
 			$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
 		}
 		$data['batch_list'] = $batch_data;
-		//die(print_r($weekdays));
+		//die(print_r($weekdays)); 
 		$data['weekdays'] = $weekdays;
 		$this -> load -> view('backend/branch_manager/batch', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/batch_js');
 		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function delete_batch($batchId) {
+		$this->load->model('batch_model');
+		$this->batch_model->deleteBatch($batchId);
+		redirect(base_url() . "branch_manager/batch");
 	}
 
 }

@@ -255,7 +255,7 @@
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
-<td ><span class=\"label label-success\">Delete</span> <span class=\"label label-success\">Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() ."branch_manager/delete_batch/{$key->batchId}'>Delete</span></td></tr>
 ";
 											}
 										}
