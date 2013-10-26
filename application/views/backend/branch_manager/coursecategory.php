@@ -35,7 +35,7 @@
 			<!-- START Row -->
 			<div class="row-fluid">
 				<!-- START Form Validation - Inline -->
-				<!--form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed brown" data-replace="true" style="left:-10%;" aria-hidden="false" id="form_branch"-->
+				<!--form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed brown" data-replace="true" style="left:-10%;" aria-hidden="false" id="form_coursecategory"-->
 				<form class="form-horizontal span12 widget shadowed brown" id="form_coursecategory">
 					<header>
 						<h4 class="title">Form Validation - Inline</h4>
@@ -60,7 +60,7 @@
 							<h3 class="form-section">Course Category Info.</h3>
 							<!-- Course Category Name -->
 							<div class="control-group">
-								<label class="control-label">Course Category Name</label>
+								<label class="control-label">Course Category Name<span class="required">*</span></label>
 								<div class="controls">
 									<input type="text" name="coursecategory_name" id="coursecategory_name" class="span8">
 								</div>

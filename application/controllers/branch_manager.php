@@ -145,6 +145,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/course_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	
+	public function chabgepassword() {
+		$data['title'] = "ADS | Change Password";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/changepassword_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/changepassword');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/changepassword_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 
 }
 ?>
