@@ -30,7 +30,7 @@
 		</div>
 		<!--/ END Row -->
 		<!--Page Content Here  -->
-		<div id="Branch">
+		<div id="Event">
 
 			<!-- START Row -->
 			<div class="row-fluid">

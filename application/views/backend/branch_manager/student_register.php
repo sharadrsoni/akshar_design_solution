@@ -110,7 +110,7 @@
 								<button class="close" data-dismiss="alert"></button>
 								Your form validation is successful!
 							</div>
-							<!-- Course -->
+							<!-- Student -->
 							<div class="control-group">
 								<label class="control-label">Select Student<span class="required">*</span></label>
 								<div class="controls">
@@ -122,7 +122,7 @@
 										<option value="ZW">Zimbabwe</option>
 									</select>
 								</div>
-							</div><!-- /Course -->
+							</div><!-- /Student -->
 							<!-- Course -->
 							<div class="control-group">
 								<label class="control-label">Course<span class="required">*</span></label>
