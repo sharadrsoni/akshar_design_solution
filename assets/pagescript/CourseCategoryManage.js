@@ -72,7 +72,7 @@ var CourseCategoryValidation = function() {
 			rules : {
 				coursecategory_name: {
                         minlength: 5,
-                        required: true
+                        required: true,
                     }
 			},
 
