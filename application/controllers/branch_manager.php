@@ -126,6 +126,17 @@ class Branch_Manager extends CI_Controller {
 		$this->load->view('backend/master_page/bottom');
 	}
 	
+	public function time_table(){
+		
+		$data['title']="ADS | Time Table";
+		$this->load->view('backend/master_page/top',$data);
+		$this->load->view('backend/css/time_table_css');
+			$this->load->view('backend/master_page/header');
+		$this->load->view('backend/branch_manager/time_table');
+		$this->load->view('backend/master_page/footer');
+		$this->load->view('backend/js/time_table_js');
+		$this->load->view('backend/master_page/bottom');
+	}
 	public function batch() {
 		$data['title'] = "ADS | Batch";
 		$this -> load -> view('backend/master_page/top', $data);
