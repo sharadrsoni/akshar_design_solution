@@ -250,19 +250,19 @@
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Dashboard.php"> <span class="icon icone-dashboard"></span> <span class="text">Dashboard</span> </a>
+										<a href=""> <span class="icon icone-dashboard"></span> <span class="text">Dashboard</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Branch.php"> <span class="icon icone-th-list"></span> <span class="text">Branch</span> </a>
+										<a href=""> <span class="icon icone-th-list"></span> <span class="text">Branch</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Batch.php"> <span class="icon icone-dashboard"></span> <span class="text">Batch</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/batch"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Batch</span> </a>
 									</li>
 									<!--/ END Menu -->
 
