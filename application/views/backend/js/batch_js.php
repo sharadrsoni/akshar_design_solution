@@ -15,5 +15,6 @@
 		EventTable.init();
 		EventValidation.init();
 		EventUIJQueryUI.init();
+		//$('#form_batch').modal('show');
 	});
 </script>
