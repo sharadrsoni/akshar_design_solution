@@ -22,4 +22,12 @@ class batch_model extends CI_Model {
 
 	}
 
+	public function addBatch($data) {
+		if(isset($data)) {
+			return $this->db->insert('batch', $data);
+		} else {
+			return false;
+		}
+	}
+
 }
