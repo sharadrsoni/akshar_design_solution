@@ -14,6 +14,27 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	public function studentregistation() {
+		$data['title'] = "ADS | Student Registration";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/student_register_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/student_register');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/student_register_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+	
+	public function feespayment() {
+		$data['title'] = "ADS | Fess Payment";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/fees_payment_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/fees_payment');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/fees_payment_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 
 	public function studentattendance() {
 		$data['title'] = "ADS | Student Attendance";
@@ -81,6 +102,41 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function target(){
+		$data['title']="ADS | Target";
+		$this->load->view('backend/master_page/top',$data);
+		$this->load->view('backend/css/target_css');
+		$this->load->view('backend/master_page/header');
+		$this->load->view('backend/branch_manager/target');
+		$this->load->view('backend/master_page/footer');
+		$this->load->view('backend/js/target_js');
+		$this->load->view('backend/master_page/bottom');
+		
+	}
+	
+	public function targetreport(){
+		
+		$data['title']="ADS | Target Report";
+		$this->load->view('backend/master_page/top',$data);
+		$this->load->view('backend/css/target_report_css');
+		$this->load->view('backend/master_page/header');
+		$this->load->view('backend/branch_manager/target_report');
+		$this->load->view('backend/master_page/footer');
+		$this->load->view('backend/js/target_report_js');
+		$this->load->view('backend/master_page/bottom');
+	}
+	
+	public function time_table(){
+		
+		$data['title']="ADS | Time Table";
+		$this->load->view('backend/master_page/top',$data);
+		$this->load->view('backend/css/time_table_css');
+			$this->load->view('backend/master_page/header');
+		$this->load->view('backend/branch_manager/time_table');
+		$this->load->view('backend/master_page/footer');
+		$this->load->view('backend/js/time_table_js');
+		$this->load->view('backend/master_page/bottom');
+	}
 	public function batch() {
 		$data['title'] = "ADS | Batch";
 		$this -> load -> view('backend/master_page/top', $data);

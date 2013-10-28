@@ -169,9 +169,6 @@
 								<table class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
-											<th style="width:8px;">
-											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-											</th>
 											<th class="hidden-480">Weekday</th>
 											<th class="hidden-480">Start Time</th>
 											<th class="hidden-480">End Time</th>
@@ -240,9 +237,6 @@
 								<table class="table table-striped table-bordered table-hover" id="tblBatch">
 									<thead>
 										<tr>
-											<th style="width:8px;">
-											<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-											</th>
 											<th>Batch Name</th>
 											<th class="hidden-480">Weekdays</th>
 											<th class="hidden-480">Course</th>

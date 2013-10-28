@@ -10,7 +10,6 @@ var EventTable = function() {
 				"aoColumns" : [{
 					"bSortable" : false
 				},
-				null ,
 				null,
 				null,
 				null,
@@ -171,7 +170,7 @@ var EventUIJQueryUI = function() {
 	var addBatchTiming = function() {
 		$('#btn_add_batch_timing').click(function() {
 			if ($('#weekday').val() != "" && $('#weekday').val() != "Select..." && $('#start_time').val() != "" && $('#end_time').val() != "") {
-				$('#lst_batch_timing').append("<tr class='odd gradeX'><td><input type='checkbox' class='checkboxes' value='1' /></td><td>" + $('#weekday').val() + "</td><td class='hidden-480'>" + $('#start_time').val() + "</td><td class='hidden-480'>" + $('#end_time').val() + "</td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+				$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='btach_timing' values='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='btach_timing' values='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='btach_timing' values='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
 			}
 		});
 	};
