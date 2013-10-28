@@ -86,20 +86,35 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/batch_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> model("batch_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1
+		//Logic of getting Branch Id. Here I am assuming id = 1.
 		$branchId = 1;
+		//Assuming the role ID of Faculty is 3.
+		$roleId = 3;
+		if(isset($_SERVER['register'])) {
+			$this -> load -> library("form_validation");
+			$this->form_validation->set_rules('course_id', 'Course Name', 'required|trim');
+			$this->form_validation->set_rules('faculty_id', 'Faculty Name', 'required|trim');
+			$this->form_validation->set_rules('start_date', 'Start Date', 'required|trim');
+			$this->form_validation->set_rules('strength', 'Strength', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				
+			}
+		}
+		$this -> load -> model("course_model");
+		$courses = $this->course_model->getAllDetails();
+		$this->load->model('user_model');
+		$facultyName = $this->user_model->getDetailsByBranch($branchId, $roleId);
+		$this->load->model('batch_model');
 		$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
-		//die(print_r($batch_data));
 		$this -> load -> model("batch_timing_model");
 		$weekdays = array();
-		$this -> load -> model("batch_timing_model");
 		foreach ($batch_data as $key) {
 			$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
 		}
 		$data['batch_list'] = $batch_data;
-		//die(print_r($weekdays));
 		$data['weekdays'] = $weekdays;
+		$data['course'] = $courses;
+		$data['faculty'] = $facultyName;
 		$this -> load -> view('backend/branch_manager/batch', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/batch_js');
