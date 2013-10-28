@@ -144,8 +144,6 @@ class Branch_Manager extends CI_Controller {
 		$branchId = 1;
 		//Assuming the role ID of Faculty is 3.
 		$roleId = 3;
-		//Assuming the userId as 2.
-		$facultyId = 2;
 
 		$data['title'] = "ADS | Batch";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -167,7 +165,8 @@ class Branch_Manager extends CI_Controller {
 		$data['course'] = $courses;
 		$data['faculty'] = $facultyName;
 
-		if (isset($_SERVER['register'])) {
+		if (isset($_POST['register'])) {
+			//die("yes");
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
 			$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
@@ -177,7 +176,28 @@ class Branch_Manager extends CI_Controller {
 				$data['validate'] = true;
 			} else {
 				$this -> load -> model('batch_model');
-				$branchData = array('batchId' => $branchId, 'batchStrength' => $_POST['batchStrength'], 'batchDuration' => $_POST['batchDuration'], 'branchId' => $branchId, 'facultyId' => $facultyId, 'courseId' => $_POST['courseId']);
+				$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => $_POST['start_date']);
+				$year = date('Y');
+				if ($branchId < 10) {
+					$branchId = "0" . $branchId;
+				}
+				$getMaximumBatchId = $this -> batch_model -> getMaxId();
+				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
+				$batchId = floatval($batchId);
+				//die($batchId);
+				if ($batchId != null) {
+					$batchId++;
+				} else {
+					$batchId = 1;
+				}
+				if ($batchId < 100) {
+					$batchId = "00" . $batchId;
+				} else if ($batchId < 10) {
+					$batchId = "0" . $batchId;
+				}
+				//die($batchId);
+				$batchId = $year . $branchId . $batchId;
+				$branchData['batchId'] = floatval($batchId);
 				if ($this -> batch_model -> addBatch($branchData)) {
 					redirect(base_url() . "branch_manager/batch");
 				} else {

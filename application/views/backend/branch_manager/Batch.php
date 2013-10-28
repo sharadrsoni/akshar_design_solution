@@ -36,237 +36,189 @@
 			<!-- START Row -->
 			<div class="row-fluid">
 				<!-- START Form Validation - Inline -->
-
-				<form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed yellow" style="left:-10%;" aria-hidden="false" id="form_batch">
-					<header>
-						<h4 class="title">Add Batch</h4>
-						<ul class="nav nav-tabs nav-stacked pull-right">
-							<li>
-								<a role="button" data-dismiss="modal" aria-hidden="true" href="#"><span class="icon icone-close"></span>close</a>
-							</li>
-						</ul>
-
-					</header>
-					<section class="body" >
-						<div class="alert alert-error hide">
-							<button class="close" data-dismiss="alert"></button>
-							You have some form errors. Please check below.
-						</div>
-						<div class="alert alert-success hide">
-							<button class="close" data-dismiss="alert"></button>
-							Your form validation is successful!
-						</div>
-
-						<div class="body-inner">
-							<h3 class="form-section">Batch Info</h3>
-							<!-- Branch -->
-							<!--div class="control-group">
-							<label class="control-label">Branch<span class="required">*</span></label>
-							<div class="controls">
-							<select class="span4" name="branch_id" id="branch_id">
-							<option value="">Select...</option>
-							<option value="Category 1">Category 1</option>
-							<option value="Category 2">Category 2</option>
-							<option value="Category 3">Category 5</option>
-							<option value="Category 4">Category 4</option>
-							</select>
-							</div>
-							</div><!--/ Branch -->
-
-							<!-- Course -->
-							<div class="control-group">
-								<label class="control-label">Course<span class="required">*</span></label>
-								<div class="controls">
-									<select class="span4" name="course_id" id="course_id">
-										<option value="">Select...</option>
-
-										<?php
-										foreach ($course as $key) {
-											echo "<option value='{$key->courseCode}'>{$key->courseName} - {$key->courseCode}</option>";
-										}
-										?>
-									</select>
-								</div>
-							</div><!--/ Course -->
-
-							<!-- Faculty -->
-							<div class="control-group">
-								<label class="control-label">Faculty<span class="required">*</span></label>
-								<div class="controls">
-									<select class="span4" name="faculty_id" id="faculty_id">
-										<option value="">Select...</option>
-										<?php
-										foreach ($faculty as $key) {
-											echo "<option value='{$key->userId}'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</option>";
-										}
-										?>
-									</select>
-								</div>
-							</div><!--/ Faculty -->
-
-							<!-- Start Date -->
-							<div class="control-group">
-								<label class="control-label">Start Date<span class="required">*</span></label>
-								<div class="controls">
-									<div class="input-append span6" id="start_date_datepicker">
-										<input type="text" name="start_date" id="start_date" class="m-wrap span7">
-										<span class="add-on"><i class="icon-calendar"></i></span>
-									</div>
-								</div>
-							</div><!--/ Start Date -->
-
-							<!-- Strength -->
-							<div class="control-group">
-								<label class="control-label">Strength<span class="required">*</span></label>
-								<div class="controls">
-									<input type="text" name="strength" id="strength" class="span2"/>
-								</div>
-							</div><!--/ Strength-->
-
-							<h3 class="form-section">Batch Timing</h3>
-
-							<!-- weekday -->
-							<div class="control-group">
-								<label class="control-label">weekday<span class="required">*</span></label>
-								<div class="controls">
-									<select class="span4" name="weekday" id="weekday">
-										<option value="">Select...</option>
-										<option value="1">Monday - 1</option>
-										<option value="2">Tuesday - 2</option>
-										<option value="3">Wednesday - 3</option>
-										<option value="4">Thursday - 4</option>
-										<option value="5">Friday - 5</option>
-										<option value="6">Saturday - 6</option>
-										<option value="7">Sunday - 7</option>
-									</select>
-								</div>
-							</div><!--/ weekday -->
-
-							<!-- Batch Time -->
-							<div class="control-group">
-								<label class="control-label">Batch Time<span class="required">*</span></label>
-								<div class="controls">
-									<input type="text" name="start_time" id="start_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-									<span class="help-inline">To &nbsp;</span>
-									<input type="text" name="end_time" id="end_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-								</div>
-							</div><!--/ Batch Time -->
-
-							<div class="control-group">
-								<label class="control-label"></label>
-								<div class="controls">
-									<button type="button" class="btn green span4" id="btn_add_batch_timing">
-										Add Batch Timing
-									</button>
-									<div class="span8"></div>
-								</div>
-							</div>
-
-							<h3 class="form-section">List of Time Schedule</h3>
-
-							<!-- LIst -->
-							<div class="control-group">
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th class="hidden-480">Weekday</th>
-											<th class="hidden-480">Start Time</th>
-											<th class="hidden-480">End Time</th>
-											<th class="hidden-480">Action</th>
-										</tr>
-									</thead>
-
-									<tbody id="lst_batch_timing">
-
-									</tbody>
-								</table>
-							</div><!--/ List-->
-
-							<!-- Form Action -->
-							<div class="form-actions">
-								<button type="submit" class="btn btn-primary" name="register" id="register">
-									Register
-								</button>
-								<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
-									Cancel
-								</button>
-							</div><!--/ Form Action -->
-						</div>
-					</section>
-				</form>
-				<!--/ END Form Validation - Inline -->
-			</div>
-			<!--/ END Row -->
-
-			<!-- START Row -->
-			<div class="row-fluid">
-				<!-- START Datatable 2 -->
-				<div class="span12 widget lime">
-					<header>
-						<h4 class="title"><span class="icon icone-crop"></span>List of batches</h4>
-						<!-- START Label/Badge -->
-						<!--<span class="label label-important">-21 Outdated Browser</span>-->
-						<!--/ END Label/Badge -->
-						<ul class="nav nav-tabs nav-stacked pull-right">
-							<li>
-								<a role="button" data-toggle="modal" href="#form_batch"><span class="icon icone-home"></span> Add Batch</a>
-							</li>
-						</ul>
-						<!-- START Button Group -->
-						<!--<div class="btn-group pull-right">
-						<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-						With Selected <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-						<li>
-						<a href="#">Option 1</a>
+				<div class="tabbable" style="margin-bottom: 25px;">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Batches</a>
 						</li>
-						<li>
-						<a href="#">Option 2</a>
+						<li class="">
+							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Batch</a>
 						</li>
-						<li>
-						<a href="#">Option 3</a>
-						</li>
-						</ul>
-						</div>-->
-						<!--/ END Button Group -->
-					</header>
-					<section class="body">
-						<div class="body-inner">
-							<div class="portlet-body">
-								<table class="table table-striped table-bordered table-hover" id="tblBatch">
-									<thead>
-										<tr>
-											<th>Batch Name</th>
-											<th class="hidden-480">Weekdays</th>
-											<th class="hidden-480">Course</th>
-											<th class="hidden-480">Faculty</th>
-											<th >Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										if (isset($batch_list)) {
-											foreach ($batch_list as $key) {
-												echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover" id="tblBatch">
+										<thead>
+											<tr>
+												<th>Batch Name</th>
+												<th class="hidden-480">Weekdays</th>
+												<th class="hidden-480">Course</th>
+												<th class="hidden-480">Faculty</th>
+												<th >Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											if (isset($batch_list)) {
+												foreach ($batch_list as $key) {
+													echo "<tr class=\"odd gradeX\">
 <td>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</span></td></tr>
 ";
+												}
 											}
-										}
-										?>
-									</tbody>
-								</table>
+											?>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
-					</section>
+						<div class="tab-pane" id="tab2">
+							<form method="post" action="<?php echo base_url(); ?>branch_manager/batch" class="form-horizontal span12 widget shadowed yellow" id="form_batch">
+								<div class="alert alert-error hide">
+									<button class="close" data-dismiss="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success hide">
+									<button class="close" data-dismiss="alert"></button>
+									Your form validation is successful!
+								</div>
+
+								<div class="body-inner">
+									<h3 class="form-section">Batch Info</h3>
+									<!-- Course -->
+									<div class="control-group">
+										<label class="control-label">Course<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span4" name="course_id" id="course_id">
+												<option value="">Select...</option>
+												<?php
+												foreach ($course as $key) {
+													echo "<option value='{$key->courseCode}'>{$key->courseName} - {$key->courseCode}</option>";
+												}
+												?>
+											</select>
+										</div>
+									</div><!--/ Course -->
+
+									<!-- Faculty -->
+									<div class="control-group">
+										<label class="control-label">Faculty<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span4" name="faculty_id" id="faculty_id">
+												<option value="">Select...</option>
+												<?php
+												foreach ($faculty as $key) {
+													echo "<option value='{$key->userId}'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</option>";
+												}
+												?>
+											</select>
+										</div>
+									</div><!--/ Faculty -->
+
+									<!-- Start Date -->
+									<div class="control-group">
+										<label class="control-label">Start Date<span class="required">*</span></label>
+										<div class="controls">
+											<div class="input-append span6" id="start_date_datepicker">
+												<input type="text" name="start_date" id="start_date" class="m-wrap span7">
+												<span class="add-on"><i class="icon-calendar"></i></span>
+											</div>
+										</div>
+									</div><!--/ Start Date -->
+
+									<div class="control-group">
+										<label class="control-label">Duration <small>(in months)</small><span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="duration" id="duration" class="span2"/>
+										</div>
+									</div>
+									<!-- Strength -->
+									<div class="control-group">
+										<label class="control-label">Strength<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="strength" id="strength" class="span2"/>
+										</div>
+									</div><!--/ Strength-->
+
+									<h3 class="form-section">Batch Timing</h3>
+
+									<!-- weekday -->
+									<div class="control-group">
+										<label class="control-label">weekday<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span4" name="weekday" id="weekday">
+												<option value="">Select...</option>
+												<option value="1">Monday</option>
+												<option value="2">Tuesday</option>
+												<option value="3">Wednesday</option>
+												<option value="4">Thursday</option>
+												<option value="5">Friday</option>
+												<option value="6">Saturday</option>
+												<option value="7">Sunday</option>
+											</select>
+										</div>
+									</div><!--/ weekday -->
+
+									<!-- Batch Time -->
+									<div class="control-group">
+										<label class="control-label">Batch Time<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="start_time" id="start_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
+											<span class="help-inline">To &nbsp;</span>
+											<input type="text" name="end_time" id="end_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
+										</div>
+									</div><!--/ Batch Time -->
+
+									<div class="control-group">
+										<label class="control-label"></label>
+										<div class="controls">
+											<button type="button" class="btn green span4" id="btn_add_batch_timing">
+												Add Batch Timing
+											</button>
+											<div class="span8"></div>
+										</div>
+									</div>
+
+									<h3 class="form-section">List of Time Schedule</h3>
+
+									<!-- LIst -->
+									<div class="control-group">
+										<table class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="hidden-480">Weekday</th>
+													<th class="hidden-480">Start Time</th>
+													<th class="hidden-480">End Time</th>
+													<th class="hidden-480">Action</th>
+												</tr>
+											</thead>
+
+											<tbody id="lst_batch_timing">
+
+											</tbody>
+										</table>
+									</div><!--/ List-->
+
+									<!-- Form Action -->
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
+											Register
+										</button>
+										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
+											Cancel
+										</button>
+									</div><!--/ Form Action -->
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-				<!--/ END Datatable 2 -->
 			</div>
 			<!--/ END Row -->
 		</div>

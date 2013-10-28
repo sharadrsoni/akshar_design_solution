@@ -8,7 +8,7 @@ class batch_model extends CI_Model {
 
 		$this -> db -> where("batch.branchId", $branchId);
 		$this -> db -> from('batch');
-		$this -> db -> join('course', 'course.courseId = batch.courseId');
+		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
 		$this -> db -> join('user', 'user.userId = batch.facultyId');
 		return $this -> db -> get() -> result();
 
@@ -28,6 +28,11 @@ class batch_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+	
+	public function getMaxId()
+	{
+		return $this->db->select_max('batchId')->get('batch')->row_array();
 	}
 
 }
