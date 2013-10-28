@@ -79,10 +79,12 @@
 								<div class="controls">
 									<select class="span4" name="course_id" id="course_id">
 										<option value="">Select...</option>
-										<option value="Category 1">Category 1</option>
-										<option value="Category 2">Category 2</option>
-										<option value="Category 3">Category 5</option>
-										<option value="Category 4">Category 4</option>
+
+										<?php
+										foreach ($course as $key) {
+											echo "<option value='{$key->courseCode}'>{$key->courseName} - {$key->courseCode}</option>";
+										}
+										?>
 									</select>
 								</div>
 							</div><!--/ Course -->
@@ -93,10 +95,11 @@
 								<div class="controls">
 									<select class="span4" name="faculty_id" id="faculty_id">
 										<option value="">Select...</option>
-										<option value="Category 1">Category 1</option>
-										<option value="Category 2">Category 2</option>
-										<option value="Category 3">Category 5</option>
-										<option value="Category 4">Category 4</option>
+										<?php
+										foreach ($faculty as $key) {
+											echo "<option value='{$key->userId}'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</option>";
+										}
+										?>
 									</select>
 								</div>
 							</div><!--/ Faculty -->
@@ -128,10 +131,13 @@
 								<div class="controls">
 									<select class="span4" name="weekday" id="weekday">
 										<option value="">Select...</option>
-										<option value="Category 1">Category 1</option>
-										<option value="Category 2">Category 2</option>
-										<option value="Category 3">Category 5</option>
-										<option value="Category 4">Category 4</option>
+										<option value="1">Monday - 1</option>
+										<option value="2">Tuesday - 2</option>
+										<option value="3">Wednesday - 3</option>
+										<option value="4">Thursday - 4</option>
+										<option value="5">Friday - 5</option>
+										<option value="6">Saturday - 6</option>
+										<option value="7">Sunday - 7</option>
 									</select>
 								</div>
 							</div><!--/ weekday -->
@@ -172,16 +178,16 @@
 											<th class="hidden-480">Action</th>
 										</tr>
 									</thead>
-									
+
 									<tbody id="lst_batch_timing">
-										
+
 									</tbody>
 								</table>
 							</div><!--/ List-->
 
 							<!-- Form Action -->
 							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-primary" name="register" id="register">
 									Register
 								</button>
 								<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
@@ -255,7 +261,7 @@
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\">Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</span></td></tr>
 ";
 											}
 										}
