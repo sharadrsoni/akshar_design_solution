@@ -15,8 +15,7 @@
 		</div>
 	</div>
 	<!--/ END Bootstrap Navbar -->
-
-	<<<<<<< HEAD
+	
 	<!-- START Content -->
 	<div class="container-fluid">
 		<!-- START Row -->
