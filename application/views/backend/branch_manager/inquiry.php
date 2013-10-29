@@ -15,7 +15,6 @@
 		</div>
 	</div>
 	<!--/ END Bootstrap Navbar -->
-
 	<!-- START Content -->
 	<div class="container-fluid">
 		<!-- START Row -->
@@ -53,26 +52,29 @@
 												<th style="width:8px;">
 												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 												</th>
-												<th>EventDate</th>
-												<th class="hidden-480">Address</th>
-												<th class="hidden-480">Organize by</th>
-												<th class="hidden-480">Description</th>
-												<th class="hidden-480">Edit</th>
+												<th>Inquiry_ID</th>
+												<th class="hidden-480">Student Name</th>
+												<th class="hidden-480">E-mail Address</th>
+												<th class="hidden-480">Inquiry State</th>
+												<th class="hidden-480">Contact Number</th>
 												<th >View</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="hidden-480"></td>
-												<td class="center hidden-480">12 Jan 2012</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											if (isset($inquiry_list)) {
+												foreach ($inquiry_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+<td class=\"hidden-480\">{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
+<td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
+<td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->inquiryId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
@@ -88,7 +90,6 @@
 									<button class="close" data-dismiss="alert"></button>
 									Your form validation is successful!
 								</div>
-
 								<div class="body-inner">
 									<h3 class="form-section">User Info</h3>
 									<!-- User Name -->

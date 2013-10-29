@@ -107,19 +107,11 @@ var Batch = function() {
 			$("#start_date_datepicker input").datepicker({
 				isRTL : App.isRTL()
 			});
-
-<<<<<<< HEAD
 			$("#start_date_datepicker .add-on").click(function() {
 				$("#start_date_datepicker input").datepicker("show");
 			});
 			if (!jQuery().clockface) {
 				return;
-=======
-			submitHandler : function(form) {
-				success1.show();
-				form.submit();
-				error1.hide();
->>>>>>> b0fa4c83ed513ef8a3f1f76561ad86d8fd88fdb6
 			}
 
 			$('.clockface_1').clockface();
