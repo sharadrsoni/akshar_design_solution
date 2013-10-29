@@ -33,51 +33,6 @@
 		<div id="Staff">
 			<!-- START Row -->
 			<div class="row-fluid">
-<<<<<<< HEAD
-				<!-- START Form Validation - Inline -->
-				<form class="modal container hide fade modal-overflow in form-horizontal span12 widget shadowed brown" data-replace="true" style="left:-10%;" aria-hidden="false"  id="form_staff">
-					<header>
-						<h4 class="title">Form Validation - Inline</h4>
-						<ul class="nav nav-tabs nav-stacked pull-right">
-							<li>
-								<a role="button" data-dismiss="modal" aria-hidden="true" href="#"><span class="icon icone-close"></span>close</a>
-							</li>
-						</ul>
-
-					</header>
-					<section class="body" >
-						<div class="alert alert-error hide">
-							<button class="close" data-dismiss="alert"></button>
-							You have some form errors. Please check below.
-						</div>
-						<div class="alert alert-success hide">
-							<button class="close" data-dismiss="alert"></button>
-							Your form validation is successful!
-						</div>
-
-						<div class="body-inner">
-							<h3 class="form-section">Staff Info.</h3>
-							<!-- Name -->
-							<div class="control-group">
-								<label class="control-label">First Name<span class="required">*</span></label>
-								<div class="span2">
-									<input type="text" name="first_name" id="first_name" class="span8">
-								</div>
-								<label class="control-label">Middle Name<span class="required">*</span></label>
-								<div class="span2">
-									<input type="text" name="middle_name" id="middle_name" class="span8">
-								</div>
-								<label class="control-label">Last Name<span class="required">*</span></label>
-								<div class="span2">
-									<input type="text" name="last_name" id="last_name" class="span8">
-								</div>
-							</div><!--/ Name -->
-							<!-- Contact Number -->
-							<div class="control-group">
-								<label class="control-label">Contact Number</label>
-								<div class="controls">
-									<input type="text" name="contact_number" id="contact_number" class="span8">
-=======
 				<!-- Start Tabs -->
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
@@ -118,7 +73,6 @@
 											</tr>
 										</tbody>
 									</table>
->>>>>>> ecc4781e220bb4ae5c95a19f63dfaf04980b97cc
 								</div>
 							</div>
 						</div>
@@ -128,30 +82,9 @@
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
 								</div>
-<<<<<<< HEAD
-							</div><!--/ City -->
-							<!-- State -->
-							<div class="control-group">
-								<label class="control-label">State<span class="required">*</span></label>
-								<div class="controls">
-									<div class="span4">
-										<select class="span12" name="state" id="state">
-											<option value="">Select...</option>
-											<option value="Category 1">Category 1</option>
-											<option value="Category 2">Category 2</option>
-											<option value="Category 3">Category 5</option>
-											<option value="Category 4">Category 4</option>
-										</select>
-									</div>
-									<label class="control-label">Pincode<span class="required">*</span></label>
-									<div class="span4">
-										<input type="text" name="pin_code" id="pin_code" class="span12"/>
-									</div>
-=======
 								<div class="alert alert-success hide">
 									<button class="close" data-dismiss="alert"></button>
 									Your form validation is successful!
->>>>>>> ecc4781e220bb4ae5c95a19f63dfaf04980b97cc
 								</div>
 
 								<div class="body-inner">
@@ -160,7 +93,9 @@
 									<div class="control-group">
 										<label class="control-label">Staff Name</label>
 										<div class="controls">
-											<input type="text" name="staff_name" id="staff_name" class="span8">
+											<div class="span4"><input type="text" name="first_name" id="first_name" class=""></div>
+											<div class="span4"><input type="text" name="middle_name" id="middle_name" class=""></div>
+											<div class="span4"><input type="text" name="last_name" id="last_name" class=""></div>
 										</div>
 									</div><!--/ Staff Name -->
 									<!-- Contact Number -->
@@ -255,15 +190,15 @@
 										</button>
 									</div><!--/ Form Action -->
 								</div>
-							</form>
+								</form>
+							</div>
 						</div>
 					</div>
+					<!--/ End Tabs -->
 				</div>
-				<!--/ End Tabs -->
+				<!--/ END Row -->
 			</div>
-			<!--/ END Row -->
+			<!--Page Content End  -->
 		</div>
-		<!--Page Content End  -->
-	</div>
-	<!--/ END Content -->
+		<!--/ END Content -->
 </section>
