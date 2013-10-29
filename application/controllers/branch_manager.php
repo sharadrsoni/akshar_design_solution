@@ -69,10 +69,8 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/event_css');
 		$this -> load -> view('backend/master_page/header');
-
 		$branchId = 01;
 		$roleId = 1;
-
 		$this -> load -> model("event_type_model");
 		$event_type = $this -> event_type_model -> getAllDetails();
 		$this -> load -> model('user_model');
@@ -292,21 +290,37 @@ class Branch_Manager extends CI_Controller {
 				$getMaximumBatchId = $this -> batch_model -> getMaxId();
 				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
 				$batchId = floatval($batchId);
+
 				if ($batchId != null) {
 					$batchId++;
 				} else {
 					$batchId = 1;
 				}
-				if ($batchId < 100) {
+				if ($batchId < 10) {
 					$batchId = "00" . $batchId;
-				} else if ($batchId < 10) {
+				} else if ($batchId < 100 && $batchId > 9) {
 					$batchId = "0" . $batchId;
 				}
 				$batchId = $year . $branchId . $batchId;
-				//die($batchId);
 				$branchData['batchId'] = floatval($batchId);
+				$batch_timings = array();
+
+				$size = sizeof($_POST["batch_timing"]);
+
+				$this -> load -> model('batch_timing_model');
+
 				if ($this -> batch_model -> addBatch($branchData)) {
-					redirect(base_url() . "branch_manager/batch");
+					for ($i = 0; $i < $size; ) {
+						$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
+						if (!$this -> batch_timing_model -> addBatchTime($dummy)) {
+							$data['error'] = "An Error Occured.";
+							break;
+						}
+						$i++;
+					}
+					if ($data['error'] == null) {
+						redirect(base_url() . "branch_manager/batch");
+					}
 				} else {
 					$data['error'] = "An Error Occured.";
 				}
