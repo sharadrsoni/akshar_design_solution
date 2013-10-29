@@ -96,7 +96,14 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/inquiry_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/inquiry');
+		$this -> load -> model("inquiry_model");
+		//Logic of getting Branch Id. Here I am assuming id = 1 
+		$branchId = 3;
+		$inquiry_data = $this -> inquiry_model -> getDetailsByinquiry($branchId);
+		$data['inquiry_list'] = $inquiry_data;
+		//die(print_r($weekdays)); 
+		//$data['weekdays'] = $weekdays;
+		$this -> load -> view('backend/branch_manager/inquiry', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/inquiry_js');
 		$this -> load -> view('backend/master_page/bottom');
