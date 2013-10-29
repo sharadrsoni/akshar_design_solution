@@ -104,7 +104,6 @@
 												}
 												?>
 											</select>
-											<span for="course_id" class="help-inline"><?php echo form_error('course_id'); ?></span>
 										</div>
 									</div><!--/ Course -->
 
@@ -120,7 +119,6 @@
 												}
 												?>
 											</select>
-											<span for="faculty_id" class="help-inline"><?php echo form_error('faculty_id'); ?></span>
 										</div>
 									</div><!--/ Faculty -->
 
@@ -132,7 +130,6 @@
 												<input type="text" name="start_date" id="start_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
-											<span for="start_date" class="help-inline"><?php echo form_error('start_date'); ?></span>
 										</div>
 									</div><!--/ Start Date -->
 
@@ -140,7 +137,6 @@
 										<label class="control-label">Duration <small>(in months)</small><span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="duration" id="duration" class="span2"/>
-											<span for="duration" class="help-inline"><?php echo form_error('duration'); ?></span>
 										</div>
 									</div>
 									<!-- Strength -->
@@ -148,7 +144,6 @@
 										<label class="control-label">Strength<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="strength" id="strength" class="span2"/>
-											<span for="strength" class="help-inline"><?php echo form_error('strength'); ?></span>
 										</div>
 									</div><!--/ Strength-->
 
@@ -168,7 +163,6 @@
 												<option value="6">Saturday</option>
 												<option value="7">Sunday</option>
 											</select>
-											<span for="weekday" class="help-inline"><?php echo form_error('weekday'); ?></span>
 										</div>
 									</div><!--/ weekday -->
 
@@ -177,10 +171,8 @@
 										<label class="control-label">Batch Time<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="start_time" id="start_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-											<span for="start_time" class="help-inline"><?php echo form_error('start_time'); ?></span>
 											<span class="help-inline">To &nbsp;</span>
 											<input type="text" name="end_time" id="end_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-											<span for="end_time" class="help-inline"><?php echo form_error('end_time'); ?></span>
 										</div>
 									</div><!--/ Batch Time -->
 
