@@ -53,26 +53,33 @@
 												<th style="width:8px;">
 												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 												</th>
-												<th>EventDate</th>
-												<th class="hidden-480">Address</th>
+												<th>EventName</th>
 												<th class="hidden-480">Organize by</th>
+												<th class="hidden-480">Veue</th>
 												<th class="hidden-480">Description</th>
-												<th class="hidden-480">Edit</th>
+												<th class="hidden-480">Start Date</th>
+												<th class="hidden-480">End Date</th>
 												<th >View</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="hidden-480"></td>
-												<td class="center hidden-480">12 Jan 2012</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											if (isset($event_list)) {
+												foreach ($event_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+<td class=\"hidden-480\">{$key->eventName}</td>
+<td class=\"hidden-480\">{$key->eventOrganizerName}</td>
+<td class=\"hidden-480\">{$key->eventVenue}</td>
+<td class=\"hidden-480\">{$key->eventDescription}</td>
+<td class=\"hidden-480\">{$key->eventStartDate}</td>
+<td class=\"hidden-480\">{$key->eventEndDate}</td>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_event/{$key->eventId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
