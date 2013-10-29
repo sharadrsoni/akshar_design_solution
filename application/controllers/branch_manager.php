@@ -102,17 +102,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function branch() {
-		$data['title'] = "ADS | Branch";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/branch_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/branch');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/branch_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
 	public function target() {
 		$data['title'] = "ADS | Target";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -242,6 +231,27 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> model('batch_model');
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
+	}
+
+	public function branch() {
+		//Logic of getting Branch Id. Here I am assuming id = 1.
+		//$branchId = 01;
+
+		$data['title'] = "ADS | Branch";
+		$this -> load -> model("branch_model");
+		$branch = $this -> branch_model -> getDetailsOfBranch();		
+		$data['branch'] = $branch;
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/batch_css');
+		$this -> load -> view('backend/master_page/header');
+		
+		
+		$this -> load -> view('backend/branch_manager/branch');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/branch_js');
+		$this -> load -> view('backend/master_page/bottom');
+	
+	
 	}
 	
 	public function coursecategory() {
