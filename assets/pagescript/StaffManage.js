@@ -69,7 +69,15 @@ var StaffValidation = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
                 rules: {
-                    staff_name: {
+                    first_name: {
+                        minlength: 5,
+                        required: true
+                    },
+                    middle_name: {
+                        minlength: 5,
+                        required: true
+                    },
+                    last_name: {
                         minlength: 5,
                         required: true
                     },

@@ -60,15 +60,15 @@
 							<!-- First Name -->
 							<div class="control-group">
 								<label class="control-label">First Name<span class="required">*</span></label>
-								<div class="span2">
+								<div class="span3">
 									<input type="text" name="first_name" id="first_name" class="span8">
 								</div>
 								<label class="control-label">Middle Name<span class="required">*</span></label>
-								<div class="span2">
+								<div class="span3">
 									<input type="text" name="middle_name" id="middle_name" class="span8">
 								</div>
 								<label class="control-label">Last Name<span class="required">*</span></label>
-								<div class="span2">
+								<div class="span3">
 									<input type="text" name="last_name" id="last_name" class="span8">
 								</div>
 							</div><!--/ First Name -->
