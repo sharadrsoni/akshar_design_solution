@@ -57,13 +57,27 @@
 
 						<div class="body-inner">
 							<h3 class="form-section">Staff Info.</h3>
-							<!-- Staff Name -->
+							<!-- First Name -->
 							<div class="control-group">
-								<label class="control-label">Staff Name</label>
+								<label class="control-label">First Name</label>
 								<div class="controls">
-									<input type="text" name="staff_name" id="staff_name" class="span8">
+									<input type="text" name="first_name" id="first_name" class="span8">
 								</div>
-							</div><!--/ Staff Name -->
+							</div><!--/ First Name -->
+							<!-- Middle Name -->
+							<div class="control-group">
+								<label class="control-label">Middle Name</label>
+								<div class="controls">
+									<input type="text" name="middle_name" id="middle_name" class="span8">
+								</div>
+							</div><!--/ Middle Name -->
+							<!-- Last Name -->
+							<div class="control-group">
+								<label class="control-label">Last Name</label>
+								<div class="controls">
+									<input type="text" name="last_name" id="last_name" class="span8">
+								</div>
+							</div><!--/ Last Name -->
 							<!-- Contact Number -->
 							<div class="control-group">
 								<label class="control-label">Contact Number</label>
@@ -140,6 +154,7 @@
 											<option value="Category 4">Category 4</option>
 										</select>
 									</div>
+									<label class="control-label">Pincode<span class="required">*</span></label>
 									<div class="span4">
 										<input type="text" name="pin_code" id="pin_code" class="span12"/>
 									</div>
