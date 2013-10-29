@@ -9,8 +9,8 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		StudentFeesTable.init();
-		FeesPaymentValidation.init();
-		StudentRegistrationUIJQueryUI.init();
+		StudentFees.init_table();
+		StudentFees.init_formvalidation();
+		StudentFees.init_uijquery();
 	}); 
 </script>

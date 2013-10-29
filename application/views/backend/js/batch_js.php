@@ -12,9 +12,9 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		EventTable.init();
-		EventValidation.init();
-		EventUIJQueryUI.init();
+		Batch.init_table();
+		Batch.init_formvalidation();
+		Batch.init_uijquery();
 		//$('#form_batch').modal('show');
 	});
 </script>

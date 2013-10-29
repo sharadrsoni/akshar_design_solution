@@ -9,8 +9,8 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		StaffTable.init();
-		StaffValidation.init();
-		StaffUIJQueryUI.init();
+		Staff.init_table();
+		Staff.init_formvalidation();
+		Staff.init_uijquery();
 	}); 
 </script>

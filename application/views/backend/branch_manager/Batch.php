@@ -35,7 +35,7 @@
 
 			<!-- START Row -->
 			<div class="row-fluid">
-				<!-- START Form Validation - Inline -->
+				<!-- Start Tabs -->
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
@@ -63,6 +63,7 @@
 											<?php
 											if (isset($batch_list)) {
 												foreach ($batch_list as $key) {
+
 													echo "<tr class=\"odd gradeX\">
 <td>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
@@ -219,6 +220,7 @@
 						</div>
 					</div>
 				</div>
+				<!--/ End Tabs -->
 			</div>
 			<!--/ END Row -->
 		</div>

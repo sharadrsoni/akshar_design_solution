@@ -9,7 +9,8 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		InquiryValidation.init();
-		InquiryUIJQueryUI.init();
+		Inquiry.init_table();
+		Inquiry.init_formvalidation();
+		Inquiry.init_uijquery();
 	}); 
 </script>
