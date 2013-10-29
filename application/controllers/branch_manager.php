@@ -222,7 +222,6 @@ class Branch_Manager extends CI_Controller {
 				$getMaximumBatchId = $this -> batch_model -> getMaxId();
 				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
 				$batchId = floatval($batchId);
-				//die($batchId);
 				if ($batchId != null) {
 					$batchId++;
 				} else {
@@ -233,7 +232,6 @@ class Branch_Manager extends CI_Controller {
 				} else if ($batchId < 10) {
 					$batchId = "0" . $batchId;
 				}
-				//die($batchId);
 				$batchId = $year . $branchId . $batchId;
 				$branchData['batchId'] = floatval($batchId);
 				if ($this -> batch_model -> addBatch($branchData)) {
@@ -247,7 +245,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/batch_js');
 		$this -> load -> view('backend/master_page/bottom');
-
 	}
 
 	public function delete_batch($batchId) {
@@ -255,6 +252,40 @@ class Branch_Manager extends CI_Controller {
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
 	}
+	
+	public function coursecategory() {
+		$data['title'] = "ADS | Course Category";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/coursecategory_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/coursecategory');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/coursecategory_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function course() {
+		$data['title'] = "ADS | Course";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/course_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/course');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/course_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+	
+	public function changepassword() {
+		$data['title'] = "ADS | Change Password";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/changepassword_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/changepassword');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/changepassword_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 
 	public function delete_event($eventId) {
 		$this->load->model('event_model');
@@ -267,7 +298,5 @@ class Branch_Manager extends CI_Controller {
 		$this->target_model->deleteEvent($targetId);
 		redirect(base_url() . "branch_manager/target");
 	}
-
-
 }
 ?>
