@@ -59,6 +59,7 @@ class Branch_Manager extends CI_Controller {
 		$branchId = 1010101;
 		$event_data = $this -> event_model -> getDetailsByBranch($branchId);
 		//die(print_r($event_data));
+
 		$data['event_list'] = $event_data;
 		
 		$this -> load -> view('backend/branch_manager/event', $data);
@@ -117,7 +118,16 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/target_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/target');
+
+		$this -> load -> model("target_model");
+		//Logic of getting Branch Id. Here I am assuming id = 1
+		$branchId = 1010101;
+		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
+
+		$data['target_list'] = $target_data;
+		
+		$this -> load -> view('backend/branch_manager/target', $data);
+
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -130,7 +140,16 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/target_report');
+
+//		$this -> load -> model("targetReport_model");
+		//Logic of getting Branch Id. Here I am assuming id = 1
+//		$targetId = 1;
+//		$target_data = $this -> targetReport_model -> getDetailsByBranch($targetId);
+
+//		$data['targetReport_list'] = $targetReport_data;
+		
+//		$this -> load -> view('backend/branch_manager/targetReport', $data);
+
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -232,6 +251,13 @@ class Branch_Manager extends CI_Controller {
 		$this->event_model->deleteEvent($eventId);
 		redirect(base_url() . "branch_manager/event");
 	}
+
+	public function delete_target($targetId) {
+		$this->load->model('target_model');
+		$this->target_model->deleteEvent($targetId);
+		redirect(base_url() . "branch_manager/target");
+	}
+
 
 }
 ?>
