@@ -71,7 +71,7 @@
 </td>
 <td class=\"hidden-480\">{$key->eventName}</td>
 <td class=\"hidden-480\">{$key->eventOrganizerName}</td>
-<td class=\"hidden-480\">{$key->eventVenue}</td>
+<td class=\"hidden-480\">{$key->eventState}</td>
 <td class=\"hidden-480\">{$key->eventDescription}</td>
 <td class=\"hidden-480\">{$key->eventStartDate}</td>
 <td class=\"hidden-480\">{$key->eventEndDate}</td>
@@ -86,7 +86,7 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_event">
+							<form method="post" action="<?php echo base_url(); ?>branch_manager/event" class="form-horizontal span12 widget shadowed yellow" id="form_event">
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -98,16 +98,26 @@
 
 								<div class="body-inner">
 									<h3 class="form-section">Event Info</h3>
+									<!-- Event Name -->
+									<div class="control-group">
+										<label class="control-label">Event Name<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="event_name" id="event_name" class="span8"/>
+										</div>
+									</div><!--/ Event Name	 -->
+									
 									<!-- Event Type -->
 									<div class="control-group">
 										<label class="control-label">Event Type<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="event_type" id="event_type">
+											<select class="span4" name="event_type_id" id="event_type_id">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($event_type as $key) 
+												{
+													echo "<option value='{$key->eventTypeId}'>{$key->eventTypeName}</option>";
+												}
+												?>
 											</select>
 										</div>
 									</div><!--/ Event Type -->
@@ -172,10 +182,10 @@
 											<div class="span4">
 												<select class="span12" name="state" id="state">
 													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
+													<option value="Gujrat">Gujrat</option>
+													<option value="Rajasthan">Rajasthan</option>
+													<option value="Harayana">Harayana</option>
+													<option value="Goa">Goa</option>
 												</select>
 											</div>
 											<div class="span4">
@@ -198,19 +208,20 @@
 									<div class="control-group">
 										<label class="control-label">Responsible Person <span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="responsible_person" id="responsible_person">
+											<select class="span4" name="faculty_id" id="faculty_id">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($faculty as $key) {
+													echo "<option value='{$key->userId}'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</option>";
+												}
+												?>
 											</select>
 										</div>
 									</div><!--/ Faculty -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" class="btn btn-primary" name="create" id="create">
+											Create
 										</button>
 										<button type="button" class="btn">
 											Cancel

@@ -20,5 +20,12 @@ class event_model extends CI_Model {
 		}
 
 	}
-
+	public function addEvent($data) {
+		if(isset($data)) {
+			return $this->db->insert('event', $data);
+		} else {
+			return false;
+		}
+	}
+	
 }
