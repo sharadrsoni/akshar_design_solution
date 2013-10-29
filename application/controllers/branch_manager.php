@@ -3,6 +3,11 @@ if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
 class Branch_Manager extends CI_Controller {
+		
+	public function login() {
+		$data['title'] = "ADS | Dashboard";
+		$this -> load -> view('backend/all_users/login');
+	}	
 
 	public function index() {
 		$data['title'] = "ADS | Dashboard";
