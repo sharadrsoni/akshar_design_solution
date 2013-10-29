@@ -14,6 +14,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	
+	public function marks() {
+		$data['title'] = "ADS | Student Registration";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/marks_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/marks');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/marks_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 
 	public function studentregistation() {
 		$data['title'] = "ADS | Student Registration";
@@ -148,8 +159,7 @@ class Branch_Manager extends CI_Controller {
 
 //		$data['targetReport_list'] = $targetReport_data;
 		
-//		$this -> load -> view('backend/branch_manager/targetReport', $data);
-
+		$this -> load -> view('backend/branch_manager/target_report', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
