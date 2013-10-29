@@ -8,18 +8,16 @@ class inquiry_model extends CI_Model {
 
 		$this -> db -> where("inquiry.inquirybranchId", $branchId);
 		$this -> db -> from('inquiry');
-		//$this -> db -> join('course', 'course.courseId = batch.courseId');
-		//$this -> db -> join('user', 'user.userId = batch.facultyId');
+		
 		return $this -> db -> get() -> result();
 
 	}
-
-	/*public function deleteBatch($batchId) {
-		if (isset($batchId)) {
-			$this -> db -> where('batchId', $batchId);
-			$this -> db -> delete('batch');
+public function addinquiry($data) {
+		if(isset($data)) {
+			return $this->db->insert('inquiry', $data);
+		} else {
+			return false;
 		}
-
-	}*/
+	}
 }
 ?>
