@@ -35,7 +35,7 @@
 
 			<!-- START Row -->
 			<div class="row-fluid">
-				<!-- START Form Validation - Inline -->
+				<!-- Start Tabs -->
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
@@ -48,37 +48,37 @@
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab1">
 							<div class="body-inner">
-							<div class="portlet-body">
-								<table class="table table-striped table-bordered table-hover" id="tblBatch">
-									<thead>
-										<tr>
-											<th>Batch Name</th>
-											<th class="hidden-480">Weekdays</th>
-											<th class="hidden-480">Course</th>
-											<th class="hidden-480">Faculty</th>
-											<th >Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										if (isset($batch_list)) {
-											foreach ($batch_list as $key) {
-												echo "<tr class=\"odd gradeX\"><td>
-										<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-										</td>
-										<td>{$key->batchId}</td>
-										<td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
-										<td class=\"hidden-480\">{$key->courseName}</td>
-										<td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
-										<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</span></td></tr>
-										";
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover" id="tblBatch">
+										<thead>
+											<tr>
+												<th>Batch Name</th>
+												<th class="hidden-480">Weekdays</th>
+												<th class="hidden-480">Course</th>
+												<th class="hidden-480">Faculty</th>
+												<th >Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											if (isset($batch_list)) {
+												foreach ($batch_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+<td>{$key->batchId}</td>
+<td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
+<td class=\"hidden-480\">{$key->courseName}</td>
+<td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</span></td></tr>
+";
+												}
 											}
-										}
-										?>
-									</tbody>
-								</table>
+											?>
+										</tbody>
+									</table>
+								</div>
 							</div>
-						</div>
 						</div>
 						<div class="tab-pane" id="tab2">
 							<form class="form-horizontal span12 widget shadowed yellow" id="form_batch">
@@ -216,6 +216,7 @@
 						</div>
 					</div>
 				</div>
+				<!--/ End Tabs -->
 			</div>
 			<!--/ END Row -->
 		</div>

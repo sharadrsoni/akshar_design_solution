@@ -23,7 +23,7 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Search <small>This is the place where everything started</small></h4>
+					<h4>Search <small>Search user details over here.	</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
