@@ -184,7 +184,6 @@ class Branch_Manager extends CI_Controller {
 				$getMaximumBatchId = $this -> batch_model -> getMaxId();
 				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
 				$batchId = floatval($batchId);
-				//die($batchId);
 				if ($batchId != null) {
 					$batchId++;
 				} else {
@@ -195,7 +194,6 @@ class Branch_Manager extends CI_Controller {
 				} else if ($batchId < 10) {
 					$batchId = "0" . $batchId;
 				}
-				//die($batchId);
 				$batchId = $year . $branchId . $batchId;
 				$branchData['batchId'] = floatval($batchId);
 				if ($this -> batch_model -> addBatch($branchData)) {
@@ -209,7 +207,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/batch_js');
 		$this -> load -> view('backend/master_page/bottom');
-
 	}
 
 	public function delete_batch($batchId) {
