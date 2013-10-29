@@ -1,12 +1,12 @@
-var StaffTable = function () {
+var CourseTable = function () {
     return {
         //main function to initiate the module
         init: function () {
             if (!jQuery().dataTable) {
                 return;
             }
-            // begin tblStaff table
-            $('#tblStaff').dataTable({
+            // begin tblCourse table
+            $('#tblCourse').dataTable({
                 "aoColumns": [
                   { "bSortable": false },
                   null,
@@ -37,7 +37,7 @@ var StaffTable = function () {
                 ]
             });
 
-            jQuery('#tblStaff .group-checkable').change(function () {
+            jQuery('#tblCourse .group-checkable').change(function () {
                 var set = jQuery(this).attr("data-set");
                 var checked = jQuery(this).is(":checked");
                 jQuery(set).each(function () {
@@ -50,17 +50,17 @@ var StaffTable = function () {
                 jQuery.uniform.update(set);
             });
 
-            jQuery('#tblStaff .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
-            jQuery('#tblStaff .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
-            //jQuery('#tblStaff .dataTables_length select').select2(); // initialize select2 dropdown
+            jQuery('#tblCourse .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
+            jQuery('#tblCourse .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
+            //jQuery('#tblCourse .dataTables_length select').select2(); // initialize select2 dropdown
         }
     };
 }();
-var StaffValidation = function () {
+var CourseValidation = function () {
     var handleValidation1 = function() {
         // for more info visit the official plugin documentation: 
             // http://docs.jquery.com/Plugins/Validation
-            var form1 = $('#form_staff');
+            var form1 = $('#form_course');
             var error1 = $('.alert-error', form1);
             var success1 = $('.alert-success', form1);
             form1.validate({
@@ -69,49 +69,27 @@ var StaffValidation = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
                 rules: {
-                    first_name: {
-                        minlength: 5,
-                        required: true
-                    },
-                    middle_name: {
-                        minlength: 5,
-                        required: true
-                    },
-                    last_name: {
-                        minlength: 5,
-                        required: true
-                    },
-					contact_number: {
-                        minlength: 10,
-                        required: true
-                    },
-					email: {
+                	coursecategory_id: {
                         required: true,
                     },
-					dob: {
+                    course_name: {
+                        required: true
+                    },
+					course_code: {
                         required: true,
                     },
-					qualification: {
+					course_duration: {
                         required: true,
                     },
-					doj: {
+					material_id: {
                         required: true,
                     },
-					street_1:{
-						required: true,
-					},
-					street_2:{
-						required: true,
-					},
-					city:{
-						required: true,
-					},
-					state:{
-						required: true
-					},
-					pin_code:{
-						required: true,
-					}
+					total_books: {
+                        required: true,
+                    },
+					opening_stock: {
+                        required: true,
+                    }
                 },
 
                 invalidHandler: function (event, validator) { //display error alert on form submit              
@@ -155,7 +133,7 @@ var StaffValidation = function () {
     };
 }();
 
-var StaffUIJQueryUI = function () {
+var CourseUIJQueryUI = function () {
 
     
     var handleDatePickers = function () {

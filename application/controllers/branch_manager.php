@@ -215,5 +215,38 @@ class Branch_Manager extends CI_Controller {
 		redirect(base_url() . "branch_manager/batch");
 	}
 
+	public function coursecategory() {
+		$data['title'] = "ADS | Course Category";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/coursecategory_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/coursecategory');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/coursecategory_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function course() {
+		$data['title'] = "ADS | Course";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/course_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/course');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/course_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+	
+	public function changepassword() {
+		$data['title'] = "ADS | Change Password";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/changepassword_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/changepassword');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/changepassword_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 }
 ?>

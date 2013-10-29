@@ -1,62 +1,4 @@
-var StaffTable = function () {
-    return {
-        //main function to initiate the module
-        init: function () {
-            if (!jQuery().dataTable) {
-                return;
-            }
-            // begin tblStaff table
-            $('#tblStaff').dataTable({
-                "aoColumns": [
-                  { "bSortable": false },
-                  null,
-                  { "bSortable": false },
-                  null,
-                  { "bSortable": false },
-                  { "bSortable": false }
-                ],
-                "aLengthMenu": [
-                    [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
-                ],
-                // set the initial value
-                "iDisplayLength": 5,
-                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-                "sPaginationType": "bootstrap",
-                "oLanguage": {
-                    "sLengthMenu": "_MENU_ records per page",
-                    "oPaginate": {
-                        "sPrevious": "Prev",
-                        "sNext": "Next"
-                    }
-                },
-                "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
-                ]
-            });
-
-            jQuery('#tblStaff .group-checkable').change(function () {
-                var set = jQuery(this).attr("data-set");
-                var checked = jQuery(this).is(":checked");
-                jQuery(set).each(function () {
-                    if (checked) {
-                        $(this).attr("checked", true);
-                    } else {
-                        $(this).attr("checked", false);
-                    }
-                });
-                jQuery.uniform.update(set);
-            });
-
-            jQuery('#tblStaff .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
-            jQuery('#tblStaff .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
-            //jQuery('#tblStaff .dataTables_length select').select2(); // initialize select2 dropdown
-        }
-    };
-}();
-var StaffValidation = function () {
+var ChangePasswordValidation = function () {
     var handleValidation1 = function() {
         // for more info visit the official plugin documentation: 
             // http://docs.jquery.com/Plugins/Validation
@@ -69,49 +11,18 @@ var StaffValidation = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
                 rules: {
-                    first_name: {
+                    current_pwd: {
                         minlength: 5,
                         required: true
                     },
-                    middle_name: {
+                    new_pwd: {
                         minlength: 5,
                         required: true
                     },
-                    last_name: {
+                    confirm_pwd: {
                         minlength: 5,
                         required: true
-                    },
-					contact_number: {
-                        minlength: 10,
-                        required: true
-                    },
-					email: {
-                        required: true,
-                    },
-					dob: {
-                        required: true,
-                    },
-					qualification: {
-                        required: true,
-                    },
-					doj: {
-                        required: true,
-                    },
-					street_1:{
-						required: true,
-					},
-					street_2:{
-						required: true,
-					},
-					city:{
-						required: true,
-					},
-					state:{
-						required: true
-					},
-					pin_code:{
-						required: true,
-					}
+                    }
                 },
 
                 invalidHandler: function (event, validator) { //display error alert on form submit              
@@ -155,7 +66,7 @@ var StaffValidation = function () {
     };
 }();
 
-var StaffUIJQueryUI = function () {
+var ChangePasswordUIJQueryUI = function () {
 
     
     var handleDatePickers = function () {
