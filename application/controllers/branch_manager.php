@@ -14,7 +14,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function marks() {
 		$data['title'] = "ADS | Student Registration";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -64,7 +64,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/event_css');
 		$this -> load -> view('backend/master_page/header');
-		
+
 		$this -> load -> model("event_model");
 		//Logic of getting Branch Id. Here I am assuming id = 1
 		$branchId = 1010101;
@@ -72,7 +72,7 @@ class Branch_Manager extends CI_Controller {
 		//die(print_r($event_data));
 
 		$data['event_list'] = $event_data;
-		
+
 		$this -> load -> view('backend/branch_manager/event', $data);
 
 		$this -> load -> view('backend/master_page/footer');
@@ -108,11 +108,11 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/css/inquiry_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("inquiry_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1 
+		//Logic of getting Branch Id. Here I am assuming id = 1
 		$branchId = 3;
 		$inquiry_data = $this -> inquiry_model -> getDetailsByinquiry($branchId);
 		$data['inquiry_list'] = $inquiry_data;
-		//die(print_r($weekdays)); 
+		//die(print_r($weekdays));
 		//$data['weekdays'] = $weekdays;
 		$this -> load -> view('backend/branch_manager/inquiry', $data);
 		$this -> load -> view('backend/master_page/footer');
@@ -143,7 +143,7 @@ class Branch_Manager extends CI_Controller {
 		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
 
 		$data['target_list'] = $target_data;
-		
+
 		$this -> load -> view('backend/branch_manager/target', $data);
 
 		$this -> load -> view('backend/master_page/footer');
@@ -159,13 +159,13 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
 
-//		$this -> load -> model("targetReport_model");
+		//		$this -> load -> model("targetReport_model");
 		//Logic of getting Branch Id. Here I am assuming id = 1
-//		$targetId = 1;
-//		$target_data = $this -> targetReport_model -> getDetailsByBranch($targetId);
+		//		$targetId = 1;
+		//		$target_data = $this -> targetReport_model -> getDetailsByBranch($targetId);
 
-//		$data['targetReport_list'] = $targetReport_data;
-		
+		//		$data['targetReport_list'] = $targetReport_data;
+
 		$this -> load -> view('backend/branch_manager/target_report', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
@@ -229,21 +229,37 @@ class Branch_Manager extends CI_Controller {
 				$getMaximumBatchId = $this -> batch_model -> getMaxId();
 				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
 				$batchId = floatval($batchId);
+
 				if ($batchId != null) {
 					$batchId++;
 				} else {
 					$batchId = 1;
 				}
-				if ($batchId < 100) {
+				if ($batchId < 10) {
 					$batchId = "00" . $batchId;
-				} else if ($batchId < 10) {
+				} else if ($batchId < 100 && $batchId > 9) {
 					$batchId = "0" . $batchId;
 				}
 				$batchId = $year . $branchId . $batchId;
-				//die($batchId);
 				$branchData['batchId'] = floatval($batchId);
+				$batch_timings = array();
+
+				$size = sizeof($_POST["batch_timing"]);
+
+				$this -> load -> model('batch_timing_model');
+
 				if ($this -> batch_model -> addBatch($branchData)) {
-					redirect(base_url() . "branch_manager/batch");
+					for ($i = 0; $i < $size; ) {
+						$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
+						if (!$this -> batch_timing_model -> addBatchTime($dummy)) {
+							$data['error'] = "An Error Occured.";
+							break;
+						}
+						$i++;
+					}
+					if ($data['error'] == null) {
+						redirect(base_url() . "branch_manager/batch");
+					}
 				} else {
 					$data['error'] = "An Error Occured.";
 				}
@@ -260,7 +276,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
 	}
-	
+
 	public function coursecategory() {
 		$data['title'] = "ADS | Course Category";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -282,7 +298,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/course_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function changepassword() {
 		$data['title'] = "ADS | Change Password";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -294,17 +310,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-
 	public function delete_event($eventId) {
-		$this->load->model('event_model');
-		$this->event_model->deleteEvent($eventId);
+		$this -> load -> model('event_model');
+		$this -> event_model -> deleteEvent($eventId);
 		redirect(base_url() . "branch_manager/event");
 	}
 
 	public function delete_target($targetId) {
-		$this->load->model('target_model');
-		$this->target_model->deleteEvent($targetId);
+		$this -> load -> model('target_model');
+		$this -> target_model -> deleteEvent($targetId);
 		redirect(base_url() . "branch_manager/target");
 	}
+
 }
 ?>
