@@ -107,19 +107,11 @@ var Batch = function() {
 			$("#start_date_datepicker input").datepicker({
 				isRTL : App.isRTL()
 			});
-
-<<<<<<< HEAD
 			$("#start_date_datepicker .add-on").click(function() {
 				$("#start_date_datepicker input").datepicker("show");
 			});
 			if (!jQuery().clockface) {
 				return;
-=======
-			submitHandler : function(form) {
-				success1.show();
-				form.submit();
-				error1.hide();
->>>>>>> b0fa4c83ed513ef8a3f1f76561ad86d8fd88fdb6
 			}
 
 			$('.clockface_1').clockface();
@@ -149,7 +141,7 @@ var Batch = function() {
 			}).clockface('show', '14:30');
 			$('#btn_add_batch_timing').click(function() {
 				if ($('#weekday').val() != "" && $('#weekday').val() != "Select..." && $('#start_time').val() != "" && $('#end_time').val() != "") {
-					$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='btach_timing' values='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='btach_timing' values='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='btach_timing' values='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+					$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='batch_timing[]' value='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
 				}
 			});
 		}

@@ -19,3 +19,4 @@ class branch_model extends CI_Model {
 		}
 	}
 }
+?>

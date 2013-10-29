@@ -18,21 +18,22 @@ class batch_model extends CI_Model {
 		if (isset($batchId)) {
 			$this -> db -> where('batchId', $batchId);
 			$this -> db -> delete('batch');
+			return false;
+		} else {
+			return true;
 		}
-
 	}
 
 	public function addBatch($data) {
-		if(isset($data)) {
-			return $this->db->insert('batch', $data);
+		if (isset($data)) {
+			return $this -> db -> insert('batch', $data);
 		} else {
 			return false;
 		}
 	}
-	
-	public function getMaxId()
-	{
-		return $this->db->select_max('batchId')->get('batch')->row_array();
+
+	public function getMaxId() {
+		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
 	}
 
 }

@@ -73,7 +73,7 @@
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetIsAchieved}</td>
 <td class=\"hidden-480\">{$key->targetName}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_taget/{$key->targetId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_target/{$key->targetId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_target">
+							<form method="post" action="<?php echo base_url(); ?>branch_manager/target" class="form-horizontal span12 widget shadowed yellow" id="form_target">
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -102,10 +102,12 @@
 										<div class="controls">
 											<select class="span4" name="branch" id="branch">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($branch as $key) 
+												{
+													echo "<option value='{$key->branchId}'>{$key->branchName}</option>";
+												}
+												?>
 											</select>
 										</div>
 									</div><!--/ Branch Name -->
@@ -124,10 +126,12 @@
 										<div class="controls">
 											<select class="span4" name="target_type" id="target_type">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($target_type as $key) 
+												{
+													echo "<option value='{$key->targetTypeId}'>{$key->targetTypeName}</option>";
+												}
+												?>
 											</select>
 										</div>
 									</div><!--/ Target Type -->
@@ -163,8 +167,8 @@
 									</div><!--/ Description	 -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" class="btn btn-primary"  name="create" id="create">
+											Create
 										</button>
 										<button type="button" class="btn">
 											Cancel
