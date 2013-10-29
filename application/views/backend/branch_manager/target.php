@@ -19,7 +19,7 @@
                         <!-- START Page/Section header -->
                         <div class="span12">
                             <div class="page-header line1">
-                                <h4>Target <small>This is the place where everything started</small></h4>
+                                <h4>Target <small>Maintain Event details over here</small></h4>
                             </div>
                         </div>
                         <!--/ END Page/Section header -->
@@ -135,10 +135,7 @@
 							<!-- START Datatable 2 -->
 							<div class="span12 widget lime">
 								<header>
-									<h4 class="title"><span class="icon icone-crop"></span>Rich DataTable</h4>
-									<!-- START Label/Badge -->
-									<span class="label label-important">-21 Outdated Browser</span>
-									<!--/ END Label/Badge -->
+									<h4 class="title"><span class="icon icone-crop"></span>Target List</h4>
 									<ul class="nav nav-tabs nav-stacked pull-right">
 										<li><a role="button" data-toggle="modal" href="#form_target"><span class="icon icone-home"></span> Set Target</a></li>
 									 </ul>
@@ -160,24 +157,31 @@
 												<thead>
 													<tr>
 														<th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" /></th>
-														<th>Branch</th>
 														<th class="hidden-480">Target Name</th>
 														<th class="hidden-480">Start Date</th>
 														<th class="hidden-480">End Date</th>
-														<th class="hidden-480">Edit</th>
+														<th class="hidden-480">Target Status</th>
+														<th class="hidden-480">Target Type</th>
 														<th >View</th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr class="odd gradeX">
-														<td><input type="checkbox" class="checkboxes" value="1" /></td>
-														<td>shuxer</td>
-														<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-														<td class="hidden-480">120</td>
-														<td class="hidden-480"></td>
-														<td class="center hidden-480">12 Jan 2012</td>
-														<td ><span class="label label-success">Approved</span></td>
-													</tr>
+										<?php
+										if (isset($target_list)) {
+											foreach ($target_list as $key) {
+												echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+<td class=\"hidden-480\">{$key->targetName}</td>
+<td class=\"hidden-480\">{$key->targetStartDate}</td>
+<td class=\"hidden-480\">{$key->targetEndDate}</td>
+<td class=\"hidden-480\">{$key->targetIsAchieved}</td>
+<td class=\"hidden-480\">{$key->targetName}</td>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() ."branch_manager/delete_taget/{$key->targetId}'>Delete</span></td></tr>
+";
+											}
+										}
+										?>
 												</tbody>
 											</table>
 										</div>
