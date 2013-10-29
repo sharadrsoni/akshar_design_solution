@@ -13,12 +13,20 @@ class target_model extends CI_Model {
 
 	}
 
-	public function deleteEvent($eventId) {
-		if (isset($eventId)) {
-			$this -> db -> where('targetId', $eventId);
+	public function deleteTarget($targetId) {
+		if (isset($targetId)) {
+			$this -> db -> where('targetId', $targetId);
 			$this -> db -> delete('target');
 		}
 
+	}
+	
+	public function addTarget($data) {
+		if(isset($data)) {
+			return $this->db->insert('target', $data);
+		} else {
+			return false;
+		}
 	}
 
 }
