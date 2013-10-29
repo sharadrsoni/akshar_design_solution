@@ -276,13 +276,13 @@ class Branch_Manager extends CI_Controller {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
 			$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
-			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
+			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
 			$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
 				$this -> load -> model('batch_model');
-				$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => $_POST['start_date']);
+				$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 				$year = date('Y');
 				if ($branchId < 10) {
 					$branchId = "0" . $branchId;
@@ -330,6 +330,26 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/batch_js');
 		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function _checkingDate($date) {
+		$test_date = explode('/', $date);
+		if (count($test_date) == 3) {
+			if (is_numeric($test_date[0]) && is_numeric($test_date[1]) && is_numeric($test_date[2])) {
+				if (!checkdate($test_date[0], $test_date[1], $test_date[2])) {
+					$this -> form_validation -> set_message('checkingDate', 'The given date is invalid');
+					return false;
+				} else {
+					return true;
+				}
+			} else {
+				$this -> form_validation -> set_message('checkingDate', 'The given date is invalid');
+				return false;
+			}
+		} else {
+			$this -> form_validation -> set_message('checkingDate', 'The given date is invalid');
+			return false;
+		}
 	}
 
 	public function delete_batch($batchId) {
