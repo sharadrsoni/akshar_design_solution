@@ -127,7 +127,7 @@
 										<label class="control-label">Start Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
-												<input type="text" name="start_date" id="start_date" class="m-wrap span7">
+												<input type="text" data-format="dd/MM/yyyy" name="start_date" id="start_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -169,10 +169,14 @@
 									<!-- Batch Time -->
 									<div class="control-group">
 										<label class="control-label">Batch Time<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="start_time" id="start_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
-											<span class="help-inline">To &nbsp;</span>
-											<input type="text" name="end_time" id="end_time" value="2:30 PM" data-format="hh:mm A" class="m-wrap small clockface_1" />
+										<div id="start_time_picker" class="input-append span3">
+											<input type="text" name="start_time" id="start_time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
+											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
+										</div>
+
+										<div id="end_time_picker" class="input-append span3">
+											<input type="text" name="end_time" id="end_time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
+											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 										</div>
 									</div><!--/ Batch Time -->
 
