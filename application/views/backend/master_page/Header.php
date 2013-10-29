@@ -278,10 +278,10 @@
 										<!-- START Submenu Menu -->
 										<ul id="submenu2" class="collapse ">
 											<li class="">
-												<a href="Studentregister.php"><span class="icon icone-angle-right"></span>Registration</a>
+												<a href="<?php echo base_url() . "branch_manager/studentregistation"; ?>"><span class="icon icone-angle-right"></span>Registration</a>
 											</li>
 											<li class="">
-												<a href="Studentfees.php"><span class="icon icone-angle-right"></span>Fees Receipt</a>
+												<a href="<?php echo base_url() . "branch_manager/feespayment"; ?>"><span class="icon icone-angle-right"></span>Fees Receipt</a>
 											</li>
 										</ul>
 										<!--/ END Submenu Menu -->

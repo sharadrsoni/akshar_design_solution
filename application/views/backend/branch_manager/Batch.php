@@ -63,9 +63,8 @@
 											<?php
 											if (isset($batch_list)) {
 												foreach ($batch_list as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
+
+													echo "<tr class=\"odd gradeX\">
 <td>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
@@ -81,7 +80,7 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_batch">
+							<form method="post" action="<?php echo base_url(); ?>branch_manager/batch" class="form-horizontal span12 widget shadowed yellow" id="form_batch">
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -99,7 +98,6 @@
 										<div class="controls">
 											<select class="span4" name="course_id" id="course_id">
 												<option value="">Select...</option>
-
 												<?php
 												foreach ($course as $key) {
 													echo "<option value='{$key->courseCode}'>{$key->courseName} - {$key->courseCode}</option>";
@@ -135,6 +133,12 @@
 										</div>
 									</div><!--/ Start Date -->
 
+									<div class="control-group">
+										<label class="control-label">Duration <small>(in months)</small><span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="duration" id="duration" class="span2"/>
+										</div>
+									</div>
 									<!-- Strength -->
 									<div class="control-group">
 										<label class="control-label">Strength<span class="required">*</span></label>
@@ -151,13 +155,13 @@
 										<div class="controls">
 											<select class="span4" name="weekday" id="weekday">
 												<option value="">Select...</option>
-												<option value="1">Monday - 1</option>
-												<option value="2">Tuesday - 2</option>
-												<option value="3">Wednesday - 3</option>
-												<option value="4">Thursday - 4</option>
-												<option value="5">Friday - 5</option>
-												<option value="6">Saturday - 6</option>
-												<option value="7">Sunday - 7</option>
+												<option value="1">Monday</option>
+												<option value="2">Tuesday</option>
+												<option value="3">Wednesday</option>
+												<option value="4">Thursday</option>
+												<option value="5">Friday</option>
+												<option value="6">Saturday</option>
+												<option value="7">Sunday</option>
 											</select>
 										</div>
 									</div><!--/ weekday -->
