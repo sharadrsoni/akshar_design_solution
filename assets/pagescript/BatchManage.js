@@ -1,4 +1,4 @@
-var EventTable = function() {
+var Batch = function() {
 	return {
 		//main function to initiate the module
 		init_table : function() {

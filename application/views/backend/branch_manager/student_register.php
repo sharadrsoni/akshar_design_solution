@@ -24,7 +24,7 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Student Registration <small>This is the place where everything started</small></h4>
+					<h4>Student Registration <small>Register srudent over here.</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
@@ -42,7 +42,7 @@
 							<a data-toggle="tab" href="#tab2"><span class="icon icone-picture"></span>Add Courses</a>
 						</li>
 						<li>
-							<a href="#"><span class="icon icone-lock"></span>Payment</a>
+							<a href="<?php echo base_url() . "branch_manager/feespayment"; ?>"><span class="icon icone-lock"></span>Payment</a>
 						</li>
 					</ul>
 				</div>

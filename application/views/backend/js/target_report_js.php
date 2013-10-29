@@ -14,8 +14,8 @@
 		<script>
 		jQuery(document).ready(function() {       
 		   App.init();
-		   TargetReportTable.init();
-		   TargetReportValidation.init();
-		   TargetReportUIJQueryUI.init();
+		   TargetReport.init_table();
+		   TargetReport.init_formvalidation();
+		   TargetReport.init_uijquery();
 		});
 	</script>

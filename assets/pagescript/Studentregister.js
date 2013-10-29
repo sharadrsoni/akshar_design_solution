@@ -1,4 +1,4 @@
-var StudentRegistrationValidation = function() {
+var StudentRegistration = function() {
 	var handleValidation1 = function() {
 		// for more info visit the official plugin documentation:
 		// http://docs.jquery.com/Plugins/Validation
@@ -110,7 +110,7 @@ var StudentRegistrationValidation = function() {
 	};
 	return {
 		//main function to initiate the module
-		init : function() {
+		init_formvalidation : function() {
 
 			handleValidation1();
 			handleValidation2();

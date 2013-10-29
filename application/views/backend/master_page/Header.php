@@ -290,43 +290,43 @@
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Staff.php"> <span class="icon icone-dashboard"></span> <span class="text">Staff</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/staff"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Staff</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Event.php"> <span class="icon icone-dashboard"></span> <span class="text">Event</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/event"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Event</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Staff.php"> <span class="icon icone-dashboard"></span> <span class="text">Book Inventory</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Book Inventory</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Target.php"> <span class="icon icone-dashboard"></span> <span class="text">Target</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/target"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Target</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Targeteedback.php"> <span class="icon icone-dashboard"></span> <span class="text">Target Feedback</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/targetreport"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Target Feedback</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Sendnotification.php"> <span class="icon icone-dashboard"></span> <span class="text">Send Notification</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Send Notification</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Inquiry.php"> <span class="icon icone-dashboard"></span> <span class="text">Inquiry</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/inquiry"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Inquiry</span> </a>
 									</li>
 									<!--/ END Menu -->
 								</ul>

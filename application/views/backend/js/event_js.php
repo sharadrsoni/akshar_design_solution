@@ -9,8 +9,8 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		EventTable.init();
-		EventValidation.init();
-		EventUIJQueryUI.init();
+		Event.init_table();
+		Event.init_formvalidation();
+		Event.init_uijquery();
 	}); 
 </script>

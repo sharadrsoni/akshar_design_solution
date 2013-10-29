@@ -11,6 +11,6 @@
 	jQuery(document).ready(function() {
 		// initiate layout and plugins
 		App.init();
-		StudentRegistrationValidation.init();
+		StudentRegistration.init_formvalidation();
 	}); 
 </script>
