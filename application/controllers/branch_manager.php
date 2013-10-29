@@ -169,9 +169,9 @@ class Branch_Manager extends CI_Controller {
 
 	public function batch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
-		$branchId = 1;
+		$branchId = 01;
 		//Assuming the role ID of Faculty is 3.
-		$roleId = 3;
+		$roleId = 1;
 
 		$data['title'] = "ADS | Batch";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -223,6 +223,7 @@ class Branch_Manager extends CI_Controller {
 					$batchId = "0" . $batchId;
 				}
 				$batchId = $year . $branchId . $batchId;
+				//die($batchId);
 				$branchData['batchId'] = floatval($batchId);
 				if ($this -> batch_model -> addBatch($branchData)) {
 					redirect(base_url() . "branch_manager/batch");
