@@ -221,7 +221,7 @@ class Branch_Manager extends CI_Controller {
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
-				$targetData = array('targetName' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 				if ($this -> target_model -> addTarget($targetData)) {
 					redirect(base_url() . "branch_manager/target");
 				} else {

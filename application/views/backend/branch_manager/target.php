@@ -68,11 +68,11 @@
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
-<td class=\"hidden-480\">{$key->targetName}</td>
+<td class=\"hidden-480\">{$key->targetSubject}</td>
 <td class=\"hidden-480\">{$key->targetStartDate}</td>
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetIsAchieved}</td>
-<td class=\"hidden-480\">{$key->targetName}</td>
+<td class=\"hidden-480\">{$key->targetTypeName}</td>
 <td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_target/{$key->targetId}'>Delete</span></td></tr>
 ";
 												}
