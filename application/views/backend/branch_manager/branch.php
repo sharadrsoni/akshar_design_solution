@@ -77,7 +77,7 @@
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
-							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_batch');
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_branch');
 							echo form_open('branch_manager/branch', $attributes);
 							?>
 						
@@ -99,6 +99,13 @@
 											<input type="text" name="branch_name" id="branch_name" class="span8">
 										</div>
 									</div><!--/ Branch Name -->
+									<!-- Contact no -->
+									<div class="control-group">
+										<label class="control-label">Conatact No</label>
+										<div class="controls">
+											<input type="text" name="conatct_no" id="conatct_no" class="span8">
+										</div>
+									</div><!--/ Contact no -->
 									<h3 class="form-section">Address</h3>
 									<!-- Street -->
 									<div class="control-group">

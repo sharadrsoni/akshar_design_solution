@@ -407,6 +407,7 @@ class Branch_Manager extends CI_Controller {
 			//die("yes");
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
+			$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
 			$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
 			$this -> form_validation -> set_rules('city', 'City', 'required|trim');
 			$this -> form_validation -> set_rules('state', 'State', 'required|trim');
