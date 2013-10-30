@@ -43,6 +43,7 @@
 						</li>
 						<li class="">
 							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
+
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -51,23 +52,23 @@
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblBranch">
 										<thead>
-											<tr>												
+											<tr>
 												<th>Branch Name</th>
 												<th class="hidden-480">Address</th>
-												<th class="hidden-480">ContactNO</th>												
+												<th class="hidden-480">ContactNO</th>
 												<th >Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-foreach ($branch as $key) {
-echo "<tr class=\"odd gradeX\">
+											foreach ($branch as $key) {
+												echo "<tr class=\"odd gradeX\">
 <td>{$key->branchName}</td>
 <td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
 <td ><span class=\"label label-success\">Edit</span></td>
 </tr>";
-}
+											}
 											?>
 										</tbody>
 									</table>
@@ -75,7 +76,11 @@ echo "<tr class=\"odd gradeX\">
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_branch">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_batch');
+							echo form_open('branch_manager/branch', $attributes);
+							?>
+						
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -165,8 +170,8 @@ echo "<tr class=\"odd gradeX\">
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" name="add_branch" class="btn btn-primary">
+											Add Branch
 										</button>
 										<button type="button" class="btn">
 											Cancel

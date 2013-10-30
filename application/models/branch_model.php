@@ -13,6 +13,7 @@ class branch_model extends CI_Model {
 	
 	public function addBranch($data) {
 		if(isset($data)) {
+			//die (print_r($data));
 			return $this->db->insert('branch', $data);
 		} else {
 			return false;
