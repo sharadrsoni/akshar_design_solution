@@ -100,6 +100,7 @@ var TargetReport = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
@@ -111,6 +112,9 @@ var TargetReport = function() {
 
 			$("#date_datepicker .add-on").click(function() {
 				$("#date_datepicker input").datepicker("show");
+			});
+			$("#open_form").click(function(){
+				$("#target_id").val($("#open_form").attr("target_report"));
 			});
 		}
 	};
