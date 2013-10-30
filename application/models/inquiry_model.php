@@ -12,7 +12,17 @@ class inquiry_model extends CI_Model {
 		return $this -> db -> get() -> result();
 
 	}
-public function addinquiry($data) {
+	public function deleteInquiry($inquiryId) {
+		if (isset($inquiryId)) {
+			$this -> db -> where('inquiryId', $inquiryId);
+			$this -> db -> delete('inquiry');
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public function addinquiry($data) {
 		if(isset($data)) {
 			return $this->db->insert('inquiry', $data);
 		} else {

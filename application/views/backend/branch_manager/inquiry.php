@@ -75,7 +75,7 @@
 <td class=\"hidden-480\">{$key->inquiryState}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
 <td class=\"hidden-480\">{$key->inquiryQualification}</td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->inquiryId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -87,7 +87,11 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form method="post" action="<?php echo base_url(); ?>branch_manager/inquiry" class="form-horizontal span12 widget shadowed yellow" id="form_inquiry">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_inquiry');
+							echo form_open('branch_manager/inquiry', $attributes);
+ ?>
+							<!--form method="post" action="<?php echo base_url(); ?>branch_manager/inquiry" class="form-horizontal span12 widget shadowed yellow" id="form_inquiry">-->
 							
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
@@ -110,7 +114,7 @@
 									<div class="control-group">
 										<label class="control-label">Date of Birth</label>
 										<div class="input-append span6" id="dob_datepicker">
-											<input type="text" name="date_of_birth" id="date_of_birth" class="m-wrap span7">
+											<input type="text" data-format="dd-MM-yyyy" name="date_of_birth" id="date_of_birth" class="m-wrap span7">
 											<span class="add-on"><i class="icon-calendar"></i></span>
 										</div>
 									</div><!--/ Date of Birth -->
