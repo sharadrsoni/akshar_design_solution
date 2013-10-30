@@ -10,6 +10,10 @@ class branch_model extends CI_Model {
 		return $this -> db -> get() -> result();
 
 	}
+	public function getAllDetails()
+	{
+		return $this->db->get("branch")->result();
+	}
 	
 	public function addBranch($data) {
 		if(isset($data)) {
