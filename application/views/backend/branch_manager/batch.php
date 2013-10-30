@@ -80,7 +80,11 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form method="post" action="<?php echo base_url(); ?>branch_manager/batch" class="form-horizontal span12 widget shadowed yellow" id="form_batch">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_batch');
+							echo form_open('branch_manager/batch', $attributes);
+ ?>
+							<!--<form method="post" action="<?php echo base_url(); ?>branch_manager/batch" class="form-horizontal span12 widget shadowed yellow" id="form_batch">-->
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -129,7 +133,7 @@
 										<label class="control-label">Start Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
-												<input type="text" data-format="dd/MM/yyyy" name="start_date" id="start_date" class="m-wrap span7">
+												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 											<span for="start_date" class="help-inline"><?php echo form_error('start_date'); ?></span>
