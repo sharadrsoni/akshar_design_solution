@@ -337,76 +337,28 @@
 
 						<!-- START Tab Pane(overview) -->
 						<div class="tab-pane" id="tab-overview">
-							<!-- START Accound Status -->
-							<div class="divider">
-								Accound Status
-							</div>
-							<!-- START sparkline 1 -->
-							<figure class="stats sparkline">
-								<span class="chart sparkline-bar" sparkBarColor="#dc143c">5,6,7,2,9,2,1,4,8</span>
-								<figcaption>
-									<h4><small>My Balance</small>$16,763</h4>
-								</figcaption>
-							</figure><!--/ END sparkline 1 -->
+							<nav id="nav" class="accordion">
+								<ul id="navigation">
+									<!-- START Menu Divider -->
+									<li class="divider">
+										Main Menu
+									</li>
+									<!--/ END Menu Divider -->
 
-							<!-- START sparkline 2 -->
-							<figure class="stats sparkline">
-								<span class="chart sparkline-bar" sparkBarColor="#2E8DEF">2,7,3,8,3,2,1,2,4</span>
-								<figcaption>
-									<h4><small>Impression</small>125k+</h4>
-								</figcaption>
-							</figure><!--/ END sparkline 2 -->
-							<!--/ END Accound Status -->
-
-							<!-- START sparkline 2 -->
-							<figure class="stats sparkline">
-								<span class="chart sparkline-bar" sparkBarColor="#8CBF26">5,2,8,8,2,1,1,6,4</span>
-								<figcaption>
-									<h4><small>Subscribers</small>5,212</h4>
-								</figcaption>
-							</figure><!--/ END sparkline 2 -->
-							<!--/ END Accound Status -->
-
-							<!-- START Other Stuff -->
-							<div class="divider">
-								Other Stuff
-							</div>
-							<!-- START Summary 1 -->
-							<figure class="stats summary stacked">
-								<div class="up">
-									<span class="icon icone-caret-up"></span>
-								</div>
-								<div class="icon circle red">
-									<span class="icone-ticket"></span>
-								</div>
-								<figcaption>
-									<h3>+230<small>Open tickets</small></h3>
-								</figcaption>
-							</figure><!--/ END Summary 1 -->
-
-							<!-- START Summary 2 -->
-							<figure class="stats summary stacked">
-								<div class="down">
-									<span class="icon icone-caret-down"></span>
-								</div>
-								<div class="icon circle lime">
-									<span class="icone-bug"></span>
-								</div>
-								<figcaption>
-									<h3>-20<small>Bug Killed</small></h3>
-								</figcaption>
-							</figure><!--/ END Summary 2 -->
-
-							<!-- START Summary 3 -->
-							<figure class="stats summary stacked">
-								<div class="icon circle teal">
-									<span class="icone-trophy"></span>
-								</div>
-								<figcaption>
-									<h3>1,432<small>Trophy Won</small></h3>
-								</figcaption>
-							</figure><!--/ END Summary 3 -->
-							<!--/ END Other Stuff -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/marks"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test Marks</span> </a>
+									</li>
+									<!--/ END Menu -->
+									
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/test"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test</span> </a>
+									</li>
+									<!--/ END Menu -->
+									
+								</ul>
+							</nav>
 						</div>
 						<!--/ END Tab Pane(overview) -->
 					</div>
