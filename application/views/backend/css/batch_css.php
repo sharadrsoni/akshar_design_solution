@@ -5,7 +5,7 @@
 <!-- Css For Table -->
 
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/plugins/clockface/css/clockface.css"; ?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"; ?>"/>
 <!-- END PAGE LEVEL STYLES -->
 
 <!--/ END STYLESHEET SECTION -->

@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<?php echo base_url() . "assets/plugins/data-tables/DT_bootstrap.js"; ?>"></script><!-- For Tables -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="<?php echo base_url() . "assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"; ?>"></script>
-<script type="text/javascript" src="<?php echo base_url() . "assets/plugins/clockface/js/clockface.js"; ?>"></script>
+<script type="text/javascript" src="<?php echo base_url() . "assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"; ?>"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?php echo base_url() . "assets/pagescript/app.js"; ?>"></script>
@@ -12,8 +12,9 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		EventTable.init();
-		EventValidation.init();
-		EventUIJQueryUI.init();
+		Batch.init_table();
+		Batch.init_formvalidation();
+		Batch.init_uijquery();
+		//$('#form_batch').modal('show');
 	});
 </script>

@@ -250,25 +250,25 @@
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Dashboard.php"> <span class="icon icone-dashboard"></span> <span class="text">Dashboard</span> </a>
+										<a href=""> <span class="icon icone-dashboard"></span> <span class="text">Dashboard</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Branch.php"> <span class="icon icone-th-list"></span> <span class="text">Branch</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/branch"; ?>"> <span class="icon icone-th-list"></span> <span class="text">Branch</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Batch.php"> <span class="icon icone-dashboard"></span> <span class="text">Batch</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/batch"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Batch</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Search.php"> <span class="icon icone-dashboard"></span> <span class="text">Search</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/search"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Search</span> </a>
 									</li>
 									<!--/ END Menu -->
 
@@ -278,10 +278,10 @@
 										<!-- START Submenu Menu -->
 										<ul id="submenu2" class="collapse ">
 											<li class="">
-												<a href="Studentregister.php"><span class="icon icone-angle-right"></span>Registration</a>
+												<a href="<?php echo base_url() . "branch_manager/studentregistation"; ?>"><span class="icon icone-angle-right"></span>Registration</a>
 											</li>
 											<li class="">
-												<a href="Studentfees.php"><span class="icon icone-angle-right"></span>Fees Receipt</a>
+												<a href="<?php echo base_url() . "branch_manager/feespayment"; ?>"><span class="icon icone-angle-right"></span>Fees Receipt</a>
 											</li>
 										</ul>
 										<!--/ END Submenu Menu -->
@@ -290,43 +290,43 @@
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Staff.php"> <span class="icon icone-dashboard"></span> <span class="text">Staff</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/staff"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Staff</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Event.php"> <span class="icon icone-dashboard"></span> <span class="text">Event</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/event"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Event</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Staff.php"> <span class="icon icone-dashboard"></span> <span class="text">Book Inventory</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Book Inventory</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Target.php"> <span class="icon icone-dashboard"></span> <span class="text">Target</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/target"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Target</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Targeteedback.php"> <span class="icon icone-dashboard"></span> <span class="text">Target Feedback</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/targetreport"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Target Feedback</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Sendnotification.php"> <span class="icon icone-dashboard"></span> <span class="text">Send Notification</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Send Notification</span> </a>
 									</li>
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
 									<li class="accordion-group">
-										<a href="Inquiry.php"> <span class="icon icone-dashboard"></span> <span class="text">Inquiry</span> </a>
+										<a href="<?php echo base_url() . "branch_manager/inquiry"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Inquiry</span> </a>
 									</li>
 									<!--/ END Menu -->
 								</ul>
@@ -337,76 +337,28 @@
 
 						<!-- START Tab Pane(overview) -->
 						<div class="tab-pane" id="tab-overview">
-							<!-- START Accound Status -->
-							<div class="divider">
-								Accound Status
-							</div>
-							<!-- START sparkline 1 -->
-							<figure class="stats sparkline">
-								<span class="chart sparkline-bar" sparkBarColor="#dc143c">5,6,7,2,9,2,1,4,8</span>
-								<figcaption>
-									<h4><small>My Balance</small>$16,763</h4>
-								</figcaption>
-							</figure><!--/ END sparkline 1 -->
+							<nav id="nav" class="accordion">
+								<ul id="navigation">
+									<!-- START Menu Divider -->
+									<li class="divider">
+										Main Menu
+									</li>
+									<!--/ END Menu Divider -->
 
-							<!-- START sparkline 2 -->
-							<figure class="stats sparkline">
-								<span class="chart sparkline-bar" sparkBarColor="#2E8DEF">2,7,3,8,3,2,1,2,4</span>
-								<figcaption>
-									<h4><small>Impression</small>125k+</h4>
-								</figcaption>
-							</figure><!--/ END sparkline 2 -->
-							<!--/ END Accound Status -->
-
-							<!-- START sparkline 2 -->
-							<figure class="stats sparkline">
-								<span class="chart sparkline-bar" sparkBarColor="#8CBF26">5,2,8,8,2,1,1,6,4</span>
-								<figcaption>
-									<h4><small>Subscribers</small>5,212</h4>
-								</figcaption>
-							</figure><!--/ END sparkline 2 -->
-							<!--/ END Accound Status -->
-
-							<!-- START Other Stuff -->
-							<div class="divider">
-								Other Stuff
-							</div>
-							<!-- START Summary 1 -->
-							<figure class="stats summary stacked">
-								<div class="up">
-									<span class="icon icone-caret-up"></span>
-								</div>
-								<div class="icon circle red">
-									<span class="icone-ticket"></span>
-								</div>
-								<figcaption>
-									<h3>+230<small>Open tickets</small></h3>
-								</figcaption>
-							</figure><!--/ END Summary 1 -->
-
-							<!-- START Summary 2 -->
-							<figure class="stats summary stacked">
-								<div class="down">
-									<span class="icon icone-caret-down"></span>
-								</div>
-								<div class="icon circle lime">
-									<span class="icone-bug"></span>
-								</div>
-								<figcaption>
-									<h3>-20<small>Bug Killed</small></h3>
-								</figcaption>
-							</figure><!--/ END Summary 2 -->
-
-							<!-- START Summary 3 -->
-							<figure class="stats summary stacked">
-								<div class="icon circle teal">
-									<span class="icone-trophy"></span>
-								</div>
-								<figcaption>
-									<h3>1,432<small>Trophy Won</small></h3>
-								</figcaption>
-							</figure><!--/ END Summary 3 -->
-							<!--/ END Other Stuff -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/marks"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test Marks</span> </a>
+									</li>
+									<!--/ END Menu -->
+									
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/test"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test</span> </a>
+									</li>
+									<!--/ END Menu -->
+									
+								</ul>
+							</nav>
 						</div>
 						<!--/ END Tab Pane(overview) -->
 					</div>

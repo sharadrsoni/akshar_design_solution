@@ -5,13 +5,35 @@ if (!defined('BASEPATH'))
 class batch_model extends CI_Model {
 
 	public function getDetailsByBranch($branchId) {
-		//$this -> db -> select('batch.batchId', 'course.courseName', 'user.wusername');
+
 		$this -> db -> where("batch.branchId", $branchId);
 		$this -> db -> from('batch');
-		$this -> db -> join('course', 'course.courseId = batch.courseId');
+		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
 		$this -> db -> join('user', 'user.userId = batch.facultyId');
 		return $this -> db -> get() -> result();
 
+	}
+
+	public function deleteBatch($batchId) {
+		if (isset($batchId)) {
+			$this -> db -> where('batchId', $batchId);
+			$this -> db -> delete('batch');
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public function addBatch($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('batch', $data);
+		} else {
+			return false;
+		}
+	}
+
+	public function getMaxId() {
+		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
 	}
 
 }
