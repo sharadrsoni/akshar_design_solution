@@ -132,4 +132,4 @@ var Batch = function() {
 function removebatchtime(e) {
 	$(e).parent().parent().remove();
 }
-//dips
+
