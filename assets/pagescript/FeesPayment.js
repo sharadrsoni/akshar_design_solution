@@ -121,7 +121,8 @@ var StudentFees = function() {
 		},
 		init_uijquery : function() {
 			$("#payment_date_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#payment_date_datepicker .add-on").click(function() {
@@ -129,7 +130,8 @@ var StudentFees = function() {
 			});
 
 			$("#cheque_issue_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#cheque_issue_datepicker .add-on").click(function() {

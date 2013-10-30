@@ -137,7 +137,9 @@ var Staff = function() {
 		},
 		init_uijquery : function() {
 			$("#dob_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
+				
 			});
 
 			$("#dob_datepicker .add-on").click(function() {
@@ -145,7 +147,8 @@ var Staff = function() {
 			});
 
 			$("#doj_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#doj_datepicker .add-on").click(function() {
