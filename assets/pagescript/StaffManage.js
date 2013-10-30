@@ -47,58 +47,6 @@ var Staff = function() {
 				});
 				jQuery.uniform.update(set);
 			});
-
-<<<<<<< HEAD
-            jQuery('#tblStaff .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
-            jQuery('#tblStaff .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
-            //jQuery('#tblStaff .dataTables_length select').select2(); // initialize select2 dropdown
-        }
-    };
-}();
-var StaffValidation = function () {
-    var handleValidation1 = function() {
-        // for more info visit the official plugin documentation: 
-            // http://docs.jquery.com/Plugins/Validation
-            var form1 = $('#form_staff');
-            var error1 = $('.alert-error', form1);
-            var success1 = $('.alert-success', form1);
-            form1.validate({
-                errorElement: 'span', //default input error message container
-                errorClass: 'help-inline', // default input error message class
-                focusInvalid: false, // do not focus the last invalid input
-                ignore: "",
-                rules: {
-                    first_name: {
-                        minlength: 5,
-                        required: true
-                    },
-                    middle_name: {
-                        minlength: 5,
-                        required: true
-                    },
-                    last_name: {
-                        minlength: 5,
-                        required: true
-                    },
-					contact_number: {
-                        minlength: 10,
-                        required: true
-                    },
-					email: {
-                        required: true,
-                    },
-					dob: {
-                        required: true,
-                    },
-					qualification: {
-                        required: true,
-                    },
-					doj: {
-                        required: true,
-                    },
-					street_1:{
-						required: true,
-=======
 			jQuery('#tblStaff .dataTables_filter input').addClass("m-wrap medium");
 			// modify table search input
 			jQuery('#tblStaff .dataTables_length select').addClass("m-wrap small");
@@ -115,8 +63,13 @@ var StaffValidation = function () {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					staff_name : {
-						minlength : 5,
+					first_name : {
+						required : true
+					},
+					middle_name : {
+						required : true
+					},
+					last_name : {
 						required : true
 					},
 					contact_number : {
@@ -134,7 +87,6 @@ var StaffValidation = function () {
 					},
 					date_of_joining : {
 						required : true,
->>>>>>> ecc4781e220bb4ae5c95a19f63dfaf04980b97cc
 					},
 					street_1 : {
 						required : true,

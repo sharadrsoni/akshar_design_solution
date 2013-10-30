@@ -15,7 +15,6 @@
 		</div>
 	</div>
 	<!--/ END Bootstrap Navbar -->
-
 	<!-- START Content -->
 	<div class="container-fluid">
 		<!-- START Row -->
@@ -37,10 +36,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Branches</a>
+							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Inquiry</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
+							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Inquiry</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -53,33 +52,47 @@
 												<th style="width:8px;">
 												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 												</th>
-												<th>EventDate</th>
-												<th class="hidden-480">Address</th>
-												<th class="hidden-480">Organize by</th>
-												<th class="hidden-480">Description</th>
-												<th class="hidden-480">Edit</th>
+												
+												<th class="hidden-480">Student Name</th>
+												<th class="hidden-480">E-mail Address</th>
+												<th class="hidden-480">Inquiry State</th>
+												<th class="hidden-480">Contact Number</th>
+												<th class="hidden-480">Inquiry_Qualification</th>
+												
 												<th >View</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="hidden-480"></td>
-												<td class="center hidden-480">12 Jan 2012</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											if (isset($inquiry_list)) {
+												foreach ($inquiry_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+
+<td class=\"hidden-480\">{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
+<td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
+<td class=\"hidden-480\">{$key->inquiryState}
+<td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
+<td class=\"hidden-480\">{$key->inquiryQualification}</td>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
+											
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_inquiry">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_inquiry');
+							echo form_open('branch_manager/inquiry', $attributes);
+ ?>
+							<!--form method="post" action="<?php echo base_url(); ?>branch_manager/inquiry" class="form-horizontal span12 widget shadowed yellow" id="form_inquiry">-->
+							
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -88,7 +101,6 @@
 									<button class="close" data-dismiss="alert"></button>
 									Your form validation is successful!
 								</div>
-
 								<div class="body-inner">
 									<h3 class="form-section">User Info</h3>
 									<!-- User Name -->
@@ -102,7 +114,7 @@
 									<div class="control-group">
 										<label class="control-label">Date of Birth</label>
 										<div class="input-append span6" id="dob_datepicker">
-											<input type="text" name="date_of_birth" id="date_of_birth" class="m-wrap span7">
+											<input type="text" data-format="dd-MM-yyyy" name="date_of_birth" id="date_of_birth" class="m-wrap span7">
 											<span class="add-on"><i class="icon-calendar"></i></span>
 										</div>
 									</div><!--/ Date of Birth -->
@@ -190,7 +202,7 @@
 									</div><!--/ Reference -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 										<button type="button" class="btn">

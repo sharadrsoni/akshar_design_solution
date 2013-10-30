@@ -64,6 +64,9 @@ var Event = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
+					event_name:{
+						required : true,
+					},
 					event_type : {
 						required : true,
 					},
@@ -125,6 +128,7 @@ var Event = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
