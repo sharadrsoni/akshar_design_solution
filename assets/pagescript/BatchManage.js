@@ -106,7 +106,7 @@ var Batch = function() {
 		init_uijquery : function() {
 			$("#start_date_datepicker input").datepicker({
 				isRTL : App.isRTL(),
-				dateFormat: 'dd/mm/yy'
+				dateFormat: 'dd-mm-yy'
 			});
 			$("#start_date_datepicker .add-on").click(function() {
 				$("#start_date_datepicker input").datepicker("show");
@@ -132,3 +132,4 @@ var Batch = function() {
 function removebatchtime(e) {
 	$(e).parent().parent().remove();
 }
+//dips
