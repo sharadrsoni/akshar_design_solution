@@ -19,10 +19,10 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function test() {
 		$data['title'] = "ADS | Test";
-		$this -> load -> view('backend/master_page/top',$data);
+		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/test_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/test');
@@ -106,7 +106,7 @@ class Branch_Manager extends CI_Controller {
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
-				$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventAddress1' => $_POST['street_1'], 'eventAddress2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => $_POST['start_date'], 'eventEndDate' => $_POST['end_date']);
+				$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 				if ($this -> event_model -> addEvent($eventData)) {
 					redirect(base_url() . "branch_manager/event");
 				} else {
@@ -180,7 +180,7 @@ class Branch_Manager extends CI_Controller {
 				$data['validate'] = true;
 			} else {
 				$this -> load -> model('inquiry_model');
-				$inquiryData = array('inquiryStudentFirstName' => $_POST['user_name'], 'inquiryDOB' => $_POST['date_of_birth'], 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $branchId);
+				$inquiryData = array('inquiryStudentFirstName' => $_POST['user_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $branchId);
 
 			}
 			if ($this -> inquiry_model -> addinquiry($inquiryData)) {
@@ -231,7 +231,7 @@ class Branch_Manager extends CI_Controller {
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
-				$targetData = array('targetName' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => $_POST['start_date'], 'targetEndDate' => $_POST['end_date']);
+				$targetData = array('targetName' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 				if ($this -> target_model -> addTarget($targetData)) {
 					redirect(base_url() . "branch_manager/target");
 				} else {
@@ -444,6 +444,11 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> model('target_model');
 		$this -> target_model -> deleteTarget($targetId);
 		redirect(base_url() . "branch_manager/target");
+	}
+	public function delete_inquiry($inquiryId) {
+		$this -> load -> model('inquiry_model');
+		$this -> inquiry_model -> deleteInquiry($inquiryId);
+		redirect(base_url() . "branch_manager/inquiry");
 	}
 
 }
