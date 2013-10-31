@@ -468,6 +468,50 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/changepassword_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	
+	public function eventtype() {
+		$data['title'] = "ADS | Event Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/eventtype_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/eventtype_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function targettype() {
+		$data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/targettype_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/targettype');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/targettype_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function state() {
+		$data['title'] = "ADS | State";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/state_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/state');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/state_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function city() {
+		$data['title'] = "ADS | City";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/city_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/city');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/city_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 
 	public function delete_event($eventId) {
 		$this -> load -> model('event_model');
