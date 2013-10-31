@@ -65,7 +65,7 @@
 												foreach ($batch_list as $key) {
 
 													echo "<tr class=\"odd gradeX\">
-<td id={$key->batchId}>{$key->batchId}</td>
+<td id={$key->batchId} onclick='viewbatch(\"{base_url()}\", \"{$key->batchId}\");'>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>

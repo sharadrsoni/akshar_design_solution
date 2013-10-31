@@ -296,7 +296,7 @@ class Branch_Manager extends CI_Controller {
 		$data['course'] = $courses;
 		$data['faculty'] = $facultyName;
 		if ($batchId != '') {
-			return json_encode($data);
+			echo json_encode($data);
 		} else {
 			$data['title'] = "ADS | Batch";
 			$this -> load -> view('backend/master_page/top', $data);
