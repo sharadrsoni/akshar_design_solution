@@ -120,20 +120,11 @@
 									<div class="control-group">
 										<label class="control-label">Payment Mode<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="paymemt_mode" id="paymemt_mode" class="span6 m-wrap" >
-											<span class="help-inline"></span>
-										</div>
-									</div><!-- /Payment Mode -->
-									<!-- Amount -->
-									<div class="control-group">
-										<label class="control-label">Total Amount<span class="required">*</span></label>
-										<div class="controls">
-											<div class="input-append">
-												<input type="text" name="total_amount" id="total_amount" class="span6 m-wrap">
-												<span class="add-on">Rs 2300 /-</span>
+											<div class="switch" data-on="info" data-off="success" data-on-label="Yes" data-off-label="No">
+												<input name="paymemt_mode" id="paymemt_mode" type="checkbox" class="toggle"/>
 											</div>
 										</div>
-									</div><!-- /Amount -->
+									</div><!-- /Payment Mode -->
 									<!-- Payment Date -->
 									<div class="control-group">
 										<label class="control-label">Payment Date<span class="required">*</span></label>
@@ -146,56 +137,58 @@
 									</div><!--/ Payment Date-->
 
 									<!-- cheque details -->
-									<h4 class="form-section">Cheque Details</h4>
-									<!-- Cheque Number -->
-									<div class="control-group">
-										<label class="control-label">Cheque Number<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="cheque_number" id="cheque_number" placeholder="" class="m-wrap">
-											<span class="help-inline"></span>
-										</div>
-									</div><!-- /Cheque Number -->
-									<!-- SCheque Issue Date -->
-									<div class="control-group">
-										<label class="control-label">Cheque Issue Date<span class="required">*</span></label>
-										<div class="controls">
-											<div class="input-append span6" id="cheque_issue_datepicker">
-												<input type="text" name="cheque_issue_date" id="cheque_issue_date" class="m-wrap span7">
-												<span class="add-on"><i class="icon-calendar"></i></span>
+									<div id="cheque_details" style="display:none">
+										<h4 class="form-section">Cheque Details</h4>
+										<!-- Cheque Number -->
+										<div class="control-group">
+											<label class="control-label">Cheque Number<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" name="cheque_number" id="cheque_number" placeholder="" class="m-wrap">
+												<span class="help-inline"></span>
 											</div>
-										</div>
-									</div><!--/ Cheque Issue Date -->
-									<!-- Bank name -->
-									<div class="control-group">
-										<label class="control-label">Bank name<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="bankname" name="bankname" placeholder="" class="m-wrap">
-											<span class="help-inline"></span>
-										</div>
-									</div><!-- /Bank name -->
-									<!-- Banch Name -->
-									<div class="control-group">
-										<label class="control-label">Banch Name of Bank<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="branchname" id="branchname" placeholder="" class="m-wrap">
-											<span class="help-inline"></span>
-										</div>
-									</div><!-- /Banch Name -->
-									<!-- IFSC Code -->
-									<div class="control-group">
-										<label class="control-label">IFSC Code<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="ifrc_code" is="ifrc_code" placeholder="" class="m-wrap">
-											<span class="help-inline"></span>
-										</div>
-									</div><!-- /IFSC Code -->
+										</div><!-- /Cheque Number -->
+										<!-- SCheque Issue Date -->
+										<div class="control-group">
+											<label class="control-label">Cheque Issue Date<span class="required">*</span></label>
+											<div class="controls">
+												<div class="input-append span6" id="cheque_issue_datepicker">
+													<input type="text" name="cheque_issue_date" id="cheque_issue_date" class="m-wrap span7">
+													<span class="add-on"><i class="icon-calendar"></i></span>
+												</div>
+											</div>
+										</div><!--/ Cheque Issue Date -->
+										<!-- Bank name -->
+										<div class="control-group">
+											<label class="control-label">Bank name<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" name="bankname" name="bankname" placeholder="" class="m-wrap">
+												<span class="help-inline"></span>
+											</div>
+										</div><!-- /Bank name -->
+										<!-- Banch Name -->
+										<div class="control-group">
+											<label class="control-label">Banch Name of Bank<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" name="branchname" id="branchname" placeholder="" class="m-wrap">
+												<span class="help-inline"></span>
+											</div>
+										</div><!-- /Banch Name -->
+										<!-- IFSC Code -->
+										<div class="control-group">
+											<label class="control-label">IFSC Code<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" name="ifrc_code" is="ifrc_code" placeholder="" class="m-wrap">
+												<span class="help-inline"></span>
+											</div>
+										</div><!-- /IFSC Code -->
+									</div>
 									<h4 class="form-section">Payment Details</h4>
 									<!-- Course -->
 									<div class="control-group">
 										<label class="control-label">Course<span class="required">*</span></label>
 										<div class="controls">
-											<select name="country" id="" class="span6 ">
-												<option value="">Select</option>
+											<select name="course" id="course" class="span6 ">
+												<option value="null">Select</option>
 												<option value="EH">Western Sahara</option>
 												<option value="YE">Yemen</option>
 												<option value="ZM">Zambia</option>
@@ -207,7 +200,7 @@
 									<div class="control-group">
 										<label class="control-label">Amount<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" placeholder="" class="m-wrap" name="card_cvc">
+											<input type="text" placeholder="" class="m-wrap" name="course_amount" id="course_amount">
 											<span class="help-inline"></span>
 										</div>
 									</div><!-- /Amount -->
@@ -215,7 +208,7 @@
 									<div class="control-group">
 										<label class="control-label"></label>
 										<div class="controls">
-											<button type="button" class="btn purple-stripe">
+											<button type="button" id="add_payment_details" class="btn purple-stripe">
 												Add Payment Details
 											</button>
 										</div>
@@ -236,6 +229,16 @@
 											</tbody>
 										</table>
 									</div><!--/ List-->
+									<!-- Amount -->
+									<div class="control-group">
+										<label class="control-label"><span class="required"></span></label>
+										<div class="controls pull-right">
+											<div class="input-append flot-right">
+												<input type="text" name="total_amount" readonly="" value="0" id="total_amount" class="span6 m-wrap">
+												<span class="add-on">Rs <span id="remianing_amount">10000</span> /-</span>
+											</div>
+										</div>
+									</div><!-- /Amount -->
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary">
@@ -254,7 +257,6 @@
 			</div>
 			<!--/ END Row -->
 
-					
 		</div>
 		<!--Page Content End  -->
 	</div>

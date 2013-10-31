@@ -121,8 +121,21 @@ var Batch = function() {
 			});
 
 			$('#btn_add_batch_timing').click(function() {
-				if ($('#weekday').val() != "" && $('#weekday').val() != "Select..." && $('#start_time').val() != "" && $('#end_time').val() != "") {
-					$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='batch_timing[]' value='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+				if ($('#weekday').val() != "" && $('#weekday').val() != "null") {
+					if ($('#start_time').val() != "") {
+						if ($('#end_time').val() != "") {
+							$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='batch_timing[]' value='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+						} else {
+							$('#end_time').closest('.help-inline').removeClass('ok');
+							$('#end_time').closest('.control-group').removeClass('success').addClass('error');
+						}
+					} else {
+						$('#start_time').closest('.help-inline').removeClass('ok');
+						$('#start_time').closest('.control-group').removeClass('success').addClass('error');
+					}
+				} else {
+					$('#weekday').closest('.help-inline').removeClass('ok');
+					$('#weekday').closest('.control-group').removeClass('success').addClass('error');
 				}
 			});
 		}
@@ -135,7 +148,7 @@ function removebatchtime(e) {
 
 function viewbatch(batchid) {
 	$.ajax({
-		url : "branch_manager/batch/"+batchid,
+		url : "branch_manager/batch/" + batchid,
 		dataType : 'json',
 		//data : "director=" + argdirector,
 		async : true,

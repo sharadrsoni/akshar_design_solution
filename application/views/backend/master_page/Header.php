@@ -344,12 +344,6 @@
 										Main Menu
 									</li>
 									<!--/ END Menu Divider -->
-
-									<!-- START Menu -->
-									<li class="accordion-group">
-										<a href="<?php echo base_url() . "branch_manager/marks"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test Marks</span> </a>
-									</li>
-									<!--/ END Menu -->
 									
 									<!-- START Menu -->
 									<li class="accordion-group">

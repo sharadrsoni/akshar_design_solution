@@ -39,10 +39,7 @@
 							<a data-toggle="tab" href="#tab1"><span class="icon icone-cog"></span>Student Register</a>
 						</li>
 						<li >
-							<a data-toggle="tab" href="#tab2"><span class="icon icone-picture"></span>Add Courses</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url() . "branch_manager/feespayment"; ?>"><span class="icon icone-lock"></span>Payment</a>
+							<a data-toggle="tab" href="#tab2"><span class="icon icone-picture"></span>Courses Register</a>
 						</li>
 					</ul>
 				</div>
@@ -149,6 +146,15 @@
 									</select>
 								</div>
 							</div><!-- /Batch -->
+							<!-- Book receive or not -->
+							<div class="control-group">
+								<label class="control-label">Books issue<span class="required">*</span></label>
+								<div class="controls">
+									<div class="switch" data-on="info" data-off="success" data-on-label="Yes" data-off-label="No">
+										<input name="isbookissue" id="isbookissue" type="checkbox" class="toggle"/>
+									</div>
+								</div>
+							</div><!-- /Book receive or not -->
 							<!-- Add -->
 							<div class="form-actions clearfix">
 								<button type="submit" class="btn purple-stripe">
