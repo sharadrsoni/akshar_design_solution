@@ -12,26 +12,53 @@ var StudentFees = function() {
 				studentid : {
 					required : true
 				},
-				total_amount : {
-					required : true
-				},
 				payment_date : {
 					required : true
 				},
 				cheque_number : {
-					required : true
+					required : function() {
+						if ($("#paymemt_mode").is(':checked')) {
+							return true;
+						} else {
+							return false;
+						}
+					}
 				},
 				cheque_issue_date : {
-					required : true
+					required : function() {
+						if ($("#paymemt_mode").is(':checked')) {
+							return true;
+						} else {
+							return false;
+						}
+					}
 				},
 				bankname : {
-					required : true
+					required : function() {
+						if ($("#paymemt_mode").is(':checked')) {
+							return true;
+						} else {
+							return false;
+						}
+					}
 				},
 				branchname : {
-					required : true
+					required : function() {
+						if ($("#paymemt_mode").is(':checked')) {
+							return true;
+						} else {
+							return false;
+						}
+					}
 				},
 				ifrc_code : {
-					required : true
+					required : function() {
+						if ($("#paymemt_mode").is(':checked')) {
+							return true;
+						} else {
+							return false;
+						}
+					}
 				}
 			},
 

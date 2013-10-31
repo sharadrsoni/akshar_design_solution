@@ -38,13 +38,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Tests</a>
+							<a href="#tab1" id="tab1link" data-toggle="tab"><span class="icon icone-eraser"></span>Tests</a>
 						</li>
 						<li class="">
 							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Test</a>
-						</li>
-						<li class="">
-							<a href="#tab3" data-toggle="tab"><span class="icon icone-pencil"></span> Add Marks</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -67,7 +64,7 @@
 												<td>33/33/3333</td>
 												<td>XXX</td>
 												<td></td>
-												<td><a role="button" data-toggle="modal" href="#form_marks"><span class="icon icone-home"></span> Add Marks of Student</a></td>
+												<td><a href="#tab3" id="tab3link" data-toggle="tab"><span class="icon icone-pencil"></span> Add Marks</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -91,15 +88,13 @@
 									<div class="control-group">
 										<label class="control-label">Batch ID<span class="required">*</span></label>
 										<div class="controls">
-											<div class="span4">
-												<select class="span12" name="batch_id" id="batch_id">
-													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
-												</select>
-											</div>
+											<select class="span4" name="batch_id" id="batch_id">
+												<option value="">Select...</option>
+												<option value="Category 1">Category 1</option>
+												<option value="Category 2">Category 2</option>
+												<option value="Category 3">Category 5</option>
+												<option value="Category 4">Category 4</option>
+											</select>
 										</div>
 									</div><!--/ Batch ID -->
 									<h3 class="form-section">Test Info</h3>
@@ -107,8 +102,8 @@
 									<div class="control-group">
 										<label class="control-label">Test Date<span class="required">*</span></label>
 										<div class="controls">
-											<div class="input-append span6" id="test_date_datepicker">
-												<input type="text" name="test_date" id="test_date" class="m-wrap span7">
+											<div class="input-append span4" id="test_date_datepicker">
+												<input type="text" name="test_date" id="test_date" class="m-wrap">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -116,7 +111,7 @@
 									<div class="control-group">
 										<label class="control-label">Test Marks</label>
 										<div class="controls">
-											<input type="text" name="test_marks" id="test_marks" class="span8">
+											<input type="text" name="test_marks" id="test_marks" class="span4">
 										</div>
 									</div>
 									<!-- Form Action -->
@@ -143,63 +138,42 @@
 								</div>
 
 								<div class="body-inner">
-									<div class="alert alert-error hide">
-										<button class="close" data-dismiss="alert"></button>
-										You have some form errors. Please check below.
-									</div>
-									<div class="alert alert-success hide">
-										<button class="close" data-dismiss="alert"></button>
-										Your form validation is successful!
-									</div>
+									<h3 class="form-section">Student Info</h3>
+									<!-- LIst -->
+									<div class="control-group">
+										<table class="table table-striped table-bordered table-hover" id="obtainmarks">
+											<thead>
+												<tr>
+												<tr>
+													<th class="hidden-480">Student ID</th>
+													<th class="hidden-480">Obtained Marks </th>
+												</tr>
+											</thead>
 
-									<div class="body-inner">
-										<h3 class="form-section">Batch Info</h3>
-
-										<div class="control-group">
-											<label class="control-label">Batch ID<span class="required">*</span></label>
-											<div class="controls">
-												<select class="span4" name="batch_id" id="batch_id">
-													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
-												</select>
-											</div>
-										</div>
-										<!--/ Course -->
-										<h3 class="form-section">Student Info</h3>
-										<!-- LIst -->
-										<div class="control-group">
-											<table class="table table-striped table-bordered table-hover" id="obtainmarks">
-												<thead>
-													<tr>
-													<tr>
-														<th>Student ID</th>
-														<th class="hidden-480">Obtained Marks </th>
-													</tr>
-												</thead>
-
-												<tbody id="lst_batch_timing">
-													<tr class="odd gradeX">
-														<td> Student_ID XXX </td>
-														<td>
-														<input type="text" name="obtained_marks" id="obtained_marks" class="span2"/>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div><!--/ List-->
-										<!-- Form Action -->
-										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">
-												Register
-											</button>
-											<button type="button" class="btn">
-												Cancel
-											</button>
-										</div><!--/ Form Action -->
-									</div>
+											<tbody id="lst_batch_timing">
+												<tr class="odd gradeX">
+													<td class="hidden-480"> Student_ID XXX </td>
+													<td class="hidden-480"><input type="text" name="obtained_marks1" id="obtained_marks1" class="span2 marks"/>
+													</td>
+												</tr>
+												<tr class="odd gradeX">
+													<td class="hidden-480"> Student_ID XXX </td>
+													<td class="hidden-480"><input type="text" name="obtained_marks2" id="obtained_mark2" class="span2 marks"/>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div><!--/ List-->
+									<!-- Form Action -->
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary">
+											Register
+										</button>
+										<button type="button" class="btn">
+											Cancel
+										</button>
+									</div><!--/ Form Action -->
+								</div>
 							</form>
 						</div>
 					</div>
