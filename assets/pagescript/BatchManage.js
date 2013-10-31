@@ -106,7 +106,7 @@ var Batch = function() {
 		init_uijquery : function() {
 			$("#start_date_datepicker input").datepicker({
 				isRTL : App.isRTL(),
-				dateFormat: 'dd-mm-yy'
+				dateFormat : 'dd-mm-yy'
 			});
 			$("#start_date_datepicker .add-on").click(function() {
 				$("#start_date_datepicker input").datepicker("show");
@@ -115,7 +115,7 @@ var Batch = function() {
 			$('#start_time_picker').datetimepicker({
 				pickDate : false
 			});
-			
+
 			$('#end_time_picker').datetimepicker({
 				pickDate : false
 			});
@@ -131,5 +131,19 @@ var Batch = function() {
 
 function removebatchtime(e) {
 	$(e).parent().parent().remove();
+}
+
+function viewbatch(batchid) {
+	$.ajax({
+		url : "branch_manager/batch/"+batchid,
+		dataType : 'json',
+		//data : "director=" + argdirector,
+		async : true,
+		success : function(json) {
+			if (json) {
+				alert(json);
+			}
+		}
+	});
 }
 
