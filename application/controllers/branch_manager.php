@@ -500,6 +500,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function city() {
+		$data['title'] = "ADS | City";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/city_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/city');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/city_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 	public function delete_event($eventId) {
 		$this -> load -> model('event_model');
 		$this -> event_model -> deleteEvent($eventId);
