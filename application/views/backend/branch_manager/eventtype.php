@@ -63,7 +63,10 @@
 												<input type="checkbox" class="checkboxes" value="1" />
 												</td>
 												<td>Tutorial</td>
-												<td ><span class="label label-success">Approved</span></td>
+												<td >
+													<span class="label label-success">Edit</span>
+													<span class="label label-success">Delete</span>
+												</td>
 											</tr>
 										</tbody>
 									</table>
