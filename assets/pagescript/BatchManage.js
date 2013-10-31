@@ -146,15 +146,15 @@ function removebatchtime(e) {
 	$(e).parent().parent().remove();
 }
 
-function viewbatch(batchid) {
+function viewbatch(url, batchid) {
 	$.ajax({
-		url : "branch_manager/batch/" + batchid,
+		url : url + "branch_manager/batch/" + batchid,
 		dataType : 'json',
 		//data : "director=" + argdirector,
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert(json);
+
 			}
 		}
 	});
