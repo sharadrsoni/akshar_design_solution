@@ -9,13 +9,7 @@ var EventType = function() {
 			$('#tbleventtype').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
-				}, {
-					"bSortable" : true
-				},null],
+				}, null,null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
