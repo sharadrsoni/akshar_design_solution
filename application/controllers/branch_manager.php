@@ -263,7 +263,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function time_table() {
+	public function timetable() {
 
 		$data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -458,17 +458,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function changepassword() {
-		$data['title'] = "ADS | Change Password";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/changepassword_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/changepassword');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/changepassword_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-	
 	public function eventtype() {
 		$data['title'] = "ADS | Event Type";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -510,6 +499,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/branch_manager/city');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/city_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+	
+	public function profile() {
+		$data['title'] = "ADS | Profile";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/student_profile_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/student_profile');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 

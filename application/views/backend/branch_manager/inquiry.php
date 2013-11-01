@@ -114,7 +114,7 @@
 									<div class="control-group">
 										<label class="control-label">Date of Birth</label>
 										<div class="input-append span6" id="dob_datepicker">
-											<input type="text" data-format="dd-MM-yyyy" name="date_of_birth" id="date_of_birth" class="m-wrap span7">
+											<input type="text" readonly="" data-format="dd-MM-yyyy" name="date_of_birth" id="date_of_birth" class="m-wrap span7">
 											<span class="add-on"><i class="icon-calendar"></i></span>
 										</div>
 									</div><!--/ Date of Birth -->

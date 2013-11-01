@@ -145,7 +145,7 @@
 										<label class="control-label">Start Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
-												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
+												<input type="text" readonly="" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -156,7 +156,7 @@
 										<label class="control-label">End Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="end_date_datepicker">
-												<input type="text" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7">
+												<input type="text" readonly="" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>

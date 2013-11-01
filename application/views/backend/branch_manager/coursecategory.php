@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Courses</a>
+							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Course Categories</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course</a>
+							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course Category</a>
 						</li>
 					</ul>
 					<div class="tab-content">

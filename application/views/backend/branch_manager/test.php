@@ -103,7 +103,7 @@
 										<label class="control-label">Test Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span4" id="test_date_datepicker">
-												<input type="text" name="test_date" id="test_date" class="m-wrap">
+												<input type="text" readonly="" name="test_date" id="test_date" class="m-wrap">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
