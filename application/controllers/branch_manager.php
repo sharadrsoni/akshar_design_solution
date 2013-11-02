@@ -255,15 +255,14 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function timetable() {
-
+	public function showattendance() {
 		$data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/time_table_css');
+		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/time_table');
+		$this -> load -> view('backend/branch_manager/show_attendance');
 		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/time_table_js');
+		$this -> load -> view('backend/js/show_attendance_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
