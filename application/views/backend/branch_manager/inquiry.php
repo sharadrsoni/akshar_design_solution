@@ -52,11 +52,13 @@
 												<th style="width:8px;">
 												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 												</th>
-												<th>Inquiry_ID</th>
+												
 												<th class="hidden-480">Student Name</th>
 												<th class="hidden-480">E-mail Address</th>
 												<th class="hidden-480">Inquiry State</th>
 												<th class="hidden-480">Contact Number</th>
+												<th class="hidden-480">Inquiry_Qualification</th>
+												
 												<th >View</th>
 											</tr>
 										</thead>
@@ -67,21 +69,26 @@
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
+
 <td class=\"hidden-480\">{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
 <td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
+<td class=\"hidden-480\">{$key->inquiryState}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->inquiryId}'>Delete</span></td></tr>
+<td class=\"hidden-480\">{$key->inquiryQualification}</td>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
 											}
 											?>
+											
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_inquiry">
+							<form method="post" action="<?php echo base_url(); ?>branch_manager/inquiry" class="form-horizontal span12 widget shadowed yellow" id="form_inquiry">
+							
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -191,7 +198,7 @@
 									</div><!--/ Reference -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 										<button type="button" class="btn">
