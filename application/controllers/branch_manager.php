@@ -19,7 +19,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function feesreceipt() {
 		$data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -39,17 +39,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/branch_manager/test');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/test_js');
-	}
-
-	public function marks() {
-		$data['title'] = "ADS | Student Registration";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/marks_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/marks');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/marks_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function studentregistation() {
@@ -243,11 +232,8 @@ class Branch_Manager extends CI_Controller {
 
 		$branchId = 1;
 		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
-
 		$data['target_list'] = $target_data;
-
 		$this -> load -> view('backend/branch_manager/target', $data);
-
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -255,19 +241,14 @@ class Branch_Manager extends CI_Controller {
 	}
 
 	public function targetreport() {
-
 		$data['title'] = "ADS | Target Report";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
-
-		//		$this -> load -> model("targetReport_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1
-		//		$targetId = 1;
-		//		$target_data = $this -> targetReport_model -> getDetailsByBranch($targetId);
-
-		//		$data['targetReport_list'] = $targetReport_data;
-
+		$this -> load -> model("target_report_model");
+		$branchId = 1;
+		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
+		$data['target_report_list'] = $target_data;
 		$this -> load -> view('backend/branch_manager/target_report', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
@@ -500,10 +481,10 @@ class Branch_Manager extends CI_Controller {
 		//Logic of getting State data
 		$state_data = $this -> state_model -> getDetailsBystate();
 		$data['state_list'] = $state_data;
-	   if (isset($_POST['register'])) {
+		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
-		
+
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
@@ -522,10 +503,8 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/state_js');
 		$this -> load -> view('backend/master_page/bottom');
-		
-	}
 
-	
+	}
 
 	public function city() {
 		$data['title'] = "ADS | City";
@@ -537,16 +516,16 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/city_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function profile() {
 		$data['title'] = "ADS | Profile";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/student_profile_css');
 		$this -> load -> view('backend/master_page/header');
-		if(1==1){
+		if (1 == 1) {
 			$this -> load -> view('backend/branch_manager/staff_profile');
-		}else{
-			$this -> load -> view('backend/branch_manager/student_profile');	
+		} else {
+			$this -> load -> view('backend/branch_manager/student_profile');
 		}
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
@@ -570,13 +549,12 @@ class Branch_Manager extends CI_Controller {
 		$this -> inquiry_model -> deleteInquiry($inquiryId);
 		redirect(base_url() . "branch_manager/inquiry");
 	}
-	
+
 	public function delete_state($stateId) {
 		$this -> load -> model('state_model');
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "branch_manager/state");
 	}
-	
 
 }
 ?>

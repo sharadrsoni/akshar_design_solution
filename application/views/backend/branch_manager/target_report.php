@@ -51,34 +51,39 @@
 												<th style="width:8px;">
 												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
 												</th>
-												<th>Branch</th>
 												<th class="hidden-480">Target Name</th>
 												<th class="hidden-480">Start Date</th>
 												<th class="hidden-480">End Date</th>
-
-												<th >View</th>
+												<th clas="hidden-480">Target Type</th>
 												<th> Status</th>
+												<th >View</th>
+
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>Branch Name</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">Name of the target</a></td>
-												<td class="hidden-480">12 jan 2012</td>
-												<td class="hidden-480">14 jan 2012</td>
-												<td class="center hidden-480"><a href="#tab2" id="tab2link" data-toggle="tab"><span class="icon icone-pencil"></span> Add Target Report</a></td>
-												<td ><span class="label label-success">Status</span></td>
-											</tr>
+											<?php
+											if (isset($target_report_list)) {
+												foreach ($target_report_list as $key) {
+													echo "<tr class=\"odd gradeX\">
+<td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>
+<td class=\"hidden-480\">{$key->targetSubject}</td>
+<td class=\"hidden-480\">{$key->targetStartDate}</td>
+<td class=\"hidden-480\">{$key->targetEndDate}</td>
+<td class=\"hidden-480\">{$key->targetTypeName}</td>
+<td class=\"hidden-480\">{$key->targetIsAchieved}</td>
+<td ><span class=\"label label-success\"><a href=\"#tab2\" data-toggle=\"tab\" id=\"tab2link\" target_report='{$key->targetId}'s><span class=icon icone-pencil></span> Submit Report</a></span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_taget/{$key->targetId}'>Edit</span></td>
+</tr>";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget yellow" id="form_target_report">
+							<form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport">
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -98,7 +103,7 @@
 											<input type="text" name="description" id="description" class="span8" row=3/>
 										</div>
 									</div>
-									<!--/ Description	 -->
+									<!--/ Description         -->
 									<!-- date -->
 									<div class="control-group">
 										<label class="control-label">Date<span class="required">*</span></label>
@@ -109,9 +114,10 @@
 											</div>
 										</div>
 									</div><!--/ date -->
+									<input type="hidden" id="target_id" name="target_id"/>
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" id="addreport" name="addreport">
 											Register
 										</button>
 										<button type="button" class="btn">
