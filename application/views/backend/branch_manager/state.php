@@ -58,23 +58,31 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>Gujarat</td>
-												<td >
-													<span class="label label-success">Edit</span>
-													<span class="label label-success">Delete</span>
-												</td>
-											</tr>
+													<?php
+											if (isset($state_list)) {
+												foreach ($state_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+
+<td class=\"hidden-480\">{$key->stateName} </td>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_state/{$key->stateId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
+										
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed green" id="form_state">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_state');
+							echo form_open('branch_manager/state', $attributes);
+ ?>
+			<!--				<form class="form-horizontal span12 widget shadowed green" id="form_state"> -->
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -96,7 +104,7 @@
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 										<button type="button" class="btn">
