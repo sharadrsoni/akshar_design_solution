@@ -496,11 +496,36 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/state_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/state');
+		$this -> load -> model("state_model");
+		//Logic of getting State data
+		$state_data = $this -> state_model -> getDetailsBystate();
+		$data['state_list'] = $state_data;
+	   if (isset($_POST['register'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
+		
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('state_model');
+				$stateData = array('stateName' => $_POST['state_name']);
+
+			}
+			if ($this -> state_model -> addstate($stateData)) {
+				redirect(base_url() . "branch_manager/state");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+		}
+
+		$this -> load -> view('backend/branch_manager/state', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/state_js');
 		$this -> load -> view('backend/master_page/bottom');
+		
 	}
+
+	
 
 	public function city() {
 		$data['title'] = "ADS | City";
@@ -545,6 +570,13 @@ class Branch_Manager extends CI_Controller {
 		$this -> inquiry_model -> deleteInquiry($inquiryId);
 		redirect(base_url() . "branch_manager/inquiry");
 	}
+	
+	public function delete_state($stateId) {
+		$this -> load -> model('state_model');
+		$this -> state_model -> deleteState($stateId);
+		redirect(base_url() . "branch_manager/state");
+	}
+	
 
 }
 ?>
