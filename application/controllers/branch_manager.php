@@ -471,6 +471,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/targettype_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	
+	public function sendnotification() {
+		$data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/sendnotification_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/sendnotification');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/sendnotification_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 
 	public function state() {
 		$data['title'] = "ADS | State";
