@@ -507,7 +507,11 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/student_profile_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/student_profile');
+		if(1==1){
+			$this -> load -> view('backend/branch_manager/staff_profile');
+		}else{
+			$this -> load -> view('backend/branch_manager/student_profile');	
+		}
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');

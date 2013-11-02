@@ -52,14 +52,13 @@
 									<a href="#">201212046</a>
 								</li>
 								<li>
-									<a href="#">Surat</a>
+									<a href="#">DAIICT</a>
 								</li>
 
 							</ul>
 							<div class="span9">
 								<div class="row-fluid">
 									<div class="span8 profile-info">
-
 										<h1><strong>Twitter, Inc.</strong>Jenifer</h1>
 
 										<div class="">
@@ -95,12 +94,8 @@
 											<div class="portlet-body">
 												<ul class="unstyled">
 													<li>
-														<span class="sale-info">Attendence<i class="icon-img-up"></i></span>
-														<span class="sale-num">23%</span>
-													</li>
-													<li>
 														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
-														<span class="sale-num">0%</span>
+														<span class="sale-num">84%</span>
 													</li>
 													<li>
 														<span class="sale-info"><i class="icon-img-down"></i></span>
@@ -116,10 +111,7 @@
 								<div class="tabbable tabbable-custom tabbable-custom-profile">
 									<ul class="nav nav-tabs">
 										<li class="active">
-											<a href="#tab_1_11" data-toggle="tab">Test Marks</a>
-										</li>
-										<li >
-											<a href="#tab_1_22" data-toggle="tab">Attedence Details</a>
+											<a href="#tab_1_11" data-toggle="tab">Batches</a>
 										</li>
 									</ul>
 									<div class="tab-content">
@@ -128,9 +120,10 @@
 												<table class="table table-striped table-bordered table-advance table-hover">
 													<thead>
 														<tr>
-															<th><i class="icon-star"></i> Test Date</th>
-															<th class="hidden-phone"><i class="icon-question-sign"></i> Course</th>
-															<th><i class="icon-bookmark"></i> Marks</th>
+															<th><i class="icon-star"></i>Batch</th>
+															<th class="hidden-phone"><i class="icon-question-sign"></i>Strength</th>
+															<th><i class="icon-bookmark"></i> Course</th>
+															<th><i class="icon-bookmark"></i> Performance</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -138,6 +131,7 @@
 															<td><a href="#">Pixel Ltd</a></td>
 															<td class="hidden-phone">Server hardware purchase</td>
 															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
+															<td class="hidden-phone">Server hardware purchase</td>
 														</tr>
 													</tbody>
 												</table>
@@ -182,9 +176,6 @@
 									</li>
 									<li >
 										<a data-toggle="tab" href="#tab_3-3"><i class="icon-lock"></i> Change Password</a>
-									</li>
-									<li >
-										<a data-toggle="tab" href="#tab_4-4"><i class="icon-eye-open"></i>Upload Resume</a>
 									</li>
 								</ul>
 								<div class="tab-content span9">
@@ -289,31 +280,7 @@
 																<option value="Category 4">Category 4</option>
 															</select>
 														</div>
-													</div><!--/ City --><h3 class="form-section">Other Info</h3><!-- Name of Institute/Industry -->
-													<div class="control-group">
-														<label class="control-label">Student Name of Institute/Industry</label>
-														<div class="controls">
-															<input type="text" name="name_of_institute" id="name_of_institute" class="span8">
-														</div>
-													</div><!--/ Name of Institute/Industry --><!-- Guardian Name -->
-													<div class="control-group">
-														<label class="control-label">Guardian Name</label>
-														<div class="controls">
-															<input type="text" name="guardian_name" id="guardian_name" class="span8">
-														</div>
-													</div><!--/ Guradian Name --><!-- ccupation of Guardian\Self -->
-													<div class="control-group">
-														<label class="control-label">Occupation of Guardian\Self</label>
-														<div class="controls">
-															<input type="text" name="occupation_of_guardian" id="occupation_of_guardian" class="span8">
-														</div>
-													</div><!--/ ccupation of Guardian\Self --><!-- Reference -->
-													<div class="control-group">
-														<label class="control-label">Reference</label>
-														<div class="controls">
-															<input type="text" name="reference" id="reference" class="span8">
-														</div>
-													</div><!--/ Reference --><!-- Form Action -->
+													</div><!--/ City --><!-- Form Action -->
 													<div class="form-actions">
 														<button type="submit" class="btn blue">
 															Edit Profile
@@ -397,37 +364,6 @@
 													<div class="form-actions">
 														<button type="submit" class="btn green">
 															Change Password
-														</button>
-													</div><!--/ Form Action -->
-												</form>
-											</div>
-										</div>
-										<div id="tab_4-4" class="tab-pane">
-											<div style="height: auto;" id="accordion4-4" class="accordion collapse">
-												<form class="form-horizontal" action="#" id="form_student_resume">
-													<div class="alert alert-error hide">
-														<button class="close" data-dismiss="alert"></button>
-														You have some form errors. Please check below.
-													</div>
-													<div class="alert alert-success hide">
-														<button class="close" data-dismiss="alert"></button>
-														Your form validation is successful!
-													</div>
-													<div class="control-group">
-														<label class="control-label">Select Resume</label>
-														<div class="controls">
-															<div class="fileupload fileupload-new" data-provides="fileupload">
-																<span class="btn btn-file"> <span class="fileupload-new">Select file</span> <span class="fileupload-exists">Change</span>
-																	<input type="file" id="student_resume" name="student_resume" class="default" />
-																</span>
-																<span class="fileupload-preview"></span>
-																<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none"></a>
-															</div>
-														</div>
-													</div><!-- Form Action -->
-													<div class="form-actions">
-														<button type="submit" class="btn blue">
-															Edit Profile
 														</button>
 													</div><!--/ Form Action -->
 												</form>
