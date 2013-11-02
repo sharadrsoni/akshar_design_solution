@@ -1,5 +1,5 @@
 var StudentRegistration = function() {
-	var handleValidation1 = function() {
+	var FormValidationStudentRegistration = function() {
 		// for more info visit the official plugin documentation:
 		// http://docs.jquery.com/Plugins/Validation
 		var form1 = $('#form_student_register1');
@@ -55,7 +55,7 @@ var StudentRegistration = function() {
 			}
 		});
 	};
-	var handleValidation2 = function() {
+	var FormValidationCourseRegistration = function() {
 		// for more info visit the official plugin documentation:
 		// http://docs.jquery.com/Plugins/Validation
 		var form1 = $('#form_student_register2');
@@ -112,8 +112,8 @@ var StudentRegistration = function() {
 		//main function to initiate the module
 		init_formvalidation : function() {
 
-			handleValidation1();
-			handleValidation2();
+			FormValidationStudentRegistration();
+			FormValidationCourseRegistration();
 
 		}
 	};

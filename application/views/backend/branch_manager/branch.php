@@ -43,6 +43,7 @@
 						</li>
 						<li class="">
 							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
+
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -52,34 +53,34 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblBranch">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th>Branch Name</th>
 												<th class="hidden-480">Address</th>
 												<th class="hidden-480">ContactNO</th>
-												<th class="hidden-480">Edit</th>
-												<th >View</th>
+												<th >Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="center hidden-480">12 Jan 2012</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											foreach ($branch as $key) {
+												echo "<tr class=\"odd gradeX\">
+<td>{$key->branchName}</td>
+<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
+<td class=\"hidden-480\">{$key->branchContactNumber}</td>
+<td ><span class=\"label label-success\">Edit</span></td>
+</tr>";
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_branch">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_branch');
+							echo form_open('branch_manager/branch', $attributes);
+							?>
+						
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -98,6 +99,13 @@
 											<input type="text" name="branch_name" id="branch_name" class="span8">
 										</div>
 									</div><!--/ Branch Name -->
+									<!-- Contact no -->
+									<div class="control-group">
+										<label class="control-label">Conatact No</label>
+										<div class="controls">
+											<input type="text" name="conatct_no" id="conatct_no" class="span8">
+										</div>
+									</div><!--/ Contact no -->
 									<h3 class="form-section">Address</h3>
 									<!-- Street -->
 									<div class="control-group">
@@ -169,8 +177,8 @@
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" name="add_branch" class="btn btn-primary">
+											Add Branch
 										</button>
 										<button type="button" class="btn">
 											Cancel

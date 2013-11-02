@@ -105,43 +105,37 @@ var Batch = function() {
 		},
 		init_uijquery : function() {
 			$("#start_date_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat : 'dd-mm-yy'
 			});
 			$("#start_date_datepicker .add-on").click(function() {
 				$("#start_date_datepicker input").datepicker("show");
 			});
-			if (!jQuery().clockface) {
-				return;
-			}
 
-			$('.clockface_1').clockface();
-
-			$('#clockface_2').clockface({
-				format : 'HH:mm',
-				trigger : 'manual'
+			$('#start_time_picker').datetimepicker({
+				pickDate : false
 			});
 
-			$('#clockface_2_toggle').click(function(e) {
-				e.stopPropagation();
-				$('#clockface_2').clockface('toggle');
+			$('#end_time_picker').datetimepicker({
+				pickDate : false
 			});
 
-			$('#clockface_2_modal').clockface({
-				format : 'HH:mm',
-				trigger : 'manual'
-			});
-
-			$('#clockface_2_modal_toggle').click(function(e) {
-				e.stopPropagation();
-				$('#clockface_2_modal').clockface('toggle');
-			});
-
-			$('.clockface_3').clockface({
-				format : 'H:mm'
-			}).clockface('show', '14:30');
 			$('#btn_add_batch_timing').click(function() {
-				if ($('#weekday').val() != "" && $('#weekday').val() != "Select..." && $('#start_time').val() != "" && $('#end_time').val() != "") {
-					$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='btach_timing' values='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='btach_timing' values='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='btach_timing' values='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+				if ($('#weekday').val() != "" && $('#weekday').val() != "null") {
+					if ($('#start_time').val() != "") {
+						if ($('#end_time').val() != "") {
+							$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='batch_timing[]' value='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+						} else {
+							$('#end_time').closest('.help-inline').removeClass('ok');
+							$('#end_time').closest('.control-group').removeClass('success').addClass('error');
+						}
+					} else {
+						$('#start_time').closest('.help-inline').removeClass('ok');
+						$('#start_time').closest('.control-group').removeClass('success').addClass('error');
+					}
+				} else {
+					$('#weekday').closest('.help-inline').removeClass('ok');
+					$('#weekday').closest('.control-group').removeClass('success').addClass('error');
 				}
 			});
 		}
@@ -151,3 +145,18 @@ var Batch = function() {
 function removebatchtime(e) {
 	$(e).parent().parent().remove();
 }
+
+function viewbatch(url, batchid) {
+	$.ajax({
+		url : url + "branch_manager/batch/" + batchid,
+		dataType : 'json',
+		//data : "director=" + argdirector,
+		async : true,
+		success : function(json) {
+			if (json) {
+
+			}
+		}
+	});
+}
+

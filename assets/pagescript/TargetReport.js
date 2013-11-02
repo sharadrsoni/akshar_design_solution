@@ -106,11 +106,16 @@ var TargetReport = function() {
 		},
 		init_uijquery : function() {
 			$("#date_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#date_datepicker .add-on").click(function() {
 				$("#date_datepicker input").datepicker("show");
+			});
+			
+			$("#tab2link").click(function() {
+				$("#tab1link").parent().attr("class", "");
 			});
 		}
 	};
