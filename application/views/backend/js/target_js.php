@@ -17,5 +17,19 @@
 		   Target.init_table();
 		   Target.init_formvalidation();
 		   Target.init_uijquery();
+		   	//jQuery(".target_view").hide();
+			
 		});
+		jQuery(".view").click(function(){
+			
+			var $id=$(this).attr('id');
+			alert($id);
+			var $vv=jQuery("#target_view").children().find($id);
+			alert(jQuery("#target_view").children().find($id));
+
+		
+			
+			
+		});
+		
 	</script>
