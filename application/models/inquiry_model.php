@@ -17,6 +17,7 @@ public function addinquiry($data) {
 			return $this->db->insert('inquiry', $data);
 		} else {
 			return false;
+<<<<<<< HEAD
 		}
 	}
 
@@ -34,5 +35,9 @@ public function addinquiry($data) {
 		return $this->db->select_max('inquiryId')->get('inquiry')->row_array();
 	}
  
+=======
+		}
+	}
+>>>>>>> bd7dc1ff5d45dc61aa2907e6506cb2d8031d3c2a
 }
 ?>
