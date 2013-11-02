@@ -189,10 +189,20 @@ class Branch_Manager extends CI_Controller {
 				$data['error'] = "An Error Occured.";
 			}
 		}
-
 		$this -> load -> view('backend/branch_manager/inquiry', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/inquiry_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function branch() {
+		$data['title'] = "ADS | Branch";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/branch_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/branch');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/branch_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
@@ -221,7 +231,7 @@ class Branch_Manager extends CI_Controller {
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
-				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+				$targetData = array('targetName' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 				if ($this -> target_model -> addTarget($targetData)) {
 					redirect(base_url() . "branch_manager/target");
 				} else {
@@ -263,7 +273,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function timetable() {
+	public function time_table() {
 
 		$data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -275,11 +285,16 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function batch($batchId = '') {
+	public function batch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
 		$branchId = 01;
 		//Assuming the role ID of Faculty is 3.
 		$roleId = 1;
+
+		$data['title'] = "ADS | Batch";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/batch_css');
+		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("course_model");
 		$courses = $this -> course_model -> getAllDetails();
 		$this -> load -> model('user_model');
@@ -295,76 +310,69 @@ class Branch_Manager extends CI_Controller {
 		$data['weekdays'] = $weekdays;
 		$data['course'] = $courses;
 		$data['faculty'] = $facultyName;
-		if ($batchId != '') {
-			echo json_encode($data);
-		} else {
-			$data['title'] = "ADS | Batch";
-			$this -> load -> view('backend/master_page/top', $data);
-			$this -> load -> view('backend/css/batch_css');
-			$this -> load -> view('backend/master_page/header');
-			if (isset($_POST['register'])) {
-				//die("yes");
-				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
-				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
-				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
-				$this -> form_validation -> set_rules('start_time', 'Start Time', 'required|trim|callback__checkingTime');
-				$this -> form_validation -> set_rules('end_time', 'Start End', 'required|trim|callback__checkingTime');
-				$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
-				if ($this -> form_validation -> run() == FALSE) {
-					$data['validate'] = true;
+
+		if (isset($_POST['register'])) {
+			//die("yes");
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
+			$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
+			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
+			$this -> form_validation -> set_rules('start_time', 'Start Time', 'required|trim|callback__checkingTime');
+			$this -> form_validation -> set_rules('end_time', 'Start End', 'required|trim|callback__checkingTime');
+			$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('batch_model');
+
+				$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
+				$year = date('Y');
+				if ($branchId < 10) {
+					$branchId = "0" . $branchId;
+				}
+				$getMaximumBatchId = $this -> batch_model -> getMaxId();
+				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
+				$batchId = floatval($batchId);
+
+				if ($batchId != null) {
+					$batchId++;
 				} else {
-					$this -> load -> model('batch_model');
+					$batchId = 1;
+				}
+				if ($batchId < 10) {
+					$batchId = "00" . $batchId;
+				} else if ($batchId < 100 && $batchId > 9) {
+					$batchId = "0" . $batchId;
+				}
+				$batchId = $year . $branchId . $batchId;
+				$branchData['batchId'] = floatval($batchId);
+				$batch_timings = array();
 
-					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
-					$year = date('Y');
-					if ($branchId < 10) {
-						$branchId = "0" . $branchId;
-					}
-					$getMaximumBatchId = $this -> batch_model -> getMaxId();
-					$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
-					$batchId = floatval($batchId);
+				$size = sizeof($_POST["batch_timing"]);
 
-					if ($batchId != null) {
-						$batchId++;
-					} else {
-						$batchId = 1;
-					}
-					if ($batchId < 10) {
-						$batchId = "00" . $batchId;
-					} else if ($batchId < 100 && $batchId > 9) {
-						$batchId = "0" . $batchId;
-					}
-					$batchId = $year . $branchId . $batchId;
-					$branchData['batchId'] = floatval($batchId);
-					$batch_timings = array();
+				$this -> load -> model('batch_timing_model');
 
-					$size = sizeof($_POST["batch_timing"]);
-
-					$this -> load -> model('batch_timing_model');
-
-					if ($this -> batch_model -> addBatch($branchData)) {
-						for ($i = 0; $i < $size; ) {
-							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
-							if (!$this -> batch_timing_model -> addBatchTime($dummy)) {
-								$data['error'] = "An Error Occured.";
-								break;
-							}
-							$i++;
+				if ($this -> batch_model -> addBatch($branchData)) {
+					for ($i = 0; $i < $size; ) {
+						$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
+						if (!$this -> batch_timing_model -> addBatchTime($dummy)) {
+							$data['error'] = "An Error Occured.";
+							break;
 						}
-						if ($data['error'] == null) {
-							redirect(base_url() . "branch_manager/batch");
-						}
-					} else {
-						$data['error'] = "An Error Occured.";
+						$i++;
 					}
+					if ($data['error'] == null) {
+						redirect(base_url() . "branch_manager/batch");
+					}
+				} else {
+					$data['error'] = "An Error Occured.";
 				}
 			}
-			$this -> load -> view('backend/branch_manager/batch', $data);
-			$this -> load -> view('backend/master_page/footer');
-			$this -> load -> view('backend/js/batch_js');
-			$this -> load -> view('backend/master_page/bottom');
 		}
+		$this -> load -> view('backend/branch_manager/batch', $data);
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/batch_js');
+		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function _checkingTime($time) {
@@ -393,49 +401,6 @@ class Branch_Manager extends CI_Controller {
 		redirect(base_url() . "branch_manager/batch");
 	}
 
-	public function branch() {
-		//Logic of getting Branch Id. Here I am assuming id = 1.
-		//$branchId = 01;
-
-		$data['title'] = "ADS | Branch";
-		$this -> load -> model("branch_model");
-		$branch = $this -> branch_model -> getDetailsOfBranch();
-		$data['branch'] = $branch;
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/batch_css');
-		$this -> load -> view('backend/master_page/header');
-
-		if (isset($_POST['add_branch'])) {
-			//die("yes");
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
-			$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
-			$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
-			$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-			$this -> form_validation -> set_rules('state', 'State', 'required|trim');
-			$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				//die ("yes");
-				$data['validate'] = true;
-			} else {
-				$this -> load -> model('branch_model');
-				$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
-
-				if ($this -> branch_model -> addBranch($branchValue)) {
-					redirect(base_url() . "branch_manager/branch");
-				} else {
-					$data['error'] = "An Error Occured.";
-				}
-			}
-
-		}
-
-		$this -> load -> view('backend/branch_manager/branch');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/branch_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
 	public function coursecategory() {
 		$data['title'] = "ADS | Course Category";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -458,58 +423,14 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function eventtype() {
-		$data['title'] = "ADS | Event Type";
+	public function changepassword() {
+		$data['title'] = "ADS | Change Password";
 		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/eventtype_css');
+		$this -> load -> view('backend/css/changepassword_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> view('backend/branch_manager/changepassword');
 		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/eventtype_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
-	public function targettype() {
-		$data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/targettype_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/targettype');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/targettype_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
-	public function state() {
-		$data['title'] = "ADS | State";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/state_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/state');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/state_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
-	public function city() {
-		$data['title'] = "ADS | City";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/city_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/city');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/city_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-	
-	public function profile() {
-		$data['title'] = "ADS | Profile";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/student_profile_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/student_profile');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/student_profile_js');
+		$this -> load -> view('backend/js/changepassword_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
@@ -524,7 +445,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> target_model -> deleteTarget($targetId);
 		redirect(base_url() . "branch_manager/target");
 	}
-
 	public function delete_inquiry($inquiryId) {
 		$this -> load -> model('inquiry_model');
 		$this -> inquiry_model -> deleteInquiry($inquiryId);

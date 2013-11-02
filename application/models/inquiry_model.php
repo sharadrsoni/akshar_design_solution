@@ -27,7 +27,19 @@ class inquiry_model extends CI_Model {
 			return $this->db->insert('inquiry', $data);
 		} else {
 			return false;
+
 		}
 	}
-}
+
+
+ 
+ public function getMaxId()
+	{
+		return $this->db->select_max('inquiryId')->get('inquiry')->row_array();
+	}
+ 
+
+		}
+	
+
 ?>

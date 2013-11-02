@@ -75,7 +75,15 @@
 <td class=\"hidden-480\">{$key->inquiryState}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
 <td class=\"hidden-480\">{$key->inquiryQualification}</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
 <td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
+=======
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->inquiryId}'>Delete</span></td></tr>
+>>>>>>> bd7dc1ff5d45dc61aa2907e6506cb2d8031d3c2a
+=======
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
+>>>>>>> upstream/master
 ";
 												}
 											}
