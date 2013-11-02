@@ -60,8 +60,8 @@ var SendNotification = function() {
 			$('.text-toggle-Userrole').toggleButtons({
 				width : 200,
 				label : {
-					enabled : "Student",
-					disabled : "Staff"
+					enabled : $('.text-toggle-Userrole').attr("data-on"),
+					disabled : $('.text-toggle-Userrole').attr("data-off")
 				},
 				style : {
 					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
@@ -72,8 +72,8 @@ var SendNotification = function() {
 			$('.text-toggle-Individual_Batch').toggleButtons({
 				width : 200,
 				label : {
-					enabled : "Individual",
-					disabled : "Batch"
+					enabled : $('.text-toggle-Individual_Batch').attr("data-on"),
+					disabled : $('.text-toggle-Individual_Batch').attr("data-off")
 				},
 				style : {
 					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
@@ -86,6 +86,13 @@ var SendNotification = function() {
 					$("#lst_user_div").attr("style", "display");
 				} else {
 					$("#lst_user_div").attr("style", "display:none");
+				}
+			});
+			$("#user_role").change(function() {
+				if ($('#user_role').is(':checked') == true) {
+					$("#lst_batch_div").attr("style", "display");
+				} else {
+					$("#lst_batch_div").attr("style", "display:none");
 				}
 			});
 			$("#user_name").select2({

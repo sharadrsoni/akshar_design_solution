@@ -64,7 +64,7 @@
 									<div class="control-group">
 										<label class="control-label">Student/Staff<span class="required">*</span></label>
 										<div class="controls">
-											<div class="text-toggle-Userrole" >
+											<div class="text-toggle-Userrole" data-on="Student" data-off="Staff" >
 												<input type="checkbox" checked="" name="user_role" id="user_role"  class="toggle" />
 											</div>
 										</div>
@@ -73,13 +73,26 @@
 									<div class="control-group">
 										<label class="control-label">Individual/Batch<span class="required">*</span></label>
 										<div class="controls">
-											<div class="text-toggle-Individual_Batch" >
+											<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Branch|Batch">
 												<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
 											</div>
 										</div>
 									</div><!--/ Individual/Batch -->
-									<!-- Batch -->
+									<!-- Branch -->
 									<div class="control-group">
+										<label class="control-label">Branch<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span4" name="branch_name" id="branch_name">
+												<option value="All">All...</option>
+												<option value="Category 1">Category 1</option>
+												<option value="Category 2">Category 2</option>
+												<option value="Category 3">Category 5</option>
+												<option value="Category 4">Category 4</option>
+											</select>
+										</div>
+									</div><!--/ Branch -->
+									<!-- Batch -->
+									<div class="control-group" id="lst_batch_div">
 										<label class="control-label">Batch<span class="required">*</span></label>
 										<div class="controls">
 											<select class="span4" name="batch_name" id="batch_name">
