@@ -474,7 +474,29 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/eventtype_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> model("event_type_model");
+		//Logic of getting Event Type data
+		$eventtype_data = $this -> event_type_model -> getDetailsByeventtype();
+		$data['eventtype_list'] = $eventtype_data;
+	   if (isset($_POST['register'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('eventtype_name', 'Event Type Name', 'required|trim');
+		
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('eventtype_model');
+				$stateData = array('eventTypeName' => $_POST['eventtype_name']);
+
+			}
+			if ($this -> event_type_model -> addeventtype($eventtypeData)) {
+				redirect(base_url() . "branch_manager/eventtype");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+		}
+
+		$this -> load -> view('backend/branch_manager/state', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/eventtype_js');
 		$this -> load -> view('backend/master_page/bottom');
