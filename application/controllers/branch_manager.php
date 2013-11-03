@@ -496,7 +496,7 @@ class Branch_Manager extends CI_Controller {
 			}
 		}
 
-		$this -> load -> view('backend/branch_manager/state', $data);
+		$this -> load -> view('backend/branch_manager/eventtype', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/eventtype_js');
 		$this -> load -> view('backend/master_page/bottom');
