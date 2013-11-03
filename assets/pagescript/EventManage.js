@@ -208,6 +208,18 @@ var Event = function() {
 			$("#end_date_datepicker .add-on").click(function() {
 				$("#end_date_datepicker input").datepicker("show");
 			});
+			$('.text-toggle-Attendance').toggleButtons({
+				width : 200,
+				label : {
+					enabled : $('.text-toggle-Attendance').attr("data-on"),
+					disabled : $('.text-toggle-Attendance').attr("data-off")
+				},
+				style : {
+					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+					enabled : "info",
+					disabled : "danger"
+				}
+			});
 		}
 	};
 }();

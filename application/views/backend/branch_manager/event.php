@@ -317,8 +317,16 @@
 											<tr class="odd gradeX">
 												<td> Student_ID XXX </td>
 												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
+												<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
+													<input type="checkbox" checked="" name="individual_Batch" id="individual_Batch"  class="toggle" />
+												</div></td>
+											</tr>
+											<tr class="odd gradeX">
+												<td> Student_ID XXX </td>
+												<td>
+												<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
+													<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
+												</div></td>
 											</tr>
 										</tbody>
 									</table>
