@@ -403,7 +403,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
 	}
-
+	
 	public function branch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
 		//$branchId = 01;
@@ -413,7 +413,7 @@ class Branch_Manager extends CI_Controller {
 		$branch = $this -> branch_model -> getDetailsOfBranch();
 		$data['branch'] = $branch;
 		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/batch_css');
+		$this -> load -> view('backend/css/branch_css');
 		$this -> load -> view('backend/master_page/header');
 
 		if (isset($_POST['add_branch'])) {
@@ -447,6 +447,12 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function delete_branch($branchId) {
+		$this -> load -> model('branch_model');
+		$this -> branch_model -> deleteBranch($branchId);
+		redirect(base_url() . "branch_manager/branch");
+	}
+	
 	public function coursecategory() {
 		$data['title'] = "ADS | Course Category";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -460,6 +466,9 @@ class Branch_Manager extends CI_Controller {
 
 	public function course() {
 		$data['title'] = "ADS | Course";
+		$this -> load -> model("course_model");
+		$course = $this -> course_model -> getDetailsOfCourse();
+		$data['course'] = $course;
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/course_css');
 		$this -> load -> view('backend/master_page/header');

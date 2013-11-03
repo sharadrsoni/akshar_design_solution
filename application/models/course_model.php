@@ -6,8 +6,16 @@ if (!defined('BASEPATH'))
  */
 class course_model extends CI_Model {
 	
+	public function getDetailsOfCourse() {
+
+		$this -> db -> from('course');
+		return $this -> db -> get() -> result();
+
+	}
+	
 	public function getAllDetails()
 	{
 		return $this->db->get("course")->result();
 	}
 }
+?>
