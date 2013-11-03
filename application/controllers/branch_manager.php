@@ -485,8 +485,8 @@ class Branch_Manager extends CI_Controller {
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
-				$this -> load -> model('eventtype_model');
-				$stateData = array('eventTypeName' => $_POST['eventtype_name']);
+				$this -> load -> model('event_type_model');
+				$eventtypeData = array('eventTypeName' => $_POST['eventtype_name']);
 
 			}
 			if ($this -> event_type_model -> addeventtype($eventtypeData)) {
