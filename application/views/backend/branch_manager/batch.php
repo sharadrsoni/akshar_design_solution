@@ -39,10 +39,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Batches</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Batches</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Batch</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Batch</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -69,7 +69,7 @@
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</a></span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatebatch(\"{base_url()}\", \"{$key->batchId}\");' >Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</a></span></td></tr>
 ";
 												}
 											}
@@ -221,7 +221,8 @@
 											</tbody>
 										</table>
 									</div><!--/ List-->
-
+									<input type="hidden" name="flag_update" id="flag_update" value="0" />
+									<input type="hidden" name="flag_batchtiming_update" id="flag_batchtiming_update" value="0" />
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="register" id="register">
