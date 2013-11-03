@@ -470,7 +470,7 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/js/targettype_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function sendnotification() {
 		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -564,6 +564,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> model('state_model');
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "branch_manager/state");
+	}
+
+	public function studentmarks() {
+		$data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/test_result_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/test_result');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/test_result_js');
+		$this -> load -> view('backend/master_page/bottom');
 	}
 
 }
