@@ -395,8 +395,11 @@
 										<a href="<?php echo base_url() . "branch_manager/showattendance"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Attendance</span> </a>
 									</li>
 									<!--/ END Menu -->
-									
-									
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/studentattendance"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Studenct Attendance</span> </a>
+									</li>
+									<!--/ END Menu -->
 								</ul>
 							</nav>
 						</div>
