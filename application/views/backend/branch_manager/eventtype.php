@@ -66,7 +66,7 @@
 </td>
 
 <td class=\"hidden-480\">{$key->eventTypeName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_eventtype/{$key->eventtypeId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_eventtype/{$key->eventTypeId}'>Delete</span></td></tr>
 ";
 												}
 											}
