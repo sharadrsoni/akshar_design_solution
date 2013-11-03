@@ -38,10 +38,7 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Branches</a>
-						</li>
-						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
+							<a href="#tab1" id="tab1link"  data-toggle="tab"><span class="icon icone-eraser"></span>Target Reports</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -72,7 +69,7 @@
 												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">Name of the target</a></td>
 												<td class="hidden-480">12 jan 2012</td>
 												<td class="hidden-480">14 jan 2012</td>
-												<td class="center hidden-480"><a role="button" data-toggle="modal" href="#form_target_report"><span class="icon icone-home"></span> Report Target</a></td>
+												<td class="center hidden-480"><a href="#tab2" id="tab2link" data-toggle="tab"><span class="icon icone-pencil"></span> Add Target Report</a></td>
 												<td ><span class="label label-success">Status</span></td>
 											</tr>
 										</tbody>
@@ -81,7 +78,7 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_target_report">
+							<form class="form-horizontal span12 widget yellow" id="form_target_report">
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.

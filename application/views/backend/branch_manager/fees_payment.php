@@ -130,7 +130,7 @@
 										<label class="control-label">Payment Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="payment_date_datepicker">
-												<input type="text" name="payment_date" id="payment_date" class="m-wrap span7">
+												<input type="text" readonly="" name="payment_date" id="payment_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -152,7 +152,7 @@
 											<label class="control-label">Cheque Issue Date<span class="required">*</span></label>
 											<div class="controls">
 												<div class="input-append span6" id="cheque_issue_datepicker">
-													<input type="text" name="cheque_issue_date" id="cheque_issue_date" class="m-wrap span7">
+													<input type="text" readonly="" name="cheque_issue_date" id="cheque_issue_date" class="m-wrap span7">
 													<span class="add-on"><i class="icon-calendar"></i></span>
 												</div>
 											</div>

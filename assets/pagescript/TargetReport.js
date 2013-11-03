@@ -113,6 +113,10 @@ var TargetReport = function() {
 			$("#date_datepicker .add-on").click(function() {
 				$("#date_datepicker input").datepicker("show");
 			});
+			
+			$("#tab2link").click(function() {
+				$("#tab1link").parent().attr("class", "");
+			});
 		}
 	};
 }();

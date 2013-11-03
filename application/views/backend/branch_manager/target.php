@@ -25,7 +25,7 @@
 				<div class="page-header line1">
 					<h4>Target <small>Assign targets to brach over here.</small></h4>
 				</div>
-			</div>
+			</div
 			<!--/ END Page/Section header -->
 		</div>
 		<!--/ END Row -->
@@ -73,7 +73,8 @@
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetIsAchieved}</td>
 <td class=\"hidden-480\">{$key->targetTypeName}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_target/{$key->targetId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_target/{$key->targetId}'>Delete</a></span><span><button type=\"button\" class='view' id='{$key->targetId}'
+>View</button></span></td></tr>
 ";
 												}
 											}
@@ -145,7 +146,7 @@
 										<label class="control-label">Start Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
-												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
+												<input type="text" readonly="" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -156,7 +157,7 @@
 										<label class="control-label">End Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="end_date_datepicker">
-												<input type="text" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7">
+												<input type="text" readonly="" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -182,10 +183,31 @@
 							</form>
 						</div>
 					</div>
+				
 				</div>
 				<!--/ End Tabs -->
 			</div>
 			<!--/ END Row -->
+			<div id="row-fluid">
+				<div id="target_view">
+			<?php
+	if (isset($target_list)) {
+	foreach ($target_list as $key) {
+	echo "<div id='{$key->targetId}'><tr>
+
+
+<td class=\"hidden-480\">{$key->targetSubject}</td>
+<td class=\"hidden-480\">{$key->targetStartDate}</td>
+<td class=\"hidden-480\">{$key->targetEndDate}</td>
+<td class=\"hidden-480\">{$key->targetIsAchieved}</td>
+<td class=\"hidden-480\">{$key->targetTypeName}</td>
+</tr></div>
+";
+												}
+											}
+											?>
+								</div>
+			</div>
 		</div>
 		<!--Page Content End  -->
 	</div>

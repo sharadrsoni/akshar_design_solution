@@ -380,6 +380,11 @@
 										<a href="<?php echo base_url() . "branch_manager/course"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Course</span> </a>
 									</li>
 									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/profile"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Student Profile</span> </a>
+									</li>
+									<!--/ END Menu -->
 									
 									
 								</ul>
