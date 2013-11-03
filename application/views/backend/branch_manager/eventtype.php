@@ -65,7 +65,7 @@
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
 
-<td class=\"hidden-480\">{$key->eventtypeName} </td>
+<td class=\"hidden-480\">{$key->eventTypeName} </td>
 <td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_eventtype/{$key->eventtypeId}'>Delete</span></td></tr>
 ";
 												}
