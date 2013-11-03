@@ -8,7 +8,7 @@
 <script>
 	jQuery(document).ready(function() {
 		App.init();
-		SendNotification.init_uijquery();
 		SendNotification.init_formvalidation(); 
+		SendNotification.init_uijquery();
 	}); 
 </script>
