@@ -13,13 +13,6 @@
 				</li>
 			</ul>
 			<!--/ Breadcrumb -->
-
-			<!-- Daterange Picker -->
-			<div id="reportrange" class="pull-right hidden-phone">
-				<span class="icon icon-calendar"></span>
-				<span id="rangedate">June 7, 2013 - June 13, 2013</span><span class="caret"></span>
-			</div>
-			<!--/ Daterange Picker -->
 		</div>
 	</div>
 	<!--/ END Bootstrap Navbar -->
