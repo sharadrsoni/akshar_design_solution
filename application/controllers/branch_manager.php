@@ -598,6 +598,12 @@ class Branch_Manager extends CI_Controller {
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "branch_manager/state");
 	}
+
+	public function delete_eventtype($eventtypeId) {
+		$this -> load -> model('event_type_model');
+		$this -> event_type_model -> deleteEventtype($eventtypeId);
+		redirect(base_url() . "branch_manager/eventtype");
+	}
 	
 
 }

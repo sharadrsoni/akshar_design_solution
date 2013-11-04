@@ -66,7 +66,7 @@
 </td>
 
 <td class=\"hidden-480\">{$key->eventTypeName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_Eventtype/{$key->eventTypeId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_eventtype/{$key->eventTypeId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -103,7 +103,7 @@
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 										<button type="button" class="btn">

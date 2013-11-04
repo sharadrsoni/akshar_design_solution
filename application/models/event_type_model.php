@@ -15,7 +15,7 @@ class event_type_model extends CI_Model {
 	public function deleteEventtype($eventtypeId) {
 		if (isset($eventtypeId)) {
 			$this -> db -> where('eventTypeId', $eventtypeId);
-			$this -> db -> delete('eventtype');
+			$this -> db -> delete('event_type');
 			return false;
 		} else {
 			return true;
@@ -24,7 +24,7 @@ class event_type_model extends CI_Model {
 	
 	public function addeventtype($data) {
 		if(isset($data)) {
-			return $this->db->insert('eventtype', $data);
+			return $this->db->insert('event_type', $data);
 		} else {
 			return false;
 		}
