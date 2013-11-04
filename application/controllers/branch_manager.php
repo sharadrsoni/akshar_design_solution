@@ -20,6 +20,17 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function feesreceipt() {
+		$data['title'] = "ADS | Dashboard";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/feesreceipt_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/feesreceipt');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/feesreceipt_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 	public function test() {
 		$data['title'] = "ADS | Test";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -28,17 +39,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/branch_manager/test');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/test_js');
-	}
-
-	public function marks() {
-		$data['title'] = "ADS | Student Registration";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/marks_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/marks');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/marks_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function studentregistation() {
@@ -88,7 +88,6 @@ class Branch_Manager extends CI_Controller {
 		$data['event_type'] = $event_type;
 		$data['faculty'] = $facultyName;
 		$this -> load -> model('event_model');
-
 		if (isset($_POST['create'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim');
@@ -114,12 +113,9 @@ class Branch_Manager extends CI_Controller {
 				}
 			}
 		}
-
 		$event_data = $this -> event_model -> getDetailsByBranch($branchId);
 		$data['event_list'] = $event_data;
-
 		$this -> load -> view('backend/branch_manager/event', $data);
-
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/event_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -181,7 +177,6 @@ public function staff() {
 		//die(print_r($weekdays));
 		//$data['weekdays'] = $weekdays;
 		if (isset($_POST['register'])) {
-			//die("yes");
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('user_name', 'User Name', 'required|trim');
 			$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim');
@@ -196,13 +191,11 @@ public function staff() {
 			$this -> form_validation -> set_rules('name_of_institute', 'Institute Name', 'required|trim');
 			$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim');
 			$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim');
-
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
 				$this -> load -> model('inquiry_model');
 				$inquiryData = array('inquiryStudentFirstName' => $_POST['user_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $branchId);
-
 			}
 			if ($this -> inquiry_model -> addinquiry($inquiryData)) {
 				redirect(base_url() . "branch_manager/inquiry");
@@ -216,23 +209,11 @@ public function staff() {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function branch() {
-		$data['title'] = "ADS | Branch";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/branch_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/branch');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/branch_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
 	public function target() {
 		$data['title'] = "ADS | Target";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/target_css');
 		$this -> load -> view('backend/master_page/header');
-
 		$this -> load -> model("target_type_model");
 		$target_type = $this -> target_type_model -> getAllDetails();
 		$this -> load -> model('branch_model');
@@ -240,7 +221,6 @@ public function staff() {
 		$data['branch'] = $branch;
 		$data['target_type'] = $target_type;
 		$this -> load -> model('target_model');
-
 		if (isset($_POST['create'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim');
@@ -252,7 +232,7 @@ public function staff() {
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
-				$targetData = array('targetName' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 				if ($this -> target_model -> addTarget($targetData)) {
 					redirect(base_url() . "branch_manager/target");
 				} else {
@@ -260,14 +240,10 @@ public function staff() {
 				}
 			}
 		}
-
 		$branchId = 1;
 		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
-
 		$data['target_list'] = $target_data;
-
 		$this -> load -> view('backend/branch_manager/target', $data);
-
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -275,47 +251,36 @@ public function staff() {
 	}
 
 	public function targetreport() {
-
 		$data['title'] = "ADS | Target Report";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
-
-		//		$this -> load -> model("targetReport_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1
-		//		$targetId = 1;
-		//		$target_data = $this -> targetReport_model -> getDetailsByBranch($targetId);
-
-		//		$data['targetReport_list'] = $targetReport_data;
-
+		$this -> load -> model("target_report_model");
+		$branchId = 1;
+		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
+		$data['target_report_list'] = $target_data;
 		$this -> load -> view('backend/branch_manager/target_report', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function time_table() {
-
+	public function showattendance() {
 		$data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/time_table_css');
+		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/time_table');
+		$this -> load -> view('backend/branch_manager/show_attendance');
 		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/time_table_js');
+		$this -> load -> view('backend/js/show_attendance_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function batch() {
+	public function batch($batchId = '') {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
 		$branchId = 01;
 		//Assuming the role ID of Faculty is 3.
 		$roleId = 1;
-
-		$data['title'] = "ADS | Batch";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/batch_css');
-		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("course_model");
 		$courses = $this -> course_model -> getAllDetails();
 		$this -> load -> model('user_model');
@@ -331,69 +296,76 @@ public function staff() {
 		$data['weekdays'] = $weekdays;
 		$data['course'] = $courses;
 		$data['faculty'] = $facultyName;
-
-		if (isset($_POST['register'])) {
-			//die("yes");
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
-			$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
-			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
-			$this -> form_validation -> set_rules('start_time', 'Start Time', 'required|trim|callback__checkingTime');
-			$this -> form_validation -> set_rules('end_time', 'Start End', 'required|trim|callback__checkingTime');
-			$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
-			} else {
-				$this -> load -> model('batch_model');
-
-				$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
-				$year = date('Y');
-				if ($branchId < 10) {
-					$branchId = "0" . $branchId;
-				}
-				$getMaximumBatchId = $this -> batch_model -> getMaxId();
-				$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
-				$batchId = floatval($batchId);
-
-				if ($batchId != null) {
-					$batchId++;
+		if ($batchId != '') {
+			echo json_encode($data);
+		} else {
+			$data['title'] = "ADS | Batch";
+			$this -> load -> view('backend/master_page/top', $data);
+			$this -> load -> view('backend/css/batch_css');
+			$this -> load -> view('backend/master_page/header');
+			if (isset($_POST['register'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
+				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
+				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('start_time', 'Start Time', 'required|trim|callback__checkingTime');
+				$this -> form_validation -> set_rules('end_time', 'Start End', 'required|trim|callback__checkingTime');
+				$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$data['validate'] = true;
 				} else {
-					$batchId = 1;
-				}
-				if ($batchId < 10) {
-					$batchId = "00" . $batchId;
-				} else if ($batchId < 100 && $batchId > 9) {
-					$batchId = "0" . $batchId;
-				}
-				$batchId = $year . $branchId . $batchId;
-				$branchData['batchId'] = floatval($batchId);
-				$batch_timings = array();
-
-				$size = sizeof($_POST["batch_timing"]);
-
-				$this -> load -> model('batch_timing_model');
-
-				if ($this -> batch_model -> addBatch($branchData)) {
-					for ($i = 0; $i < $size; ) {
-						$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
-						if (!$this -> batch_timing_model -> addBatchTime($dummy)) {
-							$data['error'] = "An Error Occured.";
-							break;
+					$this -> load -> model('batch_model');
+					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
+					$update = false;
+					if ($_POST['batchId'] = '') {
+						$year = date('Y');
+						if ($branchId < 10) {
+							$branchId = "0" . $branchId;
 						}
-						$i++;
+						$getMaximumBatchId = $this -> batch_model -> getMaxId();
+						$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
+						$batchId = floatval($batchId);
+						if ($batchId != null) {
+							$batchId++;
+						} else {
+							$batchId = 1;
+						}
+						if ($batchId < 10) {
+							$batchId = "00" . $batchId;
+						} else if ($batchId < 100 && $batchId > 9) {
+							$batchId = "0" . $batchId;
+						}
+						$batchId = $year . $branchId . $batchId;
+						$branchData['batchId'] = floatval($batchId);
+					} else {
+						$batchId = $_POST['batchId'];
+						$update = true;
 					}
-					if ($data['error'] == null) {
-						redirect(base_url() . "branch_manager/batch");
+					$batch_timings = array();
+					$size = sizeof($_POST["batch_timing"]);
+					$this -> load -> model('batch_timing_model');
+					if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
+						for ($i = 0; $i < $size; ) {
+							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
+							if ($update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
+								$data['error'] = "An Error Occured.";
+								break;
+							}
+							$i++;
+						}
+						if ($data['error'] == null) {
+							redirect(base_url() . "branch_manager/batch");
+						}
+					} else {
+						$data['error'] = "An Error Occured.";
 					}
-				} else {
-					$data['error'] = "An Error Occured.";
 				}
 			}
+			$this -> load -> view('backend/branch_manager/batch', $data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/batch_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-		$this -> load -> view('backend/branch_manager/batch', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/batch_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function _checkingTime($time) {
@@ -420,6 +392,45 @@ public function staff() {
 		$this -> load -> model('batch_model');
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
+	}
+
+	public function branch() {
+		//Logic of getting Branch Id. Here I am assuming id = 1.
+		//$branchId = 01;
+		$data['title'] = "ADS | Branch";
+		$this -> load -> model("branch_model");
+		$branch = $this -> branch_model -> getDetailsOfBranch();
+		$data['branch'] = $branch;
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/batch_css');
+		$this -> load -> view('backend/master_page/header');
+		if (isset($_POST['add_branch'])) {
+			//die("yes");
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
+			$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
+			$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
+			$this -> form_validation -> set_rules('city', 'City', 'required|trim');
+			$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+			$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				//die ("yes");
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('branch_model');
+				$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
+				if ($this -> branch_model -> addBranch($branchValue)) {
+					redirect(base_url() . "branch_manager/branch");
+				} else {
+					$data['error'] = "An Error Occured.";
+				}
+			}
+
+		}
+		$this -> load -> view('backend/branch_manager/branch');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/branch_js');
+		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function coursecategory() {
@@ -455,6 +466,99 @@ public function staff() {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function eventtype() {
+		$data['title'] = "ADS | Event Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/eventtype_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/eventtype_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function targettype() {
+		$data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/targettype_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/targettype');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/targettype_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function sendnotification() {
+		$data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/sendnotification_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/sendnotification');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/sendnotification_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function state() {
+		$data['title'] = "ADS | State";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/state_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> model("state_model");
+		//Logic of getting State data
+		$state_data = $this -> state_model -> getDetailsBystate();
+		$data['state_list'] = $state_data;
+		if (isset($_POST['register'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
+
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('state_model');
+				$stateData = array('stateName' => $_POST['state_name']);
+
+			}
+			if ($this -> state_model -> addstate($stateData)) {
+				redirect(base_url() . "branch_manager/state");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+		}
+
+		$this -> load -> view('backend/branch_manager/state', $data);
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/state_js');
+		$this -> load -> view('backend/master_page/bottom');
+
+	}
+
+	public function city() {
+		$data['title'] = "ADS | City";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/city_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/city');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/city_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function profile() {
+		$data['title'] = "ADS | Profile";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/student_profile_css');
+		$this -> load -> view('backend/master_page/header');
+		if (1 == 1) {
+			$this -> load -> view('backend/branch_manager/staff_profile');
+		} else {
+			$this -> load -> view('backend/branch_manager/student_profile');
+		}
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/student_profile_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 	public function delete_event($eventId) {
 		$this -> load -> model('event_model');
 		$this -> event_model -> deleteEvent($eventId);
@@ -466,11 +570,28 @@ public function staff() {
 		$this -> target_model -> deleteTarget($targetId);
 		redirect(base_url() . "branch_manager/target");
 	}
+
 	public function delete_inquiry($inquiryId) {
 		$this -> load -> model('inquiry_model');
 		$this -> inquiry_model -> deleteInquiry($inquiryId);
 		redirect(base_url() . "branch_manager/inquiry");
 	}
 
+	public function delete_state($stateId) {
+		$this -> load -> model('state_model');
+		$this -> state_model -> deleteState($stateId);
+		redirect(base_url() . "branch_manager/state");
+	}
+
+	public function studentmarks() {
+		$data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/test_result_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/test_result');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/test_result_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 }
 ?>

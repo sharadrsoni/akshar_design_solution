@@ -344,19 +344,67 @@
 										Main Menu
 									</li>
 									<!--/ END Menu Divider -->
-
-									<!-- START Menu -->
-									<li class="accordion-group">
-										<a href="<?php echo base_url() . "branch_manager/marks"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test Marks</span> </a>
-									</li>
-									<!--/ END Menu -->
 									
 									<!-- START Menu -->
 									<li class="accordion-group">
 										<a href="<?php echo base_url() . "branch_manager/test"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test</span> </a>
 									</li>
 									<!--/ END Menu -->
-									
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/eventtype"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Event Type</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/targettype"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Target type</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/city"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">City</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/state"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">State</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/coursecategory"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Course Category</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/course"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Course</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/profile"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Student Profile</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/sendnotification"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Send Notification</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/showattendance"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Attendance</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/studentattendance"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Studenct Attendance</span> </a>
+									</li>
+									<!--/ END Menu -->
+									<!-- START Menu -->
+									<li class="accordion-group">
+										<a href="<?php echo base_url() . "branch_manager/studentmarks"; ?>"> <span class="icon icone-dashboard"></span> <span class="text">Test Result</span> </a>
+									</li>
+									<!--/ END Menu -->
 								</ul>
 							</nav>
 						</div>

@@ -118,7 +118,8 @@ var Target = function() {
 		},
 		init_uijquery : function() {
 			$("#start_date_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#start_date_datepicker .add-on").click(function() {
@@ -126,7 +127,8 @@ var Target = function() {
 			});
 
 			$("#end_date_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#end_date_datepicker .add-on").click(function() {

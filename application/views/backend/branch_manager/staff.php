@@ -122,7 +122,7 @@ echo "<tr class=\"odd gradeX\">
 										<label class="control-label">Date Of Birth</label>
 										<div class="controls">
 											<div class="input-append span6" id="dob_datepicker">
-												<input type="text" name="dob" id="dob" class="m-wrap span7">
+												<input type="text" readonly="" name="dob" id="dob" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>
@@ -139,7 +139,7 @@ echo "<tr class=\"odd gradeX\">
 										<label class="control-label">Date Of Joining</label>
 										<div class="controls">
 											<div class="input-append span6" id="doj_datepicker">
-												<input type="text" name="date_of_joining" id="date_of_joining" class="m-wrap span7">
+												<input type="text" readonly="" name="date_of_joining" id="date_of_joining" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>

@@ -11,11 +11,7 @@ var Branch = function() {
 					"bSortable" : false
 				}, null, {
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, {
-					"bSortable" : false
-				}],
+				}, null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -67,6 +63,9 @@ var Branch = function() {
 					branch_name : {
 						minlength : 5,
 						required : true
+					},
+					conatct_no:{
+						required : true,
 					},
 					street_1 : {
 						required : true,

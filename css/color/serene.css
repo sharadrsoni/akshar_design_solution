@@ -7,11 +7,11 @@
 .pagination ul > li > a:focus, 
 .pagination ul > .active > a, 
 .pagination ul > .active > span,
-.fc-event, .external-event {
+ .external-event {
 	border-color: #497289 !important; /* -2 */
 	background-color: #55859f !important; /* 0 */
 }
-
+/* .fc-event,  */
 blockquote { border-left: 5px solid #55859f; /* 0 */ }
 blockquote.pull-right { border-right: 5px solid #55859f; /* 0 */ }
 

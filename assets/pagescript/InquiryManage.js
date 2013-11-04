@@ -145,7 +145,8 @@ var Inquiry = function() {
 				isRTL : App.isRTL(),
 				changeMonth : true,
 				changeYear : true,
-				yearRange : "c-60:c"
+				yearRange : "c-60:c",
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#dob_datepicker .add-on").click(function() {

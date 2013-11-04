@@ -151,7 +151,7 @@
             this.c = this.$c[0].getContext("2d");
 
             this.$
-                .wrap($('<div style="' + (this.o.inline ? 'display:inline;' : '') +
+                .wrap($('<div style="' + (this.o.inline ? 'float:left;	' : '') +
                         'width:' + this.o.width + 'px;height:' +
                         this.o.height + 'px;"></div>'))
                 .before(this.$c);

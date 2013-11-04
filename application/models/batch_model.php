@@ -32,6 +32,15 @@ class batch_model extends CI_Model {
 		}
 	}
 
+	public function updateBatch($data) {
+		if (isset($data)) {
+			$this -> db -> where('$batchId', $data['batchId']);
+			return $this -> db -> update('batch', $data);
+		} else {
+			return false;
+		}
+	}
+
 	public function getMaxId() {
 		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
 	}

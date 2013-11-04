@@ -100,17 +100,23 @@ var TargetReport = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
 		},
 		init_uijquery : function() {
 			$("#date_datepicker input").datepicker({
-				isRTL : App.isRTL()
+				isRTL : App.isRTL(),
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#date_datepicker .add-on").click(function() {
 				$("#date_datepicker input").datepicker("show");
+			});
+			
+			$("#tab2link").click(function() {
+				$("#tab1link").parent().attr("class", "");
 			});
 		}
 	};
