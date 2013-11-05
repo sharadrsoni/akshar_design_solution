@@ -209,6 +209,7 @@ class Branch_manager extends CI_Controller {
 			$this->data['weekdays'] = $weekdays;
 			echo json_encode($this->data);
 		} else {
+			
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this->branchId);
 			$this -> load -> model("course_model");
 			$courses = $this -> course_model -> getAllDetails();
@@ -226,8 +227,7 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
 				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
 				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
-				$this -> form_validation -> set_rules('start_time', 'Start Time', 'required|trim|callback__checkingTime');
-				$this -> form_validation -> set_rules('end_time', 'Start End', 'required|trim|callback__checkingTime');
+				$this -> form_validation -> set_rules('duration', 'Duration', 'required|trim');
 				$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this->data['validate'] = true;
@@ -298,7 +298,7 @@ class Branch_manager extends CI_Controller {
 
 	public function _checkingTime($time) {
 		$test_date = explode(':', $time);
-		if (count($test_date) == 3 && is_numeric($test_date[0]) && is_numeric($test_date[1]) && is_numeric($test_date[2]) && $test_date[0] <= 23 && $test_date[0] >= 01 && $test_date[1] <= 59 && $test_date[2] >= 00 && $test_date[2] <= 59 && $test_date[2] >= 00) {
+		if (count($test_date) == 3 && is_numeric($test_date[0]) && is_numeric($test_date[1]) && is_numeric($test_date[2]) && $test_date[0] <= 23 && $test_date[0] >= 00 && $test_date[1] <= 59 && $test_date[2] >= 00 && $test_date[2] <= 59 && $test_date[2] >= 00) {
 			return true;
 		} else {
 			$this -> form_validation -> set_message('_checkingTime', 'The given date is invalid');
