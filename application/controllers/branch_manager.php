@@ -235,6 +235,8 @@ class Branch_manager extends CI_Controller {
 					$this -> load -> model('batch_model');
 					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $this->branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 					$update = false;
+					$time_update = false;
+					$this -> load -> model('batch_timing_model');
 					if ($_POST['batchId'] == '') {
 						$year = date('Y');
 						if ($this->branchId < 10) {
@@ -257,15 +259,18 @@ class Branch_manager extends CI_Controller {
 						$branchData['batchId'] = floatval($batchId);
 					} else {
 						$batchId = $_POST['batchId'];
+						if ($_POST['flag_batchtiming_update'] != "") {
+							$this->batch_timining->deleteDetailsByBatch($batchId);
+							$time_update = true;
+						}
 						$update = true;
 					}
 					$batch_timings = array();
 					$size = sizeof($_POST["batch_timing"]);
-					$this -> load -> model('batch_timing_model');
 					if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
 						for ($i = 0; $i < $size; ) {
 							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
-							if ($update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
+							if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
 								$this->data['error'] = "An Error Occured.";
 								break;
 							}
