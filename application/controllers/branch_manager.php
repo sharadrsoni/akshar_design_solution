@@ -196,6 +196,7 @@ class Branch_Manager extends CI_Controller {
 			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($branchId, $batchId);
 			$data['batch_list'] = $batch_data;
 			$weekdays[$batchId] = $this -> batch_timing_model -> getWeekDays($batchId);
+			$data['weekdays'] = $weekdays;
 			echo json_encode($data);
 		} else {
 			$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
