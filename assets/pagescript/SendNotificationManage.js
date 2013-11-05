@@ -1,8 +1,8 @@
-var StudentAttendance = function() {
+var SendNotification = function() {
 	return {
 		//main function to initiate the module
 		init_formvalidation : function() {
-			var form1 = $('#form_attendance');
+			var form1 = $('#form_sendnotification');
 			var error1 = $('.alert-error', form1);
 			var success1 = $('.alert-success', form1);
 			form1.validate({
@@ -11,11 +11,17 @@ var StudentAttendance = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					batch_id : {
+					message : {
 						required : true,
 					},
-					Attendance_date : {
-						required : true,
+					user_name : {
+						required : function() {
+							if ($("#individual_Batch").is(':checked')) {
+								return true;
+							} else {
+								return false;
+							}
+						}
 					}
 				},
 
@@ -45,31 +51,56 @@ var StudentAttendance = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
 		},
 		init_uijquery : function() {
-			$("#Attendance_date_datepicker input").datepicker({
-				isRTL : App.isRTL(),
-				dateFormat : 'dd-mm-yy'
-			});
-			$("#Attendance_date_datepicker .add-on").click(function() {
-				$("#Attendance_date_datepicker input").datepicker("show");
-			});
-			$('.text-toggle-Attendance').toggleButtons({
+			$('.text-toggle-Userrole').toggleButtons({
 				width : 200,
 				label : {
-					enabled : $('.text-toggle-Attendance').attr("data-on"),
-					disabled : $('.text-toggle-Attendance').attr("data-off")
+					enabled : $('.text-toggle-Userrole').attr("data-on"),
+					disabled : $('.text-toggle-Userrole').attr("data-off")
 				},
 				style : {
 					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-					enabled : "info",
-					disabled : "danger"
+					enabled : "danger",
+					disabled : "info"
 				}
 			});
-			
+			$('.text-toggle-Individual_Batch').toggleButtons({
+				width : 200,
+				label : {
+					enabled : $('.text-toggle-Individual_Batch').attr("data-on"),
+					disabled : $('.text-toggle-Individual_Batch').attr("data-off")
+				},
+				style : {
+					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+					enabled : "warning",
+					disabled : "success"
+				}
+			});
+			$("#individual_Batch").change(function() {
+				if ($('#individual_Batch').is(':checked') == true) {
+					$("#lst_user_div").attr("style", "display");
+				} else {
+					$("#lst_user_div").attr("style", "display:none");
+				}
+			});
+			$("#user_role").change(function() {
+				if ($('#user_role').is(':checked') == true) {
+					$("#lst_batch_div").attr("style", "display");
+				} else {
+					$("#lst_batch_div").attr("style", "display:none");
+				}
+			});
+			$("#user_name").select2({
+				allowClear : false,
+				escapeMarkup : function(m) {
+					return m;
+				}
+			});
 		}
 	};
 }();

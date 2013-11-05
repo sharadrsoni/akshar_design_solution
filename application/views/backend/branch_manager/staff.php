@@ -54,23 +54,27 @@
 												<input type="checkbox" class="group-checkable" data-set="#tblStaff .checkboxes" />
 												</th>
 												<th>Staff Name</th>
-												<th class="hidden-480">Address</th>
+												<th class="hidden-480">Email</th>
 												<th class="hidden-480">ContactNo</th>
-												<th class="hidden-480">Edit</th>
-												<th >View</th>
+												<th colspan="2">View</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="center hidden-480">12 Jan 2012</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											if (isset($staff_list)) {
+												foreach ($staff_list as $key) {
+echo "<tr class=\"odd gradeX\">
+<td><input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>													
+<td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
+<td class=\"center hidden-480\">{$key->userEmailAddress}</td>
+<td class=\"center hidden-480\">{$key->userContactNumber}</td>
+<td ><span class=\"label label-success\" >Edit</span></td>
+<td ><span class=\"label label-success\" >Delete</span></td>
+</tr>
+";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
