@@ -17,5 +17,14 @@ class course_model extends CI_Model {
 	{
 		return $this->db->get("course")->result();
 	}
+	
+		public function addCourse($data) {
+		if (isset($data)) {
+			die (print_r($data));
+			return $this -> db -> insert('course', $data);
+		} else {
+			return false;
+		}
+	}
 }
 ?>

@@ -472,6 +472,33 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/course_css');
 		$this -> load -> view('backend/master_page/header');
+		
+		if (isset($_POST['add_course'])) {
+			
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
+			$this -> form_validation -> set_rules('course_categoryId', 'Course Category', 'required|trim');
+			$this -> form_validation -> set_rules('course_code', 'Course Code', 'required|trim');
+			$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
+			$this -> form_validation -> set_rules('course_materialId', 'Course MaterialId', 'required|trim');
+			$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
+			$this -> form_validation -> set_rules('opening_stock', 'Material Opening Stock', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				die("yes");
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('course_model');
+				$courseValue = array('courseCategoryId' => $_POST['course_categoryId'], 'courseName' => $_POST['course_name'], 'courseCode' => $_POST['course_code'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['course_materialId'], 'totalBooks' => $_POST['total_books'], 'openingStock' => $_POST['opening_stock']);
+
+				if ($this -> course_model -> addCourse($courseValue)) {
+					redirect(base_url() . "branch_manager/course");
+				} else {
+					$data['error'] = "An Error Occured.";
+				}
+			}
+
+		}
+
 		$this -> load -> view('backend/branch_manager/course');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/course_js');

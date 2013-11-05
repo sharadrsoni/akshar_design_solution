@@ -75,7 +75,11 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_course">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_course');
+							echo form_open('branch_manager/course', $attributes);
+							?>
+							
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -144,10 +148,10 @@
 									</div><!--/ Course Material Opening Stock -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" class="btn btn-primary" name="add_course" id="add_course">
+											Add Course
 										</button>
-										<button type="button" class="btn">
+										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
 											Cancel
 										</button>
 									</div><!--/ Form Action -->
