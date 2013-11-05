@@ -26,5 +26,13 @@ class course_model extends CI_Model {
 			return false;
 		}
 	}
+		
+		public function deleteCourse($courseCode) {
+		if (isset($courseCode)) {
+			$this -> db -> where('courseCode', $courseCode);
+			$this -> db -> delete('course');
+		}
+
+	}
 }
 ?>

@@ -475,9 +475,9 @@ class Branch_Manager extends CI_Controller {
 		
 		if (isset($_POST['add_course'])) {
 			
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
+			$this -> load -> library("form_validation");			
 			$this -> form_validation -> set_rules('course_categoryId', 'Course Category', 'required|trim');
+			$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
 			$this -> form_validation -> set_rules('course_code', 'Course Code', 'required|trim');
 			$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
 			$this -> form_validation -> set_rules('course_materialId', 'Course MaterialId', 'required|trim');
@@ -505,6 +505,12 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function delete_course($courseCode) {
+		$this -> load -> model('course_model');
+		$this -> course_model -> deleteCourse($courseCode);
+		redirect(base_url() . "branch_manager/course");
+	}
+	
 	public function eventtype() {
 		$data['title'] = "ADS | Event Type";
 		$this -> load -> view('backend/master_page/top', $data);
