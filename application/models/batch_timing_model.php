@@ -63,13 +63,18 @@ class batch_timing_model extends CI_Model {
 	public function updateBatchTime($data) {
 		if (isset($data)) {
 			if ($data['batchTimingWeekday'] >= 1 && $data['batchTimingWeekday'] <= 7) {
-				$this->db->where("batchId", $data['batchId']);
+				$this -> db -> where("batchId", $data['batchId']);
 				$this -> db -> update('batch_timing', $data);
 				return true;
 			} else {
 				return false;
 			}
 		}
+	}
+
+	public function deleteDetailsByBatch($batchId) {
+		$this->where("batchId", $batchId);
+		$this->db->delete("batch_timing");
 	}
 
 }
