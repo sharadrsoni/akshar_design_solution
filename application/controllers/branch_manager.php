@@ -15,6 +15,39 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	public function feesreceipt() {
+		$data['title'] = "ADS | Dashboard";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/feesreceipt_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/feesreceipt');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/feesreceipt_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function studentregistation() {
+		$data['title'] = "ADS | Student Registration";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/student_register_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/student_register');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/student_register_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function feespayment() {
+		$data['title'] = "ADS | Fess Payment";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/fees_payment_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/fees_payment');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/fees_payment_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 	public function event() {
 		$data['title'] = "ADS | Event";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -118,72 +151,18 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function target() {
-		$data['title'] = "ADS | Target";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/target_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> model("target_type_model");
-		$target_type = $this -> target_type_model -> getAllDetails();
-		$this -> load -> model('branch_model');
-		$branch = $this -> branch_model -> getAllDetails();
-		$data['branch'] = $branch;
-		$data['target_type'] = $target_type;
-		$this -> load -> model('target_model');
-		if (isset($_POST['create'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim');
-			$this -> form_validation -> set_rules('branch', 'Branch', 'required|trim');
-			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
-			$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim');
-			$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim');
-			$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
-			} else {
-				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
-				if ($this -> target_model -> addTarget($targetData)) {
-					redirect(base_url() . "branch_manager/target");
-				} else {
-					$data['error'] = "An Error Occured.";
-				}
-			}
-		}
-		$branchId = 1;
-		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
-		$data['target_list'] = $target_data;
-		$this -> load -> view('backend/branch_manager/target', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/target_js');
-		$this -> load -> view('backend/master_page/bottom');
-
-	}
-
 	public function targetreport() {
 		$data['title'] = "ADS | Target Report";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
-		//		$this -> load -> model("targetReport_model");
-		//Logic of getting Branch Id. Here I am assuming id = 1
-		//		$targetId = 1;
-		//		$target_data = $this -> targetReport_model -> getDetailsByBranch($targetId);
-
-		//		$data['targetReport_list'] = $targetReport_data;
+		$this -> load -> model("target_report_model");
+		$branchId = 1;
+		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
+		$data['target_report_list'] = $target_data;
 		$this -> load -> view('backend/branch_manager/target_report', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
-	public function time_table() {
-		$data['title'] = "ADS | Time Table";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/time_table_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/time_table');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/time_table_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
@@ -316,14 +295,14 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function eventtype() {
-		$data['title'] = "ADS | Event Type";
+	public function sendnotification() {
+		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/eventtype_css');
+		$this -> load -> view('backend/css/sendnotification_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> view('backend/branch_manager/sendnotification');
 		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/eventtype_js');
+		$this -> load -> view('backend/js/sendnotification_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
@@ -340,12 +319,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');
-	}
-
-	public function delete_event($eventId) {
-		$this -> load -> model('event_model');
-		$this -> event_model -> deleteEvent($eventId);
-		redirect(base_url() . "branch_manager/event");
 	}
 
 	public function delete_inquiry($inquiryId) {

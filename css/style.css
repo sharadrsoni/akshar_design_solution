@@ -3616,3 +3616,85 @@ padding-left: 33px !important;
 .help-inline {
 margin-top: 6px;
 }
+
+/***
+Circle Stats(KNOB, new in v1.1.1)
+***/
+
+/* Circle stats */
+.knobify {
+  border: 0 !important;
+  width: 0px !important;
+}
+
+.ie8 .knobify {
+  display: none;
+}
+
+.circle-stat {
+ /* background-color: #f8f8f8;
+  padding:2px;
+  margin-bottom: 10px;*/
+}
+
+.circle-stat:hover {
+  background-color: #edf4f7;
+}
+
+.circle-stat:before,
+.circle-stat:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.circle-stat:after {
+  clear: both;
+}
+
+.circle-stat .visual {
+  display: block;
+  float: left;
+}
+
+.circle-stat .details {
+  /*display: block;
+  float: left;  
+  margin-left: 5px;
+  padding-top: 7px;*/
+}
+
+.circle-stat .details .title {
+  margin: 10px 0px 5px 0px !important;
+  padding: 0px !important; 
+  font-size: 13px;  
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #222;
+}   
+
+.ie8 .circle-stat .details .title {
+  margin-top:5px !important;
+}
+.ie8 .circle-stat .details {
+  padding-top: 0px !important;
+  margin-bottom: 5px !important;
+}
+
+.circle-stat .details .title i {
+  margin-top:2px !important;
+  color: #52e136;
+  font-size: 16px;
+}
+
+.circle-stat .details .title i.down {
+  color: #b63625;
+}
+
+.circle-stat .details .number {
+  margin: 0px !important;
+  margin-bottom: 7px !important;
+  font-size: 24px;
+  padding: 0px; 
+  font-weight: 300;
+  color: #999;
+}

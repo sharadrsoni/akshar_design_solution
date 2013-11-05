@@ -100,6 +100,7 @@ var TargetReport = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});

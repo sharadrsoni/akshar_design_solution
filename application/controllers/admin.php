@@ -5,6 +5,18 @@ if (!defined('BASEPATH'))
  *
  */
 class Admin extends CI_Controllern {
+
+	public function eventtype() {
+		$data['title'] = "ADS | Event Type";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/eventtype_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/eventtype_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
 	public function branch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
 		//$branchId = 01;
@@ -143,6 +155,53 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function target() {
+		$data['title'] = "ADS | Target";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/target_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> model("target_type_model");
+		$target_type = $this -> target_type_model -> getAllDetails();
+		$this -> load -> model('branch_model');
+		$branch = $this -> branch_model -> getAllDetails();
+		$data['branch'] = $branch;
+		$data['target_type'] = $target_type;
+		$this -> load -> model('target_model');
+		if (isset($_POST['create'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim');
+			$this -> form_validation -> set_rules('branch', 'Branch', 'required|trim');
+			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
+			$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim');
+			$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim');
+			$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+				if ($this -> target_model -> addTarget($targetData)) {
+					redirect(base_url() . "branch_manager/target");
+				} else {
+					$data['error'] = "An Error Occured.";
+				}
+			}
+		}
+		$branchId = 1;
+		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
+		$data['target_list'] = $target_data;
+		$this -> load -> view('backend/branch_manager/target', $data);
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/target_js');
+		$this -> load -> view('backend/master_page/bottom');
+
+	}
+
+	public function delete_event($eventId) {
+		$this -> load -> model('event_model');
+		$this -> event_model -> deleteEvent($eventId);
+		redirect(base_url() . "branch_manager/event");
 	}
 
 }
