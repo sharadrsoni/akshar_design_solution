@@ -41,7 +41,10 @@
 						<p>
 							&nbsp;
 						</p>
-						<form class="widget stacked teal widget-login" name="login" id="form_login" action="http://baldtheme.com/theme/cleanizr/html/index.html">
+						<?php
+							$attributes = array('class' => 'widget stacked teal widget-login', 'id' => 'form_login');
+							echo form_open('login', $attributes);
+ ?>
 							<section class="body">
 								<div class="body-inner">
 									<!-- START Logo -->
@@ -68,7 +71,7 @@
 									<!-- Password -->
 									<div class="control-group">
 										<div class="controls">
-											<input type="text" placeholder="Password" id="password" name="password" class="span12">
+											<input type="password" placeholder="Password" id="password" name="password" class="span12">
 											<i class="icon-lock input-icon"></i>
 										</div>
 									</div><!--/ Password -->
@@ -83,7 +86,7 @@
 								<!-- Form Action -->
 								<!-- Place out form `.body-inner` -->
 								<div class="form-actions">
-									<button type="submit" class="btn btn-primary">
+									<button type="submit" class="btn btn-primary" name="login">
 										Login
 									</button>
 									<button type="button" class="btn">
