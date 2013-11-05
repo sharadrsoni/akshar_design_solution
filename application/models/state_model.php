@@ -12,6 +12,12 @@ class state_model extends CI_Model {
 		return $this -> db -> get() -> result();
 
 	}
+	
+	public function getAllDetails()
+	{
+		return $this->db->get("state")->result();
+	}
+	
 	public function deleteState($stateId) {
 		if (isset($stateId)) {
 			$this -> db -> where('stateId', $stateId);
