@@ -513,15 +513,39 @@ class Branch_Manager extends CI_Controller {
 	}
 
 	public function city() {
+	    $this -> load -> model("state_model");
+		$stateName = $this -> state_model -> getAllDetails();
+		$data['state'] = $stateName;
 		$data['title'] = "ADS | City";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/city_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/city');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/city_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
+			$this -> load -> model('city_model');
+		$city_data = $this -> city_model -> getDetailsBycity();
+		$data['city_list'] = $city_data;
+		if (isset($_POST['register'])) {
+			//die("yes");
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('state_id', 'State Name', 'required|trim');
+			 if ($this -> form_validation -> run() == FALSE) {
+					$data['validate'] = true;
+				} else {
+					$this -> load -> model('city_model');
+ 					$cityData = array('cityName' => $_POST['city_name'],'stateId' => $_POST['state_id']);
+									
+				}
+		if ($this -> city_model -> addcity($cityData)) {
+				redirect(base_url() . "branch_manager/city");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+			}
+			$this -> load -> view('backend/branch_manager/city', $data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/city_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}	
+
 
 	public function profile() {
 		$data['title'] = "ADS | Profile";
@@ -561,6 +585,13 @@ class Branch_Manager extends CI_Controller {
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "branch_manager/state");
 	}
+
+public function delete_city($cityId) {
+		$this -> load -> model('city_model');
+		$this -> city_model -> deleteCity($cityId);
+		redirect(base_url() . "branch_manager/city");
+	}
+
 
 	public function studentmarks() {
 		$data['title'] = "ADS | Target Type";

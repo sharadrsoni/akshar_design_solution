@@ -58,6 +58,9 @@ var City = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
+					state_id:{
+						required:true,
+					},
 					city_name:{
 						required : true,
 					}
