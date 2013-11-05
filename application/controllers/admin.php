@@ -5,18 +5,20 @@ if (!defined('BASEPATH'))
  *
  */
 class Admin extends CI_Controllern {
-
-	public function eventtype() {
-		$data['title'] = "ADS | Event Type";
+	
+	//Dashboard
+	public function index() {
+		$data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/eventtype_css');
+		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/eventtype');
+		$this -> load -> view('backend/branch_manager/dashboard');
 		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/eventtype_js');
+		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
+	
+	//Branch
 	public function branch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
 		//$branchId = 01;
@@ -56,6 +58,7 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//Course Category
 	public function coursecategory() {
 		$data['title'] = "ADS | Course Category";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -67,6 +70,7 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//Course
 	public function course() {
 		$data['title'] = "ADS | Course";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -78,6 +82,7 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//State
 	public function state() {
 		$data['title'] = "ADS | State";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -112,6 +117,13 @@ class Admin extends CI_Controllern {
 
 	}
 
+	public function delete_state($stateId) {
+		$this -> load -> model('state_model');
+		$this -> state_model -> deleteState($stateId);
+		redirect(base_url() . "branch_manager/state");
+	}
+
+	//City
 	public function city() {
 		$data['title'] = "ADS | City";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -123,6 +135,7 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//Target Type
 	public function targettype() {
 		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -134,29 +147,7 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function delete_target($targetId) {
-		$this -> load -> model('target_model');
-		$this -> target_model -> deleteTarget($targetId);
-		redirect(base_url() . "branch_manager/target");
-	}
-
-	public function delete_state($stateId) {
-		$this -> load -> model('state_model');
-		$this -> state_model -> deleteState($stateId);
-		redirect(base_url() . "branch_manager/state");
-	}
-
-	public function staff() {
-		$data['title'] = "ADS | Staff";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/staff_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/staff');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/staff_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
+	//Target
 	public function target() {
 		$data['title'] = "ADS | Target";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -198,10 +189,10 @@ class Admin extends CI_Controllern {
 
 	}
 
-	public function delete_event($eventId) {
-		$this -> load -> model('event_model');
-		$this -> event_model -> deleteEvent($eventId);
-		redirect(base_url() . "branch_manager/event");
+	public function delete_target($targetId) {
+		$this -> load -> model('target_model');
+		$this -> target_model -> deleteTarget($targetId);
+		redirect(base_url() . "branch_manager/target");
 	}
 
 }

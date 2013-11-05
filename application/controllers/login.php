@@ -46,6 +46,17 @@ class Login extends CI_Controller {
 			}
 		}
 		$this -> load -> view("backend/all_users/login", $data);
-	}
+	}	
 
+	//Change Password
+	public function changepassword() {
+		$data['title'] = "ADS | Change Password";
+		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/css/changepassword_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/changepassword');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/changepassword_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 }
