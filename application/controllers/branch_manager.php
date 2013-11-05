@@ -260,7 +260,7 @@ class Branch_manager extends CI_Controller {
 					} else {
 						$batchId = $_POST['batchId'];
 						if ($_POST['flag_batchtiming_update'] != "") {
-							$this->batch_timining->deleteDetailsByBatch($batchId);
+							$this->batch_timining_model->deleteDetailsByBatch($batchId);
 							$time_update = true;
 						}
 						$update = true;
