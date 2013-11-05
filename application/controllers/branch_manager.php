@@ -132,17 +132,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-/*	public function staff() {
-		$data['title'] = "ADS | Staff";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/staff_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/staff');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/staff_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-*/
 public function staff() {
 
 		$data['title'] = "ADS | Staff";
@@ -154,11 +143,7 @@ public function staff() {
 		$roleId = 1;		
 		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
 		$data['staff_list'] = $staffData;
-		
-		
 
-//		$this -> load -> model("role_model");
-//		$facultyName = $this -> role_model -> getDetailsByRole($roleId);
 		$this -> load -> view('backend/branch_manager/staff', $data);
 		$this -> load -> view('backend/master_page/footer');		
 		$this -> load -> view('backend/js/staff_js');

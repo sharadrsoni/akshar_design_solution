@@ -56,7 +56,7 @@
 												<th>Staff Name</th>
 												<th class="hidden-480">Email</th>
 												<th class="hidden-480">ContactNo</th>
-												<th >View</th>
+												<th colspan="2">View</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -68,9 +68,8 @@ echo "<tr class=\"odd gradeX\">
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
-<td ><span class=\"label label-success\"View</span></td>
-<td ><span class=\"label label-success\"Edit</span></td>
-<td ><span class=\"label label-success\"Delete</span></td>
+<td ><span class=\"label label-success\" >Edit</span></td>
+<td ><span class=\"label label-success\" >Delete</span></td>
 </tr>
 ";
 												}
