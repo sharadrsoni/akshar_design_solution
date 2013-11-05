@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
  */
 class user_model extends CI_Model {
 
-	public function getDetailsByBranch($branchId, $roleId) {
+	public function getDetailsByBranchAndRole($branchId, $roleId) {
 		$this -> db -> where("branchId", $branchId);
 		$this -> db -> where("roleId", $roleId);
 		return $this -> db -> get('user') -> result();
@@ -31,6 +31,12 @@ class user_model extends CI_Model {
 		$this -> db -> where("user.roleId", $roleId);
 		$this -> db -> from('user');
 		return $this -> db -> get() -> result();
+	}
+	
+	public function getDetailsbyUser($userId) {
+		$this -> db -> where("userId", $userId);
+		$this -> db -> from('user');
+		return $this -> db -> get() -> row();
 	}
 
 }

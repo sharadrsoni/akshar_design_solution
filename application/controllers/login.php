@@ -20,23 +20,24 @@ class Login extends CI_Controller {
 				$this -> load -> model("user_model");
 				$response = $this -> user_model -> authenticate($loginData);
 				if ($response) {
-					$sessionData['userId'] = $response;
-					$this -> session -> set_userdata($sessionData);
+					//$sessionData = array('userId' => $_POST['username'], 'roleId' => $response);
+					$this -> session -> set_userdata('userId', $_POST['username']);
+					$this -> session -> set_userdata('roleId', $response);
 					switch ($response) {
 						case 1 :
-							redirect(base_url() . "admin");
+							redirect("admin");
 							break;
 						case 2 :
-							redirect(base_url() . "branch_manager");
+							redirect("branch_manager");
 							break;
 						case 3 :
-							redirect(base_url() . "faculty");
+							redirect("faculty");
 							break;
 						case 4 :
-							redirect(base_url() . "counsellor");
+							redirect("counsellor");
 							break;
 						case 5 :
-							redirect(base_url() . "student");
+							redirect("student");
 							break;
 					}
 				} else {
@@ -45,7 +46,7 @@ class Login extends CI_Controller {
 			}
 		}
 		$this -> load -> view("backend/all_users/login", $data);
-	}
+	}	
 
 	//Change Password
 	public function changepassword() {
@@ -58,33 +59,4 @@ class Login extends CI_Controller {
 		$this -> load -> view('backend/js/changepassword_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
-	//Send Notification
-	public function sendnotification() {
-		$data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/sendnotification_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/sendnotification');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/sendnotification_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-
-	//Profile
-	public function profile() {
-		$data['title'] = "ADS | Profile";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/student_profile_css');
-		$this -> load -> view('backend/master_page/header');
-		if (1 == 1) {
-			$this -> load -> view('backend/branch_manager/staff_profile');
-		} else {
-			$this -> load -> view('backend/branch_manager/student_profile');
-		}
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/student_profile_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
-		
 }
