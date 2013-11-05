@@ -2,7 +2,20 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Branch_Manager extends CI_Controller {
+class Branch_manager extends CI_Controller {
+
+	private $userId;
+	private $roleId;
+
+	function __construct() {
+		parent::__construct();
+		if ($this -> session -> userdata("roleId") != 2) {
+			redirect(base_url() . "login");
+		} else {
+			$this -> userId = $this -> session -> userdata("userId");
+			$this -> roleId = $this -> session -> userdata("roleId");
+		}
+	}
 
 	public function index() {
 		$data['title'] = "ADS | Dashboard";
@@ -54,7 +67,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/css/event_css');
 		$this -> load -> view('backend/master_page/header');
 		$branchId = 01;
-		$roleId = 1;
 		$this -> load -> model("event_type_model");
 		$event_type = $this -> event_type_model -> getAllDetails();
 		$this -> load -> model('user_model');
@@ -107,17 +119,14 @@ class Branch_Manager extends CI_Controller {
 	}
 
 	public function staff() {
-
 		$data['title'] = "ADS | Staff";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/staff_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("staff_model");
-
 		$roleId = 1;
 		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
 		$data['staff_list'] = $staffData;
-
 		$this -> load -> view('backend/branch_manager/staff', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/staff_js');
@@ -185,10 +194,8 @@ class Branch_Manager extends CI_Controller {
 	}
 
 	public function batch($batchId = '') {
-		//Logic of getting Branch Id. Here I am assuming id = 1.
-		$branchId = 01;
-		//Assuming the role ID of Faculty is 3.
-		$roleId = 1;
+		$this -> load -> model('user_model');
+		$branchId = $this -> user_model -> getDetailsByUser($this -> userId)->branchId;
 		$this -> load -> model('batch_model');
 		$this -> load -> model("batch_timing_model");
 		$weekdays = array();
@@ -202,8 +209,7 @@ class Branch_Manager extends CI_Controller {
 			$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
 			$this -> load -> model("course_model");
 			$courses = $this -> course_model -> getAllDetails();
-			$this -> load -> model('user_model');
-			$facultyName = $this -> user_model -> getDetailsByBranch($branchId, $roleId);
+			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
 			$data['course'] = $courses;
 			$data['faculty'] = $facultyName;
 			$data['batch_list'] = $batch_data;
@@ -229,7 +235,7 @@ class Branch_Manager extends CI_Controller {
 					$this -> load -> model('batch_model');
 					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 					$update = false;
-					if ($_POST['batchId'] = '') {
+					if ($_POST['batchId'] == '') {
 						$year = date('Y');
 						if ($branchId < 10) {
 							$branchId = "0" . $branchId;

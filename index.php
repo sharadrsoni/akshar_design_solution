@@ -18,6 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+ header("Cache-Control: no-store, no-cache, must-revalidate");
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------

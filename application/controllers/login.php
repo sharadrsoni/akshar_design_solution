@@ -20,23 +20,24 @@ class Login extends CI_Controller {
 				$this -> load -> model("user_model");
 				$response = $this -> user_model -> authenticate($loginData);
 				if ($response) {
-					$sessionData['userId'] = $response;
-					$this -> session -> set_userdata($sessionData);
+					//$sessionData = array('userId' => $_POST['username'], 'roleId' => $response);
+					$this -> session -> set_userdata('userId', $_POST['username']);
+					$this -> session -> set_userdata('roleId', $response);
 					switch ($response) {
 						case 1 :
-							redirect(base_url() . "admin");
+							redirect("admin");
 							break;
 						case 2 :
-							redirect(base_url() . "branch_manager");
+							redirect("branch_manager");
 							break;
 						case 3 :
-							redirect(base_url() . "faculty");
+							redirect("faculty");
 							break;
 						case 4 :
-							redirect(base_url() . "counsellor");
+							redirect("counsellor");
 							break;
 						case 5 :
-							redirect(base_url() . "student");
+							redirect("student");
 							break;
 					}
 				} else {
