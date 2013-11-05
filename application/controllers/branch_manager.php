@@ -106,23 +106,24 @@ class Branch_Manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-public function staff() {
+	public function staff() {
 
 		$data['title'] = "ADS | Staff";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/staff_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> model("staff_model");		
+		$this -> load -> model("staff_model");
 
-		$roleId = 1;		
+		$roleId = 1;
 		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
 		$data['staff_list'] = $staffData;
 
 		$this -> load -> view('backend/branch_manager/staff', $data);
-		$this -> load -> view('backend/master_page/footer');		
+		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');
-}
+	}
+
 	public function inquiry() {
 		$data['title'] = "ADS | Inquiry";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -188,24 +189,27 @@ public function staff() {
 		$branchId = 01;
 		//Assuming the role ID of Faculty is 3.
 		$roleId = 1;
-		$this -> load -> model("course_model");
-		$courses = $this -> course_model -> getAllDetails();
-		$this -> load -> model('user_model');
-		$facultyName = $this -> user_model -> getDetailsByBranch($branchId, $roleId);
 		$this -> load -> model('batch_model');
-		$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
 		$this -> load -> model("batch_timing_model");
 		$weekdays = array();
-		foreach ($batch_data as $key) {
-			$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
-		}
-		$data['batch_list'] = $batch_data;
-		$data['weekdays'] = $weekdays;
-		$data['course'] = $courses;
-		$data['faculty'] = $facultyName;
 		if ($batchId != '') {
+			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($branchId, $batchId);
+			$data['batch_list'] = $batch_data;
+			$weekdays[$batchId] = $this -> batch_timing_model -> getWeekDays($batchId);
 			echo json_encode($data);
 		} else {
+			$batch_data = $this -> batch_model -> getDetailsByBranch($branchId);
+			$this -> load -> model("course_model");
+			$courses = $this -> course_model -> getAllDetails();
+			$this -> load -> model('user_model');
+			$facultyName = $this -> user_model -> getDetailsByBranch($branchId, $roleId);
+			$data['course'] = $courses;
+			$data['faculty'] = $facultyName;
+			$data['batch_list'] = $batch_data;
+			foreach ($batch_data as $key) {
+				$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
+			}
+			$data['weekdays'] = $weekdays;
 			$data['title'] = "ADS | Batch";
 			$this -> load -> view('backend/master_page/top', $data);
 			$this -> load -> view('backend/css/batch_css');
