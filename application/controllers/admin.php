@@ -1,10 +1,8 @@
 <?php
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
-/**
- *
- */
-class Admin extends CI_Controllern {
+
+class Admin extends CI_Controller {
 
 	//Dashboard
 	public function index() {
@@ -157,13 +155,13 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/js/city_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function delete_city($cityId) {
 		$this -> load -> model('city_model');
 		$this -> city_model -> deleteCity($cityId);
 		redirect(base_url() . "branch_manager/city");
 	}
-	
+
 	//Target Type
 	public function targettype() {
 		$data['title'] = "ADS | Target Type";
