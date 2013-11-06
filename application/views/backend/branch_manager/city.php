@@ -57,24 +57,33 @@
 												<th >View</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>Ahmedabad</td>
-												<td >
-													<span class="label label-success">Edit</span>
-													<span class="label label-success">Delete</span>
-												</td>
-											</tr>
+											<tbody>
+													<?php
+											if (isset($city_list)) {
+												foreach ($city_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+
+<td class=\"hidden-480\">{$key->cityName} </td>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_city/{$key->cityId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
+										
 										</tbody>
+									
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed green" id="form_city">
+								<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_city');
+							echo form_open('branch_manager/city', $attributes);
+ ?>
+						
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -86,6 +95,21 @@
 
 								<div class="body-inner">
 									<h3 class="form-section">City Info.</h3>
+										<!-- State -->
+									<div class="control-group">
+										<label class="control-label">State<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span4" name="state_id" id="state_id">
+												<option value="">Select...</option>
+												<?php
+												foreach ($state as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName} - {$key->stateId}</option>";
+												}
+												?>
+											</select>
+											<span for="state_id" class="help-inline"><?php echo form_error('state_id'); ?></span>
+										</div>
+									</div><!--/ State -->
 									<!-- City Name -->
 									<div class="control-group">
 										<label class="control-label">City Name<span class="required">*</span></label>
@@ -96,7 +120,7 @@
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 										<button type="button" class="btn">

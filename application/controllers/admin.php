@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
  *
  */
 class Admin extends CI_Controllern {
-	
+
 	//Dashboard
 	public function index() {
 		$data['title'] = "ADS | Dashboard";
@@ -17,7 +17,7 @@ class Admin extends CI_Controllern {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	//Branch
 	public function branch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
@@ -125,16 +125,45 @@ class Admin extends CI_Controllern {
 
 	//City
 	public function city() {
+		$this -> load -> model("state_model");
+		$stateName = $this -> state_model -> getAllDetails();
+		$data['state'] = $stateName;
 		$data['title'] = "ADS | City";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/city_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/city');
+		$this -> load -> model('city_model');
+		$city_data = $this -> city_model -> getDetailsBycity();
+		$data['city_list'] = $city_data;
+		if (isset($_POST['register'])) {
+			//die("yes");
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('state_id', 'State Name', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('city_model');
+				$cityData = array('cityName' => $_POST['city_name'], 'stateId' => $_POST['state_id']);
+
+			}
+			if ($this -> city_model -> addcity($cityData)) {
+				redirect(base_url() . "branch_manager/city");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+		}
+		$this -> load -> view('backend/branch_manager/city', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/city_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
+	
+	public function delete_city($cityId) {
+		$this -> load -> model('city_model');
+		$this -> city_model -> deleteCity($cityId);
+		redirect(base_url() . "branch_manager/city");
+	}
+	
 	//Target Type
 	public function targettype() {
 		$data['title'] = "ADS | Target Type";
