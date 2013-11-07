@@ -156,7 +156,7 @@ function removebatchtime(e) {
 	$("#flag_batchtiming_update").val("1");
 }
 
-function viewbatch(url, batchid) {
+function viewbatch(batchid) {
 	$.ajax({
 		url : "batch/" + batchid,
 		dataType : 'json',
@@ -170,7 +170,7 @@ function viewbatch(url, batchid) {
 	});
 }
 
-function updatebatch(url, batchid) {
+function updatebatch(batchid) {
 	$.ajax({
 		url : "batch/" + batchid,
 		dataType : 'json',
@@ -187,6 +187,8 @@ function updatebatch(url, batchid) {
 				$("#tab1").removeClass("active");
 				$("#tab2").addClass("active");
 				$("#flag_update").val("1");
+				//for loop for batchtiming detail
+				//$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $('#weekday option:selected').text() + "<input type='hidden' name='batch_timing[]' value='" + $('#weekday').val() + "'/></td><td class='hidden-480'>" + $('#start_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#start_time').val() + "'/></td><td class='hidden-480'>" + $('#end_time').val() + "<input type='hidden' name='batch_timing[]' value='" + $('#end_time').val() + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
 				alert("done");
 			}
 		}

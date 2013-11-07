@@ -65,11 +65,11 @@
 												foreach ($batch_list as $key) {
 
 													echo "<tr class=\"odd gradeX\">
-<td id={$key->batchId} onclick='viewbatch(\"{base_url()}\", \"{$key->batchId}\");'>{$key->batchId}</td>
+<td id={$key->batchId} onclick='viewbatch(\"{$key->batchId}\");'>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
-<td ><span class=\"label label-success\" onclick='updatebatch(\"{base_url()}\", \"{$key->batchId}\");' >Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</a></span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatebatch(\"{$key->batchId}\");' >Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</a></span></td></tr>
 ";
 												}
 											}

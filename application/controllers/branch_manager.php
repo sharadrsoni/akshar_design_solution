@@ -4,26 +4,9 @@ if (!defined('BASEPATH'))
 
 class Branch_manager extends CI_Controller {
 
-	private $userId;
-	private $roleId;
-	private $branchId;
-	private $data = array();
-
 	function __construct() {
 		parent::__construct();
-		if ($this -> session -> userdata("roleId") != 2) {
-			redirect(base_url() . "login");
-		} else {
-			$this -> userId = $this -> session -> userdata("userId");
-			$this -> roleId = $this -> session -> userdata("roleId");
-			$this -> load -> model("user_model");
-			$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
-			$this->branchId = $userDetail -> branchId;
-			$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
-			$this -> load -> model("role_model");
-			$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
-			$this->data['roleId'] = $this->roleId;
-		}
+		parent::authenticate(2);
 	}
 
 	//Dashboard
@@ -44,18 +27,17 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> model("batch_timing_model");
 		$weekdays = array();
 		if ($batchId != '') {
-			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this->branchId, $batchId);
+			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this -> branchId, $batchId);
 			$this->data['batch_list'] = $batch_data;
 			$weekdays[$batchId] = $this -> batch_timing_model -> getWeekDays($batchId);
 			$this->data['weekdays'] = $weekdays;
 			echo json_encode($this->data);
 		} else {
-			
-			$batch_data = $this -> batch_model -> getDetailsByBranch($this->branchId);
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
 			$this -> load -> model("course_model");
 			$courses = $this -> course_model -> getAllDetails();
 			$this -> load -> model('user_model');
-			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this->branchId, 3);
+			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 3);
 			$this->data['course'] = $courses;
 			$this->data['faculty'] = $facultyName;
 			$this->data['batch_list'] = $batch_data;
@@ -74,14 +56,14 @@ class Branch_manager extends CI_Controller {
 					$this->data['validate'] = true;
 				} else {
 					$this -> load -> model('batch_model');
-					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $this->branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
+					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $this -> branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 					$update = false;
 					$time_update = false;
 					$this -> load -> model('batch_timing_model');
 					if ($_POST['batchId'] == '') {
 						$year = date('Y');
-						if ($this->branchId < 10) {
-							$this->branchId = "0" . $this->branchId;
+						if ($this -> branchId < 10) {
+							$this -> branchId = "0" . $this -> branchId;
 						}
 						$getMaximumBatchId = $this -> batch_model -> getMaxId();
 						$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
@@ -96,12 +78,12 @@ class Branch_manager extends CI_Controller {
 						} else if ($batchId < 100 && $batchId > 9) {
 							$batchId = "0" . $batchId;
 						}
-						$batchId = $year . $this->branchId . $batchId;
+						$batchId = $year . $this -> branchId . $batchId;
 						$branchData['batchId'] = floatval($batchId);
 					} else {
 						$batchId = $_POST['batchId'];
 						if ($_POST['flag_batchtiming_update'] != "") {
-							$this->batch_timining_model->deleteDetailsByBatch($batchId);
+							$this -> batch_timining_model -> deleteDetailsByBatch($batchId);
 							$time_update = true;
 						}
 						$update = true;
@@ -125,7 +107,6 @@ class Branch_manager extends CI_Controller {
 					}
 				}
 			}
-			
 			$this->data['title'] = "ADS | Batch";
 			$this -> load -> view('backend/master_page/top', $this->data);
 			$this -> load -> view('backend/css/batch_css');
@@ -162,22 +143,22 @@ class Branch_manager extends CI_Controller {
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
 	}
-	
+
 	//target Report
 	public function targetreport() {
-		$data['title'] = "ADS | Target Report";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Target Report";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("target_report_model");
 		$branchId = 1;
 		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
-		$data['target_report_list'] = $target_data;
-		$this -> load -> view('backend/branch_manager/target_report', $data);
+		$this->data['target_report_list'] = $target_data;
+		$this -> load -> view('backend/branch_manager/target_report', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 }
 ?>
