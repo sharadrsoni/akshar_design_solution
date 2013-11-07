@@ -45,7 +45,7 @@ class batch_model extends CI_Model {
 
 	public function updateBatch($data) {
 		if (isset($data)) {
-			$this -> db -> where('$batchId', $data['batchId']);
+			$this -> db -> where('batchId', $data['batchId']);
 			return $this -> db -> update('batch', $data);
 		} else {
 			return false;

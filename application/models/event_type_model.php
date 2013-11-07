@@ -4,7 +4,7 @@
 
 class event_type_model extends CI_Model {
 
-	public function getDetailsByeventtype() {
+	public function getAllEventtype() {
 
 		//$this -> db -> where("inquiry.inquirybranchId", $branchId);
 		$this -> db -> from('event_type');
