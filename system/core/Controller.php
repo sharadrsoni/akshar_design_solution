@@ -1,4 +1,6 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH'))
+	exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -30,34 +32,53 @@
 class CI_Controller {
 
 	private static $instance;
-
+	protected $userId;
+	protected $roleId;
+	protected $branchId;
+	protected $data = array();
 	/**
 	 * Constructor
 	 */
-	public function __construct()
-	{
-		self::$instance =& $this;
-		
+
+	public function authenticate($roleId) {
+		if ($this -> session -> userdata("roleId") != $roleId) {
+			redirect(base_url() . "login");
+		} else {
+			$this -> userId = $this -> session -> userdata("userId");
+			$this -> roleId = $this -> session -> userdata("roleId");
+			$this -> load -> model("user_model");
+			$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
+			$this -> branchId = $userDetail -> branchId;
+			$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
+			$this -> load -> model("role_model");
+			$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
+			$this -> data['roleId'] = $this -> roleId;
+		}
+	}
+
+	public function __construct() {
+		self::$instance = &$this;
+
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.
-		foreach (is_loaded() as $var => $class)
-		{
-			$this->$var =& load_class($class);
+		foreach (is_loaded() as $var => $class) {
+			$this -> $var = &load_class($class);
 		}
 
-		$this->load =& load_class('Loader', 'core');
+		$this -> load = &load_class('Loader', 'core');
 
-		$this->load->initialize();
-		
+		$this -> load -> initialize();
+
 		log_message('debug', "Controller Class Initialized");
 	}
 
-	public static function &get_instance()
-	{
+	public static function & get_instance() {
 		return self::$instance;
 	}
+
 }
+
 // END Controller class
 
 /* End of file Controller.php */

@@ -6,25 +6,13 @@ class Branch_manager extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if ($this -> session -> userdata("roleId") != 2) {
-			redirect(base_url() . "login");
-		} else {
-			$this -> userId = $this -> session -> userdata("userId");
-			$this -> roleId = $this -> session -> userdata("roleId");
-			$this -> load -> model("user_model");
-			$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
-			$this -> branchId = $userDetail -> branchId;
-			$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
-			$this -> load -> model("role_model");
-			$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
-			$this -> data['roleId'] = $this -> roleId;
-		}
+		parent::authenticate(2);
 	}
 
 	//Dashboard
 	public function index() {
-		$this -> data['title'] = "ADS | Dashboard";
-		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this->data['title'] = "ADS | Dashboard";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/dashboard');
@@ -40,23 +28,23 @@ class Branch_manager extends CI_Controller {
 		$weekdays = array();
 		if ($batchId != '') {
 			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this -> branchId, $batchId);
-			$this -> data['batch_list'] = $batch_data;
+			$this->data['batch_list'] = $batch_data;
 			$weekdays[$batchId] = $this -> batch_timing_model -> getWeekDays($batchId);
-			$this -> data['weekdays'] = $weekdays;
-			echo json_encode($this -> data);
+			$this->data['weekdays'] = $weekdays;
+			echo json_encode($this->data);
 		} else {
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
 			$this -> load -> model("course_model");
 			$courses = $this -> course_model -> getAllDetails();
 			$this -> load -> model('user_model');
 			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 3);
-			$this -> data['course'] = $courses;
-			$this -> data['faculty'] = $facultyName;
-			$this -> data['batch_list'] = $batch_data;
+			$this->data['course'] = $courses;
+			$this->data['faculty'] = $facultyName;
+			$this->data['batch_list'] = $batch_data;
 			foreach ($batch_data as $key) {
 				$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
 			}
-			$this -> data['weekdays'] = $weekdays;
+			$this->data['weekdays'] = $weekdays;
 			if (isset($_POST['register'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
@@ -65,7 +53,7 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('duration', 'Duration', 'required|trim');
 				$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					$this -> data['validate'] = true;
+					$this->data['validate'] = true;
 				} else {
 					$this -> load -> model('batch_model');
 					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $this -> branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
@@ -106,21 +94,21 @@ class Branch_manager extends CI_Controller {
 						for ($i = 0; $i < $size; ) {
 							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
 							if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
-								$this -> data['error'] = "An Error Occured.";
+								$this->data['error'] = "An Error Occured.";
 								break;
 							}
 							$i++;
 						}
-						if ($this -> data['error'] == null) {
+						if ($this->data['error'] == null) {
 							redirect(base_url() . "branch_manager/batch");
 						}
 					} else {
-						$this -> data['error'] = "An Error Occured.";
+						$this->data['error'] = "An Error Occured.";
 					}
 				}
 			}
-			$this -> data['title'] = "ADS | Batch";
-			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this->data['title'] = "ADS | Batch";
+			$this -> load -> view('backend/master_page/top', $this->data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> view('backend/branch_manager/batch');
@@ -158,15 +146,15 @@ class Branch_manager extends CI_Controller {
 
 	//target Report
 	public function targetreport() {
-		$data['title'] = "ADS | Target Report";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Target Report";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/target_report_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("target_report_model");
 		$branchId = 1;
 		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
-		$data['target_report_list'] = $target_data;
-		$this -> load -> view('backend/branch_manager/target_report', $data);
+		$this->data['target_report_list'] = $target_data;
+		$this -> load -> view('backend/branch_manager/target_report', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
