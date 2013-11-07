@@ -4,12 +4,34 @@ if (!defined('BASEPATH'))
 /**
  *
  */
-class Admin extends CI_Controllern {
+class Admin extends CI_Controller {
+
+	private $userId;
+	private $roleId;
+	private $branchId;
+	private $data = array();
+
+	function __construct() {
+		parent::__construct();
+		if ($this -> session -> userdata("roleId") != 1) {
+			redirect(base_url() . "login");
+		} else {
+			$this -> userId = $this -> session -> userdata("userId");
+			$this -> roleId = $this -> session -> userdata("roleId");
+			$this -> load -> model("user_model");
+			$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
+			$this -> branchId = $userDetail -> branchId;
+			$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
+			$this -> load -> model("role_model");
+			$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
+			$this -> data['roleId'] = $this -> roleId;
+		}
+	}
 
 	//Dashboard
 	public function index() {
-		$data['title'] = "ADS | Dashboard";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Dashboard";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/dashboard');
@@ -22,11 +44,11 @@ class Admin extends CI_Controllern {
 	public function branch() {
 		//Logic of getting Branch Id. Here I am assuming id = 1.
 		//$branchId = 01;
-		$data['title'] = "ADS | Branch";
+		$this->data['title'] = "ADS | Branch";
 		$this -> load -> model("branch_model");
 		$branch = $this -> branch_model -> getDetailsOfBranch();
-		$data['branch'] = $branch;
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['branch'] = $branch;
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/batch_css');
 		$this -> load -> view('backend/master_page/header');
 		if (isset($_POST['add_branch'])) {
@@ -40,14 +62,14 @@ class Admin extends CI_Controllern {
 			$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
 				//die ("yes");
-				$data['validate'] = true;
+				$this->data['validate'] = true;
 			} else {
 				$this -> load -> model('branch_model');
 				$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
 				if ($this -> branch_model -> addBranch($branchValue)) {
 					redirect(base_url() . "branch_manager/branch");
 				} else {
-					$data['error'] = "An Error Occured.";
+					$this->data['error'] = "An Error Occured.";
 				}
 			}
 
@@ -60,8 +82,8 @@ class Admin extends CI_Controllern {
 
 	//Course Category
 	public function coursecategory() {
-		$data['title'] = "ADS | Course Category";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Course Category";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/coursecategory_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/coursecategory');
@@ -72,8 +94,8 @@ class Admin extends CI_Controllern {
 
 	//Course
 	public function course() {
-		$data['title'] = "ADS | Course";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Course";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/course_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/course');
@@ -84,20 +106,20 @@ class Admin extends CI_Controllern {
 
 	//State
 	public function state() {
-		$data['title'] = "ADS | State";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | State";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/state_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("state_model");
 		//Logic of getting State data
 		$state_data = $this -> state_model -> getDetailsBystate();
-		$data['state_list'] = $state_data;
+		$this->data['state_list'] = $state_data;
 		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
 
 			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
+				$this->data['validate'] = true;
 			} else {
 				$this -> load -> model('state_model');
 				$stateData = array('stateName' => $_POST['state_name']);
@@ -106,11 +128,11 @@ class Admin extends CI_Controllern {
 			if ($this -> state_model -> addstate($stateData)) {
 				redirect(base_url() . "branch_manager/state");
 			} else {
-				$data['error'] = "An Error Occured.";
+				$this->data['error'] = "An Error Occured.";
 			}
 		}
 
-		$this -> load -> view('backend/branch_manager/state', $data);
+		$this -> load -> view('backend/branch_manager/state', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/state_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -127,20 +149,20 @@ class Admin extends CI_Controllern {
 	public function city() {
 		$this -> load -> model("state_model");
 		$stateName = $this -> state_model -> getAllDetails();
-		$data['state'] = $stateName;
-		$data['title'] = "ADS | City";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['state'] = $stateName;
+		$this->data['title'] = "ADS | City";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/city_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model('city_model');
 		$city_data = $this -> city_model -> getDetailsBycity();
-		$data['city_list'] = $city_data;
+		$this->data['city_list'] = $city_data;
 		if (isset($_POST['register'])) {
 			//die("yes");
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('state_id', 'State Name', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
+				$this->data['validate'] = true;
 			} else {
 				$this -> load -> model('city_model');
 				$cityData = array('cityName' => $_POST['city_name'], 'stateId' => $_POST['state_id']);
@@ -149,25 +171,25 @@ class Admin extends CI_Controllern {
 			if ($this -> city_model -> addcity($cityData)) {
 				redirect(base_url() . "branch_manager/city");
 			} else {
-				$data['error'] = "An Error Occured.";
+				$this->data['error'] = "An Error Occured.";
 			}
 		}
-		$this -> load -> view('backend/branch_manager/city', $data);
+		$this -> load -> view('backend/branch_manager/city', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/city_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	public function delete_city($cityId) {
 		$this -> load -> model('city_model');
 		$this -> city_model -> deleteCity($cityId);
 		redirect(base_url() . "branch_manager/city");
 	}
-	
+
 	//Target Type
 	public function targettype() {
-		$data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/targettype_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/targettype');
@@ -178,16 +200,16 @@ class Admin extends CI_Controllern {
 
 	//Target
 	public function target() {
-		$data['title'] = "ADS | Target";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this->data['title'] = "ADS | Target";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/target_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("target_type_model");
 		$target_type = $this -> target_type_model -> getAllDetails();
 		$this -> load -> model('branch_model');
 		$branch = $this -> branch_model -> getAllDetails();
-		$data['branch'] = $branch;
-		$data['target_type'] = $target_type;
+		$this->data['branch'] = $branch;
+		$this->data['target_type'] = $target_type;
 		$this -> load -> model('target_model');
 		if (isset($_POST['create'])) {
 			$this -> load -> library("form_validation");
@@ -198,20 +220,20 @@ class Admin extends CI_Controllern {
 			$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim');
 			$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
+				$this->data['validate'] = true;
 			} else {
 				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 				if ($this -> target_model -> addTarget($targetData)) {
 					redirect(base_url() . "branch_manager/target");
 				} else {
-					$data['error'] = "An Error Occured.";
+					$this->data['error'] = "An Error Occured.";
 				}
 			}
 		}
 		$branchId = 1;
 		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
-		$data['target_list'] = $target_data;
-		$this -> load -> view('backend/branch_manager/target', $data);
+		$this->data['target_list'] = $target_data;
+		$this -> load -> view('backend/branch_manager/target', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_js');
 		$this -> load -> view('backend/master_page/bottom');
