@@ -29,7 +29,7 @@ class Branch_manager extends CI_Controller {
 		if ($batchId != '') {
 			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this -> branchId, $batchId);
 			$this->data['batch_list'] = $batch_data;
-			$weekdays[$batchId] = $this -> batch_timing_model -> getWeekDays($batchId);
+			$weekdays = $this -> batch_timing_model -> getBatchTiming($batchId);
 			$this->data['weekdays'] = $weekdays;
 			echo json_encode($this->data);
 		} else {
@@ -82,7 +82,7 @@ class Branch_manager extends CI_Controller {
 						$branchData['batchId'] = floatval($batchId);
 					} else {
 						$batchId = $_POST['batchId'];
-						if ($_POST['flag_batchtiming_update'] != "") {
+						if ($_POST['flagbtalter'] != "") {
 							$this -> batch_timining_model -> deleteDetailsByBatch($batchId);
 							$time_update = true;
 						}

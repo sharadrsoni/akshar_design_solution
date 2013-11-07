@@ -221,8 +221,8 @@
 											</tbody>
 										</table>
 									</div><!--/ List-->
-									<input type="hidden" name="flag_update" id="flag_update" value="0" />
-									<input type="hidden" name="flag_batchtiming_update" id="flag_batchtiming_update" value="0" />
+									<input type="hidden" name="batchId" id="batchId" value="" />
+									<input type="hidden" name="flagbtalter" id="flagbtalter" value="0" />
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="register" id="register">
