@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(2);
+		parent::authenticate(1);
 	}
 	
 	//Dashboard
