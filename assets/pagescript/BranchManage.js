@@ -163,6 +163,7 @@ var Branch = function() {
 				$('#pin_code').val("");
 				$('#longitude').val("");
 				$('#latitude').val("");
+				$('#branchId').val("");
 			});
 		}
 	};

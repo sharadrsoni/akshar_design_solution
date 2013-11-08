@@ -4,13 +4,16 @@ if (!defined('BASEPATH'))
 
 class target_model extends CI_Model {
 
-	public function getDetailsByBranch($branchId) {
-
-		$this -> db -> where("target.branchId", $branchId);
+	public function getDetailsOfTarget() {
 		$this -> db -> from('target');
 		$this -> db -> join('target_type', 'target.targetTypeId = target_type.targetTypeId');
 		return $this -> db -> get() -> result();
+	}
 
+	public function getDetailsByTarget($targetId) {
+		$this -> db -> where('targetId', $targetId);
+		$this -> db -> from('target');
+		return $this -> db -> get() -> result();
 	}
 
 	public function deleteTarget($targetId) {
@@ -18,15 +21,22 @@ class target_model extends CI_Model {
 			$this -> db -> where('targetId', $targetId);
 			$this -> db -> delete('target');
 		}
-
 	}
-	
+
 	public function addTarget($data) {
-		if(isset($data)) {
-			return $this->db->insert('target', $data);
+		if (isset($data)) {
+			return $this -> db -> insert('target', $data);
 		} else {
 			return false;
 		}
 	}
-
+	
+	public function updateTarget($data,$targetId) {
+		if (isset($data) && isset($targetId)) {
+			$this -> db -> where('targetId', $targetId);
+			return $this -> db -> update('target', $data);
+		} else {
+			return false;
+		}
+	}
 }

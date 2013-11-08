@@ -287,7 +287,7 @@
 <a href='" . base_url() . "admin_branch_manager/staff'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a>
 </li>
 <li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/target'> <span class='icon icone-dashboard'></span> <span class='text'>Target</span> </a>
+<a href='" . base_url() . "admin/target'> <span class='icon icone-dashboard'></span> <span class='text'>Target</span> </a>
 </li>
 <li class='accordion-group'>
 <a href='" . base_url() . "branch_manager/eventtype'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a>

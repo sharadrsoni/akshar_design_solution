@@ -26,15 +26,14 @@ class Admin extends CI_Controller {
 		$this -> load -> model("branch_model");
 		if ($branchId != '') {
 			$this -> data['branch'] = $this -> branch_model -> getDetailsByBranch($branchId);
-			echo json_encode($this->data);
+			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Branch";
-			$branch = $this -> branch_model -> getDetailsOfBranch();
-			$this -> data['branch'] = $branch;
+			$this -> data['branch'] =$this -> branch_model -> getDetailsOfBranch();
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
-			if (isset($_POST['add_branch'])) {
+			if (isset($_POST['submitBranch'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
 				$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
@@ -45,10 +44,10 @@ class Admin extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'],'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
-					if($_POST['branchId']!=""?$this -> branch_model -> updateBranch($branchValue,$_POST['branchId']):$this -> branch_model -> addBranch($branchValue)){
+					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
+					if ($_POST['branchId'] != "" ? $this -> branch_model -> updateBranch($branchValue, $_POST['branchId']) : $this -> branch_model -> addBranch($branchValue)) {
 						redirect(base_url() . "admin/branch");
-					}else {
+					} else {
 						$this -> data['error'] = "An Error Occured.";
 					}
 				}
@@ -175,51 +174,51 @@ class Admin extends CI_Controller {
 	}
 
 	//Target
-	public function target() {
-		$this -> data['title'] = "ADS | Target";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/target_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> model("target_type_model");
-		$target_type = $this -> target_type_model -> getAllDetails();
-		$this -> load -> model('branch_model');
-		$branch = $this -> branch_model -> getAllDetails();
-		$this -> data['branch'] = $branch;
-		$this -> data['target_type'] = $target_type;
+	public function target($targetId = '') {
 		$this -> load -> model('target_model');
-		if (isset($_POST['create'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim');
-			$this -> form_validation -> set_rules('branch', 'Branch', 'required|trim');
-			$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
-			$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim');
-			$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim');
-			$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				$this -> data['validate'] = true;
-			} else {
-				$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
-				if ($this -> target_model -> addTarget($targetData)) {
-					redirect(base_url() . "branch_manager/target");
+		if ($targetId != '') {
+			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Target";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/target_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> model("target_type_model");
+			$this -> load -> model('branch_model');
+			$this -> data['branch'] =$this -> branch_model -> getDetailsOfBranch();
+			$this -> data['target_type'] = $this -> target_type_model -> getDetailsOfTargetType();
+			$this -> data['target'] = $this -> target_model -> getDetailsOfTarget();
+			if (isset($_POST['submitTarget'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim');
+				$this -> form_validation -> set_rules('branch', 'Branch', 'required|trim');
+				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
+				$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim');
+				$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim');
+				$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
 				} else {
-					$this -> data['error'] = "An Error Occured.";
+					$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+					if ($_POST['targetId'] != "" ? $this -> target_model -> updateTarget($targetData, $_POST['targetId']) : $this -> target_model -> addTarget($targetData)) {
+						redirect(base_url() . "admin/target");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
 				}
 			}
+			$this -> load -> view('backend/branch_manager/target', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/target_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-		$branchId = 1;
-		$target_data = $this -> target_model -> getDetailsByBranch($branchId);
-		$this -> data['target_list'] = $target_data;
-		$this -> load -> view('backend/branch_manager/target', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/target_js');
-		$this -> load -> view('backend/master_page/bottom');
-
 	}
 
 	public function delete_target($targetId) {
 		$this -> load -> model('target_model');
 		$this -> target_model -> deleteTarget($targetId);
-		redirect(base_url() . "branch_manager/target");
+		redirect(base_url() . "admin/target");
 	}
 
 }

@@ -183,11 +183,8 @@
 									<input type="hidden" name="branchId" id="branchId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" name="add_branch" class="btn btn-primary">
+										<button type="submit" name="submitBranch" id="submitBranch" class="btn btn-primary">
 											Add Branch
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>
