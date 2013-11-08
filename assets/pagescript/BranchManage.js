@@ -110,6 +110,7 @@ var Branch = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
@@ -198,7 +199,7 @@ function updatebranch(branchid) {
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#branchid').val(json.branch[0].branchId);
+				$('#branchId').val(json.branch[0].branchId);
 			}
 		}
 	});

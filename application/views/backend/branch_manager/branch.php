@@ -78,7 +78,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_branch');
-							echo form_open('branch_manager/branch', $attributes);
+							echo form_open('admin/branch', $attributes);
 							?>
 						
 								<div class="alert alert-error hide">
@@ -180,7 +180,7 @@
 											</div>
 										</div>
 									</div><!--/ Google Map -->
-									<input type="hidden" name="branchid" id="branchid" value="" />
+									<input type="hidden" name="branchId" id="branchId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" name="add_branch" class="btn btn-primary">

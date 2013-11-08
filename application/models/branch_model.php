@@ -28,5 +28,13 @@ class branch_model extends CI_Model {
 			return false;
 		}
 	}
+	public function updateBranch($data,$branchId) {
+		if (isset($data)) {
+			$this -> db -> where('branchId',$branchId);
+			return $this -> db -> update('branch', $data);
+		} else {
+			return false;
+		}
+	}
 }
 ?>
