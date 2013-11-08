@@ -189,23 +189,8 @@
 			</div>
 			<!--/ END Row -->
 			<div id="row-fluid">
-				<div id="target_view">
-			<?php
-	if (isset($target_list)) {
-	foreach ($target_list as $key) {
-	echo "<div id='{$key->targetId}'><tr>
-
-
-<td class=\"hidden-480\">{$key->targetSubject}</td>
-<td class=\"hidden-480\">{$key->targetStartDate}</td>
-<td class=\"hidden-480\">{$key->targetEndDate}</td>
-<td class=\"hidden-480\">{$key->targetIsAchieved}</td>
-<td class=\"hidden-480\">{$key->targetTypeName}</td>
-</tr></div>
-";
-												}
-											}
-											?>
+				<div id="target_view" >
+	
 								</div>
 			</div>
 		</div>

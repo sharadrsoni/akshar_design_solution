@@ -17,19 +17,20 @@
 		   Target.init_table();
 		   Target.init_formvalidation();
 		   Target.init_uijquery();
-		   	//jQuery(".target_view").hide();
+		   	jQuery("#target_view").children().hide();
 			
 		});
 		jQuery(".view").click(function(){
 			
 			var $id=$(this).attr('id');
 			alert($id);
-			var $vv=jQuery("#target_view").children().find($id);
-			alert(jQuery("#target_view").children().find($id));
-
-		
-			
-			
+			//var iid=$id+'view'
+		//	alert(iid);
+			//var $vv=jQuery("#target_view").children().find($id);
+			//alert(jQuery("#target_view").children().find($id));
+			//jQuery("#target_view").children().hide();
+			//jQuery("#"+iid).show();
+			$("#target_view").load(branch_manager/view_target);			
 		});
 		
 	</script>
