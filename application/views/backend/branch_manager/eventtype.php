@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Event Type</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Event Type</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span>Add Event Type</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span>Add Event Type</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -59,14 +59,14 @@
 										</thead>
 										<tbody>
 											<?php
-											if (isset($eventtype_list)) {
-												foreach ($eventtype_list as $key) {
+											if (isset($eventtype)) {
+												foreach ($eventtype as $key) {
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
 
 <td class=\"hidden-480\">{$key->eventTypeName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_eventtype/{$key->eventTypeId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updateeventtype(\"{$key->eventTypeId}\");' >Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin_branch_manager/delete_eventtype/{$key->eventTypeId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -79,7 +79,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_eventtype');
-							echo form_open('branch_manager/eventtype', $attributes);
+							echo form_open('admin_branch_manager/eventtype', $attributes);
  ?>
 							<!--<form class="form-horizontal span12 widget shadowed green" id="form_eventtype">-->
 								<div class="alert alert-error hide">
@@ -100,14 +100,11 @@
 											<input type="text" name="eventtype_name" id="eventtype_name" class="span8">
 										</div>
 									</div><!--/ Event Type Name -->
-
+									<input type="hidden" name="eventtypeId" id="eventtypeId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
+										<button type="submit" class="btn btn-primary" name="submitEventType" id="submitEventType">
 											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

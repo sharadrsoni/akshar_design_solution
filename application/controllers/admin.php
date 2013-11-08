@@ -29,7 +29,7 @@ class Admin extends CI_Controller {
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Branch";
-			$this -> data['branch'] =$this -> branch_model -> getDetailsOfBranch();
+			$this -> data['branch'] = $this -> branch_model -> getDetailsOfBranch();
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
@@ -84,81 +84,83 @@ class Admin extends CI_Controller {
 	}
 
 	//State
-	public function state() {
-		$this -> data['title'] = "ADS | State";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/state_css');
-		$this -> load -> view('backend/master_page/header');
+	public function state($stateId = '') {
 		$this -> load -> model("state_model");
-		//Logic of getting State data
-		$state_data = $this -> state_model -> getDetailsBystate();
-		$this -> data['state_list'] = $state_data;
-		if (isset($_POST['register'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				$this -> data['validate'] = true;
-			} else {
-				$this -> load -> model('state_model');
-				$stateData = array('stateName' => $_POST['state_name']);
+		if ($stateId != '') {
+			$this -> data['state'] = $this -> state_model -> getDetailsByState($stateId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | State";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/state_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['state'] = $this -> state_model -> getDetailsOfState();
+			if (isset($_POST['submitState'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$stateData = array('stateName' => $_POST['state_name']);
+					if ($_POST['stateId'] != "" ? $this -> state_model -> updatestate($stateData, $_POST['stateId']) : $this -> state_model -> addstate($stateData)) {
+						redirect(base_url() . "admin/state");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
 			}
-			if ($this -> state_model -> addstate($stateData)) {
-				redirect(base_url() . "branch_manager/state");
-			} else {
-				$this -> data['error'] = "An Error Occured.";
-			}
+			$this -> load -> view('backend/branch_manager/state', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/state_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-		$this -> load -> view('backend/branch_manager/state', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/state_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function delete_state($stateId) {
 		$this -> load -> model('state_model');
 		$this -> state_model -> deleteState($stateId);
-		redirect(base_url() . "branch_manager/state");
+		redirect(base_url() . "admin/state");
 	}
 
 	//City
-	public function city() {
-		$this -> load -> model("state_model");
-		$stateName = $this -> state_model -> getAllDetails();
-		$this -> data['state'] = $stateName;
-		$this -> data['title'] = "ADS | City";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/city_css');
-		$this -> load -> view('backend/master_page/header');
+	public function city($cityId = '') {
 		$this -> load -> model('city_model');
-		$city_data = $this -> city_model -> getDetailsBycity();
-		$this -> data['city_list'] = $city_data;
-		if (isset($_POST['register'])) {
-			//die("yes");
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('state_id', 'State Name', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				$this -> data['validate'] = true;
-			} else {
-				$this -> load -> model('city_model');
-				$cityData = array('cityName' => $_POST['city_name'], 'stateId' => $_POST['state_id']);
-
+		if ($cityId != '') {
+			$this -> data['city'] = $this -> city_model -> getDetailsByCity($cityId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | City";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/city_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> model("state_model");
+			$this -> data['state'] = $this -> state_model -> getDetailsOfState();
+			$this -> data['city'] = $this -> city_model -> getDetailsOfCity();
+			if (isset($_POST['submitCity'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('state_id', 'State Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$cityData = array('cityName' => $_POST['city_name'], 'stateId' => $_POST['state_id']);
+					if ($_POST['cityId'] != "" ? $this -> city_model -> updatecity($cityData, $_POST['cityId']) : $this -> city_model -> addcity($cityData)) {
+						redirect(base_url() . "admin/city");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
 			}
-			if ($this -> city_model -> addcity($cityData)) {
-				redirect(base_url() . "branch_manager/city");
-			} else {
-				$this -> data['error'] = "An Error Occured.";
-			}
+			$this -> load -> view('backend/branch_manager/city', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/city_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-		$this -> load -> view('backend/branch_manager/city', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/city_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function delete_city($cityId) {
 		$this -> load -> model('city_model');
 		$this -> city_model -> deleteCity($cityId);
-		redirect(base_url() . "branch_manager/city");
+		redirect(base_url() . "admin/city");
 	}
 
 	//Target Type
@@ -186,7 +188,7 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("target_type_model");
 			$this -> load -> model('branch_model');
-			$this -> data['branch'] =$this -> branch_model -> getDetailsOfBranch();
+			$this -> data['branch'] = $this -> branch_model -> getDetailsOfBranch();
 			$this -> data['target_type'] = $this -> target_type_model -> getDetailsOfTargetType();
 			$this -> data['target'] = $this -> target_model -> getDetailsOfTarget();
 			if (isset($_POST['submitTarget'])) {

@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>City</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>City</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span>Add City</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span>Add City</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -59,14 +59,14 @@
 										</thead>
 											<tbody>
 													<?php
-											if (isset($city_list)) {
-												foreach ($city_list as $key) {
+											if (isset($city)) {
+												foreach ($city as $key) {
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
 
 <td class=\"hidden-480\">{$key->cityName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_city/{$key->cityId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatecity(\"{$key->cityId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_city/{$key->cityId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -81,7 +81,7 @@
 						<div class="tab-pane" id="tab2">
 								<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_city');
-							echo form_open('branch_manager/city', $attributes);
+							echo form_open('admin/city', $attributes);
  ?>
 						
 								<div class="alert alert-error hide">
@@ -117,14 +117,11 @@
 											<input type="text" name="city_name" id="city_name" class="span8">
 										</div>
 									</div><!--/ City Name -->
-
+									<input type="hidden" name="cityId" id="cityId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
+										<button type="submit" class="btn btn-primary" name="submitCity" id="submitCity">
 											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

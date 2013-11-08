@@ -73,7 +73,7 @@
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetIsAchieved}</td>
 <td class=\"hidden-480\">{$key->targetTypeName}</td>
-<td ><span class=\"label label-success\" onclick='updatetarget(\"{$key->targetId}\");' >Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_target/{$key->targetId}'>Delete</a></span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatetarget(\"{$key->targetId}\");' >Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "admin/delete_target/{$key->targetId}'>Delete</a></span></td></tr>
 ";
 												}
 											}

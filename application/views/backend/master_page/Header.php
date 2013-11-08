@@ -290,22 +290,22 @@
 <a href='" . base_url() . "admin/target'> <span class='icon icone-dashboard'></span> <span class='text'>Target</span> </a>
 </li>
 <li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/eventtype'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a>
+<a href='" . base_url() . "admin_branch_manager/eventtype'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
 <li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/targettype'> <span class='icon icone-dashboard'></span> <span class='text'>Target type</span> </a>
+<a href='" . base_url() . "admin/targettype'> <span class='icon icone-dashboard'></span> <span class='text'>Target type</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
 <li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/city'> <span class='icon icone-dashboard'></span> <span class='text'>City</span> </a>
+<a href='" . base_url() . "admin/city'> <span class='icon icone-dashboard'></span> <span class='text'>City</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
 <li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/state'> <span class='icon icone-dashboard'></span> <span class='text'>State</span> </a>
+<a href='" . base_url() . "admin/state'> <span class='icon icone-dashboard'></span> <span class='text'>State</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
