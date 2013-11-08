@@ -173,7 +173,7 @@
 												<section class="body">
 													<h3></h3>
 													<input type="text" id="gmap_geocoding_address" style="margin-left: 10px" class="span9" placeholder="Address..." />
-													<input type="button" id="gmap_geocoding_btn" class="span3 btn" value="Search" />
+													<input type="button" name="loadmap" id="loadmap" value="Refresh Map" readonly class="span3"/>
 													<h3></h3>
 													<div id="gmap_geocoding" style="height: 300px;width:100%" class="gmaps"></div>
 												</section>
