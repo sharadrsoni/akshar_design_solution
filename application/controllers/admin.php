@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		parent::authenticate(1);
 	}
-	
+
 	//Dashboard
 	public function index() {
 		$this -> data['title'] = "ADS | Dashboard";
@@ -22,43 +22,48 @@ class Admin extends CI_Controller {
 	}
 
 	//Branch
-	public function branch() {
-		//Logic of getting Branch Id. Here I am assuming id = 1.
-		//$branchId = 01;
-		$this -> data['title'] = "ADS | Branch";
+	public function branch($branchId = '') {
 		$this -> load -> model("branch_model");
-		$branch = $this -> branch_model -> getDetailsOfBranch();
-		$this -> data['branch'] = $branch;
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/batch_css');
-		$this -> load -> view('backend/master_page/header');
-		if (isset($_POST['add_branch'])) {
-			//die("yes");
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
-			$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
-			$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
-			$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-			$this -> form_validation -> set_rules('state', 'State', 'required|trim');
-			$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				//die ("yes");
-				$this -> data['validate'] = true;
-			} else {
-				$this -> load -> model('branch_model');
-				$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
-				if ($this -> branch_model -> addBranch($branchValue)) {
-					redirect(base_url() . "branch_manager/branch");
+		if ($branchId != '') {
+			$this -> data['branch'] = $this -> branch_model -> getDetailsByBranch($branchId);
+			echo json_encode($this->data);
+		} else {
+			//Logic of getting Branch Id. Here I am assuming id = 1.
+			//$branchId = 01;
+			$this -> data['title'] = "ADS | Branch";
+			$branch = $this -> branch_model -> getDetailsOfBranch();
+			$this -> data['branch'] = $branch;
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/batch_css');
+			$this -> load -> view('backend/master_page/header');
+			if (isset($_POST['add_branch'])) {
+				//die("yes");
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
+				$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
+				$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
+				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					//die ("yes");
+					$this -> data['validate'] = true;
 				} else {
-					$this -> data['error'] = "An Error Occured.";
+					$this -> load -> model('branch_model');
+					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
+					if ($this -> branch_model -> addBranch($branchValue)) {
+						redirect(base_url() . "branch_manager/branch");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
 				}
-			}
 
+			}
+			$this -> load -> view('backend/branch_manager/branch');
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/branch_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-		$this -> load -> view('backend/branch_manager/branch');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/branch_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	//Course Category

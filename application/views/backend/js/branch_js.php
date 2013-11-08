@@ -13,7 +13,7 @@
 		App.init();
 		Branch.init_table();
 		Branch.init_formvalidation();
-		//Branch.init_uijquery();
+		Branch.init_uijquery();
 	});
 
 	$("#tab2").click(function() {

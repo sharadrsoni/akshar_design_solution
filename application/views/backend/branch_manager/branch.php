@@ -39,10 +39,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Branches</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Branches</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
 
 						</li>
 					</ul>
@@ -66,7 +66,7 @@
 <td>{$key->branchName}</td>
 <td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
-<td ><span class=\"label label-success\">Edit</span></td>
+<td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchId}\");'>Edit</span></td>
 </tr>";
 											}
 											?>
@@ -121,16 +121,9 @@
 											<input type="text" name="street_2" id="street_2" class="span8"/>
 										</div>
 									</div><!--/ Street -->
-									<!-- City -->
-									<div class="control-group">
-										<label class="control-label">City<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="city" id="city" class="span8"/>
-										</div>
-									</div><!--/ City -->
 									<!-- State -->
 									<div class="control-group">
-										<label class="control-label">State<span class="required">*</span></label>
+										<label class="control-label">State/City<span class="required">*</span></label>
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="state" id="state">
@@ -142,10 +135,23 @@
 												</select>
 											</div>
 											<div class="span4">
-												<input type="text" name="pin_code" id="pin_code" class="span12"/>
+												<select class="span12" name="city" id="city">
+													<option value="">Select...</option>
+													<option value="Category 1">Category 1</option>
+													<option value="Category 2">Category 2</option>
+													<option value="Category 3">Category 5</option>
+													<option value="Category 4">Category 4</option>
+												</select>
 											</div>
 										</div>
-									</div><!--/ StateState -->
+									</div><!--/ State -->
+									<!-- Postal Code -->
+									<div class="control-group">
+										<label class="control-label">Postal Code<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="pin_code" id="pin_code" class="span8"/>
+										</div>
+									</div><!--/ Postal Code -->
 									<!-- Google Map LocationGoogle Map Location -->
 									<h3 class="form-section">Google Map Location</h3>
 									<div class="control-group">
@@ -174,7 +180,7 @@
 											</div>
 										</div>
 									</div><!--/ Google Map -->
-
+									<input type="hidden" name="branchid" id="branchid" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" name="add_branch" class="btn btn-primary">
