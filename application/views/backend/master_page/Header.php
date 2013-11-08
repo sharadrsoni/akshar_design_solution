@@ -284,7 +284,7 @@
 <a href='" . base_url() . "admin/branch'> <span class='icon icone-th-list'></span> <span class='text'>Branch</span> </a>
 </li>
 <li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/staff'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a>
+<a href='" . base_url() . "admin_branch_manager/staff'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a>
 </li>
 <li class='accordion-group'>
 <a href='" . base_url() . "branch_manager/target'> <span class='icon icone-dashboard'></span> <span class='text'>Target</span> </a>

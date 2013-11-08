@@ -6,10 +6,15 @@ if (!defined('BASEPATH'))
  */
 class Admin_branch_manager extends CI_Controller {
 	
+	function __construct() {
+		parent::__construct();
+		parent::authenticate(1);
+	}
+	
 	//Staff
 	public function staff() {
-		$data['title'] = "ADS | Staff";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> data['title'] = "ADS | Staff";
+		$this -> load -> view('backend/master_page/top',$this -> data);
 		$this -> load -> view('backend/css/staff_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("staff_model");
