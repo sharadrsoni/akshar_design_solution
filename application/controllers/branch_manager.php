@@ -159,6 +159,5 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
 }
 ?>
