@@ -281,7 +281,7 @@
 									<?php
 									if ($roleId == 1) {
 										echo "<li class='accordion-group'>
-<a href='" . base_url() . "branch_manager/branch'> <span class='icon icone-th-list'></span> <span class='text'>Branch</span> </a>
+<a href='" . base_url() . "admin/branch'> <span class='icon icone-th-list'></span> <span class='text'>Branch</span> </a>
 </li>
 <li class='accordion-group'>
 <a href='" . base_url() . "branch_manager/staff'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a>
