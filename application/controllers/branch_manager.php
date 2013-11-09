@@ -530,9 +530,6 @@ class Branch_Manager extends CI_Controller {
 		$this -> inquiry_model -> deleteInquiry($inquiryId);
 		redirect(base_url() . "branch_manager/inquiry");
 	}
-	public function view_target()
-	{
-		echo "ajax call";
-	}
+
 }
 ?>

@@ -17,5 +17,15 @@
 		   TargetReport.init_table();
 		   TargetReport.init_formvalidation();
 		   TargetReport.init_uijquery();
+		   jQuery("#view").hide();
 		});
+		 jQuery(".view").click(function(){
+                        
+                        var $id=$(this).attr('id');
+                        alert($id);
+                        jQuery("#view").show();
+             
+                  
+                
+                });
 	</script>
