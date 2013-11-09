@@ -11,5 +11,6 @@
 		App.init();
 		State.init_table();
 		State.init_formvalidation();
+		State.init_uijquery();
 	}); 
 </script>

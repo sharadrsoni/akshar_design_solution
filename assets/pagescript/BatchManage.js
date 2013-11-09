@@ -147,6 +147,8 @@ var Batch = function() {
 				$("#duration").val("");
 				$("#strength").val("");
 				$('#lst_batch_timing').html("");
+				$("#batchId").val("");
+				$("#flagbtalter").val("");
 			});
 		}
 	};

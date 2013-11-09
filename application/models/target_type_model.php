@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
  */
 class target_type_model extends CI_Model {
 	
-	public function getAllDetails()
+	public function getDetailsOfTargetType()
 	{
 		return $this->db->get("target_type")->result();
 	}

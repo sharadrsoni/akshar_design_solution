@@ -11,5 +11,6 @@
 		App.init();
 		City.init_table();
 		City.init_formvalidation();
+		City.init_uijquery();
 	}); 
 </script>

@@ -39,10 +39,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Branches</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Branches</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Branch</a>
 
 						</li>
 					</ul>
@@ -66,7 +66,7 @@
 <td>{$key->branchName}</td>
 <td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
-<td ><span class=\"label label-success\">Edit</span></td>
+<td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchId}\");'>Edit</span></td>
 </tr>";
 											}
 											?>
@@ -78,7 +78,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_branch');
-							echo form_open('branch_manager/branch', $attributes);
+							echo form_open('admin/branch', $attributes);
 							?>
 						
 								<div class="alert alert-error hide">
@@ -121,16 +121,9 @@
 											<input type="text" name="street_2" id="street_2" class="span8"/>
 										</div>
 									</div><!--/ Street -->
-									<!-- City -->
-									<div class="control-group">
-										<label class="control-label">City<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="city" id="city" class="span8"/>
-										</div>
-									</div><!--/ City -->
 									<!-- State -->
 									<div class="control-group">
-										<label class="control-label">State<span class="required">*</span></label>
+										<label class="control-label">State/City<span class="required">*</span></label>
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="state" id="state">
@@ -142,10 +135,23 @@
 												</select>
 											</div>
 											<div class="span4">
-												<input type="text" name="pin_code" id="pin_code" class="span12"/>
+												<select class="span12" name="city" id="city">
+													<option value="">Select...</option>
+													<option value="Category 1">Category 1</option>
+													<option value="Category 2">Category 2</option>
+													<option value="Category 3">Category 5</option>
+													<option value="Category 4">Category 4</option>
+												</select>
 											</div>
 										</div>
-									</div><!--/ StateState -->
+									</div><!--/ State -->
+									<!-- Postal Code -->
+									<div class="control-group">
+										<label class="control-label">Postal Code<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="pin_code" id="pin_code" class="span8"/>
+										</div>
+									</div><!--/ Postal Code -->
 									<!-- Google Map LocationGoogle Map Location -->
 									<h3 class="form-section">Google Map Location</h3>
 									<div class="control-group">
@@ -167,21 +173,18 @@
 												<section class="body">
 													<h3></h3>
 													<input type="text" id="gmap_geocoding_address" style="margin-left: 10px" class="span9" placeholder="Address..." />
-													<input type="button" id="gmap_geocoding_btn" class="span3 btn" value="Search" />
+													<input type="button" name="loadmap" id="loadmap" value="Refresh Map" readonly class="span3"/>
 													<h3></h3>
 													<div id="gmap_geocoding" style="height: 300px;width:100%" class="gmaps"></div>
 												</section>
 											</div>
 										</div>
 									</div><!--/ Google Map -->
-
+									<input type="hidden" name="branchId" id="branchId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" name="add_branch" class="btn btn-primary">
+										<button type="submit" name="submitBranch" id="submitBranch" class="btn btn-primary">
 											Add Branch
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

@@ -5,11 +5,16 @@ if (!defined('BASEPATH'))
  *
  */
 class Admin_branch_manager extends CI_Controller {
-	
+
+	function __construct() {
+		parent::__construct();
+		parent::authenticate(1);
+	}
+
 	//Staff
 	public function staff() {
-		$data['title'] = "ADS | Staff";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> data['title'] = "ADS | Staff";
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/staff_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("staff_model");
@@ -21,47 +26,46 @@ class Admin_branch_manager extends CI_Controller {
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-		
+
 	//Event Type
-	public function eventtype() {
-		$data['title'] = "ADS | Event Type";
-		$this -> load -> view('backend/master_page/top', $data);
-		$this -> load -> view('backend/css/eventtype_css');
-		$this -> load -> view('backend/master_page/header');
+	public function eventtype($eventtypeId = '') {
 		$this -> load -> model("event_type_model");
-		//Logic of getting Event Type data
-		$eventtype_data = $this -> event_type_model -> getDetailsByeventtype();
-		$data['eventtype_list'] = $eventtype_data;
-		if (isset($_POST['register'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('eventtype_name', 'Event Type Name', 'required|trim');
-
-			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
-			} else {
-				$this -> load -> model('event_type_model');
-				$eventtypeData = array('eventTypeName' => $_POST['eventtype_name']);
-
+		if ($eventtypeId != '') {
+			$this -> data['eventtype'] = $this -> event_type_model -> getDetailsByEventType($eventtypeId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Event Type";
+			$this -> load -> view('backend/master_page/top',$this -> data);
+			$this -> load -> view('backend/css/eventtype_css');
+			$this -> load -> view('backend/master_page/header');
+			$data['eventtype'] = $this -> event_type_model -> getDetailsOfEventType();
+			if (isset($_POST['submitEventType'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('eventtype_name', 'Event Type Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$data['validate'] = true;
+				} else {
+					$eventtypeData = array('eventTypeName' => $_POST['eventtype_name']);
+					if ($_POST['eventtypeId'] != "" ? $this -> event_type_model -> updateeventtype($eventtypeData, $_POST['eventtypeId']) : $this -> event_type_model -> addeventtype($eventtypeData)) {
+						redirect(base_url() . "admin_branch_manager/eventtype");
+					} else {
+						$data['error'] = "An Error Occured.";
+					}
+				}
 			}
-			if ($this -> event_type_model -> addeventtype($eventtypeData)) {
-				redirect(base_url() . "branch_manager/eventtype");
-			} else {
-				$data['error'] = "An Error Occured.";
-			}
+			$this -> load -> view('backend/branch_manager/eventtype', $data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/eventtype_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-
-		$this -> load -> view('backend/branch_manager/eventtype', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/eventtype_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function delete_eventtype($eventtypeId) {
 		$this -> load -> model('event_type_model');
 		$this -> event_type_model -> deleteEventtype($eventtypeId);
-		redirect(base_url() . "branch_manager/eventtype");
+		redirect(base_url() . "admin_branch_manager/eventtype");
 	}
-	
+
 	//Event
 	public function event() {
 		$data['title'] = "ADS | Event";
@@ -114,6 +118,5 @@ class Admin_branch_manager extends CI_Controller {
 		$this -> event_model -> deleteEvent($eventId);
 		redirect(base_url() . "branch_manager/event");
 	}
-	
-	
+
 }

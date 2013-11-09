@@ -68,8 +68,8 @@ echo "<tr class=\"odd gradeX\">
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
-<td ><span class=\"label label-success\" >Edit</span></td>
-<td ><span class=\"label label-success\" >Delete</span></td>
+<td ><span class=\"label label-success\"Edit</span></td>
+<td ><span class=\"label label-success\"Delete</span></td>
 </tr>
 ";
 												}
