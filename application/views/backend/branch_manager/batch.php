@@ -239,123 +239,123 @@
 				</div><!--/ End Tabs -->
 				<!--View Batch -->
 				<div class="form-horizontal form-view" id="ViewBatch">
-												<h3> View User Info - Bob Nilson </h3>
-												<h3 class="form-section">Person Info</h3>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">First Name:</label>
-															<div class="controls">
-																<span class="text">Bob</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="lastName">Last Name:</label>
-															<div class="controls">
-																<span class="text">Nilson</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Gender:</label>
-															<div class="controls">
-																<span class="text">Male</span> 
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Date of Birth:</label>
-															<div class="controls">
-																<span class="text bold">20.01.1984</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->        
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Category:</label>
-															<div class="controls">
-																<span class="text bold">Category1</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Membership:</label>
-															<div class="controls">                                                
-																<span class="text bold">Free</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->                
-												<h3 class="form-section">Address</h3>
-												<div class="row-fluid">
-													<div class="span12 ">
-														<div class="control-group">
-															<label class="control-label">Street:</label>
-															<div class="controls">
-																<span class="text">#24 Sun Park Avenue, Rolton Str</span>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">City:</label>
-															<div class="controls">
-																<span class="text">New York</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6">
-														<div class="control-group">
-															<label class="control-label">State:</label>
-															<div class="controls">
-																<span class="text">New York</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->           
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Post Code:</label>
-															<div class="controls">
-																<span class="text">457890</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Country:</label>
-															<div class="controls">
-																<span class="text">USA</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
+					<h3> View User Info - Bob Nilson </h3>
+					<h3 class="form-section">Person Info</h3>
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label" for="firstName">First Name:</label>
+								<div class="controls">
+									<span class="text">Bob</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label" for="lastName">Last Name:</label>
+								<div class="controls">
+									<span class="text">Nilson</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Gender:</label>
+								<div class="controls">
+									<span class="text">Male</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Date of Birth:</label>
+								<div class="controls">
+									<span class="text bold">20.01.1984</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Category:</label>
+								<div class="controls">
+									<span class="text bold">Category1</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Membership:</label>
+								<div class="controls">
+									<span class="text bold">Free</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
+					<!--/row-->
+					<h3 class="form-section">Address</h3>
+					<div class="row-fluid">
+						<div class="span12 ">
+							<div class="control-group">
+								<label class="control-label">Street:</label>
+								<div class="controls">
+									<span class="text">#24 Sun Park Avenue, Rolton Str</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">City:</label>
+								<div class="controls">
+									<span class="text">New York</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						<div class="span6">
+							<div class="control-group">
+								<label class="control-label">State:</label>
+								<div class="controls">
+									<span class="text">New York</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Post Code:</label>
+								<div class="controls">
+									<span class="text">457890</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Country:</label>
+								<div class="controls">
+									<span class="text">USA</span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
 				</div><!-- End View Batch -->
 			</div>
 			<!--/ END Row -->
