@@ -39,10 +39,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Batches</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Batches</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Batch</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Batch</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -65,11 +65,11 @@
 												foreach ($batch_list as $key) {
 
 													echo "<tr class=\"odd gradeX\">
-<td id={$key->batchId} onclick='viewbatch(\"{base_url()}\", \"{$key->batchId}\");'>{$key->batchId}</td>
+<td id={$key->batchId} onclick='viewbatch(\"{$key->batchId}\");'>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</a></span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatebatch(\"{$key->batchId}\");' >Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_batch/{$key->batchId}'>Delete</a></span></td></tr>
 ";
 												}
 											}
@@ -221,7 +221,8 @@
 											</tbody>
 										</table>
 									</div><!--/ List-->
-
+									<input type="hidden" name="batchId" id="batchId" value="" />
+									<input type="hidden" name="flagbtalter" id="flagbtalter" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="register" id="register">
@@ -237,6 +238,92 @@
 					</div>
 				</div>
 				<!--/ End Tabs -->
+				
+				<!-- view starts -->
+					<div class="tab-pane" id="view">
+							<form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport">
+								
+
+								<div class="body-inner">
+									<h3 class="form-section">Batch Detail </h3>
+							
+								<table class="table table-striped table-bordered table-hover" id="tblTargetReport">
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Batch Name</label>
+										<label class="control-label">Dummy Name</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Course Name</label>
+										<label class="control-label">Dummy Name of Course</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Faculty Name</label>
+										<label class="control-label">Dummy Name of Faculty</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Start Date</label>
+										<label class="control-label">Dummy Date</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Duration</label>
+										<label class="control-label">3 months</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Strength</label>
+										<label class="control-label">30 </label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Batch Timing</label>
+										<label class="control-label">Time Table</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									</table>							
+								</div>
+							</form>
+						</div>
+						<!-- /End view-->
+				
 			</div>
 			<!--/ END Row -->
 		</div>

@@ -186,6 +186,71 @@
 				
 				</div>
 				<!--/ End Tabs -->
+				<!-- view starts -->
+					<div class="tab-pane" id="view">
+							<form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport">
+								
+
+								<div class="body-inner">
+									<h3 class="form-section">Target Report </h3>
+							
+								<table class="table table-striped table-bordered table-hover" id="tblTargetReport">
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Subject</label>
+										<label class="control-label">Dummy Subject</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Description</label>
+										<label class="control-label">Dummy Description Dummy Description Dummy Description </label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Start Date</label>
+										<label class="control-label">Dummy Date</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">End Date</label>
+										<label class="control-label">Dummy Date</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									<tr>
+									<td>
+									<!-- Description -->
+									<div class="control-group">
+										<label class="control-label">Target Stauts</label>
+										<label class="control-label">Dummy Status</label>
+									</div>
+									<!--/ Description         -->
+									</td>
+									</tr>
+									</table>							
+								</div>
+							</form>
+						</div>
+						<!-- /End view-->
+				
 			</div>
 			<!--/ END Row -->
 			<div id="row-fluid">
