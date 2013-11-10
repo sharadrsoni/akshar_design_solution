@@ -130,6 +130,74 @@
 					</div>
 				</div>
 				<!--/ End Tabs -->
+				
+				<!--View Target Report -->
+				<div class="form-horizontal form-view" id="ViewBatch">
+												<h3> View Target Report</h3>
+												<h3 class="form-section">Target Info</h3>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" for="firstName">Target Subject</label>
+															<div class="controls">
+																<span class="text">Dummy Title</span>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+												<!--/row-->
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Description:</label>
+															<div class="controls">
+																<span class="text">Description of a target </span> 
+															</div>
+														</div>
+													</div>
+													
+												</div>
+												<!--/row-->        
+												
+											              
+												<h3 class="form-section">Dates</h3>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Start Date:</label>
+															<div class="controls">
+																<span class="text">10/12/13</span>
+															</div>
+														</div>
+													</div>
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">End Date:</label>
+															<div class="controls">
+																<span class="text">14/12/13</span>
+															</div>
+														</div>
+													</div>
+												
+													
+												</div>
+												<!--/row-->           
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Status:</label>
+															<div class="controls">
+																<span class="text">1</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													
+												</div>
+				</div><!-- End View Targer Report -->
+				
+				
 			</div>
 			<!--/ END Row -->
 		</div>
