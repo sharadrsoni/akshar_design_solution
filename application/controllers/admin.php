@@ -62,14 +62,42 @@ class Admin extends CI_Controller {
 
 	//Course Category
 	public function coursecategory() {
-		$this -> data['title'] = "ADS | Course Category";
-		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this->data['title'] = "ADS | Course Category";
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/coursecategory_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/coursecategory');
+		$this -> load -> model("course_category_model");
+		//Logic of getting Course Category data
+		$coursecategory_data = $this -> course_category_model -> getDetailsBycoursecategory();
+		$data['coursecategory_list'] = $coursecategory_data;
+	   if (isset($_POST['register'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('coursecategory_name', 'Course Category Name', 'required|trim');
+		
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('course_category_model');
+				$coursecategoryData = array('courseCategoryName' => $_POST['coursecategory_name']);
+
+			}
+			if ($this -> course_category_model -> addcoursecategory($coursecategoryData)) {
+				redirect(base_url() . "admin/coursecategory");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+		}
+
+		$this -> load -> view('backend/branch_manager/coursecategory', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/coursecategory_js');
 		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function delete_coursecategory($coursecategoryId) {
+		$this -> load -> model('course_category_model');
+		$this -> course_category_model -> deleteCoursecategory($coursecategoryId);
+		redirect(base_url() . "admin/coursecategory");
 	}
 
 	//Course
@@ -250,6 +278,22 @@ class Admin extends CI_Controller {
 		$this -> load -> model('target_model');
 		$this -> target_model -> deleteTarget($targetId);
 		redirect(base_url() . "admin/target");
+	}
+
+	//Staff
+	public function staff() {
+		$this -> data['title'] = "ADS | Staff";
+		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this -> load -> view('backend/css/staff_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> model("staff_model");
+		$roleId = 1;
+		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
+		$data['staff_list'] = $staffData;
+		$this -> load -> view('backend/branch_manager/staff', $data);
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/staff_js');
+		$this -> load -> view('backend/master_page/bottom');
 	}
 
 }
