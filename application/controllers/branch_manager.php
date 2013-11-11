@@ -147,7 +147,7 @@ class Branch_manager extends CI_Controller {
 	//Event
 	public function event($eventId = '') {
 		$this -> load -> model('event_model');
-		$branchId = 01;	
+		$branchId = $this -> branchId;	
 		if ($eventId != '') {
 			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchId,$eventId);
 			echo json_encode($this -> data);
