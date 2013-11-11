@@ -9,7 +9,7 @@ var Target = function() {
 			$('#tblTarget').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null, {
+				}, {
 					"bSortable" : false
 				}, null, null, {
 					"bSortable" : false
@@ -142,6 +142,7 @@ var Target = function() {
 				$('#end_date').val("");
 				$('#description').val("");
 				$('#targetId').val("");
+				$("#submitTarget").text("Add Target");
 				$('.alert-error', $('#form_target')).hide();
 				$("#form_target").validate().resetForm();
   				$(".error").removeClass("error");
@@ -180,6 +181,7 @@ function updatetarget(targetid) {
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#targetId').val(json.target[0].targetId);
+				$("#submitTarget").text("Update Target");
 			}
 		}
 	});

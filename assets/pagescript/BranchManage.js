@@ -178,6 +178,7 @@ var Branch = function() {
 				$('#longitude').val("");
 				$('#latitude').val("");
 				$('#branchId').val("");
+				$("#submitBranch").text("Add Branch");
 				$('.alert-error', $('#form_branch')).hide();
 				$("#form_branch").validate().resetForm();
   				$(".error").removeClass("error");
@@ -227,6 +228,9 @@ function updatebranch(branchid) {
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#branchId').val(json.branch[0].branchId);
+				$("#submitBranch").text("Add Branch");
+				$("#submitBranch").text("Update Branch");
+				map = Branch.init_google();
 			}
 		}
 	});

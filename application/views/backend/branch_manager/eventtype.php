@@ -50,9 +50,7 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tbleventtype">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tbleventtype .checkboxes" />
-												</th>
+												
 												<th>Event Type Name</th>
 												<th >View</th>
 											</tr>
@@ -61,12 +59,9 @@
 											<?php
 											if (isset($eventtype)) {
 												foreach ($eventtype as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
-
+													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->eventTypeName} </td>
-<td ><span class=\"label label-success\" onclick='updateeventtype(\"{$key->eventTypeId}\");' >Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin_branch_manager/delete_eventtype/{$key->eventTypeId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updateeventtype(\"{$key->eventTypeId}\");' >Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin_branch_manager/delete_event_type/{$key->eventTypeId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -79,7 +74,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_eventtype');
-							echo form_open('admin_branch_manager/eventtype', $attributes);
+							echo form_open('admin_branch_manager/event_type', $attributes);
  ?>
 							<!--<form class="form-horizontal span12 widget shadowed green" id="form_eventtype">-->
 								<div class="alert alert-error hide">
@@ -104,7 +99,7 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="submitEventType" id="submitEventType">
-											Register
+											Create Event Type
 										</button>
 									</div><!--/ Form Action -->
 								</div>

@@ -9,7 +9,7 @@ var City = function() {
 			$('#tblcity').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null,null],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -102,6 +102,7 @@ var City = function() {
 				$('#city_name').val("");
 				$('#state_id option:nth(0)').attr("selected", "selected");
 				$('#cityId').val("");
+				$("#submitCity").text("Add City");
 				$('.alert-error', $('#form_city')).hide();
 				$("#form_city").validate().resetForm();
   				$(".error").removeClass("error");
@@ -123,6 +124,7 @@ function updatecity(cityid) {
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#cityId').val(json.city[0].cityId);
+				$("#submitCity").text("Update City");
 			}
 		}
 	});

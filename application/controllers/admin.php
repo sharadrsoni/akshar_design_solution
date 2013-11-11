@@ -61,7 +61,7 @@ class Admin extends CI_Controller {
 	}
 
 	//Course Category
-	public function coursecategory($coursecategoryId = '') {
+	public function course_category($coursecategoryId = '') {
 		$this -> load -> model("course_category_model");
 		if ($coursecategoryId != '') {
 			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsByCourseCategory($coursecategoryId);
@@ -80,7 +80,7 @@ class Admin extends CI_Controller {
 				} else {
 					$coursecategoryData = array('courseCategoryName' => $_POST['coursecategory_name']);
 					if ($_POST['coursecategoryId'] != "" ? $this -> course_category_model -> updatecoursecategory($coursecategoryData,$_POST['coursecategoryId']) : $this -> course_category_model -> addcoursecategory($coursecategoryData)) {
-						redirect(base_url() . "admin/coursecategory");
+						redirect(base_url() . "admin/course_category");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
 					}
@@ -93,10 +93,10 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function delete_coursecategory($coursecategoryId) {
+	public function delete_course_category($coursecategoryId) {
 		$this -> load -> model('course_category_model');
 		$this -> course_category_model -> deleteCoursecategory($coursecategoryId);
-		redirect(base_url() . "admin/coursecategory");
+		redirect(base_url() . "admin/course_category");
 	}
 
 	//Course
@@ -192,7 +192,7 @@ class Admin extends CI_Controller {
 	}
 
 	//Target Type
-	public function targettype($trgettypeId = '') {
+	public function target_type($trgettypeId = '') {
 		$this -> load -> model("target_type_model");
 		if ($trgettypeId != '') {
 			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
@@ -211,7 +211,7 @@ class Admin extends CI_Controller {
 				} else {
 					$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
 					if ($_POST['trgettypeId'] != "" ? $this -> target_type_model -> updatetargettype($targettypeData, $_POST['trgettypeId']) : $this -> target_type_model -> addtargettype($targettypeData)) {
-						redirect(base_url() . "admin/targettype");
+						redirect(base_url() . "admin/target_type");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
 					}
@@ -224,10 +224,10 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function delete_targettype($targettypeId) {
+	public function delete_target_type($targettypeId) {
 		$this -> load -> model('target_type_model');
 		$this -> target_type_model -> deleteTargettype($targettypeId);
-		redirect(base_url() . "admin/targettype");
+		redirect(base_url() . "admin/target_type");
 	}
 
 	//Target

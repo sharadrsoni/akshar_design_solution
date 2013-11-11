@@ -50,9 +50,6 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblCourseCategory">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblCourseCategory .checkboxes" />
-												</th>
 												<th>CourseCategory Name</th>
 												<th >View</th>
 											</tr>
@@ -61,12 +58,9 @@
 											<?php
 											if (isset($coursecategory)) {
 												foreach ($coursecategory as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
-
+													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->courseCategoryName} </td>
-<td ><span class=\"label label-success\" onclick='updatecoursecategory(\"{$key->courseCategoryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_coursecategory/{$key->courseCategoryId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatecoursecategory(\"{$key->courseCategoryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_course_category/{$key->courseCategoryId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -79,7 +73,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_coursecategory');
-							echo form_open('admin/coursecategory', $attributes);
+							echo form_open('admin/course_category', $attributes);
  ?>
 							<!-- <form class="form-horizontal span12 widget shadowed yellow" id="form_coursecategory"> -->
 								<div class="alert alert-error hide">

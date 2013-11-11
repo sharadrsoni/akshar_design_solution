@@ -32,7 +32,7 @@ class Admin_branch_manager extends CI_Controller {
 				} else {
 					$eventtypeData = array('eventTypeName' => $_POST['eventtype_name']);
 					if ($_POST['eventtypeId'] != "" ? $this -> event_type_model -> updateeventtype($eventtypeData, $_POST['eventtypeId']) : $this -> event_type_model -> addeventtype($eventtypeData)) {
-						redirect(base_url() . "admin_branch_manager/eventtype");
+						redirect(base_url() . "admin_branch_manager/event_type");
 					} else {
 						$data['error'] = "An Error Occured.";
 					}
@@ -48,7 +48,7 @@ class Admin_branch_manager extends CI_Controller {
 	public function delete_event_type($eventtypeId) {
 		$this -> load -> model('event_type_model');
 		$this -> event_type_model -> deleteEventtype($eventtypeId);
-		redirect(base_url() . "admin_branch_manager/eventtype");
+		redirect(base_url() . "admin_branch_manager/event_type");
 	}
 
 }

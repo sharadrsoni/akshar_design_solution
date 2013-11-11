@@ -50,9 +50,6 @@
 									<table class="table table-striped table-bordered table-hover" id="tblTarget">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th class="hidden-480">Target Name</th>
 												<th class="hidden-480">Start Date</th>
 												<th class="hidden-480">End Date</th>
@@ -65,9 +62,7 @@
 											<?php
 											if (isset($target)) {
 												foreach ($target as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
+													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->targetSubject}</td>
 <td class=\"hidden-480\">{$key->targetStartDate}</td>
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
@@ -173,7 +168,7 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary"  name="submitTarget" id="submitTarget">
-											Create
+											Add Target
 										</button>
 									</div><!--/ Form Action -->
 								</div>
