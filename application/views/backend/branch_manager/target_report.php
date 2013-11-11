@@ -72,7 +72,7 @@
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetTypeName}</td>
 <td class=\"hidden-480\">{$key->targetIsAchieved}</td>
-<td ><span class=\"label label-success\"><a href=\"#tab2\" data-toggle=\"tab\" id=\"tab2link\" target_report='{$key->targetId}'s><span class=icon icone-pencil></span> Submit Report</a></span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_taget/{$key->targetId}'>Edit</span></td>
+<td ><span class=\"label label-success\" onclick='updatetarget(\"{$key->targetId}\");' >Submit Report</span><span class=icon icone-pencil></span></td>
 </tr>";
 												}
 											}
@@ -83,7 +83,15 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport">
+							
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_target_report');
+							echo form_open('branch_manager/targetreport', $attributes);
+							 ?>
+	
+							
+							
+							<!-- <form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport"> -->
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -95,15 +103,36 @@
 
 								<div class="body-inner">
 									<h3 class="form-section">Target Report </h3>
-
+									<!-- Target Name-->
+									<div class="control-group">
+										<label class="control-label">Target Name</label>
+										<div class="controls">
+											<lable><div id="target_name"></div></lable>
+										</div>
+									</div><!--/ Target Name	 -->
 									<!-- Description -->
 									<div class="control-group">
-										<label class="control-label">Description<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="description" id="description" class="span8" row=3/>
-										</div>
+										<label class="control-label">Description</label>
+										<lable><div id="description"></div></lable>
 									</div>
 									<!--/ Description         -->
+									
+									<!-- Start Date -->
+									<div class="control-group">
+										<label class="control-label">Start Date</label>
+										<div class="controls">
+											<lable><div id="start_date"></div>	</lable>
+										</div>
+									</div><!--/ Start Date -->
+
+									<!-- End Date -->
+									<div class="control-group">
+										<label class="control-label">End Date</label>
+										<div class="controls">
+											<lable><div id="end_date"></div></lable>
+										</div>
+									</div><!--/ End Date -->
+
 									<!-- date -->
 									<div class="control-group">
 										<label class="control-label">Date<span class="required">*</span></label>
@@ -114,7 +143,15 @@
 											</div>
 										</div>
 									</div><!--/ date -->
-									<input type="hidden" id="target_id" name="target_id"/>
+									
+									<!-- Report Description -->
+									<div class="control-group">
+										<label class="control-label">Report Description<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="report_description" id="report_description" class="span8"/>
+										</div>
+									</div><!--/ Description	 -->
+									<input type="hidden" id="targetId" name="targetId"/>
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" id="addreport" name="addreport">
@@ -130,6 +167,74 @@
 					</div>
 				</div>
 				<!--/ End Tabs -->
+				
+				<!--View Target Report -->
+				<div class="form-horizontal form-view" id="ViewBatch">
+												<h3> View Target Report</h3>
+												<h3 class="form-section">Target Info</h3>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" for="firstName">Target Name</label>
+															<div class="controls">
+																<span class="text" id="target_name"></span>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+												<!--/row-->
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Description:</label>
+															<div class="controls">
+																<span class="text" id="description"></span> 
+															</div>
+														</div>
+													</div>
+													
+												</div>
+												<!--/row-->        
+												
+											              
+												<h3 class="form-section">Dates</h3>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Start Date:</label>
+															<div class="controls">
+																<span class="text" id="start_date"></span>
+															</div>
+														</div>
+													</div>
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">End Date:</label>
+															<div class="controls">
+																<span class="text" id="end_date"></span>
+															</div>
+														</div>
+													</div>
+												
+													
+												</div>
+												<!--/row-->           
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Status:</label>
+															<div class="controls">
+																<span class="text" id="status"></span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													
+												</div>
+				</div><!-- End View Targer Report -->
+				
+				
 			</div>
 			<!--/ END Row -->
 		</div>

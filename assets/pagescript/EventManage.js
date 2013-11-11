@@ -220,6 +220,61 @@ var Event = function() {
 					disabled : "danger"
 				}
 			});
+			$("#tablink2").click(function() {
+				$('#event_name').val("");
+				$('#event_type_id option:nth(0)').attr("selected", "selected");
+				$('#start_date').val("");
+				$('#end_date').val("");
+				$('#description').val("");
+				$('#street_1').val("");
+				$('#street_2').val("");
+				$('#state option:nth(0)').attr("selected", "selected");
+				$('#city option:nth(0)').attr("selected", "selected");
+				$('#pin_code').val("");
+				$('#organize_by').val("");
+				$('#faculty_id option:nth(0)').attr("selected", "selected");
+				$('#eventId').val("");
+			});
 		}
 	};
 }();
+function viewevent(eventid) {
+	$.ajax({
+		url : "event/" + eventid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+
+			}
+		}
+	});
+}
+
+function updateevent(eventid) {
+	$.ajax({
+		url : "event/" + eventid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#event_name').val(json.event[0].eventName);
+				$('#event_type_id').val(json.event[0].eventTypeId);
+				$('#start_date').val(json.event[0].eventStartDate);
+				$('#end_date').val(json.event[0].eventEndDate);
+				$('#description').val(json.event[0].eventDescription);
+				$('#street_1').val(json.event[0].eventStreet1);
+				$('#street_2').val(json.event[0].eventStreet2);
+				$('#state').val(json.event[0].eventState);
+				$('#city').val(json.event[0].eventCity);
+				$('#pin_code').val(json.event[0].eventPincode);
+				$('#organize_by').val(json.event[0].eventOrganizerName);
+				$('#faculty_id').val(json.event[0].facultyId);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#eventId').val(json.event[0].eventId);
+			}
+		}
+	});
+}

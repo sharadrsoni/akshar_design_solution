@@ -4,18 +4,13 @@
 
 class state_model extends CI_Model {
 
-	public function getDetailsBystate() {
-
-		//$this -> db -> where("inquiry.inquirybranchId", $branchId);
-		$this -> db -> from('state');
-		
-		return $this -> db -> get() -> result();
-
+	public function getDetailsOfState() {
+		return $this -> db -> get('state') -> result();
 	}
 	
-	public function getAllDetails()
-	{
-		return $this->db->get("state")->result();
+	public function getDetailsByState($stateId) {
+		$this -> db -> where('stateId', $stateId);
+		return $this -> db -> get('state') -> result();
 	}
 	
 	public function deleteState($stateId) {
@@ -31,6 +26,15 @@ class state_model extends CI_Model {
 	public function addstate($data) {
 		if(isset($data)) {
 			return $this->db->insert('state', $data);
+		} else {
+			return false;
+		}
+	}
+	
+	public function updatestate($data,$stateId) {
+		if(isset($data) && isset($stateId)) {
+			$this -> db -> where('stateId', $stateId);
+			return $this->db->update('state', $data);
 		} else {
 			return false;
 		}

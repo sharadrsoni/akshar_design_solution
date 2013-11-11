@@ -4,14 +4,15 @@
 
 class event_type_model extends CI_Model {
 
-	public function getDetailsByeventtype() {
-
-		//$this -> db -> where("inquiry.inquirybranchId", $branchId);
-		$this -> db -> from('event_type');
-		
-		return $this -> db -> get() -> result();
-
+	public function getDetailsOfEventType() {
+		return $this -> db -> get('event_type') -> result();
 	}
+	
+	public function getDetailsByEventType($eventtypeId) {
+		$this -> db -> where('eventTypeId', $eventtypeId);
+		return $this -> db -> get('event_type') -> result();
+	}
+	
 	public function deleteEventtype($eventtypeId) {
 		if (isset($eventtypeId)) {
 			$this -> db -> where('eventTypeId', $eventtypeId);
@@ -29,5 +30,15 @@ class event_type_model extends CI_Model {
 			return false;
 		}
 	}
+	
+	public function updateeventtype($data,$eventtypeId) {
+		if(isset($data) && isset($eventtypeId)) {
+			$this -> db -> where('eventTypeId', $eventtypeId);
+			return $this->db->update('event_type', $data);
+		} else {
+			return false;
+		}
+	}
+	
 }
 ?>

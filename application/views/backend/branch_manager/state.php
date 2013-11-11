@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>State</a>
+							<a href="#tab1" id="tablink1"  data-toggle="tab"><span class="icon icone-eraser"></span>State</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span>Add State</a>
+							<a href="#tab2" id="tablink2"  data-toggle="tab"><span class="icon icone-pencil"></span>Add State</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -58,20 +58,19 @@
 											</tr>
 										</thead>
 										<tbody>
-													<?php
-											if (isset($state_list)) {
-												foreach ($state_list as $key) {
+											<?php
+											if (isset($state)) {
+												foreach ($state as $key) {
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
 
 <td class=\"hidden-480\">{$key->stateName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_state/{$key->stateId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatestate(\"{$key->stateId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_state/{$key->stateId}'>Delete</span></td></tr>
 ";
 												}
 											}
 											?>
-										
 										</tbody>
 									</table>
 								</div>
@@ -80,47 +79,44 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_state');
-							echo form_open('branch_manager/state', $attributes);
- ?>
-			<!--				<form class="form-horizontal span12 widget shadowed green" id="form_state"> -->
-								<div class="alert alert-error hide">
-									<button class="close" data-dismiss="alert"></button>
-									You have some form errors. Please check below.
-								</div>
-								<div class="alert alert-success hide">
-									<button class="close" data-dismiss="alert"></button>
-									Your form validation is successful!
-								</div>
-
-								<div class="body-inner">
-									<h3 class="form-section">State Info.</h3>
-									<!-- State Name -->
-									<div class="control-group">
-										<label class="control-label">State Name<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="state_name" id="state_name" class="span8">
-										</div>
-									</div><!--/ State Name -->
-
-									<!-- Form Action -->
-									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
-											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
-										</button>
-									</div><!--/ Form Action -->
-								</div>
-								</form>
+							echo form_open('admin/state', $attributes);
+							?>
+							<!--				<form class="form-horizontal span12 widget shadowed green" id="form_state"> -->
+							<div class="alert alert-error hide">
+								<button class="close" data-dismiss="alert"></button>
+								You have some form errors. Please check below.
 							</div>
+							<div class="alert alert-success hide">
+								<button class="close" data-dismiss="alert"></button>
+								Your form validation is successful!
+							</div>
+
+							<div class="body-inner">
+								<h3 class="form-section">State Info.</h3>
+								<!-- State Name -->
+								<div class="control-group">
+									<label class="control-label">State Name<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" name="state_name" id="state_name" class="span8">
+									</div>
+								</div><!--/ State Name -->
+								<input type="hidden" name="stateId" id="stateId" value="" />
+								<!-- Form Action -->
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary" name="submitState" id="submitState">
+										Register
+									</button>
+								</div><!--/ Form Action -->
+							</div>
+							</form>
 						</div>
 					</div>
-					<!--/ End Tabs -->
 				</div>
-				<!--/ END Row -->
+				<!--/ End Tabs -->
 			</div>
-			<!--Page Content End  -->
+			<!--/ END Row -->
 		</div>
-		<!--/ END Content -->
+		<!--Page Content End  -->
+	</div>
+	<!--/ END Content -->
 </section>

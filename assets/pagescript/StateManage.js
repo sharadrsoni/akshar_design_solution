@@ -93,6 +93,33 @@ var State = function() {
 					error1.hide();
 				}
 			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#state_name').val("");
+				$('#stateId').val("");
+				$('.alert-error', $('#form_state')).hide();
+				$("#form_state").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updatestate(stateid) {
+	$.ajax({
+		url : "state/" + stateid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#state_name').val(json.state[0].stateName);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#stateId').val(json.state[0].stateId);
+			}
+		}
+	});
+}

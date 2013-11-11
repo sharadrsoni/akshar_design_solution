@@ -11,5 +11,6 @@
 		App.init();
 		EventType.init_table();
 		EventType.init_formvalidation();
+		EventType.init_uijquery();
 	}); 
 </script>

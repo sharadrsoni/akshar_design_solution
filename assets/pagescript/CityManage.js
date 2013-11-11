@@ -96,6 +96,35 @@ var City = function() {
 					error1.hide();
 				}
 			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#city_name').val("");
+				$('#state_id option:nth(0)').attr("selected", "selected");
+				$('#cityId').val("");
+				$('.alert-error', $('#form_city')).hide();
+				$("#form_city").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updatecity(cityid) {
+	$.ajax({
+		url : "city/" + cityid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#city_name').val(json.city[0].cityName);
+				$('#state_id').val(json.city[0].stateid);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#cityId').val(json.city[0].cityId);
+			}
+		}
+	});
+}

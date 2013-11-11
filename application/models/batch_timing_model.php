@@ -48,6 +48,14 @@ class batch_timing_model extends CI_Model {
 			return null;
 		}
 	}
+	
+	public function getBatchTiming($batchId) {
+		if (isset($batchId)) {
+			return $this -> db -> where("batchId", $batchId) -> get("batch_timing") -> result();
+		} else {
+			return null;
+		}
+	}
 
 	public function addBatchTime($data) {
 		if (isset($data)) {

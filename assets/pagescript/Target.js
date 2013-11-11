@@ -134,6 +134,54 @@ var Target = function() {
 			$("#end_date_datepicker .add-on").click(function() {
 				$("#end_date_datepicker input").datepicker("show");
 			});
+			$("#tablink2").click(function() {
+				$('#branch').val("");
+				$('#target_name').val("");
+				$('#target_type').val("");
+				$('#start_date').val("");
+				$('#end_date').val("");
+				$('#description').val("");
+				$('#targetId').val("");
+				$('.alert-error', $('#form_target')).hide();
+				$("#form_target").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function viewtarget(targetid) {
+	$.ajax({
+		url : "target/" + branchid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				
+			}
+		}
+	});
+}
+
+function updatetarget(targetid) {
+	$.ajax({
+		url : "target/" + targetid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#branch').val(json.target[0].branchId);
+				$('#target_name').val(json.target[0].targetSubject);
+				$('#target_type').val(json.target[0].targetTypeId);
+				$('#start_date').val(json.target[0].targetStartDate);
+				$('#end_date').val(json.target[0].targetEndDate);
+				$('#description').val(json.target[0].targetDescription);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#targetId').val(json.target[0].targetId);
+			}
+		}
+	});
+}

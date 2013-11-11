@@ -5,14 +5,13 @@ if (!defined('BASEPATH'))
 class branch_model extends CI_Model {
 
 	public function getDetailsOfBranch() {
-
+		return $this->db->get("branch")->result();
+	}
+	
+	public function getDetailsByBranch($branchId) {
+		$this -> db -> where("branchId", $branchId);
 		$this -> db -> from('branch');
 		return $this -> db -> get() -> result();
-
-	}
-
-	public function getAllDetails() {
-		return $this -> db -> get("branch") -> result();
 	}
 
 	public function addBranch($data) {
@@ -31,5 +30,13 @@ class branch_model extends CI_Model {
 			}
 	}
 
+	public function updateBranch($data,$branchId) {
+		if (isset($data) && isset($branchId)) {
+			$this -> db -> where('branchId',$branchId);
+			return $this -> db -> update('branch', $data);
+		} else {
+			return false;
+		}
+	}
 }
 ?>

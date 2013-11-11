@@ -93,6 +93,33 @@ var EventType = function() {
 					error1.hide();
 				}
 			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#eventtype_name').val("");
+				$('#eventtypeId').val("");
+				$('.alert-error', $('#form_eventtype')).hide();
+				$("#form_eventtype").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updateeventtype(eventtypeid) {
+	$.ajax({
+		url : "eventtype/" + eventtypeid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#eventtype_name').val(json.eventtype[0].eventTypeName);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#eventtypeId').val(json.eventtype[0].eventTypeId);
+			}
+		}
+	});
+}

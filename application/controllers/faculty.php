@@ -6,10 +6,16 @@ if (!defined('BASEPATH'))
  */
 class Faculty extends CI_Controller {
 	
+	function __construct() {
+		parent::__construct();
+		$users = array(3);
+		parent::authenticate($users);
+	}
+	
 	//Dashboard
 	public function index() {
 		$data['title'] = "ADS | Dashboard";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top',$this->data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/dashboard');
@@ -21,7 +27,7 @@ class Faculty extends CI_Controller {
 	//Student attendance 
 	public function studentattendance() {
 		$data['title'] = "ADS | Student Attendance";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/student_attendance_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/student_attendance');
@@ -33,7 +39,7 @@ class Faculty extends CI_Controller {
 	//Test & Marks 
 	public function test() {
 		$data['title'] = "ADS | Test";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/test_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/test');
