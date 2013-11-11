@@ -191,7 +191,7 @@ class Admin extends CI_Controller {
 			}
 		}
 
-		$this -> load -> view('backend/branch_manager/targettype', $data);
+		$this -> load -> view('backend/branch_manager/targettype', $this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/targettype_js');
 		$this -> load -> view('backend/master_page/bottom');
