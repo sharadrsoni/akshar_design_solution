@@ -136,7 +136,7 @@ var GMaps = (function(global) {
   var doc = document;
 
   var GMaps = function(options) {
-    options.zoom = options.zoom || 15;
+    options.zoom = options.zoom ||8;
     options.mapType = options.mapType || 'roadmap';
 
     var self = this,
@@ -1966,3 +1966,22 @@ if (!Array.prototype.indexOf) {
       return -1;
   }
 }
+
+var map;
+			$(document).ready(function(){
+			  map = new GMaps({
+				div: '#map',
+	            lat: 22.7300,
+				lng: 71.5100,
+			  });
+			   var marker = map.addMarker({
+		            lat: 22.7300,
+					lng: 71.5100,
+		            title: 'ADS Centre',
+		            infoWindow: {
+		                content: "<b>ADS Centre</b> 795 Park Ave, Suite 120<br>San Francisco, CA 94107"
+		            }
+		        });
+
+			   marker.infoWindow.open(map, marker);
+			});
