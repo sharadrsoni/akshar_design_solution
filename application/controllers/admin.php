@@ -170,10 +170,38 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/targettype_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/targettype');
+		$this -> load -> model("target_type_model");
+		//Logic of getting Target Type data
+		$targettype_data = $this -> target_type_model -> getDetailsOfTargetType();
+		$data['targettype_list'] = $targettype_data;
+	   if (isset($_POST['register'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
+		
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$this -> load -> model('target_type_model');
+				$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
+
+			}
+			if ($this -> target_type_model -> addtargettype($targettypeData)) {
+				redirect(base_url() . "admin/targettype");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+		}
+
+		$this -> load -> view('backend/branch_manager/targettype', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/targettype_js');
 		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function delete_targettype($targettypeId) {
+		$this -> load -> model('target_type_model');
+		$this -> target_type_model -> deleteTargettype($targettypeId);
+		redirect(base_url() . "admin/targettype");
 	}
 
 	//Target

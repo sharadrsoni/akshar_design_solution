@@ -193,6 +193,91 @@
 					</div>
 				</div>
 				<!--/ End Tabs -->
+				
+				<!--View Branch -->
+				<div class="form-horizontal form-view" id="ViewBatch">
+												<h3> Branch View</h3>
+												<h3 class="form-section">Branch Info</h3>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" for="firstName">Branch Name:</label>
+															<div class="controls">
+																<span class="text">Ahmedabad Branch</span>
+															</div> 
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+												
+													<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" for="firstName">Contact No.:</label>
+															<div class="controls">
+																<span class="text">09999999999</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+										               
+												<h3 class="form-section">Address</h3>
+												<div class="row-fluid">
+													<div class="span12 ">
+														<div class="control-group">
+															<label class="control-label">Street:</label>
+															<div class="controls">
+																<span class="text">#24 Sun Park Avenue, Rolton Str</span>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">City:</label>
+															<div class="controls">
+																<span class="text">New York</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6">
+														<div class="control-group">
+															<label class="control-label">State:</label>
+															<div class="controls">
+																<span class="text">New York</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->           
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Post Code:</label>
+															<div class="controls">
+																<span class="text">457890</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label">Country:</label>
+															<div class="controls">
+																<span class="text">USA</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+				</div><!-- End View Branch -->
+				
 			</div>
 			<!--/ END Row -->
 		</div>

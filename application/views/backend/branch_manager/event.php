@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Events</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Events</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Event</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Event</a>
 						</li>
 						<li class="">
 							<a href="#tab3" data-toggle="tab"><span class="icon icone-pencil"></span> Add Event Attendance</a>
@@ -67,8 +67,8 @@
 										</thead>
 										<tbody>
 											<?php
-											if (isset($event_list)) {
-												foreach ($event_list as $key) {
+											if (isset($event)) {
+												foreach ($event as $key) {
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
@@ -78,7 +78,7 @@
 <td class=\"hidden-480\">{$key->eventDescription}</td>
 <td class=\"hidden-480\">{$key->eventStartDate}</td>
 <td class=\"hidden-480\">{$key->eventEndDate}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_event/{$key->eventId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updateevent(\"{$key->eventId}\");'>Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_event/{$key->eventId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -174,65 +174,38 @@
 										<input type="text" name="street_2" id="street_2" class="span8"/>
 									</div>
 								</div><!--/ Street -->
-								<!-- City -->
-								<div class="control-group">
-									<label class="control-label">City<span class="required">*</span></label>
-									<div class="controls">
-										<input type="text" name="city" id="city" class="span8"/>
-									</div>
-								</div><!--/ City -->
 								<!-- State -->
 								<div class="control-group">
-									<label class="control-label">State<span class="required">*</span></label>
+									<label class="control-label">State/City<span class="required">*</span></label>
 									<div class="controls">
 										<div class="span4">
 											<select class="span12" name="state" id="state">
 												<option value="">Select...</option>
-												<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-												<option value="Andhra Pradesh">Andhra Pradesh</option>
-												<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-												<option value="Assam">Assam</option>
-												<option value="Bihar">Bihar</option>
-												<option value="Chandigarh">Chandigarh</option>
-												<option value="Chhattisgarh">Chhattisgarh</option>
-												<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-												<option value="Daman and Diu">Daman and Diu</option>
-												<option value="Delhi">Delhi</option>
-												<option value="Goa">Goa</option>
-												<option value="Gujarat">Gujarat</option>
-												<option value="Haryana">Haryana</option>
-												<option value="Himachal Pradesh">Himachal Pradesh</option>
-												<option value="Jammu and Kashmir">Jammu and Kashmir</option>
-												<option value="Jharkhand">Jharkhand</option>
-												<option value="Karnataka">Karnataka</option>
-												<option value="Kerala">Kerala</option>
-												<option value="Lakshadweep">Lakshadweep</option>
-												<option value="Madhya Pradesh">Madhya Pradesh</option>
-												<option value="Maharashtra">Maharashtra</option>
-												<option value="Manipur">Manipur</option>
-												<option value="Meghalaya">Meghalaya</option>
-												<option value="Mizoram">Mizoram</option>
-												<option value="Nagaland">Nagaland</option>
-												<option value="Orissa">Orissa</option>
-												<option value="Pondicherry">Pondicherry</option>
-												<option value="Punjab">Punjab</option>
-												<option value="Rajasthan">Rajasthan</option>
-												<option value="Sikkim">Sikkim</option>
-												<option value="Tamil Nadu">Tamil Nadu</option>
-												<option value="Tripura">Tripura</option>
-												<option value="Uttaranchal">Uttaranchal</option>
-												<option value="Uttar Pradesh">Uttar Pradesh</option>
-												<option value="West Bengal">West Bengal</option>
+												<option value="Category 1">Category 1</option>
+												<option value="Category 2">Category 2</option>
+												<option value="Category 3">Category 5</option>
+												<option value="Category 4">Category 4</option>
 											</select>
 										</div>
 										<div class="span4">
-											<input type="text" name="pin_code" id="pin_code" class="span12"/>
+											<select class="span12" name="city" id="city">
+												<option value="">Select...</option>
+												<option value="Category 1">Category 1</option>
+												<option value="Category 2">Category 2</option>
+												<option value="Category 3">Category 5</option>
+												<option value="Category 4">Category 4</option>
+											</select>
 										</div>
 									</div>
 								</div><!--/ State -->
-
+								<!-- Postal Code -->
+								<div class="control-group">
+									<label class="control-label">Postal Code<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" name="pin_code" id="pin_code" class="span8"/>
+									</div>
+								</div><!--/ Postal Code -->
 								<h3 class="form-section">Other Info</h3>
-
 								<!-- Organize By -->
 								<div class="control-group">
 									<label class="control-label">Organize By<span class="required">*</span></label>
@@ -255,13 +228,11 @@
 										</select>
 									</div>
 								</div><!--/ Faculty -->
+								<input type="hidden" name="eventId" id="eventId" value="" />
 								<!-- Form Action -->
 								<div class="form-actions">
-									<button type="submit" class="btn btn-primary" name="create" id="create">
+									<button type="submit" class="btn btn-primary" name="submitEvent" id="submitEvent">
 										Create
-									</button>
-									<button type="button" class="btn">
-										Cancel
 									</button>
 								</div><!--/ Form Action -->
 							</div>
@@ -332,7 +303,7 @@
 									</table>
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" id="submitEventAttendance" name="submitEventAttendance" class="btn btn-primary">
 											Register
 										</button>
 									</div><!--/ Form Action -->
