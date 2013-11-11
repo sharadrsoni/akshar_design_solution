@@ -6,6 +6,11 @@ if (!defined('BASEPATH'))
  */
 class Staff extends CI_Controller {
 		
+			function __construct() {
+		parent::__construct();
+		parent::authenticate(1);
+	}
+		
 	//Search
 	public function search() {
 		$data['title'] = "ADS | Search";
