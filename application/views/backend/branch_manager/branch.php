@@ -74,6 +74,55 @@
 									</table>
 								</div>
 							</div>
+							
+							<!--View Branch -->
+				<div class="span9">
+								<div class="row-fluid">
+									<div class="span5 profile-info">
+
+										
+										<div class="">
+											<address>
+												<strong>Name</strong>
+												<br>
+												<lable id="view_branch_name"></lable>
+											</address>
+											<h5>Address</h5>
+											<address id="view_address">
+												
+												
+											</address>
+											
+										</div>
+
+										
+									</div>
+									<!--end span5-->
+									<div class="span5 profile-info">
+
+										
+										<div class="">
+											<address>
+												<strong>Contact No.</strong>
+												<br>
+												<lable id="view_conatct_no"></lable>
+											</address>
+											
+											
+										</div>
+
+										
+									</div>
+
+									<!--end span5-->
+								</div>
+								<!--end row-fluid-->
+								
+								<div class="row-fluid" style="height:20px;"></div>
+							</div>
+							<!--end span9-->
+				<!-- End View Branch -->
+							
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
@@ -194,81 +243,7 @@
 				</div>
 				<!--/ End Tabs -->
 				
-				<!--View Branch -->
-				<div class="form-horizontal form-view" id="ViewBatch">
-												<h3> Branch View</h3>
-												<h3 class="form-section">Branch Info</h3>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">Branch Name:</label>
-															<div class="controls">
-																<span class="text" id="branch_name"></span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-												
-													<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">Contact No.:</label>
-															<div class="controls">
-																<span class="text" id="conatct_no"></span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-										               
-												<h3 class="form-section">Address</h3>
-												<div class="row-fluid">
-													<div class="span12 ">
-														<div class="control-group">
-															<label class="control-label">Street:</label>
-															<div class="controls">
-																<span class="text" id="street_1" ></span>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">City:</label>
-															<div class="controls">
-																<span class="text" id="city"></span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6">
-														<div class="control-group">
-															<label class="control-label">State:</label>
-															<div class="controls">
-																<span class="text" id="state"></span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->           
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Post Code:</label>
-															<div class="controls">
-																<span class="text" id="pin_code"></span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													
-												</div>
-				</div><!-- End View Branch -->
+				
 				
 			</div>
 			<!--/ END Row -->
