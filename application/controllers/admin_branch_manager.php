@@ -8,7 +8,8 @@ class Admin_branch_manager extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(1);
+		$users = array(1, 2);
+		parent::authenticate($users);
 	}
 
 	//Staff

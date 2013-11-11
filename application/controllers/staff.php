@@ -8,7 +8,8 @@ class Staff extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(1);
+		$users = array(1, 2, 3, 4);
+		parent::authenticate($users);
 	}
 
 	//Search
@@ -24,7 +25,7 @@ class Staff extends CI_Controller {
 	}
 
 	//Send Notification
-	public function sendnotification() {
+	public function send_notification() {
 		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/sendnotification_css');

@@ -8,9 +8,9 @@ class Faculty extends CI_Controller {
 	
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(2);
+		$users = array(3);
+		parent::authenticate($users);
 	}
-	 
 	
 	//Dashboard
 	public function index() {

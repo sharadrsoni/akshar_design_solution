@@ -6,7 +6,8 @@ class Branch_manager extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(2);
+		$users = array(2);
+		parent::authenticate($users);
 	}
 
 	//Dashboard
