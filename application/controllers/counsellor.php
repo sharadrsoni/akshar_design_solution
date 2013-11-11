@@ -4,7 +4,15 @@ if (!defined('BASEPATH'))
 /**
  *
  */
-class Staff extends CI_Controller {
+class Counsellor extends CI_Controller {
+		
+		
+		function __construct() {
+		parent::__construct();
+		$users = array(4);
+		parent::authenticate($users);
+	}
+		
 		
 	//Dashboard
 	public function index() {

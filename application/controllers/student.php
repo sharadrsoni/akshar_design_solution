@@ -6,6 +6,12 @@ if (!defined('BASEPATH'))
  */
 class Student extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+		$users = array(5);
+		parent::authenticate($users);
+	}
+
 	//Dashboard
 	public function index() {
 		$data['title'] = "ADS | Dashboard";
@@ -18,7 +24,7 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	//Show marks 
+	//Show marks
 	public function showmarks() {
 		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $data);
@@ -30,7 +36,7 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	//Show Attendance 
+	//Show Attendance
 	public function showattendance() {
 		$data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $data);

@@ -5,7 +5,13 @@ if (!defined('BASEPATH'))
  *
  */
 class Staff extends CI_Controller {
-		
+
+	function __construct() {
+		parent::__construct();
+		$users = array(1, 2, 3, 4);
+		parent::authenticate($users);
+	}
+
 	//Search
 	public function search() {
 		$data['title'] = "ADS | Search";
@@ -16,10 +22,10 @@ class Staff extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/search_js');
 		$this -> load -> view('backend/master_page/bottom');
-	}	
+	}
 
 	//Send Notification
-	public function sendnotification() {
+	public function send_notification() {
 		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/sendnotification_css');
