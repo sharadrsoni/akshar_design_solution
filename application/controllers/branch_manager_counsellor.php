@@ -11,11 +11,6 @@ class Branch_manager_counsellor extends CI_Controller {
 		parent::authenticate($users);
 	}
 
-	function __construct() {
-		parent::__construct();
-		parent::authenticate(2);
-	}
-
 	//Random Password Genterator Function
 	function randomPassword() {
 		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
