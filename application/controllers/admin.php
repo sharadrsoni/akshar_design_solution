@@ -174,10 +174,10 @@ class Admin extends CI_Controller {
 		//Logic of getting Target Type data
 		$targettype_data = $this -> target_type_model -> getDetailsOfTargetType();
 		$data['targettype_list'] = $targettype_data;
-	   if (isset($_POST['register'])) {
+		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
-		
+
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
@@ -250,6 +250,22 @@ class Admin extends CI_Controller {
 		$this -> load -> model('target_model');
 		$this -> target_model -> deleteTarget($targetId);
 		redirect(base_url() . "admin/target");
+	}
+
+	//Staff
+	public function staff() {
+		$this -> data['title'] = "ADS | Staff";
+		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this -> load -> view('backend/css/staff_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> model("staff_model");
+		$roleId = 1;
+		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
+		$data['staff_list'] = $staffData;
+		$this -> load -> view('backend/branch_manager/staff', $data);
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/staff_js');
+		$this -> load -> view('backend/master_page/bottom');
 	}
 
 }

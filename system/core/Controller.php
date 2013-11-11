@@ -43,7 +43,7 @@ class CI_Controller {
 	public function authenticate($roleId) {
 		$isAuthenticated = false;
 		foreach ($roleId as $key) {
-			if ($this -> session -> userdata("roleId") == $roleId) {
+			if ($this -> session -> userdata("roleId") == $key) {
 				$this -> userId = $this -> session -> userdata("userId");
 				$this -> roleId = $this -> session -> userdata("roleId");
 				$this -> load -> model("user_model");
