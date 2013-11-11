@@ -50,34 +50,36 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblCourse">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblCourse .checkboxes" />
-												</th>
 												<th>Course Name</th>
 												<th class="hidden-480">Course Code</th>
 												<th class="hidden-480">Course Duration</th>
 												<th class="hidden-480">Course Category Id</th>
-												<th >View</th>
+												<th >Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="center hidden-480">12 Jan 2012</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											foreach ($course as $key) {
+												echo "<tr class=\"odd gradeX\">
+<td>{$key->courseName}</td>
+<td class=\"hidden-480\">{$key->courseCode}</td>
+<td class=\"hidden-480\">{$key->courseDuration}</td>
+<td class=\"hidden-480\">{$key->courseCategoryId}</td>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_course/{$key->courseCode}'>Delete</a></span></td></tr>
+";
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_course">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_course');
+							echo form_open('branch_manager/course', $attributes);
+							?>
+							
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -146,10 +148,10 @@
 									</div><!--/ Course Material Opening Stock -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" class="btn btn-primary" name="add_course" id="add_course">
+											Add Course
 										</button>
-										<button type="button" class="btn">
+										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
 											Cancel
 										</button>
 									</div><!--/ Form Action -->

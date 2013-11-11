@@ -66,8 +66,13 @@
 <td onclick='viewbranch(\"{$key->branchId}\");'>{$key->branchName}</td>
 <td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
+<<<<<<< HEAD
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_branch/{$key->branchId}'>Delete</a></span></td></tr>
+";
+=======
 <td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchId}\");'>Edit</span></td>
 </tr>";
+>>>>>>> upstream/master
 											}
 											?>
 										</tbody>
@@ -114,6 +119,16 @@
 												<span class="text" id="viewstreet_1" ></span>
 											</div>
 										</div>
+<<<<<<< HEAD
+									</div><!--/ StateState -->
+									<!-- Google Map LocationGoogle Map Location -->
+									<h3 class="form-section">Google Map Location</h3>
+									<div class="control-group">
+										<label class="control-label">longitude & latitude</span></label>
+										<div class="controls">
+											<div class="span4">
+												<input type="text" name="longitude " id="longitude" readonly class="span12"/>
+=======
 									</div>
 								</div>
 								<div class="row-fluid">
@@ -122,6 +137,7 @@
 											<label class="control-label">City:</label>
 											<div class="controls">
 												<label class="" id="viewcity"></label>
+>>>>>>> upstream/master
 											</div>
 										</div>
 									</div>
@@ -148,6 +164,18 @@
 									</div>
 									<!--/span-->
 
+<<<<<<< HEAD
+									<!-- Form Action -->
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary" name="add_branch" id="add_branch">
+											Add Branch
+										</button>
+										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
+											Cancel
+										</button>
+									</div><!--/ Form Action -->
+=======
+>>>>>>> upstream/master
 								</div>
 							</div><!-- End View Branch -->
 						</div>

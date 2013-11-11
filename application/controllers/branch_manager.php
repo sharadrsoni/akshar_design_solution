@@ -145,7 +145,7 @@ class Branch_manager extends CI_Controller {
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
 	}
-
+	
 	//Event
 	public function event($eventId = '') {
 		$this -> load -> model('event_model');
