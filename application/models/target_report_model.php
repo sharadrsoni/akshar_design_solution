@@ -12,10 +12,17 @@ class target_report_model extends CI_Model {
 
 	}
 
-	public function targetReport($data) {
+	public function addReport($data) {
 
+	if(isset($data))
+	{
 		$this -> db -> insert('target_report', $data);
 	}
+	else {
+		return false;
+	}
+	}
+	
 
 }
 ?>

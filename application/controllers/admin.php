@@ -96,12 +96,16 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/css/state_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> data['state'] = $this -> state_model -> getDetailsOfState();
-			if (isset($_POST['submitState'])) {
+			if (isset($_POST['submitState']))
+			 {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
-				if ($this -> form_validation -> run() == FALSE) {
+				if ($this -> form_validation -> run() == FALSE) 
+				{
 					$this -> data['validate'] = true;
-				} else {
+				}
+				 else 
+				{
 					$stateData = array('stateName' => $_POST['state_name']);
 					if ($_POST['stateId'] != "" ? $this -> state_model -> updatestate($stateData, $_POST['stateId']) : $this -> state_model -> addstate($stateData)) {
 						redirect(base_url() . "admin/state");
