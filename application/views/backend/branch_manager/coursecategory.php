@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Course Categories</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Course Categories</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course Category</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course Category</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -59,14 +59,14 @@
 										</thead>
 										<tbody>
 											<?php
-											if (isset($coursecategory_list)) {
-												foreach ($coursecategory_list as $key) {
+											if (isset($coursecategory)) {
+												foreach ($coursecategory as $key) {
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
 
 <td class=\"hidden-480\">{$key->courseCategoryName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_coursecategory/{$key->courseCategoryId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatecoursecategory(\"{$key->courseCategoryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_coursecategory/{$key->courseCategoryId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -100,14 +100,11 @@
 											<input type="text" name="coursecategory_name" id="coursecategory_name" class="span8">
 										</div>
 									</div><!--/ Course Category Name -->
-
+									<input type="hidden" name="coursecategoryId" id="coursecategoryId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
+										<button type="submit" class="btn btn-primary" name="submitCourseCategory" id="submitCourseCategory">
 											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

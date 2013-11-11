@@ -100,7 +100,6 @@ var EventType = function() {
 				$('#eventtypeId').val("");
 				$('.alert-error', $('#form_eventtype')).hide();
 				$("#form_eventtype").validate().resetForm();
-				$(".error").html('');
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});

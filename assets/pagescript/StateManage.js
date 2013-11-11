@@ -100,7 +100,6 @@ var State = function() {
 				$('#stateId').val("");
 				$('.alert-error', $('#form_state')).hide();
 				$("#form_state").validate().resetForm();
-				$(".error").html('');
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});

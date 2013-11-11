@@ -180,7 +180,6 @@ var Branch = function() {
 				$('#branchId').val("");
 				$('.alert-error', $('#form_branch')).hide();
 				$("#form_branch").validate().resetForm();
-				$(".error").html('');
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});

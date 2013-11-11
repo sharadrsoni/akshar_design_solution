@@ -100,7 +100,6 @@ var TargetType = function() {
 				$('#trgettypeId').val("");
 				$('.alert-error', $('#form_targettype')).hide();
 				$("#form_targettype").validate().resetForm();
-				$(".error").html('');
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});

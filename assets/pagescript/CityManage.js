@@ -104,7 +104,6 @@ var City = function() {
 				$('#cityId').val("");
 				$('.alert-error', $('#form_city')).hide();
 				$("#form_city").validate().resetForm();
-				$(".error").html('');
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});

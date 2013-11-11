@@ -94,6 +94,32 @@ var CourseCategory = function() {
 					error1.hide();
 				}
 			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#coursecategory_name').val("");
+				$('#coursecategoryId').val("");
+				$('.alert-error', $('#form_coursecategory')).hide();
+				$("#form_coursecategory").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updatecoursecategory(oursecategoryid) {
+	$.ajax({
+		url : "coursecategory/" + oursecategoryid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#coursecategory_name').val(json.coursecategory[0].courseCategoryName);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#coursecategoryId').val(json.coursecategory[0].courseCategoryId);
+			}
+		}
+	});
+}

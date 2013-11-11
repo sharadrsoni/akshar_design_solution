@@ -4,14 +4,15 @@
 
 class course_category_model extends CI_Model {
 
-	public function getDetailsBycoursecategory() {
-
-		//$this -> db -> where("inquiry.inquirybranchId", $branchId);
-		$this -> db -> from('course_category');
-		
-		return $this -> db -> get() -> result();
-
+	public function getDetailsOfCourseCategory() {
+		return $this -> db -> get('course_category') -> result();
 	}
+	
+	public function getDetailsByCourseCategory($coursecategoryId) {
+		$this -> db -> where('courseCategoryId', $coursecategoryId);
+		return $this -> db -> get('course_category') -> result();
+	}
+	
 	public function deleteCoursecategory($coursecategoryId) {
 		if (isset($coursecategoryId)) {
 			$this -> db -> where('courseCategoryId', $coursecategoryId);
@@ -25,6 +26,15 @@ class course_category_model extends CI_Model {
 	public function addcoursecategory($data) {
 		if(isset($data)) {
 			return $this->db->insert('course_category', $data);
+		} else {
+			return false;
+		}
+	}
+	
+	public function updatecoursecategory($data,$coursecategoryId) {
+		if(isset($data)) {
+			$this -> db -> where('courseCategoryId', $coursecategoryId);
+			return $this->db->update('course_category', $data);
 		} else {
 			return false;
 		}
