@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
 /**
  *
  */
-class Admin extends CI_Controllern {
+class Admin extends CI_Controller {
 
 	//Dashboard
 	public function index() {
@@ -225,3 +225,4 @@ class Admin extends CI_Controllern {
 	}
 
 }
+?>

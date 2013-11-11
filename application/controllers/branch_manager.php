@@ -218,6 +218,7 @@ class Branch_manager extends CI_Controller {
 		$data['title'] = "ADS | Course Category";
 		$this -> load -> view('backend/master_page/top', $data);
 		$this -> load -> view('backend/css/coursecategory_css');
+		}
 
 
 	public function changepassword() {
@@ -268,6 +269,10 @@ class Branch_manager extends CI_Controller {
 		}
 
 		$this -> load -> view('backend/branch_manager/course');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/course_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
 
 	public function sendnotification() {
 		$this->data['title'] = "ADS | Target Type";
@@ -359,7 +364,8 @@ class Branch_manager extends CI_Controller {
 		$this->data['title'] = "ADS | Profile";
 		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/student_profile_css');
-
+	}
+	
 	//target Report
 	public function targetreport() {
 		$data['title'] = "ADS | Target Report";
