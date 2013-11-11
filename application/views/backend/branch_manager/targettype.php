@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Target Type</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Target Type</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span>Add Target Type</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span>Add Target Type</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -59,15 +59,13 @@
 										</thead>
 										<tbody>
 											<?php
-											if (isset($targettype_list)) {
-												foreach ($targettype_list as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
-
-<td class=\"hidden-480\">{$key->targetTypeName} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_targettype/{$key->targetTypeId}'>Delete</span></td></tr>
-";
+											if (isset($targettype)) {
+												foreach ($targettype as $key) {
+													echo "<tr class=\"odd gradeX\">
+													<td><input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>
+													<td class=\"hidden-480\">{$key->targetTypeName} </td>
+													<td ><span class=\"label label-success\" onclick='updatetargetype(\"{$key->targetTypeId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_targettype/{$key->targetTypeId}'>Delete</span></td></tr>
+													";
 												}
 											}
 											?>
@@ -100,14 +98,11 @@
 											<input type="text" name="targettype_name" id="targettype_name" class="span8">
 										</div>
 									</div><!--/ Target Type Name -->
-
+									<input type="hidden" name="trgettypeId" id="trgettypeId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
+										<button type="submit" class="btn btn-primary" name="submitTargetType" id="submitTargetType">
 											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

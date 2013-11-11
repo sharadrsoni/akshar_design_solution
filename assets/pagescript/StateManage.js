@@ -98,6 +98,11 @@ var State = function() {
 			$("#tablink2").click(function() {
 				$('#state_name').val("");
 				$('#stateId').val("");
+				$('.alert-error', $('#form_state')).hide();
+				$("#form_state").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};

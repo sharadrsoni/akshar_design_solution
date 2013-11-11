@@ -102,6 +102,11 @@ var City = function() {
 				$('#city_name').val("");
 				$('#state_id option:nth(0)').attr("selected", "selected");
 				$('#cityId').val("");
+				$('.alert-error', $('#form_city')).hide();
+				$("#form_city").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};

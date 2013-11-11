@@ -45,7 +45,7 @@ class Admin extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
+					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code'], 'branchlongitude' => $_POST['longitude'], 'branchlatitude' => $_POST['latitude']);
 					if ($_POST['branchId'] != "" ? $this -> branch_model -> updateBranch($branchValue, $_POST['branchId']) : $this -> branch_model -> addBranch($branchValue)) {
 						redirect(base_url() . "admin/branch");
 					} else {
@@ -96,16 +96,12 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/css/state_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> data['state'] = $this -> state_model -> getDetailsOfState();
-			if (isset($_POST['submitState']))
-			 {
+			if (isset($_POST['submitState'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
-				if ($this -> form_validation -> run() == FALSE) 
-				{
+				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
-				}
-				 else 
-				{
+				} else {
 					$stateData = array('stateName' => $_POST['state_name']);
 					if ($_POST['stateId'] != "" ? $this -> state_model -> updatestate($stateData, $_POST['stateId']) : $this -> state_model -> addstate($stateData)) {
 						redirect(base_url() . "admin/state");
@@ -169,37 +165,37 @@ class Admin extends CI_Controller {
 	}
 
 	//Target Type
-	public function targettype() {
-		$this -> data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/targettype_css');
-		$this -> load -> view('backend/master_page/header');
+	public function targettype($trgettypeId='') {
 		$this -> load -> model("target_type_model");
-		//Logic of getting Target Type data
-		$targettype_data = $this -> target_type_model -> getDetailsOfTargetType();
-		$data['targettype_list'] = $targettype_data;
-	   if (isset($_POST['register'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
-		
-			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
-			} else {
-				$this -> load -> model('target_type_model');
-				$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
-
+		if ($trgettypeId != '') {
+			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Target Type";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/targettype_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['targettype'] = $this -> target_type_model -> getDetailsOfTargetType();
+			if (isset($_POST['submitTargetType'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$data['validate'] = true;
+				} else {
+					$this -> load -> model('target_type_model');
+					$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
+					if ($_POST['trgettypeId'] != "" ? $this -> target_type_model -> updatetargettype($targettypeData, $_POST['trgettypeId']) : $this -> target_type_model -> addtargettype($targettypeData)) {					
+						redirect(base_url() . "admin/targettype");
+					} else {
+						$data['error'] = "An Error Occured.";
+					}
+				}
 			}
-			if ($this -> target_type_model -> addtargettype($targettypeData)) {
-				redirect(base_url() . "admin/targettype");
-			} else {
-				$data['error'] = "An Error Occured.";
-			}
+			$this -> load -> view('backend/branch_manager/targettype', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/targettype_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-
-		$this -> load -> view('backend/branch_manager/targettype', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/targettype_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
 	public function delete_targettype($targettypeId) {

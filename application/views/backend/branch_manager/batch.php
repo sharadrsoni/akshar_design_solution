@@ -228,9 +228,6 @@
 										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
-										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
-											Cancel
-										</button>
 									</div><!--/ Form Action -->
 								</div>
 							</form>
