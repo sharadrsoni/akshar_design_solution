@@ -5,11 +5,16 @@ if (!defined('BASEPATH'))
  *
  */
 class Branch_manager_counsellor extends CI_Controller {
-
+	
+	function __construct() {
+		parent::__construct();
+		parent::authenticate(2);
+	}
+	
 	//Inquiry
 	public function inquiry() {
 		$data['title'] = "ADS | Inquiry";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/inquiry_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("inquiry_model");
@@ -61,7 +66,7 @@ class Branch_manager_counsellor extends CI_Controller {
 	//Student Registration
 	public function studentregistation() {
 		$data['title'] = "ADS | Student Registration";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_register_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/student_register');

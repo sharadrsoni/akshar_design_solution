@@ -204,7 +204,7 @@
 															<label class="control-label" for="firstName">Branch Name:</label>
 															<div class="controls">
 																<span class="text">Ahmedabad Branch</span>
-															</div>
+															</div> 
 														</div>
 													</div>
 													<!--/span-->

@@ -8,7 +8,7 @@ class Faculty extends CI_Controller {
 	
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(3);
+		parent::authenticate(2);
 	}
 	 
 	
@@ -27,7 +27,7 @@ class Faculty extends CI_Controller {
 	//Student attendance 
 	public function studentattendance() {
 		$data['title'] = "ADS | Student Attendance";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/student_attendance_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/student_attendance');
@@ -39,7 +39,7 @@ class Faculty extends CI_Controller {
 	//Test & Marks 
 	public function test() {
 		$data['title'] = "ADS | Test";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/test_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/test');
