@@ -203,7 +203,7 @@
 														<div class="control-group">
 															<label class="control-label" for="firstName">Branch Name:</label>
 															<div class="controls">
-																<span class="text">Ahmedabad Branch</span>
+																<span class="text" id="branch_name"></span>
 															</div>
 														</div>
 													</div>
@@ -216,7 +216,7 @@
 														<div class="control-group">
 															<label class="control-label" for="firstName">Contact No.:</label>
 															<div class="controls">
-																<span class="text">09999999999</span>
+																<span class="text" id="conatct_no"></span>
 															</div>
 														</div>
 													</div>
@@ -230,7 +230,7 @@
 														<div class="control-group">
 															<label class="control-label">Street:</label>
 															<div class="controls">
-																<span class="text">#24 Sun Park Avenue, Rolton Str</span>
+																<span class="text" id="street_1" ></span>
 															</div>
 														</div>
 													</div>
@@ -240,7 +240,7 @@
 														<div class="control-group">
 															<label class="control-label">City:</label>
 															<div class="controls">
-																<span class="text">New York</span>
+																<span class="text" id="city"></span>
 															</div>
 														</div>
 													</div>
@@ -249,7 +249,7 @@
 														<div class="control-group">
 															<label class="control-label">State:</label>
 															<div class="controls">
-																<span class="text">New York</span>
+																<span class="text" id="state"></span>
 															</div>
 														</div>
 													</div>
@@ -261,20 +261,12 @@
 														<div class="control-group">
 															<label class="control-label">Post Code:</label>
 															<div class="controls">
-																<span class="text">457890</span>
+																<span class="text" id="pin_code"></span>
 															</div>
 														</div>
 													</div>
 													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Country:</label>
-															<div class="controls">
-																<span class="text">USA</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
+													
 												</div>
 				</div><!-- End View Branch -->
 				

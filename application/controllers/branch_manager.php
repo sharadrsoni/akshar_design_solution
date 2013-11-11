@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('UTC');
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
@@ -6,7 +7,7 @@ class Branch_manager extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(2);
+		parent::authenticate(1);
 	}
 
 	//Dashboard
@@ -145,7 +146,17 @@ class Branch_manager extends CI_Controller {
 	}
 
 	//target Report
-	public function targetreport() {
+	public function targetreport($targetId = '') {
+		$this -> load -> model('target_model');
+		if ($targetId != '')
+		{
+			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
+			echo json_encode($this -> data);
+		} 
+		else 
+		{
+			
+		
 		$this->data['title'] = "ADS | Target Report";
 		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/target_report_css');
@@ -154,10 +165,19 @@ class Branch_manager extends CI_Controller {
 		$branchId = 1;
 		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
 		$this->data['target_report_list'] = $target_data;
+		
+		if(isset($_POST['addreport']))
+		{
+			$reportData = array('targetReportDescription'=>$_POST['report_description'],'targetReportDate' => date("Y-m-d", strtotime($_POST['date'])),'targetId'=>$_POST['targetId']);
+					 $this -> target_report_model -> addReport($reportData);
+					redirect(base_url() . "branch_manager/targetreport");
+			
+		}
 		$this -> load -> view('backend/branch_manager/target_report', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/target_report_js');
 		$this -> load -> view('backend/master_page/bottom');
+		}
 	}
 }
 ?>
