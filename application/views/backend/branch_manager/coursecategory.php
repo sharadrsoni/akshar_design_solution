@@ -58,20 +58,30 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											if (isset($coursecategory_list)) {
+												foreach ($coursecategory_list as $key) {
+													echo "<tr class=\"odd gradeX\"><td>
+<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
+</td>
+
+<td class=\"hidden-480\">{$key->courseCategoryName} </td>
+<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_coursecategory/{$key->courseCategoryId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_coursecategory">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_coursecategory');
+							echo form_open('admin/coursecategory', $attributes);
+ ?>
+							<!-- <form class="form-horizontal span12 widget shadowed yellow" id="form_coursecategory"> -->
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -93,7 +103,7 @@
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 										<button type="button" class="btn">
