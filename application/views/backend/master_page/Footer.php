@@ -3,7 +3,7 @@
 <!-- START Template Footer -->
 <footer id="footer">
 	<p>
-		Proudly crafted by baldtheme
+		2013 &copy; Akshar Design Solution. ALL Rights Reserved.
 	</p>
 
 	<!-- START To Top Scroller -->

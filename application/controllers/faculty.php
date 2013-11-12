@@ -14,7 +14,7 @@ class Faculty extends CI_Controller {
 
 	//Dashboard
 	public function index() {
-		$data['title'] = "ADS | Dashboard";
+		$this->data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');

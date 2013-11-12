@@ -7,9 +7,6 @@
 				<li>
 					<a href="#">Dashboard</a><span class="divider"></span>
 				</li>
-				<li class="active">
-					Index
-				</li>
 			</ul>
 			<!--/ Breadcrumb -->
 		</div>
