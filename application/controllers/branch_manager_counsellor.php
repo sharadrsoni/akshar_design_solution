@@ -36,9 +36,9 @@ class Branch_manager_counsellor extends CI_Controller {
 		//Logic of getting Branch Id. Here I am assuming id = 1
 		$branchId = 3;
 		$inquiry_data = $this -> inquiry_model -> getDetailsByinquiry($branchId);
-		$data['inquiry_list'] = $inquiry_data;
+		$this->data['inquiry_list'] = $inquiry_data;
 		//die(print_r($weekdays));
-		//$data['weekdays'] = $weekdays;
+		//$this->data['weekdays'] = $weekdays;
 		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('user_name', 'User Name', 'required|trim');
@@ -55,7 +55,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim');
 			$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
+				$this->data['validate'] = true;
 			} else {
 				$this -> load -> model('inquiry_model');
 				$inquiryData = array('inquiryStudentFirstName' => $_POST['user_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $branchId);
@@ -63,10 +63,10 @@ class Branch_manager_counsellor extends CI_Controller {
 			if ($this -> inquiry_model -> addinquiry($inquiryData)) {
 				redirect(base_url() . "branch_manager/inquiry");
 			} else {
-				$data['error'] = "An Error Occured.";
+				$this->data['error'] = "An Error Occured.";
 			}
 		}
-		$this -> load -> view('backend/branch_manager/inquiry', $data);
+		$this -> load -> view('backend/branch_manager/inquiry', $this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/inquiry_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -147,7 +147,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Fees Payment
 	public function feespayment() {
-		$data['title'] = "ADS | Fess Payment";
+		$this->data['title'] = "ADS | Fess Payment";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/fees_payment_css');
 		$this -> load -> view('backend/master_page/header');
@@ -159,7 +159,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Fees Receipt
 	public function feesreceipt() {
-		$data['title'] = "ADS | Dashboard";
+		$this->data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this->data);
 		$this -> load -> view('backend/css/feesreceipt_css');
 		$this -> load -> view('backend/master_page/header');

@@ -23,22 +23,22 @@ class Admin_branch_manager extends CI_Controller {
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/eventtype_css');
 			$this -> load -> view('backend/master_page/header');
-			$data['eventtype'] = $this -> event_type_model -> getDetailsOfEventType();
+			$this->data['eventtype'] = $this -> event_type_model -> getDetailsOfEventType();
 			if (isset($_POST['submitEventType'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('eventtype_name', 'Event Type Name', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					$data['validate'] = true;
+					$this->data['validate'] = true;
 				} else {
 					$eventtypeData = array('eventTypeName' => $_POST['eventtype_name']);
 					if ($_POST['eventtypeId'] != "" ? $this -> event_type_model -> updateeventtype($eventtypeData, $_POST['eventtypeId']) : $this -> event_type_model -> addeventtype($eventtypeData)) {
 						redirect(base_url() . "admin_branch_manager/event_type");
 					} else {
-						$data['error'] = "An Error Occured.";
+						$this->data['error'] = "An Error Occured.";
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/eventtype', $data);
+			$this -> load -> view('backend/branch_manager/eventtype', $this->data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/eventtype_js');
 			$this -> load -> view('backend/master_page/bottom');

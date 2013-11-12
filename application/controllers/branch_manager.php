@@ -201,9 +201,9 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("event_type_model");
 			$this -> load -> model('user_model');
-			$data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
-			$data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
-			$data['event'] = $this -> event_model -> getDetailsByBranch($branchId);
+			$this->data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
+			$this->data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
+			$this->data['event'] = $this -> event_model -> getDetailsByBranch($branchId);
 			if (isset($_POST['submitEvent'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim');
@@ -219,17 +219,17 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Pin Code', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					$data['validate'] = true;
+					$this->data['validate'] = true;
 				} else {
 					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 					if ($_POST['eventId'] != "" ? $this -> event_model -> updateEvent($eventData, $_POST['eventId']) : $this -> event_model -> addEvent($eventData)) {
 						redirect(base_url() . "branch_manager/event");
 					} else {
-						$data['error'] = "An Error Occured.";
+						$this->data['error'] = "An Error Occured.";
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/event', $data);
+			$this -> load -> view('backend/branch_manager/event', $this->data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/event_js');
 			$this -> load -> view('backend/master_page/bottom');
