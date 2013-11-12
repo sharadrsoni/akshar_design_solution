@@ -48,6 +48,51 @@ class batch_timing_model extends CI_Model {
 			return null;
 		}
 	}
+
+
+	public function getBatchTimmingDetail($batchId) {
+		if (isset($batchId)) {
+			$data = $this -> db -> where("batchId", $batchId) -> get("batch_timing") -> result();
+			$count = 1;
+			$days = Array();
+			foreach ($data as $key) {
+				$weekdays = Array();
+				$weekdays['batchId'] = $key->batchId;
+				$weekdays['batchTimingStartTime'] = $key->batchTimingStartTime;
+				$weekdays['batchTimingEndTime'] = $key->batchTimingEndTime;
+				switch ($key->batchTimingWeekday) {
+					case 1 :
+						$day = "Monday";
+						break;
+					case 2 :
+						$day = "Tuesday";
+						break;
+					case 3 :
+						$day = "Wednesday";
+						break;
+					case 4 :
+						$day = "Thursday";
+						break;
+					case 5 :
+						$day = "Friday";
+						break;
+					case 6 :
+						$day = "Saturday";
+						break;
+					case 7 :
+						$day = "Sunday";
+						break;
+				}
+				$weekdays['batchTimingWeekday'] = $day;
+				$day[$count] = $weekdays;
+				$count++;
+			}
+			return $day;
+		} else {
+			return null;
+		}
+	}
+
 	
 	public function getBatchTiming($batchId) {
 		if (isset($batchId)) {

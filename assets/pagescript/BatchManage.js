@@ -182,7 +182,7 @@ function updatebatch(batchid) {
 		success : function(json) {
 			if (json) {
 				$("#course_id").val(json.batch_list[0].courseCode);
-				$("#faculty_id").val(json.batch_list[0].userId);
+				$("#faculty_id").val(json.batch_list[0].facultyId);
 				$("#start_date").val(json.batch_list[0].batchStartDate);
 				$("#duration").val(json.batch_list[0].batchDuration);
 				$("#strength").val(json.batch_list[0].batchStrength);

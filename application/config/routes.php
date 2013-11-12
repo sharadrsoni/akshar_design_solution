@@ -40,6 +40,8 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
+$route['branch_manager/send_notification'] = "staff/send_notification";
+$route['admin/send_notification'] = "staff/send_notification";
 
 
 /* End of file routes.php */

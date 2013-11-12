@@ -6,15 +6,16 @@ if (!defined('BASEPATH'))
  */
 class Student extends CI_Controller {
 
-	
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(2);
+		$users = array(5);
+		parent::authenticate($users);
 	}
+
 	//Dashboard
 	public function index() {
 		$data['title'] = "ADS | Dashboard";
-		$this -> load -> view('backend/master_page/top',$this -> data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/dashboard');
@@ -23,10 +24,10 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	//Show marks 
+	//Show marks
 	public function showmarks() {
 		$data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $this->data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/test_result_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/test_result');
@@ -35,10 +36,10 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	//Show Attendance 
+	//Show Attendance
 	public function showattendance() {
 		$data['title'] = "ADS | Time Table";
-		$this -> load -> view('backend/master_page/top', $this->data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/show_attendance');
@@ -50,7 +51,7 @@ class Student extends CI_Controller {
 	//Profile
 	public function profile() {
 		$data['title'] = "ADS | Profile";
-		$this -> load -> view('backend/master_page/top', $this->data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/student_profile');

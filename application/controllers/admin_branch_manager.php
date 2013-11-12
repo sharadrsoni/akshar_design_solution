@@ -8,34 +8,19 @@ class Admin_branch_manager extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(1);
-	}
-
-	//Staff
-	public function staff() {
-		$this -> data['title'] = "ADS | Staff";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/staff_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> model("staff_model");
-		$roleId = 1;
-		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
-		$data['staff_list'] = $staffData;
-		$this -> load -> view('backend/branch_manager/staff', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/staff_js');
-		$this -> load -> view('backend/master_page/bottom');
+		$users = array(1, 2);
+		parent::authenticate($users);
 	}
 
 	//Event Type
-	public function eventtype($eventtypeId = '') {
+	public function event_type($eventtypeId = '') {
 		$this -> load -> model("event_type_model");
 		if ($eventtypeId != '') {
 			$this -> data['eventtype'] = $this -> event_type_model -> getDetailsByEventType($eventtypeId);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Event Type";
-			$this -> load -> view('backend/master_page/top',$this -> data);
+			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/eventtype_css');
 			$this -> load -> view('backend/master_page/header');
 			$data['eventtype'] = $this -> event_type_model -> getDetailsOfEventType();
@@ -60,7 +45,7 @@ class Admin_branch_manager extends CI_Controller {
 		}
 	}
 
-	public function delete_eventtype($eventtypeId) {
+	public function delete_event_type($eventtypeId) {
 		$this -> load -> model('event_type_model');
 		$this -> event_type_model -> deleteEventtype($eventtypeId);
 		redirect(base_url() . "admin_branch_manager/eventtype");

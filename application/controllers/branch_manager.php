@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('UTC');
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
@@ -6,7 +7,8 @@ class Branch_manager extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		parent::authenticate(2);
+		$users = array(2);
+		parent::authenticate($users);
 	}
 
 	//Dashboard
@@ -149,7 +151,7 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> model('event_model');
 		$branchId = $this -> branchId;	
 		if ($eventId != '') {
-			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchId,$eventId);
+			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchId, $eventId);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Event";
@@ -179,7 +181,7 @@ class Branch_manager extends CI_Controller {
 					$data['validate'] = true;
 				} else {
 					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
-					if ($_POST['eventId'] != "" ?$this -> event_model -> updateEvent($eventData,$_POST['eventId']):$this -> event_model -> addEvent($eventData)) {
+					if ($_POST['eventId'] != "" ? $this -> event_model -> updateEvent($eventData, $_POST['eventId']) : $this -> event_model -> addEvent($eventData)) {
 						redirect(base_url() . "branch_manager/event");
 					} else {
 						$data['error'] = "An Error Occured.";
@@ -200,19 +202,32 @@ class Branch_manager extends CI_Controller {
 	}
 
 	//target Report
-	public function targetreport() {
-		$this -> data['title'] = "ADS | Target Report";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/target_report_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> model("target_report_model");
-		$branchId = 1;
-		$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
-		$this -> data['target_report_list'] = $target_data;
-		$this -> load -> view('backend/branch_manager/target_report', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/target_report_js');
-		$this -> load -> view('backend/master_page/bottom');
+	public function targetreport($targetId = '') {
+		$this -> load -> model('target_model');
+		if ($targetId != '') {
+			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Target Report";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/target_report_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> model("target_report_model");
+			$branchId = 1;
+			$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
+			$this -> data['target_report_list'] = $target_data;
+
+			if (isset($_POST['addreport'])) {
+				$reportData = array('targetReportDescription' => $_POST['report_description'], 'targetReportDate' => date("Y-m-d", strtotime($_POST['date'])), 'targetId' => $_POST['targetId']);
+				$this -> target_report_model -> addReport($reportData);
+				redirect(base_url() . "branch_manager/targetreport");
+
+			}
+			$this -> load -> view('backend/branch_manager/target_report', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/target_report_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
 	}
 
 }

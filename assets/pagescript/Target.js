@@ -142,6 +142,11 @@ var Target = function() {
 				$('#end_date').val("");
 				$('#description').val("");
 				$('#targetId').val("");
+				$('.alert-error', $('#form_target')).hide();
+				$("#form_target").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};

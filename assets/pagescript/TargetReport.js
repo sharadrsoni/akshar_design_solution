@@ -65,12 +65,13 @@ var TargetReport = function() {
 				ignore : "",
 				rules : {
 
-					description : {
+					report_description : {
 						required : true,
 					},
 					date : {
 						required : true,
 					}
+					
 
 				},
 
@@ -121,3 +122,26 @@ var TargetReport = function() {
 		}
 	};
 }();
+
+function updatetarget(targetid) {
+	
+	$.ajax({
+		url : "targetreport/" + targetid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				
+				$('#target_name').text(json.target[0].targetSubject);
+				$('#description').text(json.target[0].targetDescription);
+				$('#start_date').text(json.target[0].targetStartDate);
+				$('#end_date').text(json.target[0].targetEndDate);
+			
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#targetId').val(json.target[0].targetId);
+			}
+		}
+	});
+}

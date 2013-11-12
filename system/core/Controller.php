@@ -41,19 +41,26 @@ class CI_Controller {
 	 */
 
 	public function authenticate($roleId) {
-		if ($this -> session -> userdata("roleId") != $roleId) {
-			redirect(base_url() . "login");
-		} else {
-			$this -> userId = $this -> session -> userdata("userId");
-			$this -> roleId = $this -> session -> userdata("roleId");
-			$this -> load -> model("user_model");
-			$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
-			$this -> branchId = $userDetail -> branchId;
-			$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
-			$this -> load -> model("role_model");
-			$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
-			$this -> data['roleId'] = $this -> roleId;
+		$isAuthenticated = false;
+		foreach ($roleId as $key) {
+			if ($this -> session -> userdata("roleId") == $key) {
+				$this -> userId = $this -> session -> userdata("userId");
+				$this -> roleId = $this -> session -> userdata("roleId");
+				$this -> load -> model("user_model");
+				$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
+				$this -> branchId = $userDetail -> branchId;
+				$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
+				$this -> load -> model("role_model");
+				$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
+				$this -> data['roleId'] = $this -> roleId;
+				$isAuthenticated = true;
+				break;
+			}
 		}
+		if (!$isAuthenticated) {
+			redirect(base_url() . "login");
+		}
+
 	}
 
 	public function __construct() {

@@ -98,6 +98,11 @@ var EventType = function() {
 			$("#tablink2").click(function() {
 				$('#eventtype_name').val("");
 				$('#eventtypeId').val("");
+				$('.alert-error', $('#form_eventtype')).hide();
+				$("#form_eventtype").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};

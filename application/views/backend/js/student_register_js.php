@@ -13,5 +13,8 @@
 		// initiate layout and plugins
 		App.init();
 		StudentRegistration.init_formvalidation();
+		$("#courseid").change(function(){
+			
+		});
 	}); 
 </script>

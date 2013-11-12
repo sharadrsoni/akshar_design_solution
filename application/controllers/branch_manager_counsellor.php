@@ -5,6 +5,11 @@ if (!defined('BASEPATH'))
  *
  */
 class Branch_manager_counsellor extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+		$users = array(2, 4);
+		parent::authenticate($users);
+	}
 
 	function __construct() {
 		parent::__construct();

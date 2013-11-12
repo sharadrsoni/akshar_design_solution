@@ -178,6 +178,11 @@ var Branch = function() {
 				$('#longitude').val("");
 				$('#latitude').val("");
 				$('#branchId').val("");
+				$('.alert-error', $('#form_branch')).hide();
+				$("#form_branch").validate().resetForm();
+				$(".error").html('');
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};
@@ -189,7 +194,15 @@ function viewbranch(branchid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-
+				$("#ViewBatch").attr("style","display");
+				App.scrollTo($('#ViewBatch'));
+				$('#viewbranch_name').text(json.branch[0].branchName);
+				$('#viewconatct_no').text(json.branch[0].branchContactNumber);
+				$('#viewstreet_1').text(json.branch[0].branchStreet1);
+				$('#viewstreet_2').text(json.branch[0].branchStreet2);
+				$('#viewstate').text(json.branch[0].branchState);
+				$('#viewcity').text(json.branch[0].branchCity);
+				$('#viewpin_code').text(json.branch[0].branchPincode);
 			}
 		}
 	});
@@ -209,8 +222,8 @@ function updatebranch(branchid) {
 				$('#state').val(json.branch[0].branchState);
 				$('#city').val(json.branch[0].branchCity);
 				$('#pin_code').val(json.branch[0].branchPincode);
-				//$('#longitude').val(json.branch[0].longitude);
-				//$('#latitude').val(json.branch[0].latitude);
+				$('#longitude').val(json.branch[0].branchlongitude);
+				$('#latitude').val(json.branch[0].branchlatitude);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
