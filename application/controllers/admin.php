@@ -62,18 +62,18 @@ class Admin extends CI_Controller {
 
 	//Course Category
 	public function coursecategory() {
-		$this->data['title'] = "ADS | Course Category";
-		$this -> load -> view('backend/master_page/top', $this->data);
+		$this -> data['title'] = "ADS | Course Category";
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/coursecategory_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("course_category_model");
 		//Logic of getting Course Category data
 		$coursecategory_data = $this -> course_category_model -> getDetailsBycoursecategory();
 		$data['coursecategory_list'] = $coursecategory_data;
-	   if (isset($_POST['register'])) {
+		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('coursecategory_name', 'Course Category Name', 'required|trim');
-		
+
 			if ($this -> form_validation -> run() == FALSE) {
 				$data['validate'] = true;
 			} else {
@@ -102,14 +102,50 @@ class Admin extends CI_Controller {
 
 	//Course
 	public function course() {
-		$this -> data['title'] = "ADS | Course";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/course_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/course');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/course_js');
-		$this -> load -> view('backend/master_page/bottom');
+		$this -> load -> model('course_model');
+		if (isset($_POST['add_course'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
+			$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim');
+			$this -> form_validation -> set_rules('course_code', 'Course Code', 'required|trim|is_unique[course.courseCode]');
+			$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
+			$this -> form_validation -> set_rules('material_id', 'Course MaterialId', 'required|trim');
+			$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
+			$this -> form_validation -> set_rules('opening_stock', 'Material Opening Stock', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				//die(validation_errors());
+				$data['validate'] = true;
+			} else {
+				$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseCode' => $_POST['course_code'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseMaterialOpeningStock' => $_POST['opening_stock']);
+				//die(print_r($courseValue));
+				if ($this -> course_model -> addCourse($courseValue)) {
+					//die("yes");
+					redirect(base_url() . "admin/course");
+				} else {
+					$data['error'] = "An Error Occured.";
+				}
+			}
+		}
+
+			$this -> data['title'] = "ADS | Course";
+			$this -> load -> model('course_category_model');
+			$this -> data["course_category"] = $this -> course_category_model -> getDetailsBycoursecategory();
+			$course = $this -> course_model -> getDetailsOfCourse();
+			$data['course'] = $course;
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/course_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> view('backend/branch_manager/course', $data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/course_js');
+			$this -> load -> view('backend/master_page/bottom');
+		
+	}
+
+	public function delete_course($courseCode) {
+		$this -> load -> model('course_model');
+		$this -> course_model -> deleteCourse($courseCode);
+		redirect(base_url() . "admin/course");
 	}
 
 	//State
@@ -193,7 +229,7 @@ class Admin extends CI_Controller {
 	}
 
 	//Target Type
-	public function targettype($trgettypeId='') {
+	public function targettype($trgettypeId = '') {
 		$this -> load -> model("target_type_model");
 		if ($trgettypeId != '') {
 			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
@@ -212,7 +248,7 @@ class Admin extends CI_Controller {
 				} else {
 					$this -> load -> model('target_type_model');
 					$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
-					if ($_POST['trgettypeId'] != "" ? $this -> target_type_model -> updatetargettype($targettypeData, $_POST['trgettypeId']) : $this -> target_type_model -> addtargettype($targettypeData)) {					
+					if ($_POST['trgettypeId'] != "" ? $this -> target_type_model -> updatetargettype($targettypeData, $_POST['trgettypeId']) : $this -> target_type_model -> addtargettype($targettypeData)) {
 						redirect(base_url() . "admin/targettype");
 					} else {
 						$data['error'] = "An Error Occured.";

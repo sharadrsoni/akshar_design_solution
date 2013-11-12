@@ -9,7 +9,6 @@ var Course= function() {
 			$('#tblCourse').dataTable({
 				"aoColumns" : [
                   { "bSortable": false },
-                  null,
                   { "bSortable": false },
                   null,
                   { "bSortable": false },
