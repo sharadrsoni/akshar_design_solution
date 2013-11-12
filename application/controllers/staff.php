@@ -26,6 +26,9 @@ class Staff extends CI_Controller {
 
 	//Send Notification
 	public function send_notification() {
+		$this -> load -> model("branch_model");
+		$branchName = $this -> branch_model -> getDetailsOfBranch();
+		$this-> data['branch'] = $branchName;			
 		$data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/sendnotification_css');
@@ -47,5 +50,4 @@ class Staff extends CI_Controller {
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
-}
+	}
