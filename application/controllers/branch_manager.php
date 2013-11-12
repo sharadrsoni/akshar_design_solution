@@ -23,6 +23,49 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+//Book_Inventory
+	public function book_inventory() {
+		$data['title'] = "ADS | Book Inventory";
+		$this -> load -> model("course_model");
+		$this -> data['course'] = $this -> course_model -> getAllDetails();
+		$this -> load -> view('backend/master_page/top', $this->data);
+		$this -> load -> view('backend/css/book_inventory_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> model("book_inventory_model");
+	   	$inventory_data = $this -> book_inventory_model -> getDetailsByBook($this->branchId);
+		$this->data['inventory_list'] = $inventory_data;   		
+		
+		if (isset($_POST['submitInventory'])) {
+			//die("yes");
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
+				$this -> form_validation -> set_rules('inventory_quantity', 'Quantity', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+					$data['validate'] = true;
+				} else {
+					$this -> load -> model('book_inventory_model');
+ 					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'],'courseId' => $_POST['course_id'],'branchId' => $this->branchId);
+									
+				}
+		if ($this -> book_inventory_model -> addinventory($inventoryData)) {
+				redirect(base_url() . "branch_manager/book_inventory");
+			} else {
+				$data['error'] = "An Error Occured.";
+			}
+			}
+	  
+		$this -> load -> view('backend/branch_manager/book_inventory',$this->data);
+		$this -> load -> view('backend/master_page/footer');
+	    $this -> load -> view('backend/js/book_inventory_js');
+	}
+
+public function delete_inventory($inventoryInwardId) {
+		$this -> load -> model('book_inventory_model');
+		$this -> book_inventory_model -> deleteInventory($inventoryInwardId);
+		redirect(base_url() . "branch_manager/book_inventory");
+	}
+	
+
 	//Batch
 	public function batch($batchId = '') {
 		$this -> load -> model('batch_model');

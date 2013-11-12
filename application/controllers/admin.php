@@ -22,6 +22,8 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+
+	
 	//Branch
 	public function branch($branchId = '') {
 		$this -> load -> model("branch_model");
@@ -149,7 +151,8 @@ class Admin extends CI_Controller {
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "admin/state");
 	}
-
+	
+	
 	//City
 	public function city($cityId = '') {
 		$this -> load -> model('city_model');
