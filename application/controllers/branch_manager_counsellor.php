@@ -11,11 +11,6 @@ class Branch_manager_counsellor extends CI_Controller {
 		parent::authenticate($users);
 	}
 
-	function __construct() {
-		parent::__construct();
-		parent::authenticate(2);
-	}
-
 	//Random Password Genterator Function
 	function randomPassword() {
 		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
@@ -84,13 +79,18 @@ class Branch_manager_counsellor extends CI_Controller {
 	}
 
 	//Student Registration
-	public function studentregistation() {
+	public function studentregistration() {
 		$this -> data['title'] = "ADS | Student Registration";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_register_css');
 		$this -> load -> view('backend/master_page/header');
 
 		$this -> load -> model('user_model');
+		$this -> load -> model('course_model');
+		$this -> load -> model('batch_model');
+			$data['course'] = $this -> course_model -> getAllDetails();
+			$data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this->branchId, 5);
+			$data['batchId'] = $this -> batch_model -> getDetailsByBranch($this->branchId);
 
 		if (isset($_POST['registerStudent'])) {
 			$this -> load -> library("form_validation");
@@ -117,14 +117,14 @@ class Branch_manager_counsellor extends CI_Controller {
 				$pass = $this -> randomPassword();
 				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchId' => $this -> branchId, 'roleId' => 5, 'userPassword' => $pass, 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
 				if ($this -> user_model -> addUser($userData)) {
-					redirect(base_url() . "branch_manager_counsellor/studentregistation");
+					redirect(base_url() . "counsellor/studentregistration");
 				} else {
 					$data['error'] = "An Error Occured.";
 				}
 			}
 		}
 
-		$this -> load -> view('backend/branch_manager/student_register', $this -> data);
+		$this -> load -> view('backend/branch_manager/student_register', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_register_js');
 		$this -> load -> view('backend/master_page/bottom');
