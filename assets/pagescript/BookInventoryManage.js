@@ -9,7 +9,7 @@ var BookInventory = function() {
 			$('#tblinventory').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				},null],
+				},null,null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -97,6 +97,36 @@ var BookInventory = function() {
 				}
 			});
 		},
-	
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#course_id option:nth(0)').attr("selected", "selected");
+				$('#inventory_quantity').val("");
+				$('#inventoryInwardId').val("");
+				$("#submitInventory").text("Add Inventory");
+				$('.alert-error', $('#form_inventory')).hide();
+				$("#form_inventory").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
+		}
 	};
 }();
+function updatebookinventory(inventoryInwardid) {
+	$.ajax({
+		url : "book_inventory/" + inventoryInwardid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#course_id').val(json.inventory[0].courseId);
+				$('#inventory_quantity').val(json.inventory[0].inventoryInwardQuantity);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#inventoryInwardId').val(json.inventory[0].inventoryInwardId);
+				$("#submitInventory").text("Update Inventory");
+			}
+		}
+	});
+}
+

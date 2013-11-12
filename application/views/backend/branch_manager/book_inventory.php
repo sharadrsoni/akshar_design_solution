@@ -57,15 +57,15 @@
 										</thead>
 										<tbody>
 											<?php
-											//if (isset($inventory_list)) {
-												foreach ($inventory_list as $key) {
+											if (isset($inventory)) {
+												foreach ($inventory as $key) {
 													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->courseId} </td>
 <td class=\"hidden-480\">{$key->inventoryInwardQuantity} </td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inventory/{$key->inventoryInwardId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updatebookinventory(\"{$key->inventoryInwardId}\")'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inventory/{$key->inventoryInwardId}'>Delete</span></td></tr>
 ";
 												}
-											//}
+											}
 											?>
 
 										</tbody>

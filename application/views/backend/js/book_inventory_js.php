@@ -11,5 +11,6 @@
 		App.init();
 		BookInventory.init_table();
 		BookInventory.init_formvalidation();
+		BookInventory.init_uijquery();
 	}); 
 </script>
