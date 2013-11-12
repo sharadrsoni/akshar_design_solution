@@ -75,7 +75,7 @@
 								</div>
 							</div>
 							<!--View Branch -->
-							<div class="span9">
+							<div class="span9" id="ViewBatch">
 								<div class="row-fluid">
 									<div class="span5 profile-info">
 

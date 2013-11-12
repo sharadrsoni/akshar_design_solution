@@ -23,6 +23,15 @@ class batch_model extends CI_Model {
 
 	}
 
+	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
+
+		$this -> db -> where("batch.branchId", $branchId);
+		$this -> db -> where("batch.courseCode", $courseCode);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+
+	}
+
 	public function deleteBatch($batchId) {
 		if (isset($batchId)) {
 			$this -> db -> where('batchId', $batchId);

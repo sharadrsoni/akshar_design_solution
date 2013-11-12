@@ -47,7 +47,7 @@
 					<div class="tab-pane active" id="tab1">
 						<?php
 							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register1');
-							echo form_open('branch_manager_counsellor/studentregistation', $attributes);
+							echo form_open('branch_manager_counsellor/studentregistration', $attributes);
 						?>
 							<h3 class="block">Provide Student personal Info.</h3>
 							<div class="alert alert-error hide">
@@ -109,7 +109,7 @@
 					<div class="tab-pane" id="tab2">
 						<?php
 							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register2');
-							echo form_open('branch_manager_counselor/studentregistation', $attributes);
+							echo form_open('branch_manager_counselor/studentregistration', $attributes);
 						?>
 							<h3 class="block">Select Courses & Batches</h3>
 							<div class="alert alert-error hide">
