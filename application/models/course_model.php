@@ -19,7 +19,7 @@ class course_model extends CI_Model {
 
 	public function addCourse($data) {
 		if (isset($data)) {
-			die(print_r($data));
+			//die (print_r($data));
 			return $this -> db -> insert('course', $data);
 		} else {
 			return false;
