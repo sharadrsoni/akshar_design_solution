@@ -152,14 +152,14 @@
 								<div class="control-group">
 									<label class="control-label">Street<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="street_1" id="street_1" class="span8"/>
+										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8"/>
 									</div>
 
 								</div>
 								<div class="control-group">
 									<label class="control-label"><span class="required"></span></label>
 									<div class="controls">
-										<input type="text" name="street_2" id="street_2" class="span8"/>
+										<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8"/>
 									</div>
 								</div><!--/ Street -->
 								<!-- State -->

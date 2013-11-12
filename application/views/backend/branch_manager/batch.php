@@ -294,13 +294,13 @@
 									<div class="control-group">
 										<label class="control-label">Batch Time<span class="required">*</span></label>
 										<div id="start_time_picker" class="input-append span3">
-											<input type="text" name="start_time" id="start_time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
+											<input type="text" name="start_time" id="start_time" placeholder="Start Time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
 											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 											<span for="start_time" class="help-inline"><?php echo form_error('start_time'); ?></span>
 										</div>
 
 										<div id="end_time_picker" class="input-append span3">
-											<input type="text" name="end_time" id="end_time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
+											<input type="text" name="end_time" id="end_time" placeholder="End Time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
 											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 											<span for="end_time" class="help-inline"><?php echo form_error('end_time'); ?></span>
 										</div>
