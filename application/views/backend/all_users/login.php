@@ -48,22 +48,24 @@
 							<section class="body">
 								<div class="body-inner">
 									<!-- START Logo -->
+									<!--
 									<div class="logo" align="center">
-										<a href="#"><img src="img/logo-dark.png"></a>
-									</div>
+																			<a href="#"><img src="img/logo-dark.png"></a>
+																		</div>-->
+									
 									<!--/ END Logo -->
 
 									<!-- Avatar -->
 									<div class="avatar">
-										<span class="mask"></span>
+										<!--<span class="mask"></span>-->
 										<img src="img/avatar/avatar1.jpg">
-										<h5 align="center">Hye john!</h5>
+										<!--<h5 align="center">Hye john!</h5>-->
 									</div><!--/ Avatar -->
 
 									<!-- Username -->
 									<div class="control-group">
 										<div class="controls">
-											<input type="text" placeholder="Username" id="username" name="username" class="span12">
+											<input type="text" placeholder="Username" id="username" name="username" class="span12" value="<?php echo set_value("username"); ?>" />
 											<i class="icon-user input-icon"></i>
 										</div>
 									</div><!--/ Username -->
@@ -75,11 +77,11 @@
 											<i class="icon-lock input-icon"></i>
 										</div>
 									</div><!--/ Password -->
-
+<label style="color:#8E2800"><?php echo $error ?></label>
 									<!-- Register Link -->
 									<div class="control-group">
 										<div class="controls">
-											<a href="page-register.html">Don't have an account? Create one now!</a>
+											<a href="page-register.html">Forgot Password? Click Here!</a>
 										</div>
 									</div><!--/ Register Link -->
 								</div>
@@ -88,9 +90,6 @@
 								<div class="form-actions">
 									<button type="submit" class="btn btn-primary" name="login">
 										Login
-									</button>
-									<button type="button" class="btn">
-										Cancel
 									</button>
 								</div>
 								<!--/ Form Action -->

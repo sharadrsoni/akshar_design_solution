@@ -22,6 +22,8 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+
+	
 	//Branch
 	public function branch($branchId = '') {
 		$this -> load -> model("branch_model");
@@ -61,43 +63,42 @@ class Admin extends CI_Controller {
 	}
 
 	//Course Category
-	public function coursecategory() {
-		$this -> data['title'] = "ADS | Course Category";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/coursecategory_css');
-		$this -> load -> view('backend/master_page/header');
+	public function course_category($coursecategoryId = '') {
 		$this -> load -> model("course_category_model");
-		//Logic of getting Course Category data
-		$coursecategory_data = $this -> course_category_model -> getDetailsBycoursecategory();
-		$data['coursecategory_list'] = $coursecategory_data;
-		if (isset($_POST['register'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('coursecategory_name', 'Course Category Name', 'required|trim');
-
-			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
-			} else {
-				$this -> load -> model('course_category_model');
-				$coursecategoryData = array('courseCategoryName' => $_POST['coursecategory_name']);
-
+		if ($coursecategoryId != '') {
+			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsByCourseCategory($coursecategoryId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Course Category";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/coursecategory_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsOfCourseCategory();
+			if (isset($_POST['submitCourseCategory'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('coursecategory_name', 'Course Category Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$coursecategoryData = array('courseCategoryName' => $_POST['coursecategory_name']);
+					if ($_POST['coursecategoryId'] != "" ? $this -> course_category_model -> updatecoursecategory($coursecategoryData,$_POST['coursecategoryId']) : $this -> course_category_model -> addcoursecategory($coursecategoryData)) {
+						redirect(base_url() . "admin/course_category");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
 			}
-			if ($this -> course_category_model -> addcoursecategory($coursecategoryData)) {
-				redirect(base_url() . "admin/coursecategory");
-			} else {
-				$data['error'] = "An Error Occured.";
-			}
+			$this -> load -> view('backend/branch_manager/coursecategory',$this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/coursecategory_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-
-		$this -> load -> view('backend/branch_manager/coursecategory', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/coursecategory_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function delete_coursecategory($coursecategoryId) {
+	public function delete_course_category($coursecategoryId) {
 		$this -> load -> model('course_category_model');
 		$this -> course_category_model -> deleteCoursecategory($coursecategoryId);
-		redirect(base_url() . "admin/coursecategory");
+		redirect(base_url() . "admin/course_category");
 	}
 
 	//Course
@@ -186,7 +187,8 @@ class Admin extends CI_Controller {
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "admin/state");
 	}
-
+	
+	
 	//City
 	public function city($cityId = '') {
 		$this -> load -> model('city_model');
@@ -229,7 +231,8 @@ class Admin extends CI_Controller {
 	}
 
 	//Target Type
-	public function targettype($trgettypeId = '') {
+
+	public function target_type($trgettypeId = '') {
 		$this -> load -> model("target_type_model");
 		if ($trgettypeId != '') {
 			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
@@ -244,14 +247,13 @@ class Admin extends CI_Controller {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					$data['validate'] = true;
+					$this -> data['validate'] = true;
 				} else {
-					$this -> load -> model('target_type_model');
 					$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
 					if ($_POST['trgettypeId'] != "" ? $this -> target_type_model -> updatetargettype($targettypeData, $_POST['trgettypeId']) : $this -> target_type_model -> addtargettype($targettypeData)) {
-						redirect(base_url() . "admin/targettype");
+						redirect(base_url() . "admin/target_type");
 					} else {
-						$data['error'] = "An Error Occured.";
+						$this -> data['error'] = "An Error Occured.";
 					}
 				}
 			}
@@ -262,10 +264,10 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function delete_targettype($targettypeId) {
+	public function delete_target_type($targettypeId) {
 		$this -> load -> model('target_type_model');
 		$this -> target_type_model -> deleteTargettype($targettypeId);
-		redirect(base_url() . "admin/targettype");
+		redirect(base_url() . "admin/target_type");
 	}
 
 	//Target
@@ -325,8 +327,8 @@ class Admin extends CI_Controller {
 		$this -> load -> model("staff_model");
 		$roleId = 1;
 		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
-		$data['staff_list'] = $staffData;
-		$this -> load -> view('backend/branch_manager/staff', $data);
+		$this -> data['staff_list'] = $staffData;
+		$this -> load -> view('backend/branch_manager/staff', $this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');

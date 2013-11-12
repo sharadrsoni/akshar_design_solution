@@ -59,7 +59,7 @@
 								</div>
 
 								<div class="body-inner">
-									<h3 class="form-section">Send Notification Info.</h3>
+								<h3 class="form-section">Send Notification Info.</h3>
 									<!-- Student/Staff -->
 									<div class="control-group">
 										<label class="control-label">Student/Staff<span class="required">*</span></label>
@@ -78,19 +78,28 @@
 											</div>
 										</div>
 									</div><!--/ Individual/Batch -->
+										<?php
+									$role=$this->session->userdata('roleId');
+									if($role==1)
+									{
+									?>
 									<!-- Branch -->
 									<div class="control-group">
 										<label class="control-label">Branch<span class="required">*</span></label>
 										<div class="controls">
 											<select class="span4" name="branch_name" id="branch_name">
-												<option value="All">All...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<option value="">Select...</option>
+													<?php
+												foreach ($branch as $key) {
+													echo "<option value='{$key->branchId}'>{$key->branchName} - {$key->branchId}</option>";
+												}
+												?>
+												
 											</select>
+											<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?></span>
 										</div>
 									</div><!--/ Branch -->
+										<?php } ?>
 									<!-- Batch -->
 									<div class="control-group" id="lst_batch_div">
 										<label class="control-label">Batch<span class="required">*</span></label>
@@ -104,6 +113,7 @@
 											</select>
 										</div>
 									</div><!--/ Batch -->
+								
 									<!-- Individual Name -->
 									<div class="control-group" style="display:none" id="lst_user_div">
 										<label class="control-label">Name<span class="required">*</span></label>
@@ -131,7 +141,7 @@
 									</div><!--/ Message -->
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="register" id="register">
 											Register
 										</button>
 									</div><!--/ Form Action -->

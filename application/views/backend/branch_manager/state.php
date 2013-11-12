@@ -50,9 +50,6 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblstate">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblstate .checkboxes" />
-												</th>
 												<th>State Name</th>
 												<th >View</th>
 											</tr>
@@ -61,10 +58,7 @@
 											<?php
 											if (isset($state)) {
 												foreach ($state as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
-
+													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->stateName} </td>
 <td ><span class=\"label label-success\" onclick='updatestate(\"{$key->stateId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_state/{$key->stateId}'>Delete</span></td></tr>
 ";
@@ -104,7 +98,7 @@
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" class="btn btn-primary" name="submitState" id="submitState">
-										Register
+										Add State
 									</button>
 								</div><!--/ Form Action -->
 							</div>

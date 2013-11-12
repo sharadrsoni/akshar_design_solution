@@ -14,7 +14,7 @@ class Staff extends CI_Controller {
 
 	//Search
 	public function search() {
-		$data['title'] = "ADS | Search";
+		$this->data['title'] = "ADS | Search";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/search_css');
 		$this -> load -> view('backend/master_page/header');
@@ -26,7 +26,10 @@ class Staff extends CI_Controller {
 
 	//Send Notification
 	public function send_notification() {
-		$data['title'] = "ADS | Target Type";
+		$this -> load -> model("branch_model");
+		$branchName = $this -> branch_model -> getDetailsOfBranch();
+		$this-> data['branch'] = $branchName;			
+		$this->data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/sendnotification_css');
 		$this -> load -> view('backend/master_page/header');
@@ -38,7 +41,7 @@ class Staff extends CI_Controller {
 
 	//Profile
 	public function profile() {
-		$data['title'] = "ADS | Profile";
+		$this->data['title'] = "ADS | Profile";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
 		$this -> load -> view('backend/master_page/header');
@@ -47,5 +50,4 @@ class Staff extends CI_Controller {
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-
-}
+	}

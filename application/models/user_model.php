@@ -39,4 +39,15 @@ class user_model extends CI_Model {
 		return $this -> db -> get() -> row();
 	}
 
+	public function addUser($data) {
+		if(isset($data)) {
+			return $this->db->insert('user', $data);
+		} else {
+			return false;
+		}
+	}
+	public function getMaxId() {
+		return $this -> db -> select_max('userId') -> get('user') -> row_array();
+	}
+	
 }

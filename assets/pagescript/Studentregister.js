@@ -17,6 +17,9 @@ var StudentRegistration = function() {
 				lastname : {
 					required : true
 				},
+				middlename : {
+					required : true
+				},
 				email : {
 					required : true
 				},
@@ -51,6 +54,7 @@ var StudentRegistration = function() {
 
 			submitHandler : function(form) {
 				success1.show();
+				form.submit();
 				error1.hide();
 			}
 		});
@@ -67,7 +71,7 @@ var StudentRegistration = function() {
 			focusInvalid : false, // do not focus the last invalid input
 			ignore : "",
 			rules : {
-				studentid :{
+				studentid : {
 					required : true
 				},
 				courseid : {
@@ -104,6 +108,7 @@ var StudentRegistration = function() {
 
 			submitHandler : function(form) {
 				success1.show();
+				form.submit();
 				error1.hide();
 			}
 		});
@@ -111,10 +116,42 @@ var StudentRegistration = function() {
 	return {
 		//main function to initiate the module
 		init_formvalidation : function() {
-
 			FormValidationStudentRegistration();
 			FormValidationCourseRegistration();
-
+		},
+		init_uijquery : function() {
+			$("#courseid").change(function() {
+				$("#batchid").children().remove();
+				$('#batchid').html("<option value=\"\">Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/batch/" + $("#courseid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.batch_list, function(i, item) {
+								$('#batchid').append("<option value=" + item.batchId + ">" + item.batchStartDate + "</option>");
+							});
+						}
+					}
+				});
+			});
+			$("#studentid").change(function() {
+				$.ajax({
+					url : "../ajax_manager/studentBatch/" + $("#studentid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$('#lst_Courses').html("");
+							$.each(json.batch_list, function(i, item) {
+								$('#lst_Courses').append("<tr><td class='hidden-480'>"+item.courseName+"</td><td class='hidden-480'>"+item.batchId+"</td><td><a href='branch_manager/delete_course_register/"+item.studentBatchId+"' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+							});
+						}
+					}
+				});
+			});
 		}
 	};
 }();
+

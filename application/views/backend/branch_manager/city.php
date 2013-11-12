@@ -50,9 +50,6 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblcity">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblcity .checkboxes" />
-												</th>
 												<th>City Name</th>
 												<th >View</th>
 											</tr>
@@ -61,10 +58,7 @@
 													<?php
 											if (isset($city)) {
 												foreach ($city as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
-
+													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->cityName} </td>
 <td ><span class=\"label label-success\" onclick='updatecity(\"{$key->cityId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_city/{$key->cityId}'>Delete</span></td></tr>
 ";
@@ -121,7 +115,7 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="submitCity" id="submitCity">
-											Register
+											Add City
 										</button>
 									</div><!--/ Form Action -->
 								</div>

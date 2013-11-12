@@ -38,7 +38,7 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" id="tab1link"  data-toggle="tab"><span class="icon icone-eraser"></span>Target Reports</a>
+							<a href="#tab1" id="tablink1"  data-toggle="tab"><span class="icon icone-eraser"></span>Target Reports</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -83,158 +83,163 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							
+
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_target_report');
 							echo form_open('branch_manager/targetreport', $attributes);
-							 ?>
-	
-							
-							
+							?>
+
 							<!-- <form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport"> -->
-								<div class="alert alert-error hide">
-									<button class="close" data-dismiss="alert"></button>
-									You have some form errors. Please check below.
-								</div>
-								<div class="alert alert-success hide">
-									<button class="close" data-dismiss="alert"></button>
-									Your form validation is successful!
-								</div>
+							<div class="alert alert-error hide">
+								<button class="close" data-dismiss="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success hide">
+								<button class="close" data-dismiss="alert"></button>
+								Your form validation is successful!
+							</div>
 
-								<div class="body-inner">
-									<h3 class="form-section">Target Report </h3>
-									<!-- Target Name-->
-									<div class="control-group">
-										<label class="control-label">Target Name</label>
-										<div class="controls">
-											<lable><div id="target_name"></div></lable>
-										</div>
-									</div><!--/ Target Name	 -->
-									<!-- Description -->
-									<div class="control-group">
-										<label class="control-label">Description</label>
-										<lable><div id="description"></div></lable>
+							<div class="body-inner">
+								<h3 class="form-section">Target Report </h3>
+								<!-- Target Name-->
+								<div class="control-group">
+									<label class="control-label">Target Name</label>
+									<div class="controls">
+										<lable>
+											<div id="target_name"></div>
+										</lable>
 									</div>
-									<!--/ Description         -->
-									
-									<!-- Start Date -->
-									<div class="control-group">
-										<label class="control-label">Start Date</label>
-										<div class="controls">
-											<lable><div id="start_date"></div>	</lable>
-										</div>
-									</div><!--/ Start Date -->
-
-									<!-- End Date -->
-									<div class="control-group">
-										<label class="control-label">End Date</label>
-										<div class="controls">
-											<lable><div id="end_date"></div></lable>
-										</div>
-									</div><!--/ End Date -->
-
-									<!-- date -->
-									<div class="control-group">
-										<label class="control-label">Date<span class="required">*</span></label>
-										<div class="controls">
-											<div class="input-append span6" id="date_datepicker">
-												<input type="text" name="date" id="date" class="m-wrap span7">
-												<span class="add-on"><i class="icon-calendar"></i></span>
-											</div>
-										</div>
-									</div><!--/ date -->
-									
-									<!-- Report Description -->
-									<div class="control-group">
-										<label class="control-label">Report Description<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="report_description" id="report_description" class="span8"/>
-										</div>
-									</div><!--/ Description	 -->
-									<input type="hidden" id="targetId" name="targetId"/>
-									<!-- Form Action -->
-									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" id="addreport" name="addreport">
-											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
-										</button>
-									</div><!--/ Form Action -->
+								</div><!--/ Target Name	 -->
+								<!-- Description -->
+								<div class="control-group">
+									<label class="control-label">Description</label>
+									<div class="controls">
+										<lable>
+											<div id="description"></div>
+										</lable>
+									</div>
 								</div>
+								<!--/ Description         -->
+
+								<!-- Start Date -->
+								<div class="control-group">
+									<label class="control-label">Start Date</label>
+									<div class="controls">
+										<lable>
+											<div id="start_date"></div>
+										</lable>
+									</div>
+								</div><!--/ Start Date -->
+
+								<!-- End Date -->
+								<div class="control-group">
+									<label class="control-label">End Date</label>
+									<div class="controls">
+										<lable>
+											<div id="end_date"></div>
+										</lable>
+									</div>
+								</div><!--/ End Date -->
+
+								<!-- date -->
+								<div class="control-group">
+									<label class="control-label">Date<span class="required">*</span></label>
+									<div class="controls">
+										<div class="input-append span6" id="date_datepicker">
+											<input type="text" name="date" id="date" class="m-wrap span7">
+											<span class="add-on"><i class="icon-calendar"></i></span>
+										</div>
+									</div>
+								</div><!--/ date -->
+
+								<!-- Report Description -->
+								<div class="control-group">
+									<label class="control-label">Report Description<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" name="report_description" id="report_description" class="span8"/>
+									</div>
+								</div><!--/ Description	 -->
+								<input type="hidden" id="targetId" name="targetId"/>
+								<!-- Form Action -->
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary" id="addreport" name="addreport">
+										Register
+									</button>
+									<button type="button" class="btn">
+										Cancel
+									</button>
+								</div><!--/ Form Action -->
+							</div>
 							</form>
 						</div>
 					</div>
 				</div>
 				<!--/ End Tabs -->
-				
+
 				<!--View Target Report -->
 				<div class="form-horizontal form-view" id="ViewBatch">
-												<h3> View Target Report</h3>
-												<h3 class="form-section">Target Info</h3>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">Target Name</label>
-															<div class="controls">
-																<span class="text" id="target_name"></span>
-															</div>
-														</div>
-													</div>
-													
-												</div>
-												<!--/row-->
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Description:</label>
-															<div class="controls">
-																<span class="text" id="description"></span> 
-															</div>
-														</div>
-													</div>
-													
-												</div>
-												<!--/row-->        
-												
-											              
-												<h3 class="form-section">Dates</h3>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Start Date:</label>
-															<div class="controls">
-																<span class="text" id="start_date"></span>
-															</div>
-														</div>
-													</div>
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">End Date:</label>
-															<div class="controls">
-																<span class="text" id="end_date"></span>
-															</div>
-														</div>
-													</div>
-												
-													
-												</div>
-												<!--/row-->           
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Status:</label>
-															<div class="controls">
-																<span class="text" id="status"></span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													
-												</div>
+					<h3> View Target Report</h3>
+					<h3 class="form-section">Target Info</h3>
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label" for="firstName">Target Name</label>
+								<div class="controls">
+									<span class="text" id="target_name"></span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Description:</label>
+								<div class="controls">
+									<span class="text" id="description"></span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--/row-->
+
+					<h3 class="form-section">Dates</h3>
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Start Date:</label>
+								<div class="controls">
+									<span class="text" id="start_date"></span>
+								</div>
+							</div>
+						</div>
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">End Date:</label>
+								<div class="controls">
+									<span class="text" id="end_date"></span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Status:</label>
+								<div class="controls">
+									<span class="text" id="status"></span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+
+					</div>
 				</div><!-- End View Targer Report -->
-				
-				
+
 			</div>
 			<!--/ END Row -->
 		</div>

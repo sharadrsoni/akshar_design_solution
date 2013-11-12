@@ -23,6 +23,47 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//Book_Inventory
+	public function book_inventory($bookinventoryId = '') {
+		$this -> load -> model("book_inventory_model");
+		if ($bookinventoryId != '') {
+			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByInventory($this -> branchId,$bookinventoryId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Book Inventory";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/book_inventory_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> model("course_model");
+			$this -> data['course'] = $this -> course_model -> getAllDetails();
+			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByBranch($this -> branchId);
+			if (isset($_POST['submitInventory'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
+				$this -> form_validation -> set_rules('inventory_quantity', 'Quantity', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this->data['validate'] = true;
+				} else {
+					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'], 'courseId' => $_POST['course_id'], 'branchId' => $this -> branchId);
+					if ($_POST['inventoryInwardId'] != "" ? $this -> book_inventory_model -> updateinventory($inventoryData,$_POST['inventoryInwardId']) : $this -> book_inventory_model -> addinventory($inventoryData)) {
+						redirect(base_url() . "branch_manager/book_inventory");
+					} else {
+						$this->data['error'] = "An Error Occured.";
+					}
+				}
+			}
+			$this -> load -> view('backend/branch_manager/book_inventory', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/book_inventory_js');
+		}
+	}
+
+	public function delete_inventory($inventoryInwardId) {
+		$this -> load -> model('book_inventory_model');
+		$this -> book_inventory_model -> deleteInventory($inventoryInwardId);
+		redirect(base_url() . "branch_manager/book_inventory");
+	}
+
 	//Batch
 	public function batch($batchId = '') {
 		$this -> load -> model('batch_model');
@@ -149,7 +190,7 @@ class Branch_manager extends CI_Controller {
 	//Event
 	public function event($eventId = '') {
 		$this -> load -> model('event_model');
-		$branchId = 01;
+		$branchId = $this -> branchId;
 		if ($eventId != '') {
 			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchId, $eventId);
 			echo json_encode($this -> data);
@@ -160,9 +201,9 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("event_type_model");
 			$this -> load -> model('user_model');
-			$data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
-			$data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
-			$data['event'] = $this -> event_model -> getDetailsByBranch($branchId);
+			$this->data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
+			$this->data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
+			$this->data['event'] = $this -> event_model -> getDetailsByBranch($branchId);
 			if (isset($_POST['submitEvent'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim');
@@ -178,17 +219,17 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Pin Code', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					$data['validate'] = true;
+					$this->data['validate'] = true;
 				} else {
 					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 					if ($_POST['eventId'] != "" ? $this -> event_model -> updateEvent($eventData, $_POST['eventId']) : $this -> event_model -> addEvent($eventData)) {
 						redirect(base_url() . "branch_manager/event");
 					} else {
-						$data['error'] = "An Error Occured.";
+						$this->data['error'] = "An Error Occured.";
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/event', $data);
+			$this -> load -> view('backend/branch_manager/event', $this->data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/event_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -202,7 +243,7 @@ class Branch_manager extends CI_Controller {
 	}
 
 	//target Report
-	public function targetreport($targetId = '') {
+	public function target_report($targetId = '') {
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
 			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
@@ -213,14 +254,13 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> view('backend/css/target_report_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("target_report_model");
-			$branchId = 1;
-			$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
+			$target_data = $this -> target_report_model -> getDetailsByBranch($this -> branchId);
 			$this -> data['target_report_list'] = $target_data;
 
 			if (isset($_POST['addreport'])) {
 				$reportData = array('targetReportDescription' => $_POST['report_description'], 'targetReportDate' => date("Y-m-d", strtotime($_POST['date'])), 'targetId' => $_POST['targetId']);
 				$this -> target_report_model -> addReport($reportData);
-				redirect(base_url() . "branch_manager/targetreport");
+				redirect(base_url() . "branch_manager/target_report");
 
 			}
 			$this -> load -> view('backend/branch_manager/target_report', $this -> data);

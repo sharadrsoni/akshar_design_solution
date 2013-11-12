@@ -1,15 +1,15 @@
-var TargetType = function() {
+var BookInventory = function() {
 	return {
 		//main function to initiate the module
 		init_table : function() {
 			if (!jQuery().dataTable) {
 				return;
 			}
-			// begin tbltargettype table
-			$('#tbltargettype').dataTable({
+			// begin tblstate table
+			$('#tblinventory').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				},null],
+				},null,null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -29,7 +29,7 @@ var TargetType = function() {
 				}]
 			});
 
-			jQuery('#tbltargettype .group-checkable').change(function() {
+			jQuery('#tblstate .group-checkable').change(function() {
 				var set = jQuery(this).attr("data-set");
 				var checked = jQuery(this).is(":checked");
 				jQuery(set).each(function() {
@@ -42,14 +42,14 @@ var TargetType = function() {
 				jQuery.uniform.update(set);
 			});
 
-			jQuery('#tbltargettype .dataTables_filter input').addClass("m-wrap medium");
+			jQuery('#tblstate .dataTables_filter input').addClass("m-wrap medium");
 			// modify table search input
-			jQuery('#tbltargettype .dataTables_length select').addClass("m-wrap small");
+			jQuery('#tblstate .dataTables_length select').addClass("m-wrap small");
 			// modify table per page dropdown
-			//jQuery('#tbltargettype .dataTables_length select').select2(); // initialize select2 dropdown
+			//jQuery('#tblstate .dataTables_length select').select2(); // initialize select2 dropdown
 		},
 		init_formvalidation : function() {
-			var form1 = $('#form_targettype');
+			var form1 = $('#form_inventory');
 			var error1 = $('.alert-error', form1);
 			var success1 = $('.alert-success', form1);
 			form1.validate({
@@ -58,8 +58,11 @@ var TargetType = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					targettype_name:{
+					course_id:{
 						required : true,
+					},
+					inventory_quantity:{
+						required : true,	
 					}
 				},
 
@@ -96,31 +99,34 @@ var TargetType = function() {
 		},
 		init_uijquery : function() {
 			$("#tablink2").click(function() {
-				$('#targettype_name').val("");
-				$('#trgettypeId').val("");
-				$("#submitTargetType").text("Add Target Type");
-				$('.alert-error', $('#form_targettype')).hide();
-				$("#form_targettype").validate().resetForm();
+				$('#course_id option:nth(0)').attr("selected", "selected");
+				$('#inventory_quantity').val("");
+				$('#inventoryInwardId').val("");
+				$("#submitInventory").text("Add Inventory");
+				$('.alert-error', $('#form_inventory')).hide();
+				$("#form_inventory").validate().resetForm();
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});
 		}
 	};
 }();
-function updatetargetype(targetypeid) {
+function updatebookinventory(inventoryInwardid) {
 	$.ajax({
-		url : "target_type/" + targetypeid,
+		url : "book_inventory/" + inventoryInwardid,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#targettype_name').val(json.targettype[0].targetTypeName);
+				$('#course_id').val(json.inventory[0].courseId);
+				$('#inventory_quantity').val(json.inventory[0].inventoryInwardQuantity);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#trgettypeId').val(json.targettype[0].targetTypeId);
-				$("#submitTargetType").text("Update Target Type");
+				$('#inventoryInwardId').val(json.inventory[0].inventoryInwardId);
+				$("#submitInventory").text("Update Inventory");
 			}
 		}
 	});
 }
+

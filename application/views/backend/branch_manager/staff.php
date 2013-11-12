@@ -97,9 +97,9 @@ echo "<tr class=\"odd gradeX\">
 									<div class="control-group">
 										<label class="control-label">Staff Name</label>
 										<div class="controls">
-											<div class="span4"><input type="text" name="first_name" id="first_name" class=""></div>
-											<div class="span4"><input type="text" name="middle_name" id="middle_name" class=""></div>
-											<div class="span4"><input type="text" name="last_name" id="last_name" class=""></div>
+											<div class="span4"><input type="text" name="first_name" id="first_name" placeholder="FirstName" class=""></div>
+											<div class="span4"><input type="text" name="middle_name" id="middle_name" placeholder="MiddleName" class=""></div>
+											<div class="span4"><input type="text" name="last_name" id="last_name" placeholder="LastName" class=""></div>
 										</div>
 									</div><!--/ Staff Name -->
 									<!-- Contact Number -->
@@ -148,14 +148,14 @@ echo "<tr class=\"odd gradeX\">
 									<div class="control-group">
 										<label class="control-label">Street<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="street_1" id="street_1" class="span8"/>
+											<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8"/>
 										</div>
 
 									</div>
 									<div class="control-group">
 										<label class="control-label"><span class="required"></span></label>
 										<div class="controls">
-											<input type="text" name="street_2" id="street_2" class="span8"/>
+											<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8"/>
 										</div>
 									</div><!--/ Street -->
 									<!-- City -->
@@ -179,7 +179,7 @@ echo "<tr class=\"odd gradeX\">
 												</select>
 											</div>
 											<div class="span4">
-												<input type="text" name="pin_code" id="pin_code" class="span12"/>
+												<input type="text" name="pin_code" id="pin_code" placeholder="Pincode" class="span12"/>
 											</div>
 										</div>
 									</div><!--/ StateState -->

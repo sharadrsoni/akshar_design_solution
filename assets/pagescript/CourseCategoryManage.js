@@ -9,7 +9,7 @@ var CourseCategory = function() {
 			$('#tblCourseCategory').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null,null],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -94,6 +94,34 @@ var CourseCategory = function() {
 					error1.hide();
 				}
 			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#coursecategory_name').val("");
+				$('#coursecategoryId').val("");
+				$("#submitCourseCategory").text("Add Course Category");
+				$('.alert-error', $('#form_coursecategory')).hide();
+				$("#form_coursecategory").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updatecoursecategory(oursecategoryid) {
+	$.ajax({
+		url : "course_category/" + oursecategoryid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#coursecategory_name').val(json.coursecategory[0].courseCategoryName);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#coursecategoryId').val(json.coursecategory[0].courseCategoryId);
+				$("#submitCourseCategory").text("Update Course Category");
+			}
+		}
+	});
+}

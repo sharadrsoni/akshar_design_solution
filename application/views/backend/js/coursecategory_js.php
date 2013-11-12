@@ -11,5 +11,6 @@
 		App.init();
 		CourseCategory.init_table();
 		CourseCategory.init_formvalidation();
+		CourseCategory.init_uijquery();
 	}); 
 </script>

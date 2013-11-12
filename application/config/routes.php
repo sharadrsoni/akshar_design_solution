@@ -42,7 +42,38 @@ $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 $route['branch_manager/send_notification'] = "staff/send_notification";
 $route['admin/send_notification'] = "staff/send_notification";
+$route['student/send_notification'] = "staff/send_notification";
+$route['faculty/send_notification'] = "staff/send_notification";
+$route['counsellor/send_notification'] = "staff/send_notification";
 
+$route['branch_manager/profile'] = "staff/profile";
+$route['admin/profile'] = "staff/profile";
+$route['faculty/profile'] = "staff/profile";
+$route['counsellor/profile'] = "staff/profile";
+
+$route['admin/event_type'] = "admin_branch_manager/event_type";
+$route['branch_manager/event_type'] = "admin_branch_manager/event_type";
+
+$route['admin/delete_event_type'] = "admin_branch_manager/delete_event_type";
+$route['branch_manager/delete_event_type'] = "admin_branch_manager/delete_event_type";
+
+$route['branch_manager/randomPassword'] = "branch_manager_counsellor/randomPassword";
+$route['counsellor/randomPassword'] = "branch_manager_counsellor/randomPassword";
+
+$route['branch_manager/inquiry'] = "branch_manager_counsellor/inquiry";
+$route['counsellor/inquiry'] = "branch_manager_counsellor/inquiry";
+
+$route['branch_manager/delete_inquiry'] = "branch_manager_counsellor/delete_inquiry";
+$route['counsellor/delete_inquiry'] = "branch_manager_counsellor/delete_inquiry";
+
+$route['branch_manager/studentregistration'] = "branch_manager_counsellor/studentregistration";
+$route['counsellor/studentregistration'] = "branch_manager_counsellor/studentregistration";
+
+$route['branch_manager/feespayment'] = "branch_manager_counsellor/feespayment";
+$route['counsellor/feespayment'] = "branch_manager_counsellor/feespayment";
+
+$route['branch_manager/feesreceipt'] = "branch_manager_counsellor/feesreceipt";
+$route['counsellor/feesreceipt'] = "branch_manager_counsellor/feesreceipt";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
