@@ -49,42 +49,45 @@
 								<li><img src="<?php echo base_url() . "images/avatar/avatar2.jpg"; ?>" alt="" /><a href="#" class="profile-edit">edit</a>
 								</li>
 								<li>
-									<a href="#">201212046</a>
+									<a href="#"><?php echo $profile[0]->userFirstName;?></a>
 								</li>
 								<li>
-									<a href="#">DAIICT</a>
+									<a href="#"><?php echo $profile[0]->userContactNumber;?></a>
 								</li>
-
 							</ul>
 							<div class="span9">
 								<div class="row-fluid">
 									<div class="span8 profile-info">
-										<h1><strong>Twitter, Inc.</strong>Jenifer</h1>
 
+										
 										<div class="">
 											<h4>Address</h4>
 											<address>
-												<strong>Loop, Inc.</strong>
+												
+												<?php echo $profile[0]->userStreet1;?>
 												<br>
-												795 Park Ave, Suite 120
+												<?php echo $profile[0]->userStreet2;?>												
 												<br>
-												San Francisco, CA 94107
+												<?php echo $profile[0]->userCity;?>-<?php echo $profile[0]->userPostalCode;?>												
 												<br>
-												<abbr title="Phone">P:</abbr> (234) 145-1810
+												<?php echo $profile[0]->userState;?>												
+												<br>
+											
+												<abbr title="Phone">P:</abbr> <?php echo $profile[0]->userContactNumber;?>
 											</address>
 											<address>
 												<strong>Email</strong>
 												<br>
-												<a href="mailto:#">first.last@email.com</a>
+												<a href="mailto:#"><?php echo $profile[0]->userEmailAddress;?></a>
 											</address>
 										</div>
 
 										<ul class="unstyled inline">
 											<li>
-												<i class="icon-map-marker"></i> Spain
+												<i class="icon-map-marker"></i> <?php echo $profile[0]->userCity;?>
 											</li>
 											<li>
-												<i class="icon-calendar"></i> 18 Jan 1982
+												<i class="icon-calendar"></i><?php echo $profile[0]->userDOB;?>
 											</li>
 										</ul>
 									</div>
@@ -182,7 +185,12 @@
 									<div class="tab-content">
 										<div id="tab_1-1" class="tab-pane active">
 											<div style="height: auto;" id="accordion1-1" class="accordion collapse">
-												<form action="#" id="form_studet_profile">
+												
+													
+													<?php
+													$attributes=array('id' => 'form_staff_profile');
+													 echo form_open('staff/profile', $attributes); 
+													 ?>
 													<div class="alert alert-error hide">
 														<button class="close" data-dismiss="alert"></button>
 														You have some form errors. Please check below.
@@ -192,69 +200,69 @@
 														Your form validation is successful!
 													</div>
 
-													<h3 class="form-section">Student Info</h3>
+													<h3 class="form-section">Staff Info</h3>
 													<!-- Name -->
 													<div class="control-group">
 														<label class="control-label">First Name:</label>
 														<div class="controls" >
-															<input type="text" name="first_name" id="first_name" class="span6">
+															<input type="text" name="first_name" id="first_name" class="span6" value="<?php echo $profile[0]->userFirstName;?>">
 														</div>
 													</div></td>
 													<td>
 													<div class="control-group">
 														<label class="control-label">Middle Name:</label>
 														<div class="controls" >
-															<input type="text" name="middle_name" id="middle_name" class="span6">
+															<input type="text" name="middle_name" id="middle_name" class="span6" value="<?php echo $profile[0]->userMiddleName;?>">
 														</div>
 													</div></td>
 													<td>
 													<div class="control-group">
 														<label class="control-label">Last Name:</label>
 														<div class="controls" >
-															<input type="text" name="last_name" id="last_name" class="span6">
+															<input type="text" name="last_name" id="last_name" class="span6" value="<?php echo $profile[0]->userLastName;?>">
 														</div>
 													</div><!--/ Name--><!-- Date of Birth -->
 													<div class="control-group">
 														<label class="control-label">Date of Birth</label>
 														<div class="input-append" id="dob_datepicker">
-															<input type="text" readonly="" name="date_of_birth" id="date_of_birth" class="m-wrap span6.">
+															<input type="text" readonly="" name="date_of_birth" id="date_of_birth" class="m-wrap span6." value="<?php echo $profile[0]->userDOB;?>">
 															<span class="add-on"><i class="icon-calendar"></i></span>
 														</div>
 													</div><!--/ Date of Birth --><!-- Mobile No -->
 													<div class="control-group">
 														<label class="control-label">Mobile No.</label>
 														<div class="controls">
-															<input type="text" name="mobile_no" id="mobile_no" class="span6">
+															<input type="text" name="mobile_no" id="mobile_no" class="span6" value="<?php echo $profile[0]->userContactNumber;?>">
 														</div>
 													</div><!--/ Mobile No--><!-- E-mail -->
 													<div class="control-group">
 														<label class="control-label">E-mail</label>
 														<div class="controls">
-															<input type="text" name="email" id="email" class="span6">
+															<input type="text" name="email" id="email" class="span6" value="<?php echo $profile[0]->userEmailAddress;?>">
 														</div>
 													</div><!--/ E-mail --><!-- Qualification -->
 													<div class="control-group">
 														<label class="control-label">Qualification</label>
 														<div class="controls">
-															<input type="text" name="qualification" id="qualification" class="span6">
+															<input type="text" name="qualification" id="qualification" class="span6" value="<?php echo $profile[0]->userQualification;?>">
 														</div>
 													</div><!--/ Qualification --><h3 class="form-section">Address</h3><!-- Street -->
 													<div class="control-group">
 														<label class="control-label">Street<span class="required">*</span></label>
 														<div class="controls">
-															<input type="text" name="street_1" id="street_1" class="span6"/>
+															<input type="text" name="street_1" id="street_1" class="span6"/ value="<?php echo $profile[0]->userStreet1;?>">
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label"><span class="required"></span></label>
 														<div class="controls">
-															<input type="text" name="street_2" id="street_2" class="span6"/>
+															<input type="text" name="street_2" id="street_2" class="span6"/ value="<?php echo $profile[0]->userStreet2;?>">
 														</div>
 													</div><!--/ Street --><!-- City -->
 													<div class="control-group">
 														<label class="control-label">Postal Code<span class="required">*</span></label>
 														<div class="controls">
-															<input type="text" name="pin_code" id="pin_code" class="span4"/>
+															<input type="text" name="pin_code" id="pin_code" class="span4"/ value="<?php echo $profile[0]->userPostalCode;?>">
 														</div>
 													</div><!--/ City --><!-- State -->
 													<div class="control-group">
@@ -282,7 +290,7 @@
 														</div>
 													</div><!--/ City --><!-- Form Action -->
 													<div class="form-actions">
-														<button type="submit" class="btn blue">
+														<button type="submit" class="btn blue" id="edit_profile" name="edit_profile">
 															Edit Profile
 														</button>
 													</div><!--/ Form Action -->

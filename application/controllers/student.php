@@ -50,11 +50,24 @@ class Student extends CI_Controller {
 
 	//Profile
 	public function profile() {
+		$this->load->model('student_model');
 		$data['title'] = "ADS | Profile";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/student_profile');
+		
+		if(isset($_POST['edit_profile']))
+		{
+		
+			$studentData=array('userFirstName'=>$_POST['first_name'],'userMiddleName'=>$_POST['middle_name'],'userLastName'=>$_POST['last_name'],'userDOB'=>$_POST['date_of_birth'],'userContactNumber'=>$_POST['mobile_no'],'userEmailAddress'=>$_POST['email'],'userQualification'=>$_POST['qualification'],'userStreet1'=>$_POST['street_1'],'userStreet2'=>$_POST['street_2'],'userPostalCode'=>$_POST['pin_code'],'userState'=>$_POST['state'],'userCity'=>$_POST['city']);
+			$otherData=array('studentInstituteName'=>$_POST['name_of_institute'],'studentGuardianName'=>$_POST['guardian_name'],'studentGuardianOccupation'=>$_POST['occupation_of_guardian'],'studentReferenceName'=>$_POST['reference']);
+			
+			$this->student_model->updateProfile($studentData,$otherData,6);
+			redirect(base_url() . "student/profile");
+		}
+		$data['profile']=$this->student_model->getDetailsById(6);
+		$data['moreinfo']=$this->student_model->getDetilsByStudentId(6);
+		$this -> load -> view('backend/branch_manager/student_profile',$data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');
