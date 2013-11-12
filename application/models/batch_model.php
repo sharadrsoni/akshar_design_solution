@@ -22,7 +22,14 @@ class batch_model extends CI_Model {
 		return $this -> db -> get() -> result();
 
 	}
+public function getDetailsByBranchAndFaculty($branchId, $userId) {
 
+		$this -> db -> where("batch.branchId", $branchId);
+		$this -> db -> where("batch.facultyId", $userId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+
+	}
 	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
 
 		$this -> db -> where("batch.branchId", $branchId);
