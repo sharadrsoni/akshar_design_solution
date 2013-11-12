@@ -13,38 +13,6 @@
 		// initiate layout and plugins
 		App.init();
 		StudentRegistration.init_formvalidation();
-		$("#courseid").change(function() {
-			$("#batchid").children().remove();
-			$('#batchid').html("<option value=\"\">Select...</option>");
-			$.ajax({
-				url : "../ajax_manager/batch/" + $("#courseid").val(),
-				dataType : 'json',
-				async : true,
-				success : function(json) {
-					if (json) {
-						$.each(json.batch_list, function(i, item) {
-							$('#batchid').append("<option value=" + item.batchId +  ">" + item.batchStartDate + "</option>");
-						});
-					}
-				}
-			});
-		});
-
-		$("#studentid").change(function() {
-			$.ajax({
-				url : "../ajax_manager/studentBatch/" + $("#studentid").val(),
-				dataType : 'json',
-				async : true,
-				success : function(json) {
-					if (json) {
-						$.each(json.batch_list, function(i, item) {
-							$('#lst_Courses').append("<tr class='odd gradeX'><td>" + $("#weekday option[value='"+item.batchTimingWeekday+"']").text()+ "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingWeekday + "'/></td><td class='hidden-480'>" + item.batchTimingStartTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingStartTime + "'/></td><td class='hidden-480'>" + item.batchTimingEndTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingEndTime + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
-						});
-					}
-				}
-			});
-		});
-
-
+		StudentRegistration.init_uijquery();
 	}); 
 </script>
