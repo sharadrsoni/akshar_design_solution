@@ -29,19 +29,12 @@ class Ajax_manager extends CI_Controller {
 	}
 
 	//Student Batch
-	public function studentBatch() {
+	public function studentBatch($studentId) {
 		$this -> load -> model('student_batch_model');
 		$this -> load -> model('batch_model');
 		$this -> load -> model('course_model');
-			$batch_data = $this -> student_batch_model -> getDetailsByStudent($this->userId);
+			$batch_data = $this -> student_batch_model -> getDetailsByStudent($studentId);
 			$this -> data['batch_list'] = $batch_data;
-			$course_data = Array();
-			foreach ($batch_data as $key)
-				$temp[$key -> batchId] = $this -> batch_model -> getCourseId($key -> batchId);
-			foreach ($temp as $key)
-				$course_data[$key ->courseCode] = $this -> course_model -> getCourseName($key->courseCode);	
-			$this -> data['batch_data'] = $temp;
-			$this -> data['course_data'] = $course_data;
 			echo json_encode($this -> data);
 	}
 
