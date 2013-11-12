@@ -332,7 +332,7 @@
 <!-- START Submenu Menu -->
 <ul id='submenu2' class='collapse '>
 <li class=''>
-<a href='" . base_url() . $href . "/studentregistation'><span class='icon icone-angle-right'></span>Registration</a>
+<a href='" . base_url() . $href . "/studentregistration'><span class='icon icone-angle-right'></span>Registration</a>
 </li>
 <li class=''>
 <a href='" . base_url() . $href . "/feespayment'><span class='icon icone-angle-right'></span>Fees Receipt</a>

@@ -45,7 +45,7 @@ class Admin extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code']);
+					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code'], 'branchlongitude' => $_POST['longitude'], 'branchlatitude' => $_POST['latitude']);
 					if ($_POST['branchId'] != "" ? $this -> branch_model -> updateBranch($branchValue, $_POST['branchId']) : $this -> branch_model -> addBranch($branchValue)) {
 						redirect(base_url() . "admin/branch");
 					} else {
@@ -61,15 +61,42 @@ class Admin extends CI_Controller {
 	}
 
 	//Course Category
-	public function coursecategory() {
-		$this -> data['title'] = "ADS | Course Category";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/coursecategory_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/coursecategory');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/coursecategory_js');
-		$this -> load -> view('backend/master_page/bottom');
+	public function course_category($coursecategoryId = '') {
+		$this -> load -> model("course_category_model");
+		if ($coursecategoryId != '') {
+			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsByCourseCategory($coursecategoryId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Course Category";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/coursecategory_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsOfCourseCategory();
+			if (isset($_POST['submitCourseCategory'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('coursecategory_name', 'Course Category Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$coursecategoryData = array('courseCategoryName' => $_POST['coursecategory_name']);
+					if ($_POST['coursecategoryId'] != "" ? $this -> course_category_model -> updatecoursecategory($coursecategoryData,$_POST['coursecategoryId']) : $this -> course_category_model -> addcoursecategory($coursecategoryData)) {
+						redirect(base_url() . "admin/course_category");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
+			}
+			$this -> load -> view('backend/branch_manager/coursecategory',$this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/coursecategory_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
+	}
+
+	public function delete_course_category($coursecategoryId) {
+		$this -> load -> model('course_category_model');
+		$this -> course_category_model -> deleteCoursecategory($coursecategoryId);
+		redirect(base_url() . "admin/course_category");
 	}
 
 	//Course
@@ -96,16 +123,12 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/css/state_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> data['state'] = $this -> state_model -> getDetailsOfState();
-			if (isset($_POST['submitState']))
-			 {
+			if (isset($_POST['submitState'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
-				if ($this -> form_validation -> run() == FALSE) 
-				{
+				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
-				}
-				 else 
-				{
+				} else {
 					$stateData = array('stateName' => $_POST['state_name']);
 					if ($_POST['stateId'] != "" ? $this -> state_model -> updatestate($stateData, $_POST['stateId']) : $this -> state_model -> addstate($stateData)) {
 						redirect(base_url() . "admin/state");
@@ -169,43 +192,42 @@ class Admin extends CI_Controller {
 	}
 
 	//Target Type
-	public function targettype() {
-		$this -> data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/targettype_css');
-		$this -> load -> view('backend/master_page/header');
+	public function target_type($trgettypeId = '') {
 		$this -> load -> model("target_type_model");
-		//Logic of getting Target Type data
-		$targettype_data = $this -> target_type_model -> getDetailsOfTargetType();
-		$data['targettype_list'] = $targettype_data;
-		if (isset($_POST['register'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
-
-			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
-			} else {
-				$this -> load -> model('target_type_model');
-				$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
-
+		if ($trgettypeId != '') {
+			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Target Type";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/targettype_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['targettype'] = $this -> target_type_model -> getDetailsOfTargetType();
+			if (isset($_POST['submitTargetType'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('targettype_name', 'Target Type Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$targettypeData = array('targetTypeName' => $_POST['targettype_name']);
+					if ($_POST['trgettypeId'] != "" ? $this -> target_type_model -> updatetargettype($targettypeData, $_POST['trgettypeId']) : $this -> target_type_model -> addtargettype($targettypeData)) {
+						redirect(base_url() . "admin/target_type");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
 			}
-			if ($this -> target_type_model -> addtargettype($targettypeData)) {
-				redirect(base_url() . "admin/targettype");
-			} else {
-				$data['error'] = "An Error Occured.";
-			}
+			$this -> load -> view('backend/branch_manager/targettype', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/targettype_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-
-		$this -> load -> view('backend/branch_manager/targettype', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/targettype_js');
-		$this -> load -> view('backend/master_page/bottom');
 	}
 
-	public function delete_targettype($targettypeId) {
+	public function delete_target_type($targettypeId) {
 		$this -> load -> model('target_type_model');
 		$this -> target_type_model -> deleteTargettype($targettypeId);
-		redirect(base_url() . "admin/targettype");
+		redirect(base_url() . "admin/target_type");
 	}
 
 	//Target
@@ -265,8 +287,8 @@ class Admin extends CI_Controller {
 		$this -> load -> model("staff_model");
 		$roleId = 1;
 		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
-		$data['staff_list'] = $staffData;
-		$this -> load -> view('backend/branch_manager/staff', $data);
+		$this -> data['staff_list'] = $staffData;
+		$this -> load -> view('backend/branch_manager/staff', $this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');

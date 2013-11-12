@@ -11,9 +11,24 @@ class Branch_manager_counsellor extends CI_Controller {
 		parent::authenticate($users);
 	}
 
+	//Random Password Genterator Function
+	function randomPassword() {
+		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+		$pass = array();
+		//remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1;
+		//put the length -1 in cache
+		for ($i = 0; $i < 8; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass);
+		//turn the array into a string
+	}
+
 	//Inquiry
 	public function inquiry() {
-		$data['title'] = "ADS | Inquiry";
+		$this -> data['title'] = "ADS | Inquiry";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/inquiry_css');
 		$this -> load -> view('backend/master_page/header');
@@ -64,12 +79,52 @@ class Branch_manager_counsellor extends CI_Controller {
 	}
 
 	//Student Registration
-	public function studentregistation() {
-		$data['title'] = "ADS | Student Registration";
+	public function studentregistration() {
+		$this -> data['title'] = "ADS | Student Registration";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_register_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/student_register');
+
+		$this -> load -> model('user_model');
+		$this -> load -> model('course_model');
+		$this -> load -> model('batch_model');
+			$data['course'] = $this -> course_model -> getAllDetails();
+			$data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this->branchId, 5);
+			$data['batchId'] = $this -> batch_model -> getDetailsByBranch($this->branchId);
+
+		if (isset($_POST['registerStudent'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('firstname', 'First Name', 'required|trim');
+			$this -> form_validation -> set_rules('lastname', 'Last Name', 'required|trim');
+			$this -> form_validation -> set_rules('email', 'Email ID', 'required|trim');
+			$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$data['validate'] = true;
+			} else {
+				$maxuserId = $this -> user_model -> getMaxId();
+				$userId = $maxuserId['userId'];
+				$userId = floatval($userId);
+				if ($userId != null) {
+					$userId++;
+				} else {
+					$userId = 1;
+				}
+				if ($userId < 10) {
+					$userId = "00" . $userId;
+				} else if ($userId < 100 && $userId > 9) {
+					$userId = "0" . $userId;
+				}
+				$pass = $this -> randomPassword();
+				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchId' => $this -> branchId, 'roleId' => 5, 'userPassword' => $pass, 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
+				if ($this -> user_model -> addUser($userData)) {
+					redirect(base_url() . "counsellor/studentregistration");
+				} else {
+					$data['error'] = "An Error Occured.";
+				}
+			}
+		}
+
+		$this -> load -> view('backend/branch_manager/student_register', $data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_register_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -78,7 +133,7 @@ class Branch_manager_counsellor extends CI_Controller {
 	//Fees Payment
 	public function feespayment() {
 		$data['title'] = "ADS | Fess Payment";
-		$this -> load -> view('backend/master_page/top', $data);
+		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/fees_payment_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/fees_payment');

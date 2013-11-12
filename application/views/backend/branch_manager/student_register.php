@@ -24,7 +24,7 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Student Registration <small>Register srudent over here.</small></h4>
+					<h4>Student Registration <small>Register student over here.</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
@@ -45,7 +45,10 @@
 				</div>
 				<div class="tab-content span9">
 					<div class="tab-pane active" id="tab1">
-						<form action="#" class="form-horizontal form-row-seperated" id="form_student_register1">
+						<?php
+							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register1');
+							echo form_open('branch_manager_counsellor/studentregistration', $attributes);
+						?>
 							<h3 class="block">Provide Student personal Info.</h3>
 							<div class="alert alert-error hide">
 								<button class="close" data-dismiss="alert"></button>
@@ -62,6 +65,13 @@
 									<input type="text" class="m-wrap span6" name="firstname" id="firstname" placeholder="First Name">
 								</div>
 							</div><!-- /First Name -->
+							<!-- Middle Name -->
+							<div class="control-group">
+								<label class="control-label">Middle Name</label>
+								<div class="controls">
+									<input type="text" class="m-wrap span6" name="middlename" id="middlename" placeholder="Middle Name">
+								</div>
+							</div><!-- /Middle Name -->
 							<!-- Last Name -->
 							<div class="control-group">
 								<label class="control-label">Last Name</label>
@@ -85,19 +95,22 @@
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">MO/LL</span>
-										<input class="m-wrap span12" type="text" name="contact_number" id="contact_number" placeholder="Email Address" />
+										<input class="m-wrap span12" type="text" name="contact_number" id="contact_number" placeholder="Contact Number" />
 									</div>
 								</div>
 							</div><!-- /Contact Number -->
 							<div class="form-actions clearfix">
-								<button type="submit" class="btn purple-stripe">
+								<button type="submit" class="btn purple-stripe" name="registerStudent" id="registerStudent">
 									Register
 								</button>
 							</div>
 						</form>
 					</div>
 					<div class="tab-pane" id="tab2">
-						<form action="#" class="form-horizontal form-row-seperated" id="form_student_register2">
+						<?php
+							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register2');
+							echo form_open('branch_manager_counselor/studentregistration', $attributes);
+						?>
 							<h3 class="block">Select Courses & Batches</h3>
 							<div class="alert alert-error hide">
 								<button class="close" data-dismiss="alert"></button>
@@ -112,11 +125,12 @@
 								<label class="control-label">Select Student<span class="required">*</span></label>
 								<div class="controls">
 									<select name="studentid" id="studentid" class="span6">
-										<option value="">Select</option>
-										<option value="EH">Western Sahara</option>
-										<option value="YE">Yemen</option>
-										<option value="ZM">Zambia</option>
-										<option value="ZW">Zimbabwe</option>
+											<option value="">Select...</option>
+											<?php
+											foreach ($student as $key) {
+												echo "<option value='{$key->userId}'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</option>";
+											}
+											?>
 									</select>
 								</div>
 							</div><!-- /Student -->
@@ -125,11 +139,12 @@
 								<label class="control-label">Course<span class="required">*</span></label>
 								<div class="controls">
 									<select name="courseid" id="courseid" class="span6">
-										<option value="">Select</option>
-										<option value="EH">Western Sahara</option>
-										<option value="YE">Yemen</option>
-										<option value="ZM">Zambia</option>
-										<option value="ZW">Zimbabwe</option>
+											<option value="">Select...</option>
+											<?php
+											foreach ($course as $key) {
+												echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
+											}
+											?>
 									</select>
 								</div>
 							</div><!-- /Course -->
@@ -138,11 +153,12 @@
 								<label class="control-label">Batch<span class="required">*</span></label>
 								<div class="controls">
 									<select name="batchid" id="batchid" class="span6 ">
-										<option value="">Select</option>
-										<option value="EH">Western Sahara</option>
-										<option value="YE">Yemen</option>
-										<option value="ZM">Zambia</option>
-										<option value="ZW">Zimbabwe</option>
+											<option value="">Select...</option>
+											<?php
+											foreach ($batchId as $key) {
+												echo "<option value='{$key->batchId}'>{$key->batchStartDate}</option>";
+											}
+											?>
 									</select>
 								</div>
 							</div><!-- /Batch -->

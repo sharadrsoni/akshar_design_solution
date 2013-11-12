@@ -178,6 +178,11 @@ var Branch = function() {
 				$('#longitude').val("");
 				$('#latitude').val("");
 				$('#branchId').val("");
+				$("#submitBranch").text("Add Branch");
+				$('.alert-error', $('#form_branch')).hide();
+				$("#form_branch").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};
@@ -189,7 +194,16 @@ function viewbranch(branchid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-
+				alert();
+				$("#ViewBatch").attr("style","display");
+				App.scrollTo($('#ViewBatch'));
+				$('#view_branch_name').text(json.branch[0].branchName);
+				$('#view_conatct_no').text(json.branch[0].branchContactNumber);
+				$('#view_address').html(json.branch[0].branchStreet1+"<Br/>"+json.branch[0].branchStreet2+"<Br/>"+json.branch[0].branchCity+", "+json.branch[0].branchState+"<Br/>"+json.branch[0].branchPincode);
+			/*	$('#viewstreet_2').text();
+				$('#viewstate').text();
+				$('#viewcity').text();
+				$('#viewpin_code').text();*/
 			}
 		}
 	});
@@ -209,12 +223,15 @@ function updatebranch(branchid) {
 				$('#state').val(json.branch[0].branchState);
 				$('#city').val(json.branch[0].branchCity);
 				$('#pin_code').val(json.branch[0].branchPincode);
-				//$('#longitude').val(json.branch[0].longitude);
-				//$('#latitude').val(json.branch[0].latitude);
+				$('#longitude').val(json.branch[0].branchlongitude);
+				$('#latitude').val(json.branch[0].branchlatitude);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#branchId').val(json.branch[0].branchId);
+				$("#submitBranch").text("Add Branch");
+				$("#submitBranch").text("Update Branch");
+				map = Branch.init_google();
 			}
 		}
 	});

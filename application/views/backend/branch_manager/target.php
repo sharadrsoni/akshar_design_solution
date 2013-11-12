@@ -50,9 +50,6 @@
 									<table class="table table-striped table-bordered table-hover" id="tblTarget">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th class="hidden-480">Target Name</th>
 												<th class="hidden-480">Start Date</th>
 												<th class="hidden-480">End Date</th>
@@ -65,9 +62,7 @@
 											<?php
 											if (isset($target)) {
 												foreach ($target as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
+													echo "<tr class=\"odd gradeX\">
 <td class=\"hidden-480\">{$key->targetSubject}</td>
 <td class=\"hidden-480\">{$key->targetStartDate}</td>
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
@@ -82,6 +77,81 @@
 									</table>
 								</div>
 							</div>
+							
+							<!--View Target  -->
+				<div class="form-horizontal form-view" id="ViewTarget">
+												
+												<h4 class="form-section">Target Info</h4>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<address>
+														<strong>Target Name</strong>
+														<br>
+														<lable id="view_target_name"></lable>
+														</address>
+													</div>
+													
+													<div class="span6 ">
+														<address>
+														<strong>Description</strong>
+														<br>
+														<lable id="view_description"></lable>
+														</address>
+													</div>
+											
+													
+												</div>
+												<!--/row-->
+												
+												
+											              
+											
+												<div class="row-fluid">
+													<div class="span6 ">
+														
+														<address>
+														<strong>Start Date</strong>
+														<br>
+														<lable id="view_start_date"></lable>
+														</address>
+														
+													</div>
+													<div class="span6 ">
+														<address>
+														<strong>End Date</strong>
+														<br>
+														<lable id="view_end_date"></lable>
+														</address>
+													</div>
+												
+													
+												</div>
+												<!--/row-->           
+												<div class="row-fluid">
+													<div class="span6 ">
+																											
+														<address>
+														<strong>Status</strong>
+														<br>
+														<lable id="view_status"></lable>
+														</address>
+													</div>
+													
+													<div class="span6 ">
+																											
+														<address>
+														<strong>Target Report</strong>
+														<br>
+														<lable id="view_target_report"></lable>
+														</address>
+													</div>
+													<!--/span-->
+													
+												</div>
+												
+												
+				</div><!-- End View Targer Report -->
+							
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
@@ -173,7 +243,7 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary"  name="submitTarget" id="submitTarget">
-											Create
+											Add Target
 										</button>
 									</div><!--/ Form Action -->
 								</div>

@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Course Categories</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Course Categories</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course Category</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course Category</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -50,28 +50,32 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblCourseCategory">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblCourseCategory .checkboxes" />
-												</th>
 												<th>CourseCategory Name</th>
 												<th >View</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>
-												<input type="checkbox" class="checkboxes" value="1" />
-												</td>
-												<td>shuxer</td>
-												<td ><span class="label label-success">Approved</span></td>
-											</tr>
+											<?php
+											if (isset($coursecategory)) {
+												foreach ($coursecategory as $key) {
+													echo "<tr class=\"odd gradeX\">
+<td class=\"hidden-480\">{$key->courseCategoryName} </td>
+<td ><span class=\"label label-success\" onclick='updatecoursecategory(\"{$key->courseCategoryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_course_category/{$key->courseCategoryId}'>Delete</span></td></tr>
+";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_coursecategory">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_coursecategory');
+							echo form_open('admin/course_category', $attributes);
+ ?>
+							<!-- <form class="form-horizontal span12 widget shadowed yellow" id="form_coursecategory"> -->
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -90,14 +94,11 @@
 											<input type="text" name="coursecategory_name" id="coursecategory_name" class="span8">
 										</div>
 									</div><!--/ Course Category Name -->
-
+									<input type="hidden" name="coursecategoryId" id="coursecategoryId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary" name="submitCourseCategory" id="submitCourseCategory">
 											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

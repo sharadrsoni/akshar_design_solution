@@ -75,6 +75,93 @@
 									</table>
 								</div>
 							</div>
+							
+				<!--View Course -->
+				<div class="form-horizontal form-view" id="ViewBatch">
+					<h3> View Course Info </h3>
+					
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label" for="firstName">Course Category:</label>
+								<span class="text" id="view_coursecategory_id"></span>
+							</div>
+							
+							
+						</div>
+						<!--/span-->
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label" for="lastName">Course Name:</label>
+								<div class="controls">
+									<span class="text" id="view_course_name"></span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Course Code:</label>
+								<div class="controls">
+									<span class="text" id="view_course_code"></span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Duration:</label>
+								<div class="controls">
+									<span class="text bold" id="view_course_duration"></span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+					</div>
+					<!--/row-->
+					<div class="row-fluid">
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Course Material Id:</label>
+								<div class="controls">
+									<span class="text bold" id="view_material_id"></span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						
+						<div class="span6 ">
+							<div class="control-group">
+								<label class="control-label">Material Total Books:</label>
+								<div class="controls">
+									<span class="text bold" id="view_total_books"></span>
+								</div>
+							</div>
+						</div>
+						<!--/span-->
+						
+					</div>
+					<!--/row-->
+					
+					<div class="row-fluid">
+						<div class="span12 ">
+							<div class="control-group">
+								<label class="control-label">Material Opening Stock:</label>
+								<div class="controls">
+									<span class="text" id="view_opening_stock"></span>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+					
+				</div><!-- End View course-->
+			
+							
 						</div>
 						<div class="tab-pane" id="tab2">
 							<form class="form-horizontal span12 widget shadowed yellow" id="form_course">

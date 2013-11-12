@@ -9,7 +9,7 @@ var TargetType = function() {
 			$('#tbltargettype').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null,null],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -93,6 +93,34 @@ var TargetType = function() {
 					error1.hide();
 				}
 			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#targettype_name').val("");
+				$('#trgettypeId').val("");
+				$("#submitTargetType").text("Add Target Type");
+				$('.alert-error', $('#form_targettype')).hide();
+				$("#form_targettype").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updatetargetype(targetypeid) {
+	$.ajax({
+		url : "target_type/" + targetypeid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#targettype_name').val(json.targettype[0].targetTypeName);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#trgettypeId').val(json.targettype[0].targetTypeId);
+				$("#submitTargetType").text("Update Target Type");
+			}
+		}
+	});
+}

@@ -9,7 +9,7 @@ var EventType = function() {
 			$('#tbleventtype').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null,null],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -98,13 +98,18 @@ var EventType = function() {
 			$("#tablink2").click(function() {
 				$('#eventtype_name').val("");
 				$('#eventtypeId').val("");
+				$("#submitEventType").text("Create Event Type");
+				$('.alert-error', $('#form_eventtype')).hide();
+				$("#form_eventtype").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};
 }();
 function updateeventtype(eventtypeid) {
 	$.ajax({
-		url : "eventtype/" + eventtypeid,
+		url : "event_type/" + eventtypeid,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
@@ -114,6 +119,7 @@ function updateeventtype(eventtypeid) {
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#eventtypeId').val(json.eventtype[0].eventTypeId);
+				$("#submitEventType").text("Update Event Type");
 			}
 		}
 	});
