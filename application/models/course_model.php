@@ -10,5 +10,11 @@ class course_model extends CI_Model {
 	{
 		return $this->db->get("course")->result();
 	}
+
+	public function getCourseName($courseCode) {
+		$this -> db -> where("course.courseCode", $courseCode);
+		$this -> db -> from('course');
+		return $this -> db -> get() -> result();
+	}
 		
 }
