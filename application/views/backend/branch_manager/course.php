@@ -65,7 +65,7 @@
 <td class=\"hidden-480\">{$key->courseCode}</td>
 <td class=\"hidden-480\">{$key->courseDuration}</td>
 <td class=\"hidden-480\">{$key->courseCategoryId}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_course/{$key->courseCode}'>Delete</a></span></td></tr>
+<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "admin/delete_course/{$key->courseCode}'>Delete</a></span></td></tr>
 ";
 											}
 											?>
@@ -164,7 +164,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_course');
-							echo form_open('branch_manager/course', $attributes);
+							echo form_open('admin/course', $attributes);
 							?>
 							
 								<div class="alert alert-error hide">
@@ -182,15 +182,18 @@
 									<div class="control-group">
 										<label class="control-label">Course Category ID<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="coursecategory_id" id="coursecategory_id">
+											<select class="span4" name="courseCategory_id" id="courseCategory_id">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($course_category as $key) {
+													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryId}</option>";
+												}
+												?>
 											</select>
+											<span for="courseCategory_id" class="help-inline"><?php echo form_error('courseCategory_id'); ?></span>
 										</div>
-									</div><!--/ CourseCategory ID -->
+									</div>
+									<!--/ CourseCategory ID -->
 									<!-- Course Name -->
 									<div class="control-group">
 										<label class="control-label">Course Name<span class="required">*</span></label>
@@ -203,6 +206,8 @@
 										<label class="control-label">Course Code<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="course_code" id="course_code" class="span8"/>
+											<?php echo form_error('course_code');
+											?>
 										</div>
 									</div><!--/ Course Code -->
 									<!-- Course Duration -->
