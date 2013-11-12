@@ -17,6 +17,7 @@ class course_model extends CI_Model {
 	{
 		return $this->db->get("course")->result();
 	}
+<<<<<<< HEAD
 	
 		public function addCourse($data) {
 		if (isset($data)) {
@@ -34,5 +35,14 @@ class course_model extends CI_Model {
 		}
 
 	}
+=======
+
+	public function getCourseName($courseCode) {
+		$this -> db -> where("course.courseCode", $courseCode);
+		$this -> db -> from('course');
+		return $this -> db -> get() -> result();
+	}
+		
+>>>>>>> 8aec57050ce01e0425c2aab56edc34532250cf16
 }
 ?>

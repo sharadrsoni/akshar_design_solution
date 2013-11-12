@@ -9,7 +9,7 @@ var State = function() {
 			$('#tblstate').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null,null],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -98,9 +98,9 @@ var State = function() {
 			$("#tablink2").click(function() {
 				$('#state_name').val("");
 				$('#stateId').val("");
+				$("#submitState").text("Add State");
 				$('.alert-error', $('#form_state')).hide();
 				$("#form_state").validate().resetForm();
-				$(".error").html('');
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});
@@ -119,6 +119,7 @@ function updatestate(stateid) {
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#stateId').val(json.state[0].stateId);
+				$("#submitState").text("Update State");
 			}
 		}
 	});

@@ -66,49 +66,30 @@
 <td onclick='viewbranch(\"{$key->branchId}\");'>{$key->branchName}</td>
 <td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
-<<<<<<< HEAD
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_branch/{$key->branchId}'>Delete</a></span></td></tr>
-";
-=======
 <td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchId}\");'>Edit</span></td>
 </tr>";
->>>>>>> upstream/master
 											}
 											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<!--View Branch -->+
-							
-							<div class="form-horizontal form-view" style="display:none" id="ViewBatch">
-								<h3> Branch View</h3>
-								<h3 class="form-section">Branch Info</h3>
+							<!--View Branch -->
+							<div class="span9" id="ViewBatch">
 								<div class="row-fluid">
-									<div class="span6 ">
-										<div class="control-group">
-											<label class="control-label" for="firstName">Branch Name:</label>
-											<div class="controls">
-												<span class="text" id="viewbranch_name"></span>
-											</div>
-										</div>
-									</div>
-									<!--/span-->
-								</div>
-								<!--/row-->
+									<div class="span5 profile-info">
 
-								<div class="row-fluid">
-									<div class="span6 ">
-										<div class="control-group">
-											<label class="control-label" for="firstName">Contact No.:</label>
-											<div class="controls">
-												<span class="text" id="viewconatct_no"></span>
-											</div>
-										</div>
-									</div>
-									<!--/span-->
-								</div>
-								<!--/row-->
+										<div class="">
+											<address>
+												<strong>Name</strong>
+												<br>
+												<lable id="view_branch_name"></lable>
+											</address>
+											<h5>Address</h5>
+											<address id="view_address">
+
+											</address>
+
 
 								<h3 class="form-section">Address</h3>
 								<div class="row-fluid">
@@ -119,16 +100,16 @@
 												<span class="text" id="viewstreet_1" ></span>
 											</div>
 										</div>
-<<<<<<< HEAD
+
 									</div><!--/ StateState -->
 									<!-- Google Map LocationGoogle Map Location -->
 									<h3 class="form-section">Google Map Location</h3>
 									<div class="control-group">
-										<label class="control-label">longitude & latitude</span></label>
+										<label class="control-label">longitude &amp; latitude</span></label>
 										<div class="controls">
 											<div class="span4">
 												<input type="text" name="longitude " id="longitude" readonly class="span12"/>
-=======
+
 									</div>
 								</div>
 								<div class="row-fluid">
@@ -137,7 +118,7 @@
 											<label class="control-label">City:</label>
 											<div class="controls">
 												<label class="" id="viewcity"></label>
->>>>>>> upstream/master
+
 											</div>
 										</div>
 									</div>
@@ -149,22 +130,22 @@
 												<span class="text" id="viewstate"></span>
 											</div>
 										</div>
-									</div>
-									<!--/span-->
-								</div>
-								<!--/row-->
-								<div class="row-fluid">
-									<div class="span6 ">
-										<div class="control-group">
-											<label class="control-label">Post Code:</label>
-											<div class="controls">
-												<span class="text" id="viewpin_code"></span>
-											</div>
-										</div>
-									</div>
-									<!--/span-->
 
-<<<<<<< HEAD
+									</div>
+									<!--end span5-->
+									<div class="span5 profile-info">
+
+										<div class="">
+											<address>
+												<strong>Contact No.</strong>
+												<br>
+												<lable id="view_conatct_no"></lable>
+											</address>
+
+										</div>
+
+									</div>
+
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="add_branch" id="add_branch">
@@ -174,10 +155,13 @@
 											Cancel
 										</button>
 									</div><!--/ Form Action -->
-=======
->>>>>>> upstream/master
 								</div>
-							</div><!-- End View Branch -->
+								<!--end row-fluid-->
+
+								<div class="row-fluid" style="height:20px;"></div>
+							</div>
+							<!--end span9-->
+							<!-- End View Branch -->
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
@@ -215,14 +199,14 @@
 								<div class="control-group">
 									<label class="control-label">Street<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="street_1" id="street_1" class="span8"/>
+										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8"/>
 									</div>
 
 								</div>
 								<div class="control-group">
 									<label class="control-label"><span class="required"></span></label>
 									<div class="controls">
-										<input type="text" name="street_2" id="street_2" class="span8"/>
+										<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8"/>
 									</div>
 								</div><!--/ Street -->
 								<!-- State -->
@@ -259,7 +243,7 @@
 								<!-- Google Map LocationGoogle Map Location -->
 								<h3 class="form-section">Google Map Location</h3>
 								<div class="control-group">
-									<label class="control-label">longitude & latitude<span class="required">*</span></label>
+									<label class="control-label">longitude &amp; latitude<span class="required">*</span></label>
 									<div class="controls">
 										<div class="span4">
 											<input type="text" name="longitude" id="longitude" readonly class="span12"/>

@@ -126,7 +126,7 @@ var TargetReport = function() {
 function updatetarget(targetid) {
 	
 	$.ajax({
-		url : "targetreport/" + targetid,
+		url : "target_report/" + targetid,
 		dataType : 'json',
 		async : true,
 		success : function(json) {

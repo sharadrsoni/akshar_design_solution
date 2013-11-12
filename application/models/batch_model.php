@@ -22,6 +22,22 @@ class batch_model extends CI_Model {
 		return $this -> db -> get() -> result();
 
 	}
+public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
+
+		$this -> db -> where("batch.branchId", $branchId);
+		$this -> db -> where("batch.facultyId", $facultyId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+	}
+
+	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
+
+		$this -> db -> where("batch.branchId", $branchId);
+		$this -> db -> where("batch.courseCode", $courseCode);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+
+	}
 
 	public function deleteBatch($batchId) {
 		if (isset($batchId)) {
@@ -52,6 +68,12 @@ class batch_model extends CI_Model {
 
 	public function getMaxId() {
 		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
+	}
+
+	public function getCourseId($batchId) {
+		$this -> db -> where("batch.batchId", $batchId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
 	}
 
 }

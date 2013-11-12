@@ -50,9 +50,6 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tbltargettype">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tbltargettype .checkboxes" />
-												</th>
 												<th>Target Type Name</th>
 												<th >View</th>
 											</tr>
@@ -62,9 +59,8 @@
 											if (isset($targettype)) {
 												foreach ($targettype as $key) {
 													echo "<tr class=\"odd gradeX\">
-													<td><input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>
 													<td class=\"hidden-480\">{$key->targetTypeName} </td>
-													<td ><span class=\"label label-success\" onclick='updatetargetype(\"{$key->targetTypeId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_targettype/{$key->targetTypeId}'>Delete</span></td></tr>
+													<td ><span class=\"label label-success\" onclick='updatetargetype(\"{$key->targetTypeId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "admin/delete_target_type/{$key->targetTypeId}'>Delete</span></td></tr>
 													";
 												}
 											}
@@ -77,7 +73,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_targettype');
-							echo form_open('admin/targettype', $attributes);
+							echo form_open('admin/target_type', $attributes);
  ?>
 							<!--<form class="form-horizontal span12 widget shadowed green" id="form_targettype">-->
 								<div class="alert alert-error hide">
@@ -102,7 +98,7 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="submitTargetType" id="submitTargetType">
-											Register
+											Add Target Type
 										</button>
 									</div><!--/ Form Action -->
 								</div>
