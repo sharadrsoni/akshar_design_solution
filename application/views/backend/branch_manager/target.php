@@ -77,6 +77,81 @@
 									</table>
 								</div>
 							</div>
+							
+							<!--View Target  -->
+				<div class="form-horizontal form-view" id="ViewTarget">
+												
+												<h4 class="form-section">Target Info</h4>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<address>
+														<strong>Target Name</strong>
+														<br>
+														<lable id="view_target_name"></lable>
+														</address>
+													</div>
+													
+													<div class="span6 ">
+														<address>
+														<strong>Description</strong>
+														<br>
+														<lable id="view_description"></lable>
+														</address>
+													</div>
+											
+													
+												</div>
+												<!--/row-->
+												
+												
+											              
+											
+												<div class="row-fluid">
+													<div class="span6 ">
+														
+														<address>
+														<strong>Start Date</strong>
+														<br>
+														<lable id="view_start_date"></lable>
+														</address>
+														
+													</div>
+													<div class="span6 ">
+														<address>
+														<strong>End Date</strong>
+														<br>
+														<lable id="view_end_date"></lable>
+														</address>
+													</div>
+												
+													
+												</div>
+												<!--/row-->           
+												<div class="row-fluid">
+													<div class="span6 ">
+																											
+														<address>
+														<strong>Status</strong>
+														<br>
+														<lable id="view_status"></lable>
+														</address>
+													</div>
+													
+													<div class="span6 ">
+																											
+														<address>
+														<strong>Target Report</strong>
+														<br>
+														<lable id="view_target_report"></lable>
+														</address>
+													</div>
+													<!--/span-->
+													
+												</div>
+												
+												
+				</div><!-- End View Targer Report -->
+							
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php

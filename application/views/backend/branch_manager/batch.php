@@ -78,6 +78,120 @@
 									</table>
 								</div>
 							</div>
+							
+				<!--View Batch -->
+				<div class="form-horizontal form-view" id="ViewBatch">
+					
+					<h4 class="form-section">Batch Info</h4>
+					<div class="row-fluid">
+						
+						<div class="span4 ">
+							<address>
+							<strong>Course</strong>
+							<br>
+							<lable id="view_course_id"></lable>
+							</address>
+						</div>
+						
+						<!--/span-->
+						<div class="span4 ">
+							<address>
+							<strong>Faculty Name</strong>
+							<br>
+							<lable id="view_faculty_id"></lable>
+							</address>
+						</div>
+						<!--/span-->
+						<div class="span4 ">
+							<address>
+							<strong>Start Date</strong>
+							<br>
+							<lable id="view_start_date"></lable>
+							</address>
+						</div>
+						<!--/span-->
+						
+					</div>
+					<!--/row-->
+					
+					<div class="row-fluid">
+						
+						<div class="span4 ">
+							<address>
+							<strong>Duration</strong>
+							<br>
+							<lable id="view_duration"></lable>
+							</address>
+						</div>
+						
+						<!--/span-->
+						<div class="span4 ">
+							<address>
+							<strong>Strength</strong>
+							<br>
+							<lable id="view_strength"></lable>
+							</address>
+						</div>
+						<!--/span-->
+						
+						
+						
+					</div>
+					<!--/row-->
+					
+					
+					<h4 class="form-section">Batch Timing</h4>
+					<div style="background-color:#F9F9F9;padding-top: 10px;padding-left: 10px">
+					<div class="row-fluid">
+												
+						<div class="span2">
+							<address>
+							<strong>Monday</strong>
+							<br>
+							<lable id="">5 to 6</lable>
+							</address>
+						</div>
+						<div class="span2">
+							<address>
+							<strong>Tuesday</strong>
+							<br>
+							<lable id="">5 to 6</lable>
+							</address>
+						</div>
+						<div class="span2">
+							<address>
+							<strong>Wednesday</strong>
+							<br>
+							<lable id="">5 to 6</lable>
+							</address>
+						</div>
+						<div class="span2">
+							<address>
+							<strong>Thursday</strong>
+							<br>
+							<lable id="">5 to 6</lable>
+							</address>
+						</div>
+						<div class="span2">
+							<address>
+							<strong>Friday</strong>
+							<br>
+							<lable id="">5 to 6</lable>
+							</address>
+						</div>
+						<div class="span2">
+							<address>
+							<strong>Saturday</strong>
+							<br>
+							<lable id="">5 to 6</lable>
+							</address>
+						</div>
+						
+					</div>
+					
+					</div>
+				</div><!-- End View Batch -->
+							
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
@@ -234,126 +348,7 @@
 						</div>
 					</div>
 				</div><!--/ End Tabs -->
-				<!--View Batch -->
-				<div class="form-horizontal form-view" id="ViewBatch">
-					<h3> View User Info - Bob Nilson </h3>
-					<h3 class="form-section">Person Info</h3>
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label" for="firstName">First Name:</label>
-								<div class="controls">
-									<span class="text">Bob</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label" for="lastName">Last Name:</label>
-								<div class="controls">
-									<span class="text">Nilson</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Gender:</label>
-								<div class="controls">
-									<span class="text">Male</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Date of Birth:</label>
-								<div class="controls">
-									<span class="text bold">20.01.1984</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Category:</label>
-								<div class="controls">
-									<span class="text bold">Category1</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Membership:</label>
-								<div class="controls">
-									<span class="text bold">Free</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-					<!--/row-->
-					<h3 class="form-section">Address</h3>
-					<div class="row-fluid">
-						<div class="span12 ">
-							<div class="control-group">
-								<label class="control-label">Street:</label>
-								<div class="controls">
-									<span class="text">#24 Sun Park Avenue, Rolton Str</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">City:</label>
-								<div class="controls">
-									<span class="text">New York</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						<div class="span6">
-							<div class="control-group">
-								<label class="control-label">State:</label>
-								<div class="controls">
-									<span class="text">New York</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Post Code:</label>
-								<div class="controls">
-									<span class="text">457890</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Country:</label>
-								<div class="controls">
-									<span class="text">USA</span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-				</div><!-- End View Batch -->
+				
 			</div>
 			<!--/ END Row -->
 		</div>
