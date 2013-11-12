@@ -17,6 +17,9 @@ var StudentRegistration = function() {
 				lastname : {
 					required : true
 				},
+				middlename : {
+					required : true
+				},
 				email : {
 					required : true
 				},
@@ -141,7 +144,7 @@ var StudentRegistration = function() {
 					success : function(json) {
 						if (json) {
 							$.each(json.batch_list, function(i, item) {
-								$('#lst_Courses').append("<tr class='odd gradeX'><td>" + $("#weekday option[value='" + item.batchTimingWeekday + "']").text() + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingWeekday + "'/></td><td class='hidden-480'>" + item.batchTimingStartTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingStartTime + "'/></td><td class='hidden-480'>" + item.batchTimingEndTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingEndTime + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+								$('#lst_Courses').append("<tr><td class='hidden-480'>"+item.courseName+"</td><td class='hidden-480'>"+item.batchId+"</td><td><a href='branch_manager/delete_course_register/"+item.studentBatchId+"' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
 							});
 						}
 					}

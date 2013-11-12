@@ -183,7 +183,7 @@
 									</tr>
 								</thead>
 								<tbody id="lst_Courses">
-
+									
 								</tbody>
 							</table>
 						</div><!--/ List-->
