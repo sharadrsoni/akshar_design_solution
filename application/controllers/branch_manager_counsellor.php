@@ -80,18 +80,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Student Registration
 	public function studentregistration() {
-		$this -> data['title'] = "ADS | Student Registration";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/student_register_css');
-		$this -> load -> view('backend/master_page/header');
-
 		$this -> load -> model('user_model');
-		$this -> load -> model('course_model');
-		$this -> load -> model('batch_model');
-			$data['course'] = $this -> course_model -> getAllDetails();
-			$data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this->branchId, 5);
-			$data['batchId'] = $this -> batch_model -> getDetailsByBranch($this->branchId);
-
 		if (isset($_POST['registerStudent'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('firstname', 'First Name', 'required|trim');
@@ -99,7 +88,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> form_validation -> set_rules('email', 'Email ID', 'required|trim');
 			$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
-				$data['validate'] = true;
+				$this -> data['validate'] = true;
 			} else {
 				$maxuserId = $this -> user_model -> getMaxId();
 				$userId = $maxuserId['userId'];
@@ -119,15 +108,41 @@ class Branch_manager_counsellor extends CI_Controller {
 				if ($this -> user_model -> addUser($userData)) {
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
-					$data['error'] = "An Error Occured.";
+					$this -> data['error'] = "An Error Occured.";
 				}
 			}
 		}
+		else if (isset($_POST['registerCourse'])) 
+		{
+		$this -> load -> model('student_batch_model');
+		if(isset($_POST['isbookissue']))
+			$val = 1;
+		else 
+			$val = 0;	
+		$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val,'batchId' => $_POST['batchid']);
+			if ($this -> student_batch_model -> addStudentbatch($studentBatchData)) {
+					redirect(base_url() . "branch_manager_counsellor/studentregistration");
+			} else {
+					$this -> data['error'] = "An Error Occured.";
+			}
+		} 
+		else {
 
-		$this -> load -> view('backend/branch_manager/student_register', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/student_register_js');
-		$this -> load -> view('backend/master_page/bottom');
+			$this -> load -> model('course_model');
+			$this -> load -> model('batch_model');
+			$this -> data['title'] = "ADS | Student Registration";
+			$this -> data['course'] = $this -> course_model -> getAllDetails();
+			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
+			$this -> data['batchId'] = $this -> batch_model -> getDetailsByBranch($this -> branchId);
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/student_register_css');
+			$this -> load -> view('backend/master_page/header');
+
+			$this -> load -> view('backend/branch_manager/student_register');
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/student_register_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
 	}
 
 	//Fees Payment

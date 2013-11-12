@@ -109,7 +109,7 @@
 					<div class="tab-pane" id="tab2">
 						<?php
 							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register2');
-							echo form_open('branch_manager_counselor/studentregistration', $attributes);
+							echo form_open('branch_manager_counsellor/studentregistration', $attributes);
 						?>
 							<h3 class="block">Select Courses & Batches</h3>
 							<div class="alert alert-error hide">
@@ -153,12 +153,6 @@
 								<label class="control-label">Batch<span class="required">*</span></label>
 								<div class="controls">
 									<select name="batchid" id="batchid" class="span6 ">
-											<option value="">Select...</option>
-											<?php
-											foreach ($batchId as $key) {
-												echo "<option value='{$key->batchId}'>{$key->batchStartDate}</option>";
-											}
-											?>
 									</select>
 								</div>
 							</div><!-- /Batch -->
@@ -167,13 +161,13 @@
 								<label class="control-label">Books issue<span class="required">*</span></label>
 								<div class="controls">
 									<div class="switch" data-on="info" data-off="success" data-on-label="Yes" data-off-label="No">
-										<input name="isbookissue" id="isbookissue" type="checkbox" class="toggle"/>
+										<input name="isbookissue" id="isbookissue" value="1" type="checkbox" class="toggle"/>
 									</div>
 								</div>
 							</div><!-- /Book receive or not -->
 							<!-- Add -->
 							<div class="form-actions clearfix">
-								<button type="submit" class="btn purple-stripe">
+								<button type="submit" class="btn purple-stripe" name="registerCourse" id="registerCourse">
 									Course Register
 								</button>
 							</div><!-- Add -->
