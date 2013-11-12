@@ -202,7 +202,7 @@ class Branch_manager extends CI_Controller {
 	}
 
 	//target Report
-	public function targetreport($targetId = '') {
+	public function target_report($targetId = '') {
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
 			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
@@ -213,14 +213,13 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> view('backend/css/target_report_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("target_report_model");
-			$branchId = 1;
-			$target_data = $this -> target_report_model -> getDetailsByBranch($branchId);
+			$target_data = $this -> target_report_model -> getDetailsByBranch($this->branchId);
 			$this -> data['target_report_list'] = $target_data;
 
 			if (isset($_POST['addreport'])) {
 				$reportData = array('targetReportDescription' => $_POST['report_description'], 'targetReportDate' => date("Y-m-d", strtotime($_POST['date'])), 'targetId' => $_POST['targetId']);
 				$this -> target_report_model -> addReport($reportData);
-				redirect(base_url() . "branch_manager/targetreport");
+				redirect(base_url() . "branch_manager/target_report");
 
 			}
 			$this -> load -> view('backend/branch_manager/target_report', $this -> data);

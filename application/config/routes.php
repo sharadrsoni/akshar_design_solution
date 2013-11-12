@@ -48,7 +48,6 @@ $route['counsellor/send_notification'] = "staff/send_notification";
 
 $route['branch_manager/profile'] = "staff/profile";
 $route['admin/profile'] = "staff/profile";
-$route['student/profile'] = "staff/profile";
 $route['faculty/profile'] = "staff/profile";
 $route['counsellor/profile'] = "staff/profile";
 

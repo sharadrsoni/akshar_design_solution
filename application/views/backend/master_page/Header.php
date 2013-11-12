@@ -296,12 +296,12 @@
 <a href='" . base_url() . $href . "/target'> <span class='icon icone-dashboard'></span> <span class='text'>Target</span> </a>
 </li>
 <li class='accordion-group'>
-<a href='" . base_url() . $href . "/eventtype'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a>
+<a href='" . base_url() . $href . "/event_type'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
 <li class='accordion-group'>
-<a href='" . base_url() . $href . "/targettype'> <span class='icon icone-dashboard'></span> <span class='text'>Target type</span> </a>
+<a href='" . base_url() . $href . "/target_type'> <span class='icon icone-dashboard'></span> <span class='text'>Target type</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
@@ -316,7 +316,7 @@
 <!--/ END Menu -->
 <!-- START Menu -->
 <li class='accordion-group'>
-<a href='" . base_url() . $href . "/coursecategory'> <span class='icon icone-dashboard'></span> <span class='text'>Course Category</span> </a>
+<a href='" . base_url() . $href . "/course_category'> <span class='icon icone-dashboard'></span> <span class='text'>Course Category</span> </a>
 </li>
 <!--/ END Menu -->
 <!-- START Menu -->
@@ -344,7 +344,7 @@
 <a href='" . base_url() . $href . "/event'> <span class='icon icone-dashboard'></span> <span class='text'>Event</span> </a>
 </li>
 <li class='accordion-group'>
-<a href='" . base_url() . $href . "/targetreport'> <span class='icon icone-dashboard'></span> <span class='text'>Target Feedback</span> </a>
+<a href='" . base_url() . $href . "/target_report'> <span class='icon icone-dashboard'></span> <span class='text'>Target Feedback</span> </a>
 </li>";
 									} else if ($roleId = 3) {
 										echo "<li class='accordion-group'>
