@@ -47,7 +47,7 @@ class Faculty extends CI_Controller {
 				$this -> data['validate'] = true;
 			} else {
 				$this -> load -> model('test_model');
-				$test_data = array('testDate' => $_POST['test_date'], 'testMaximumMarks' => $_POST['test_marks'], 'batchId' => $_POST['batch_id'],'testName' => $_POST['test_name']);
+				$test_data = array('testDate' => $_POST['test_date'], 'testMaximumMarks' => $_POST['test_marks'], 'batchId' => 201301001,'testName' => $_POST['test_name']);
 				//$batchId=$_POST['batch_id'];
 				if ($this -> test_model -> addtest($test_data)) {
 					redirect(base_url() . "faculty/test");
@@ -60,14 +60,14 @@ class Faculty extends CI_Controller {
 			$this -> data['title'] = "ADS | Test";
 			$this -> load -> model("test_model");
 			$this -> load -> model("batch_model");
-			$test_data = $this -> test_model -> getDetailsBytest();
-			$test_data1=$this ->batch_model ->getDetailsByBranchAndFaculty($this->branchId, $this ->userId);
-			$this -> data['test_list'] = $test_data;
-			$this -> data['test_list1'] = $test_data1;
+			$this -> data['test_list'] = $this -> test_model -> getDetailsBytest();
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
+			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this->branchId, $this ->userId);
+			
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/test_css');
 			$this -> load -> view('backend/master_page/header');
-			$this -> load -> view('backend/branch_manager/test');
+			$this -> load -> view('backend/branch_manager/test', $this->data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/test_js');
 		}

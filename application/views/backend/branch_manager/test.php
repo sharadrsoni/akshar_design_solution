@@ -59,35 +59,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>TXXX</td>
-                                                <td>33/33/3333</td>
-                                                <td>XXX</td>
-                                                <td></td>
-                                                <td><a href="#tab3" id="tab3link" data-toggle="tab"><span class="icon icone-pencil"></span> Add Marks</a></td>
-                                            </tr>
-                                        </tbody>
-                                        
-                                        
-                                        <tbody>
 											<?php
 											if (isset($test_list)) {
 												foreach ($test_list as $key) {
 													echo "<tr class=\"odd gradeX\">
-
-
-
 <td class=\"hidden-480\">{$key->testId} </td>
 <td class=\"hidden-480\">{$key->testName} </td>
 <td class=\"hidden-480\">{$key->testDate}</td>
 <td class=\"hidden-480\">{$key->testMaximumMarks}
-<td class=\"hidden-480\"></td>
+<td><a href=\"#tab3\" id=\"tab3link\" data-toggle=\"tab\"><span class=\"icon icone-pencil\"></span> Add Marks</a></td>
 
 
 ";
 												}
 											}
 											?>
+											
 											
 										</tbody>
 
@@ -116,12 +103,14 @@
                                     <div class="control-group">
                                         <label class="control-label">Batch ID<span class="required">*</span></label>
                                         <div class="controls">
+                                        	
                                             <select class="span4" name="batch_id" id="batch_id">
                                                 <option value="">Select...</option>
-                                                <option value="201301001"> category 1</option>
-                                                <option value="201301002"> category 2</option>
-                                                <option value="201301003"> category 3</option>
-                                                <option value="201301004"> category 4</option>
+												<?php
+												foreach ($batch_list as $key) {
+													echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
+												}
+												?>
                                             </select>
                                         </div>
                                     </div><!--/ Batch ID -->
