@@ -60,10 +60,11 @@
 										<div class="controls">
 											<select class="span4" name="batch_id" id="batch_id">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($batch_list as $key) {
+													echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
+												}
+												?>
 											</select>
 										</div>
 									</div><!--/ Batch ID -->
@@ -104,8 +105,8 @@
 									</table>
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" class="btn btn-primary" name="saveAttendence" id="saveAttendence">
+											Save
 										</button>
 										<button type="button" class="btn">
 											Cancel
