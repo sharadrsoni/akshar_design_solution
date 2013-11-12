@@ -70,6 +70,7 @@ var StudentAttendance = function() {
 				}
 			});
 			
+			
 		}
 	};
 }();
