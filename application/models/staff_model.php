@@ -53,5 +53,3 @@ class staff_model extends CI_Model {
 	}
 
 }
-
->>>>>>> f623b4858c618cb5e0612101cb0f7eb37c75ed53

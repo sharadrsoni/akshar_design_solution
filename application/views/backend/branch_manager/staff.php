@@ -15,7 +15,6 @@
 		</div>
 	</div>
 	<!--/ END Bootstrap Navbar -->
-
 	<!-- START Content -->
 	<div class="container-fluid">
 		<!-- START Row -->
@@ -64,18 +63,13 @@
 											<?php
 											if (isset($staff_list)) {
 												foreach ($staff_list as $key) {
-echo "<tr class=\"odd gradeX\">
+													echo "<tr class=\"odd gradeX\">
 <td><input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>													
 <td class=\"center hidden-480\">{$key->userId}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
-<<<<<<< HEAD
-<td ><span class=\"label label-success\"Edit</span></td>
-<td ><span class=\"label label-success\"Delete</span></td>
-=======
 <td ><span class=\"label label-success\" onclick='updatestaff(\"{base_url()}\", \"{$key->userId}\");' >Edit</span> <span class=\"label label-success\"> <a href='" . base_url() . "branch_manager/delete_staff/{$key->userId}'>Delete</a></span></td></tr>
->>>>>>> f623b4858c618cb5e0612101cb0f7eb37c75ed53
 </tr>
 ";
 												}
@@ -107,16 +101,9 @@ echo "<tr class=\"odd gradeX\">
 									<div class="control-group">
 										<label class="control-label">Staff Name</label>
 										<div class="controls">
-<<<<<<< HEAD
 											<div class="span4"><input type="text" name="first_name" id="first_name" placeholder="FirstName" class=""></div>
 											<div class="span4"><input type="text" name="middle_name" id="middle_name" placeholder="MiddleName" class=""></div>
 											<div class="span4"><input type="text" name="last_name" id="last_name" placeholder="LastName" class=""></div>
-=======
-											
-											<div class="span4"><input type="text" name="first_name" id="first_name" class=""></div>
-											<div class="span4"><input type="text" name="middle_name" id="middle_name" class=""></div>
-											<div class="span4"><input type="text" name="last_name" id="last_name" class=""></div>
->>>>>>> f623b4858c618cb5e0612101cb0f7eb37c75ed53
 										</div>
 									</div><!--/ Staff Name -->
 									
@@ -222,149 +209,146 @@ echo "<tr class=\"odd gradeX\">
 							</div>
 						</div>
 					</div>
-					<!--/ End Tabs -->
-					
 					<!--View Staff -->
-				<div class="form-horizontal form-view" id="ViewBatch">
-												<h3> View Staff Info - Bob Nilson </h3>
-												<h3 class="form-section">Person Info</h3>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">First Name:</label>
-															<div class="controls">
-																<span class="text">Bob</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="lastName">Last Name:</label>
-															<div class="controls">
-																<span class="text">Nilson</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Qualification</label>
-															<div class="controls">
-																<span class="text">MBA</span> 
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Date of Birth:</label>
-															<div class="controls">
-																<span class="text bold">20.01.1984</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Branch Name:</label>
-															<div class="controls">
-																<span class="text">Ahmedabad Branch</span> 
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Role:</label>
-															<div class="controls">
-																<span class="text bold">Faculty</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->        
-										<h3 class="form-section">Contact Info</h3>
-											<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">Contact No.:</label>
-															<div class="controls">
-																<span class="text">9999999999</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="lastName">Email:</label>
-															<div class="controls">
-																<span class="text">Nilson@mail.com</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-										
-											               
-												<h3 class="form-section">Address</h3>
-												<div class="row-fluid">
-													<div class="span12 ">
-														<div class="control-group">
-															<label class="control-label">Street:</label>
-															<div class="controls">
-																<span class="text">#24 Sun Park Avenue, Rolton Str</span>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">City:</label>
-															<div class="controls">
-																<span class="text">New York</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6">
-														<div class="control-group">
-															<label class="control-label">State:</label>
-															<div class="controls">
-																<span class="text">New York</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->           
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Post Code:</label>
-															<div class="controls">
-																<span class="text">457890</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													
-												</div>
-				</div><!-- End View Staff -->
-					
+<div style="display: none" class="form-horizontal form-view" id="ViewBatch">
+	<h3> View Staff Info - Bob Nilson </h3>
+	<h3 class="form-section">Person Info</h3>
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="firstName">First Name:</label>
+				<div class="controls">
+					<span class="text">Bob</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="lastName">Last Name:</label>
+				<div class="controls">
+					<span class="text">Nilson</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Qualification</label>
+				<div class="controls">
+					<span class="text">MBA</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Date of Birth:</label>
+				<div class="controls">
+					<span class="text bold">20.01.1984</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Branch Name:</label>
+				<div class="controls">
+					<span class="text">Ahmedabad Branch</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Role:</label>
+				<div class="controls">
+					<span class="text bold">Faculty</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<h3 class="form-section">Contact Info</h3>
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="firstName">Contact No.:</label>
+				<div class="controls">
+					<span class="text">9999999999</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="lastName">Email:</label>
+				<div class="controls">
+					<span class="text">Nilson@mail.com</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+
+	<h3 class="form-section">Address</h3>
+	<div class="row-fluid">
+		<div class="span12 ">
+			<div class="control-group">
+				<label class="control-label">Street:</label>
+				<div class="controls">
+					<span class="text">#24 Sun Park Avenue, Rolton Str</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">City:</label>
+				<div class="controls">
+					<span class="text">New York</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6">
+			<div class="control-group">
+				<label class="control-label">State:</label>
+				<div class="controls">
+					<span class="text">New York</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Post Code:</label>
+				<div class="controls">
+					<span class="text">457890</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+
+	</div>
+</div><!-- End View Staff -->
+					<!--/ End Tabs -->			
 				</div>
 				<!--/ END Row -->
 			</div>
 			<!--Page Content End  -->
 		</div>
-		<!--/ END Content -->
+	<!--/ END Content -->
 </section>
