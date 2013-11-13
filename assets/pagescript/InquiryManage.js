@@ -9,7 +9,7 @@ var Inquiry = function() {
 			$('#tblInquiry').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null, {
+				}, {
 					"bSortable" : false
 				}, null, null, {
 					"bSortable" : false
@@ -65,7 +65,13 @@ var Inquiry = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					user_name : {
+					first_name : {
+						required : true,
+					},
+					middle_name : {
+						required : true,
+					},
+					last_name : {
 						required : true,
 					},
 					date_of_birth : {
@@ -152,7 +158,61 @@ var Inquiry = function() {
 			$("#dob_datepicker .add-on").click(function() {
 				$("#dob_datepicker input").datepicker("show");
 			});
+			
+			$("#tablink2").click(function() {
+				$('#user_name').val("");
+				$('#date_of_birth').val("");
+				$('#mobile_no').val("");
+				$('#email').val("");
+				$('#qualification').val("");
+				$('#street_1').val("");
+				$('#street_2').val("");
+				$('#state option:nth(0)').attr("selected", "selected");
+				$('#city option:nth(0)').attr("selected", "selected");
+				$('#pin_code').val("");
+				$('#name_of_institute').val("");
+				$('#occupation_of_guardian').val("");
+				$('#reference').val("");
+				$('#inquiryId').val("");
+				$("#submitInquiry").text("Add Inquiry");
+				$('.alert-error', $('#form_branch')).hide();
+				$("#form_branch").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
+			});
 		}
 	};
 }();
+function updateinquiry(inquiryid) {
+	$.ajax({
+		url : "../branch_manager_counsellor/inquiry/" + inquiryid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#first_name').val(json.inquiry[0].inquiryStudentFirstName);
+				$('#middle_name').val(json.inquiry[0].inquiryStudentMiddleName);
+				$('#last_name').val(json.inquiry[0].inquiryStudentLastName);
+				$('#date_of_birth').val(json.inquiry[0].inquiryDOB);
+				$('#mobile_no').val(json.inquiry[0].inquiryContactNumber);
+				$('#email').val(json.inquiry[0].inquiryEmailAddress);
+				$('#qualification').val(json.inquiry[0].inquiryQualification);
+				$('#street_1').val(json.inquiry[0].inquiryStreet1);
+				$('#street_2').val(json.inquiry[0].inquiryStreet2);
+				$('#state').val(json.inquiry[0].inquiryState);
+				$('#city').val(json.inquiry[0].inquiryCity);
+				$('#pin_code').val(json.inquiry[0].inquiryPostalCode);
+				$('#occupation_of_student').val(json.inquiry[0].inquiryStudentOccupation);
+				$('#name_of_institute').val(json.inquiry[0].inquiryInstituteName);
+				$('#occupation_of_guardian').val(json.inquiry[0].inquiryGuardianOccupation);
+				$('#reference').val(json.inquiry[0].inquiryReferenceName);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#inquiryId').val(json.inquiry[0].inquiryId);
+				$("#submitInquiry").text("Update Inquiry");
+			}
+		}
+	});
+}
 
