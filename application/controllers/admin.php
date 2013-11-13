@@ -315,25 +315,59 @@ class Admin extends CI_Controller {
 	}
 
 	//Staff
-	public function staff() {
-		$this -> data['title'] = "ADS | Staff";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/staff_css');
-		$this -> load -> view('backend/master_page/header');
+	public function staff($staffID = '') {
 		$this -> load -> model("staff_model");
-		$roleId = 1;
-		$staffData = $this -> staff_model -> getDetailsByRole($roleId);
-		$this -> data['staff_list'] = $staffData;
-		$this -> load -> view('backend/branch_manager/staff', $this -> data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/staff_js');
-		$this -> load -> view('backend/master_page/bottom');
+		if ($staffID != '') {
+			$this -> data['staff'] = $this -> staff_model -> getDetailsByStaff($staffID);
+			echo json_encode($this->data);
+		} else {
+			$this -> data['title'] = "ADS | Staff";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/staff_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['staff'] = $this -> staff_model -> getDetailsOfStaff();
+			$this -> load -> model("branch_model");
+			$this -> data['branch_list'] = $this -> branch_model -> getDetailsOfBranch();
+			$this -> load -> model("role_model");
+			$this -> data['userrole_list'] = $this -> role_model -> getDetailsOfRole();
+			if (isset($_POST['submitStaff'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('branchId', 'Branch', 'required|trim');
+				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim');
+				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
+				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim');
+				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim');
+				$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim');
+				$this -> form_validation -> set_rules('email', 'Email', 'required|trim');
+				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim');
+				$this -> form_validation -> set_rules('qualification', 'Qualification', 'required|trim');
+				$this -> form_validation -> set_rules('street_1', 'Street1', 'required|trim');
+				$this -> form_validation -> set_rules('street_2', 'Street2', 'required|trim');
+				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('pin_code', 'Postal Code', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchId' => $_POST['branchId'], 'roleId' => $_POST['userroleId']);
+					if ($_POST['staffId'] != "" ? $this -> staff_model -> updateStaff($staffData, $_POST['staffId']) : $this -> staff_model -> addStaff($staffData)) {
+						redirect(base_url() . "admin/staff");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
+			}
+			$this -> load -> view('backend/branch_manager/staff', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/staff_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
 	}
 
 	public function delete_staff($userId) {
 		$this -> load -> model('staff_model');
 		$this -> staff_model -> deleteStaff($userId);
-		redirect(base_url() . "branch_manager/staff");
+		redirect(base_url() . "admin/staff");
 	}
 
 }

@@ -4,16 +4,13 @@ if (!defined('BASEPATH'))
 
 class staff_model extends CI_Model {
 
-	public function getDetailsByRole($roleId) {
-		$this -> db -> where("user.roleId", $roleId);
-		$this -> db -> from('user');
-		return $this -> db -> get() -> result();
+	public function getDetailsOfStaff() {
+		return $this -> db -> get('user') -> result();
 	}
 
-	public function getDetailsById($id) {
-		$this -> db -> where("user.userId", $id);
-		$this -> db -> from('user');
-		return $this -> db -> get() -> result();
+	public function getDetailsByStaff($userId) {
+		$this -> db -> where("user.userId", $userId);
+		return $this -> db -> get('user') -> result();
 	}
 
 	public function updateProfile($staffData, $id) {
@@ -35,9 +32,9 @@ class staff_model extends CI_Model {
 		}
 	}
 
-	public function updateStaff($userId) {
+	public function updateStaff($data,$userId) {
 		if (isset($data)) {
-			$this -> db -> where('$userId', $data['userId']);
+			$this -> db -> where('userId',$userId);
 			return $this -> db -> update('user', $data);
 		} else {
 			return false;
@@ -46,7 +43,7 @@ class staff_model extends CI_Model {
 
 	public function addStaff($data) {
 		if (isset($data)) {
-			return $this -> db -> insert('staff', $data);
+			return $this -> db -> insert('user', $data);
 		} else {
 			return false;
 		}
