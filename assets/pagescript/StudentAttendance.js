@@ -56,6 +56,7 @@ var StudentAttendance = function() {
 			});
 			$("#Attendance_date_datepicker .add-on").click(function() {
 				$("#Attendance_date_datepicker input").datepicker("show");
+				$("#ui-datepicker-div").css("z-index","100");
 			});
 			$('.text-toggle-Attendance').toggleButtons({
 				width : 200,

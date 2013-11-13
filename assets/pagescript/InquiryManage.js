@@ -67,6 +67,7 @@ var Inquiry = function() {
 				rules : {
 					first_name : {
 						required : true,
+						alphanumeric:true
 					},
 					middle_name : {
 						required : true,
