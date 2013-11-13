@@ -256,12 +256,10 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> model("target_report_model");
 			$target_data = $this -> target_report_model -> getDetailsByBranch($this -> branchId);
 			$this -> data['target_report_list'] = $target_data;
-
 			if (isset($_POST['addreport'])) {
 				$reportData = array('targetReportDescription' => $_POST['report_description'], 'targetReportDate' => date("Y-m-d", strtotime($_POST['date'])), 'targetId' => $_POST['targetId']);
 				$this -> target_report_model -> addReport($reportData);
 				redirect(base_url() . "branch_manager/target_report");
-
 			}
 			$this -> load -> view('backend/branch_manager/target_report', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
