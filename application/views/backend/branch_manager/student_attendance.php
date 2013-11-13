@@ -43,7 +43,10 @@
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab1">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_attendance">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_attendance');
+							echo form_open('faculty/student_attendance', $attributes);
+							?>
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -60,10 +63,11 @@
 										<div class="controls">
 											<select class="span4" name="batch_id" id="batch_id">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($batch_list as $key) {
+													echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
+												}
+												?>
 											</select>
 										</div>
 									</div><!--/ Batch ID -->
@@ -85,27 +89,15 @@
 												<th class="hidden-480">Present/Absent </th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr class="odd gradeX">
-												<td> Student_ID XXX </td>
-												<td>
-												<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
-													<input type="checkbox" checked="" name="individual_Batch" id="individual_Batch"  class="toggle" />
-												</div></td>
-											</tr>
-											<tr class="odd gradeX">
-												<td> Student_ID XXX </td>
-												<td>
-												<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
-													<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
-												</div></td>
-											</tr>
+										<tbody id="lst_students">
+											
+											
 										</tbody>
 									</table>
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
-											Register
+										<button type="submit" class="btn btn-primary" name="saveAttendance" id="saveAttendance">
+											Save
 										</button>
 										<button type="button" class="btn">
 											Cancel

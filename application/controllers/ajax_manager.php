@@ -38,6 +38,21 @@ class Ajax_manager extends CI_Controller {
 			echo json_encode($this -> data);
 	}
 
+	//Student
+	public function studentlist($batchId) {
+		$this -> load -> model('user_model');
+			$student_data = $this -> user_model -> getDetailsByBatch($batchId,5,$this -> branchId);
+			$this -> data['student_list'] = $student_data;
+			echo json_encode($this -> data);
+	}
+
+	public function attendancelistbydate($batchId,$date) {
+		$this -> load -> model('attendance_model');
+			$student_data = $this -> attendance_model -> getDetailsByBatchByDate($batchId,5,$this -> branchId,date("Y-m-d", strtotime($date)));
+			$this -> data['student_list'] = $student_data;
+			echo json_encode($this -> data);
+	}
+
 		
 }
 ?>	
