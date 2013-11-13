@@ -25,7 +25,7 @@ class Faculty extends CI_Controller {
 	}
 
 	//Student attendance
-	public function studentattendance() {
+	public function student_attendance() {
 		$this->data['title'] = "ADS | Student Attendance";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_attendance_css');

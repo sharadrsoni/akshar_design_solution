@@ -41,11 +41,21 @@ class Staff extends CI_Controller {
 
 	//Profile
 	public function profile() {
+
 		$this->data['title'] = "ADS | Profile";
+		$this->load->model('staff_model');
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/staff_profile');
+		if(isset($_POST['edit_profile']))
+		{
+			$staffData=array('userFirstName'=>$_POST['first_name'],'userMiddleName'=>$_POST['middle_name'],'userLastName'=>$_POST['last_name'],'userDOB'=>$_POST['date_of_birth'],'userContactNumber'=>$_POST['mobile_no'],'userEmailAddress'=>$_POST['email'],'userQualification'=>$_POST['qualification'],'userStreet1'=>$_POST['street_1'],'userStreet2'=>$_POST['street_2'],'userPostalCode'=>$_POST['pin_code'],'userState'=>$_POST['state'],'userCity'=>$_POST['city']);
+			$this->staff_model->updateProfile($staffData,3);
+			redirect(base_url() . "staff/profile");
+		}
+		
+		$data['profile']=$this->staff_model->getDetailsById(3);
+		$this -> load -> view('backend/branch_manager/staff_profile',$data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');

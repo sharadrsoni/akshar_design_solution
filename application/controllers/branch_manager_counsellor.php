@@ -145,6 +145,49 @@ class Branch_manager_counsellor extends CI_Controller {
 		}
 	}
 
+	//Book_Inventory
+	public function book_inventory($bookinventoryId = '') {
+		$this -> load -> model("book_inventory_model");
+		if ($bookinventoryId != '') {
+			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByInventory($this -> branchId,$bookinventoryId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Book Inventory";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/book_inventory_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> model("course_model");
+			$this -> data['course'] = $this -> course_model -> getAllDetails();
+			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByBranch($this -> branchId);
+			if (isset($_POST['submitInventory'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
+				$this -> form_validation -> set_rules('inventory_quantity', 'Quantity', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this->data['validate'] = true;
+				} else {
+					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'], 'courseId' => $_POST['course_id'], 'branchId' => $this -> branchId);
+					if ($_POST['inventoryInwardId'] != "" ? $this -> book_inventory_model -> updateinventory($inventoryData,$_POST['inventoryInwardId']) : $this -> book_inventory_model -> addinventory($inventoryData)) {
+						redirect(base_url() . "branch_manager/book_inventory");
+					} else {
+						$this->data['error'] = "An Error Occured.";
+					}
+				}
+			}
+			$this -> load -> view('backend/branch_manager/book_inventory', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/book_inventory_js');
+		}
+	}
+
+	public function delete_inventory($inventoryInwardId) {
+		$this -> load -> model('book_inventory_model');
+		$this -> book_inventory_model -> deleteInventory($inventoryInwardId);
+		redirect(base_url() . "branch_manager/book_inventory");
+	}
+	
+	
+
 	//Fees Payment
 	public function feespayment() {
 		$this->data['title'] = "ADS | Fess Payment";
