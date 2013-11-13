@@ -239,75 +239,79 @@
 							</form>
 						</div>
 						<div class="tab-pane" id="tab3">
-							<form class="form-horizontal span12 widget shadowed yellow" id="form_event_attendance">
-								<div class="alert alert-error hide">
-									<button class="close" data-dismiss="alert"></button>
-									You have some form errors. Please check below.
-								</div>
-								<div class="alert alert-success hide">
-									<button class="close" data-dismiss="alert"></button>
-									Your form validation is successful!
-								</div>
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_event_attendance');
+							echo form_open('branch_manager/event', $attributes);
+							?>
+							<div class="alert alert-error hide">
+								<button class="close" data-dismiss="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success hide">
+								<button class="close" data-dismiss="alert"></button>
+								Your form validation is successful!
+							</div>
 
-								<div class="body-inner">
-									<!-- Event -->
-									<div class="control-group">
-										<label class="control-label">Event Name<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="event_id" id="event_id">
-												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
-											</select>
-										</div>
-									</div><!--/ Event -->
-									<!-- Batch ID -->
-									<div class="control-group">
-										<label class="control-label">Batch ID<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="batch_id" id="batch_id">
-												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
-											</select>
-										</div>
-									</div><!--/ Batch ID -->
-									<table class="table table-striped table-bordered table-hover" id="attendance">
-										<thead>
-											<tr>
-											<tr>
-												<th>Student ID</th>
-												<th class="hidden-480">Present/Absent </th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="odd gradeX">
-												<td> Student_ID XXX </td>
-												<td>
-												<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
-													<input type="checkbox" checked="" name="individual_Batch" id="individual_Batch"  class="toggle" />
-												</div></td>
-											</tr>
-											<tr class="odd gradeX">
-												<td> Student_ID XXX </td>
-												<td>
-												<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
-													<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
-												</div></td>
-											</tr>
-										</tbody>
-									</table>
-									<!-- Form Action -->
-									<div class="form-actions">
-										<button type="submit" id="submitEventAttendance" name="submitEventAttendance" class="btn btn-primary">
-											Register
-										</button>
-									</div><!--/ Form Action -->
-								</div>
+							<div class="body-inner">
+								<!-- Event -->
+								<div class="control-group">
+									<label class="control-label">Event Name<span class="required">*</span></label>
+									<div class="controls">
+										<select class="span4" name="event_id" id="event_id">
+											<option value="">Select...</option>
+											<?php
+											foreach ($event as $key) {
+												echo "<option value='{$key->eventId}'>{$key->eventName}</option>";
+											}
+											?>
+										</select>
+									</div>
+								</div><!--/ Event -->
+								<!-- Batch ID -->
+								<div class="control-group">
+									<label class="control-label">Batch ID<span class="required">*</span></label>
+									<div class="controls">
+										<select class="span4" name="batch_id" id="batch_id">
+											<option value="">Select...</option>
+											<option value="Category 1">Category 1</option>
+											<option value="Category 2">Category 2</option>
+											<option value="Category 3">Category 5</option>
+											<option value="Category 4">Category 4</option>
+										</select>
+									</div>
+								</div><!--/ Batch ID -->
+								<table class="table table-striped table-bordered table-hover" id="attendance">
+									<thead>
+										<tr>
+										<tr>
+											<th>Student ID</th>
+											<th class="hidden-480">Present/Absent </th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd gradeX">
+											<td> Student_ID XXX </td>
+											<td>
+											<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
+												<input type="checkbox" checked="" name="individual_Batch" id="individual_Batch"  class="toggle" />
+											</div></td>
+										</tr>
+										<tr class="odd gradeX">
+											<td> Student_ID XXX </td>
+											<td>
+											<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
+												<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
+											</div></td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- Form Action -->
+								<div class="form-actions">
+									<button type="submit" id="submitEventAttendance" name="submitEventAttendance" class="btn btn-primary">
+										Save
+									</button>
+								</div><!--/ Form Action -->
+							</div>
 							</form>
 						</div>
 					</div>

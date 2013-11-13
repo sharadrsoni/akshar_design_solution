@@ -20,6 +20,7 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
+
 	public function authenticate($data) {
 		if (isset($data)) {
 			$this -> db -> where("userId", $data['userId']);

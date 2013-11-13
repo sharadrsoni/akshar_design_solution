@@ -25,7 +25,7 @@ class Faculty extends CI_Controller {
 	}
 
 	//Student attendance
-	public function studentattendance() {
+	public function student_attendance() {
 		if (isset($_POST['saveAttendance'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('Attendance_date', 'Attendence Date', 'required|trim');
@@ -37,9 +37,18 @@ class Faculty extends CI_Controller {
 				$this -> load -> model('attendance_model');
 				$student_data = $this -> user_model -> getDetailsByBatch($_POST["batch_id"], 5, $this -> branchId);
 				$date = date("Y-m-d", strtotime($_POST['Attendance_date']));
-				foreach ($student_data as $key) {
-					$dummy = array('studentBatchId' => $key -> studentBatchId, 'attendanceIsPresent' => 0, 'attendanceDate' => $date);
-					$this -> attendance_model -> addAttendance($dummy);
+				$count_data = $this -> attendance_model -> getCountByDate($_POST["batch_id"], $date);
+				if ($count_data == null)
+					foreach ($student_data as $key) {
+						$dummy = array('studentBatchId' => $key -> studentBatchId, 'attendanceIsPresent' => 0, 'attendanceDate' => $date);
+						$this -> attendance_model -> addAttendance($dummy);
+					}
+				else 
+				{
+					foreach ($student_data as $key) {
+						$dummy2 = array('studentBatchId' => $key -> studentBatchId, 'attendanceIsPresent' => 0, 'attendanceDate' => $date);
+						$this -> attendance_model -> updateAttendance($dummy2);
+					}
 				}
 
 				$size = sizeof($_POST["student_ids"]);
@@ -47,7 +56,7 @@ class Faculty extends CI_Controller {
 					$dummy1 = array('studentBatchId' => $_POST["student_ids"][$i], 'attendanceDate' => $date, 'attendanceIsPresent' => 1);
 					$this -> attendance_model -> updateAttendance($dummy1);
 				}
-				redirect(base_url() . "faculty/studentattendance");
+				redirect(base_url() . "faculty/student_attendance");
 			}
 		} else {
 

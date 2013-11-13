@@ -45,7 +45,7 @@
 						<div class="tab-pane active" id="tab1">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_attendance');
-							echo form_open('faculty/studentattendance', $attributes);
+							echo form_open('faculty/student_attendance', $attributes);
 							?>
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>

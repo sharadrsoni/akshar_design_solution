@@ -66,12 +66,11 @@ var StudentAttendance = function() {
 					async : true,
 					success : function(json) {
 						if (json) {
+							$('#lst_students').html('');
 							$.each(json.student_list, function(i, item) {
-								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><div class='text-toggle-Attendance' data-on='Present' data-off='absent'><input type='checkbox' name='student_ids[]' id='individual_Batch" + i + "' value='" + item.studentBatchId + "' class='toggle' /></div></td></tr>");					
+								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><div class='text-toggle-Attendance' data-on='Present' data-off='absent'><input type='checkbox' name='student_ids[]' id='individual_Batch" + i + "' value='" + item.studentBatchId + "' class='toggle' /></div></td></tr>");
 							});
 						}
-
-
 
 						$('.text-toggle-Attendance').toggleButtons({
 							width : 200,
@@ -85,6 +84,44 @@ var StudentAttendance = function() {
 								disabled : "danger"
 							}
 						});
+
+					}
+				});
+			});
+
+			$("#Attendance_date").change(function() {
+				//	alert($.datepicker.formatDate('yy-mm-dd', new Date($("#Attendance_date").val())));
+				$.ajax({
+					url : "../ajax_manager/attendancelistbydate/" + $("#batch_id").val() + "/" + $("#Attendance_date").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json && parseInt(json.student_list.length) > 0) {
+							$('#lst_students').html('');
+							$.each(json.student_list, function(i, item) {
+								if (item.attendanceIsPresent == 1)
+									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><div class='text-toggle-Attendance' data-on='Present' data-off='absent'><input type='checkbox' checked='' name='student_ids[]' id='individual_Batch" + i + "' value='" + item.studentBatchId + "' class='toggle' /></div></td></tr>");
+								else
+									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><div class='text-toggle-Attendance' data-on='Present' data-off='absent'><input type='checkbox' name='student_ids[]' id='individual_Batch" + i + "' value='" + item.studentBatchId + "' class='toggle' /></div></td></tr>");
+							});
+
+							$('.text-toggle-Attendance').toggleButtons({
+								width : 200,
+								label : {
+									enabled : $('.text-toggle-Attendance').attr("data-on"),
+									disabled : $('.text-toggle-Attendance').attr("data-off")
+								},
+								style : {
+									// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+									enabled : "info",
+									disabled : "danger"
+								}
+							});
+						}
+						else
+						{
+							$("#batch_id").change();
+						}
 
 					}
 				});
