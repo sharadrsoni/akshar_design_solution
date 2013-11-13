@@ -45,6 +45,7 @@ var StudentAttendance = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
@@ -57,20 +58,38 @@ var StudentAttendance = function() {
 			$("#Attendance_date_datepicker .add-on").click(function() {
 				$("#Attendance_date_datepicker input").datepicker("show");
 			});
-			$('.text-toggle-Attendance').toggleButtons({
-				width : 200,
-				label : {
-					enabled : $('.text-toggle-Attendance').attr("data-on"),
-					disabled : $('.text-toggle-Attendance').attr("data-off")
-				},
-				style : {
-					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-					enabled : "info",
-					disabled : "danger"
-				}
+
+			$("#batch_id").change(function() {
+				$.ajax({
+					url : "../ajax_manager/studentlist/" + $("#batch_id").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.student_list, function(i, item) {
+								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><div class='text-toggle-Attendance' data-on='Present' data-off='absent'><input type='checkbox' name='student_ids[]' id='individual_Batch" + i + "' value='" + item.studentBatchId + "' class='toggle' /></div></td></tr>");					
+							});
+						}
+
+
+
+						$('.text-toggle-Attendance').toggleButtons({
+							width : 200,
+							label : {
+								enabled : $('.text-toggle-Attendance').attr("data-on"),
+								disabled : $('.text-toggle-Attendance').attr("data-off")
+							},
+							style : {
+								// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+								enabled : "info",
+								disabled : "danger"
+							}
+						});
+
+					}
+				});
 			});
-			
-			
+
 		}
 	};
 }();
