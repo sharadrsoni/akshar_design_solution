@@ -22,8 +22,6 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
-
-	
 	//Branch
 	public function branch($branchId = '') {
 		$this -> load -> model("branch_model");
@@ -81,14 +79,14 @@ class Admin extends CI_Controller {
 					$this -> data['validate'] = true;
 				} else {
 					$coursecategoryData = array('courseCategoryName' => $_POST['coursecategory_name']);
-					if ($_POST['coursecategoryId'] != "" ? $this -> course_category_model -> updatecoursecategory($coursecategoryData,$_POST['coursecategoryId']) : $this -> course_category_model -> addcoursecategory($coursecategoryData)) {
+					if ($_POST['coursecategoryId'] != "" ? $this -> course_category_model -> updatecoursecategory($coursecategoryData, $_POST['coursecategoryId']) : $this -> course_category_model -> addcoursecategory($coursecategoryData)) {
 						redirect(base_url() . "admin/course_category");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/coursecategory',$this -> data);
+			$this -> load -> view('backend/branch_manager/coursecategory', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/coursecategory_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -128,19 +126,19 @@ class Admin extends CI_Controller {
 			}
 		}
 
-			$this -> data['title'] = "ADS | Course";
-			$this -> load -> model('course_category_model');
-			$this -> data["course_category"] = $this -> course_category_model -> getDetailsOfCourseCategory();
-			$course = $this -> course_model -> getDetailsOfCourse();
-			$data['course'] = $course;
-			$this -> load -> view('backend/master_page/top', $this -> data);
-			$this -> load -> view('backend/css/course_css');
-			$this -> load -> view('backend/master_page/header');
-			$this -> load -> view('backend/branch_manager/course', $data);
-			$this -> load -> view('backend/master_page/footer');
-			$this -> load -> view('backend/js/course_js');
-			$this -> load -> view('backend/master_page/bottom');
-		
+		$this -> data['title'] = "ADS | Course";
+		$this -> load -> model('course_category_model');
+		$this -> data["course_category"] = $this -> course_category_model -> getDetailsOfCourseCategory();
+		$course = $this -> course_model -> getDetailsOfCourse();
+		$data['course'] = $course;
+		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this -> load -> view('backend/css/course_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/course', $data);
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/course_js');
+		$this -> load -> view('backend/master_page/bottom');
+
 	}
 
 	public function delete_course($courseCode) {
@@ -187,8 +185,7 @@ class Admin extends CI_Controller {
 		$this -> state_model -> deleteState($stateId);
 		redirect(base_url() . "admin/state");
 	}
-	
-	
+
 	//City
 	public function city($cityId = '') {
 		$this -> load -> model('city_model');
@@ -331,6 +328,12 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');
+	}
+
+	public function delete_staff($userId) {
+		$this -> load -> model('staff_model');
+		$this -> staff_model -> deleteStaff($userId);
+		redirect(base_url() . "branch_manager/staff");
 	}
 
 }

@@ -68,6 +68,7 @@ public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
 
 	public function getMaxId() {
 		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
+		
 	}
 
 	public function getCourseId($batchId) {
