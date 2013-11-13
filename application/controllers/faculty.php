@@ -31,8 +31,7 @@ class Faculty extends CI_Controller {
 			$this -> form_validation -> set_rules('Attendance_date', 'Attendence Date', 'required|trim');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
-			} 
-			else {
+			} else {
 
 				$this -> load -> model('user_model');
 				$this -> load -> model('attendance_model');
@@ -44,14 +43,13 @@ class Faculty extends CI_Controller {
 				}
 
 				$size = sizeof($_POST["student_ids"]);
-				for ($i = 0; $i < $size;$i++ ) {
+				for ($i = 0; $i < $size; $i++) {
 					$dummy1 = array('studentBatchId' => $_POST["student_ids"][$i], 'attendanceDate' => $date, 'attendanceIsPresent' => 1);
 					$this -> attendance_model -> updateAttendance($dummy1);
 				}
 				redirect(base_url() . "faculty/studentattendance");
 			}
-		} 
-		else {
+		} else {
 
 			$this -> data['title'] = "ADS | Student Attendance";
 			$this -> load -> model("test_model");

@@ -9,4 +9,25 @@ class staff_model extends CI_Model {
                 $this -> db -> from('user');
                 return $this->db->get()->result();
         }
+		
+	public function getDetailsById($id)
+	{
+		$this->db->where("user.userId",$id);
+		$this->db->from('user');
+		return $this->db->get()->result();
+	}
+	
+	public function updateProfile($staffData,$id)
+	{
+		if(isset($staffData))
+		{
+			$this->db->where("user.userId",$id);
+			$this->db->update('user',$staffData);
+		}
+		else
+			{
+				return false;
+			}
+	}
+	
 }
