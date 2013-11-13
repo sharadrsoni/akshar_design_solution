@@ -43,6 +43,7 @@ class batch_model extends CI_Model {
 
 	public function getMaxId() {
 		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
+		
 	}
 
 }

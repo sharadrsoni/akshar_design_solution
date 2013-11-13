@@ -164,6 +164,14 @@ public function staff() {
 		$this -> load -> view('backend/js/staff_js');
 		$this -> load -> view('backend/master_page/bottom');
 }
+
+public function delete_staff($userId) {
+		$this -> load -> model('staff_model');
+		$this -> staff_model -> deleteStaff($userId);
+		redirect(base_url() . "branch_manager/staff");
+	}
+
+
 	public function inquiry() {
 		$data['title'] = "ADS | Inquiry";
 		$this -> load -> view('backend/master_page/top', $data);
