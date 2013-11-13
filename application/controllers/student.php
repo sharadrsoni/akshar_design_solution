@@ -25,7 +25,7 @@ class Student extends CI_Controller {
 	}
 
 	//Show marks
-	public function showmarks() {
+	public function test_result() {
 		$this->data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/test_result_css');
@@ -37,7 +37,7 @@ class Student extends CI_Controller {
 	}
 
 	//Show Attendance
-	public function showattendance() {
+	public function show_attendance() {
 		$this->data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');

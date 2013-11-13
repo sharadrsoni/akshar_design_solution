@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$users = array(2);
+		$users = array(1);
 		parent::authenticate($users);
 	}
 
@@ -130,7 +130,7 @@ class Admin extends CI_Controller {
 
 			$this -> data['title'] = "ADS | Course";
 			$this -> load -> model('course_category_model');
-			$this -> data["course_category"] = $this -> course_category_model -> getDetailsBycoursecategory();
+			$this -> data["course_category"] = $this -> course_category_model -> getDetailsOfCourseCategory();
 			$course = $this -> course_model -> getDetailsOfCourse();
 			$data['course'] = $course;
 			$this -> load -> view('backend/master_page/top', $this -> data);
