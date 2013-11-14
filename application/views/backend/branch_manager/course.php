@@ -37,10 +37,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Courses</a>
+							<a href="#tab1" id="tablink1"  data-toggle="tab"><span class="icon icone-eraser"></span>Courses</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Course</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -65,7 +65,7 @@
 <td class=\"hidden-480\">{$key->courseCode}</td>
 <td class=\"hidden-480\">{$key->courseDuration}</td>
 <td class=\"hidden-480\">{$key->courseCategoryId}</td>
-<td ><span class=\"label label-success\">Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "admin/delete_course/{$key->courseCode}'>Delete</a></span></td></tr>
+<td ><span class=\"label label-success\" onclick='updateCourse(\"{$key->courseCode}\");'>Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "admin/delete_course/{$key->courseCode}'>Delete</a></span></td></tr>
 ";
 											}
 											?>
@@ -100,14 +100,6 @@
 					</div>
 					<!--/row-->
 					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Course Code:</label>
-								<div class="controls">
-									<span class="text" id="view_course_code"></span>
-								</div>
-							</div>
-						</div>
 						<!--/span-->
 						<div class="span6 ">
 							<div class="control-group">
@@ -178,6 +170,15 @@
 
 								<div class="body-inner">
 									<h3 class="form-section">Course Info.</h3>
+									<!-- Course Code -->
+									<div class="control-group">
+										<label class="control-label">Course Code<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="course_code" id="course_code" class="span4"/>
+											<?php echo form_error('course_code');
+											?>
+										</div>
+									</div><!--/ Course Code -->
 									<!-- CourseCategory ID -->
 									<div class="control-group">
 										<label class="control-label">Course Category ID<span class="required">*</span></label>
@@ -201,15 +202,6 @@
 											<input type="text" name="course_name" id="course_name" class="span8">
 										</div>
 									</div><!--/ Course Name -->
-									<!-- Course Code -->
-									<div class="control-group">
-										<label class="control-label">Course Code<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="course_code" id="course_code" class="span8"/>
-											<?php echo form_error('course_code');
-											?>
-										</div>
-									</div><!--/ Course Code -->
 									<!-- Course Duration -->
 									<div class="control-group">
 										<label class="control-label">Course Duration<span class="required">*</span></label>
@@ -239,12 +231,10 @@
 										</div>
 									</div><!--/ Course Material Opening Stock -->
 									<!-- Form Action -->
+									<input type="hidden" name="courseId" id="courseId" value="" />
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="add_course" id="add_course">
+										<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">
 											Add Course
-										</button>
-										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
-											Cancel
 										</button>
 									</div><!--/ Form Action -->
 								</div>

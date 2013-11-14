@@ -112,8 +112,9 @@ var BookInventory = function() {
 	};
 }();
 function updatebookinventory(inventoryInwardid) {
+	alert();
 	$.ajax({
-		url : "book_inventory/" + inventoryInwardid,
+		url : "../branch_manager_counsellor/book_inventory/" + inventoryInwardid,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
