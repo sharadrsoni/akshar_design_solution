@@ -61,7 +61,7 @@
 											if (isset($staff)) {
 												foreach ($staff as $key) {
 													echo "<tr class=\"odd gradeX\">													
-<td class=\"center hidden-480\">{$key->userId}</td>
+<td class=\"center hidden-480\">{$key->branchName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
@@ -130,21 +130,25 @@
 									
 									<!-- Staff Name -->
 									<div class="control-group">
-										<label class="control-label">Staff Name</label>
-										<div class="controls">
-											<div class="span4">
-												<input type="text" name="first_name" id="first_name" placeholder="FirstName" class="span12">
+										<label class="control-label">First Name</label>
+											<div class="controls">
+												<input type="text" name="first_name" id="first_name" class="span8">
 												<span for="first_name" class="help-inline"><?php echo form_error('first_name'); ?></span>
 											</div>
-											<div class="span4">
-												<input type="text" name="middle_name" id="middle_name" placeholder="MiddleName" class="span12">
+									</div>
+									<div class="control-group">
+										<label class="control-label">Middle Name</label>
+											<div class="controls">
+												<input type="text" name="middle_name" id="middle_name" class="span8">
 												<span for="middle_name" class="help-inline"><?php echo form_error('middle_name'); ?></span>
 											</div>
-											<div class="span4">
-												<input type="text" name="last_name" id="last_name" placeholder="LastName" class="span12">
+									</div>
+									<div class="control-group">
+										<label class="control-label">Last Name</label>
+											<div class="controls">
+												<input type="text" name="last_name" id="last_name" class="span8">
 												<span for="last_name" class="help-inline"><?php echo form_error('last_name'); ?></span>
 											</div>
-										</div>
 									</div><!--/ Staff Name -->
 									
 									<!-- Contact Number -->

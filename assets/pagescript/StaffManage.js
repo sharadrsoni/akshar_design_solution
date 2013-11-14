@@ -161,8 +161,8 @@ var Staff = function() {
 				$('#pin_code').val("");
 				$('#staffId').val("");
 				$("#submitStaff").text("Add Staff User");
-				$('.alert-error', $('#form_branch')).hide();
-				$("#form_branch").validate().resetForm();
+				$('.alert-error', $('#form_staff')).hide();
+				$("#form_staff").validate().resetForm();
 				$(".error").removeClass("error");
 				$(".success").removeClass("success");
 			});

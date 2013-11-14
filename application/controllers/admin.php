@@ -100,45 +100,46 @@ class Admin extends CI_Controller {
 	}
 
 	//Course
-	public function course() {
+	public function course($courseId = '') {
 		$this -> load -> model('course_model');
-		if (isset($_POST['add_course'])) {
-			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
-			$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim');
-			$this -> form_validation -> set_rules('course_code', 'Course Code', 'required|trim|is_unique[course.courseCode]');
-			$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
-			$this -> form_validation -> set_rules('material_id', 'Course MaterialId', 'required|trim');
-			$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
-			$this -> form_validation -> set_rules('opening_stock', 'Material Opening Stock', 'required|trim');
-			if ($this -> form_validation -> run() == FALSE) {
-				//die(validation_errors());
-				$data['validate'] = true;
-			} else {
-				$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseCode' => $_POST['course_code'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseMaterialOpeningStock' => $_POST['opening_stock']);
-				//die(print_r($courseValue));
-				if ($this -> course_model -> addCourse($courseValue)) {
-					//die("yes");
-					redirect(base_url() . "admin/course");
+		if ($courseId != '') {
+			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId);
+			echo json_encode($this->data);
+		} else {
+			$this -> data['title'] = "ADS | Course";
+			$this -> load -> model('course_category_model');
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/course_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data["course_category"] = $this -> course_category_model -> getDetailsOfCourseCategory();
+			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
+			if (isset($_POST['submitCourse'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
+				$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim');
+				$this -> form_validation -> set_rules('course_code', 'Course Code', 'required|trim|is_unique[course.courseCode]');
+				$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
+				$this -> form_validation -> set_rules('material_id', 'Course MaterialId', 'required|trim');
+				$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
+				$this -> form_validation -> set_rules('opening_stock', 'Material Opening Stock', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					//die(validation_errors());
+					$this -> data['validate'] = true;
 				} else {
-					$data['error'] = "An Error Occured.";
+					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseCode' => $_POST['course_code'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseMaterialOpeningStock' => $_POST['opening_stock']);
+					//die(print_r($courseValue));
+					if ($_POST['courseId'] != "" ? $this -> course_model -> updateCourse($courseValue,$_POST['courseId']) : $this -> course_model -> addCourse($courseValue)) {
+						redirect(base_url() . "admin/course");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
 				}
 			}
+			$this -> load -> view('backend/branch_manager/course', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/course_js');
+			$this -> load -> view('backend/master_page/bottom');
 		}
-
-		$this -> data['title'] = "ADS | Course";
-		$this -> load -> model('course_category_model');
-		$this -> data["course_category"] = $this -> course_category_model -> getDetailsOfCourseCategory();
-		$course = $this -> course_model -> getDetailsOfCourse();
-		$data['course'] = $course;
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/course_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/course', $data);
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/course_js');
-		$this -> load -> view('backend/master_page/bottom');
-
 	}
 
 	public function delete_course($courseCode) {
@@ -319,7 +320,7 @@ class Admin extends CI_Controller {
 		$this -> load -> model("staff_model");
 		if ($staffID != '') {
 			$this -> data['staff'] = $this -> staff_model -> getDetailsByStaff($staffID);
-			echo json_encode($this->data);
+			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Staff";
 			$this -> load -> view('backend/master_page/top', $this -> data);

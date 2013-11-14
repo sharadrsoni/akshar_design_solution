@@ -12,5 +12,6 @@
 		App.init();
 		Course.init_table();
 		Course.init_formvalidation();
+		Course.init_uijquery();
 	}); 
 </script>
