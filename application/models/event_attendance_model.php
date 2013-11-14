@@ -14,8 +14,8 @@ class event_attendance_model extends CI_Model {
 
 	public function updateAttendance($data) {
 		if (isset($data)) {
-			$this -> db -> where('attendanceDate', $data['attendanceDate']);
-			$this -> db -> where('studentBatchId', $data['studentBatchId']);
+			$this -> db -> where('eventId', $data['eventId']);
+			$this -> db -> where('studentId', $data['studentId']);
 			$this -> db -> set('attendanceIsPresent	', $data['attendanceIsPresent']);
 			return $this -> db -> update('event_attendance', $data);
 		} else {
@@ -23,28 +23,24 @@ class event_attendance_model extends CI_Model {
 		}
 	}
 
-	public function getDetailsByBatchByDate($batchId, $roleId, $branchId, $date) {
-		$this -> db -> where("branchId", $branchId);
-		$this -> db -> where("roleId", $roleId);
+	public function getDetailsByBatch($batchId) {
 		$this -> db -> where("batchId", $batchId);
-		$this -> db -> where("attendanceDate", $date);
-		$this -> db -> join('student_batch', 'attendance.studentBatchId = student_batch.studentBatchId');
-		$this -> db -> join('user', 'user.userId = student_batch.studentId');
-		return $this -> db -> get('event_attendance') -> result();
+		$this -> db -> join('event_attendance', 'event_attendance.studentId = user.userId','left outer');
+		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');
+		return $this -> db -> get('user') -> result();
 	}
 
-	public function getCountByDate($batchId, $date) {
-		$this -> db -> select('attendanceId');
-		$this -> db -> from('event_attendance');
-		$this -> db -> join('student_batch', 'attendance.studentBatchId = student_batch.studentBatchId');
-		$this -> db -> where("batchId", $batchId);
-		$this -> db -> where("attendanceDate", $date);
-		$count = $this -> db -> count_all_results();
-		if ($count > 0) {
-			return $count;
+
+	public function deleteAttendance($studentId,$eventId) {
+		if (isset($studentId)) {
+			$this -> db -> where('studentId', $studentId);
+			$this -> db -> where('eventId', $eventId);
+			$this -> db -> delete('event_attendance');
+			return false;
+		} else {
+			return true;
 		}
-
-		return NULL;
 	}
+
 
 }
