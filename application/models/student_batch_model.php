@@ -16,6 +16,15 @@ class student_batch_model extends CI_Model {
 		return $this -> db -> get() -> result();
 	}
 
+	public function getDetailsByStudentCourse($studentId,$courseCode) {
+		$this -> db -> where("studentId", $studentId);
+		$this -> db -> where("courseCode", $courseCode);
+		$this -> db -> join('batch', 'student_batch.batchId = batch.batchId');
+		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
+		$this -> db -> from('student_batch');
+		return $this -> db -> get() -> result();
+	}
+
 	public function getDetailsByBatch($batchId) {
 		$this -> db -> where("batchId", $batchId);
 		$this -> db -> from('student_batch');
