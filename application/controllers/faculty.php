@@ -43,8 +43,7 @@ class Faculty extends CI_Controller {
 						$dummy = array('studentBatchId' => $key -> studentBatchId, 'attendanceIsPresent' => 0, 'attendanceDate' => $date);
 						$this -> attendance_model -> addAttendance($dummy);
 					}
-				else 
-				{
+				else {
 					foreach ($student_data as $key) {
 						$dummy2 = array('studentBatchId' => $key -> studentBatchId, 'attendanceIsPresent' => 0, 'attendanceDate' => $date);
 						$this -> attendance_model -> updateAttendance($dummy2);
@@ -80,7 +79,7 @@ class Faculty extends CI_Controller {
 	//Test & Marks
 	public function test() {
 
-		if (isset($_POST['add_register'])) {
+		if (isset($_POST['submitTest'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('test_date', 'Test Date', 'required|trim');
 			$this -> form_validation -> set_rules('test_marks', 'Test Marks', 'required|trim');
@@ -88,18 +87,39 @@ class Faculty extends CI_Controller {
 				$this -> data['validate'] = true;
 			} else {
 				$this -> load -> model('test_model');
-				$test_data = array('testDate' => $_POST['test_date'], 'testMaximumMarks' => $_POST['test_marks'], 'batchId' => 201301001, 'testName' => $_POST['test_name']);
+				$test_data = array('testDate' => date("Y-m-d", strtotime($_POST['test_date'])), 'testMaximumMarks' => $_POST['test_marks'], 'batchId' => $_POST['batch_id'], 'testName' => $_POST['test_name']);
 				if ($this -> test_model -> addtest($test_data)) {
 					redirect(base_url() . "faculty/test");
 				} else {
 					$this -> data['error'] = "An Error Occured.";
 				}
 			}
-		} else {
+		} else if (isset($_POST['submitTestMarks'])) {
+			
+				$this -> load -> model('test_model');
+				$this -> load -> model('test_result_model');
+				$student_data = $this -> test_model -> getTestStudentDetails($_POST["testId"]);
+				foreach ($student_data as $key) {
+					$this -> test_result_model -> deleteResult($key -> studentBatchId,$_POST["testId"]);
+				}
 
+				$size = sizeof($_POST["student_ids"]);
+				for ($i = 0; $i < $size; $i++) {
+				$count_data = $this -> test_result_model -> getCountByTestStudent($_POST["testId"],$_POST["student_ids"][$i]);
+				$dummy = array('studentBatchId' => $_POST["student_ids"][$i],'testResultObtainedMarks' => $_POST["obtained_marks"][$i], 'testId' => $_POST["testId"]);
+				if ($count_data == null)
+					$this -> test_result_model -> addResult($dummy);
+				else 
+					$this -> test_result_model -> updateResult($dummy);					
+				}
+				redirect(base_url() . "faculty/test");
+
+		} else {
+			
 			$this -> data['title'] = "ADS | Test";
 			$this -> load -> model("test_model");
 			$this -> load -> model("batch_model");
+			$this -> data['test_list'] = $this -> test_model -> getDetailsBytest();
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
 			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this -> branchId, $this -> userId);
 
@@ -110,6 +130,12 @@ class Faculty extends CI_Controller {
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/test_js');
 		}
+	}
+
+	public function addMarks($testId) {
+		$this -> load -> model('batch_model');
+		$this -> batch_model -> deleteBatch($batchId);
+		redirect(base_url() . "branch_manager/batch");
 	}
 
 }

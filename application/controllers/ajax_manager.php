@@ -62,6 +62,14 @@ class Ajax_manager extends CI_Controller {
 			echo json_encode($this -> data);
 	}
 
+//Student List For test Marks 
+	public function studentlistMarks($testId) {
+		$this -> load -> model('test_result_model');
+			$student_data = $this -> test_result_model -> studentlistMarks($testId);
+			$this -> data['student_list'] = $student_data;
+			echo json_encode($this -> data);
+	}
+
 		
 }
 ?>	

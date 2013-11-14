@@ -6,6 +6,7 @@ class event_attendance_model extends CI_Model {
 
 	public function addAttendance($data) {
 		if (isset($data)) {
+			
 			return $this -> db -> insert('event_attendance', $data);
 		} else {
 			return false;
