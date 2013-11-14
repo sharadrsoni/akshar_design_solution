@@ -100,14 +100,6 @@
 					</div>
 					<!--/row-->
 					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Course Code:</label>
-								<div class="controls">
-									<span class="text" id="view_course_code"></span>
-								</div>
-							</div>
-						</div>
 						<!--/span-->
 						<div class="span6 ">
 							<div class="control-group">
@@ -178,6 +170,15 @@
 
 								<div class="body-inner">
 									<h3 class="form-section">Course Info.</h3>
+									<!-- Course Code -->
+									<div class="control-group">
+										<label class="control-label">Course Code<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="course_code" id="course_code" class="span4"/>
+											<?php echo form_error('course_code');
+											?>
+										</div>
+									</div><!--/ Course Code -->
 									<!-- CourseCategory ID -->
 									<div class="control-group">
 										<label class="control-label">Course Category ID<span class="required">*</span></label>
@@ -201,15 +202,6 @@
 											<input type="text" name="course_name" id="course_name" class="span8">
 										</div>
 									</div><!--/ Course Name -->
-									<!-- Course Code -->
-									<div class="control-group">
-										<label class="control-label">Course Code<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="course_code" id="course_code" class="span8"/>
-											<?php echo form_error('course_code');
-											?>
-										</div>
-									</div><!--/ Course Code -->
 									<!-- Course Duration -->
 									<div class="control-group">
 										<label class="control-label">Course Duration<span class="required">*</span></label>

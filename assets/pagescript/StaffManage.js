@@ -128,7 +128,7 @@ var Staff = function() {
 
 				submitHandler : function(form) {
 					success1.show();
-					form1.submit();
+					form.submit();
 					error1.hide();
 				}
 			});
