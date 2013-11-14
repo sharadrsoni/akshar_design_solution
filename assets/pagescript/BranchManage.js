@@ -167,11 +167,11 @@ var Branch = function() {
 			});
 		},
 		init_uijquery : function() {
-			$('#tablink2').click(function(e) {
+			/*$('#tablink2').click(function(e) {
 				e.preventDefault();
 				$(this).tab('show');
 				Branch.init_google();
-			});
+			});*/
 			$("#loadmap").click(function() {
 				Branch.init_google();
 			});

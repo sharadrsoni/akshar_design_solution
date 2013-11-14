@@ -78,7 +78,7 @@
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
-							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_branch');
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_staff');
 							echo form_open('admin/staff', $attributes);
 							?>
 								<div class="alert alert-error hide">

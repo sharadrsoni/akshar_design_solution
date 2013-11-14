@@ -5,6 +5,9 @@ if (!defined('BASEPATH'))
 class staff_model extends CI_Model {
 
 	public function getDetailsOfStaff() {
+		$this -> db -> where("roleId", 2);
+		$this -> db -> or_where("roleId", 3);
+		$this -> db -> or_where("roleId", 4);
 		return $this -> db -> get('user') -> result();
 	}
 

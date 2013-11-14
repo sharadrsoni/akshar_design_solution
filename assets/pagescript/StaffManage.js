@@ -57,6 +57,12 @@ var Staff = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
+					branchId:{
+						required : true
+					},
+					userroleId:{
+						required : true
+					},
 					first_name : {
 						required : true
 					},
@@ -73,13 +79,10 @@ var Staff = function() {
 					email : {
 						required : true,
 					},
-					dob : {
+					date_of_birth:{
 						required : true,
 					},
 					qualification : {
-						required : true,
-					},
-					date_of_joining : {
 						required : true,
 					},
 					street_1 : {
