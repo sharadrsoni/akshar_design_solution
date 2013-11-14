@@ -130,7 +130,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> model('course_model');
 			$this -> load -> model('batch_model');
 			$this -> data['title'] = "ADS | Student Registration";
-			$this -> data['course'] = $this -> course_model -> getAllDetails();
+			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
 			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
 			$this -> data['batchId'] = $this -> batch_model -> getDetailsByBranch($this -> branchId);
 			$this -> load -> view('backend/master_page/top', $this -> data);
@@ -156,7 +156,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> view('backend/css/book_inventory_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("course_model");
-			$this -> data['course'] = $this -> course_model -> getAllDetails();
+			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
 			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByBranch($this -> branchId);
 			if (isset($_POST['submitInventory'])) {
 				$this -> load -> library("form_validation");

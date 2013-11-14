@@ -167,6 +167,14 @@ var Branch = function() {
 			});
 		},
 		init_uijquery : function() {
+			/*$('#tablink2').click(function(e) {
+				e.preventDefault();
+				$(this).tab('show');
+				Branch.init_google();
+			});*/
+			$("#loadmap").click(function() {
+				Branch.init_google();
+			});
 			$("#tablink2").click(function() {
 				$('#branch_name').val("");
 				$('#conatct_no').val("");
@@ -181,8 +189,8 @@ var Branch = function() {
 				$("#submitBranch").text("Add Branch");
 				$('.alert-error', $('#form_branch')).hide();
 				$("#form_branch").validate().resetForm();
-  				$(".error").removeClass("error");
-  				$(".success").removeClass("success");
+				$(".error").removeClass("error");
+				$(".success").removeClass("success");
 			});
 		}
 	};
@@ -195,15 +203,15 @@ function viewbranch(branchid) {
 		success : function(json) {
 			if (json) {
 				alert();
-				$("#ViewBatch").attr("style","display");
+				$("#ViewBatch").attr("style", "display");
 				App.scrollTo($('#ViewBatch'));
 				$('#view_branch_name').text(json.branch[0].branchName);
 				$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				$('#view_address').html(json.branch[0].branchStreet1+"<Br/>"+json.branch[0].branchStreet2+"<Br/>"+json.branch[0].branchCity+", "+json.branch[0].branchState+"<Br/>"+json.branch[0].branchPincode);
-			/*	$('#viewstreet_2').text();
-				$('#viewstate').text();
-				$('#viewcity').text();
-				$('#viewpin_code').text();*/
+				$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
+				/*	$('#viewstreet_2').text();
+				 $('#viewstate').text();
+				 $('#viewcity').text();
+				 $('#viewpin_code').text();*/
 			}
 		}
 	});

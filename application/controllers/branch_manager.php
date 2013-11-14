@@ -37,7 +37,7 @@ class Branch_manager extends CI_Controller {
 		} else {
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
 			$this -> load -> model("course_model");
-			$courses = $this -> course_model -> getAllDetails();
+			$courses = $this -> course_model -> getDetailsOfCourse();
 			$this -> load -> model('user_model');
 			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 3);
 			$this -> data['course'] = $courses;
