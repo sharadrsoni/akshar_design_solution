@@ -93,7 +93,8 @@ class Branch_manager extends CI_Controller {
 					$batch_timings = array();
 					$size = sizeof($_POST["batch_timing"]);
 					if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
-						for ($i = 0; $i < $size; ) {
+						for ($i = 0; $i < $size; ) 
+						{
 							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
 							if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
 								$this -> data['error'] = "An Error Occured.";

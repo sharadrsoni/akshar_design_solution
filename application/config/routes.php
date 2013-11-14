@@ -51,8 +51,8 @@ $route['admin/profile'] = "staff/profile";
 
 //Branch Manager
 $route['branch_manager/studentregistration'] = "branch_manager_counsellor/studentregistration";
-$route['branch_manager/feespayment'] = "branch_manager_counsellor/feespayment";
-$route['branch_manager/feesreceipt'] = "branch_manager_counsellor/feesreceipt";
+$route['branch_manager/fees_payment'] = "branch_manager_counsellor/fees_payment";
+$route['branch_manager/fees_receipt'] = "branch_manager_counsellor/fees_receipt";
 $route['branch_manager/randomPassword'] = "branch_manager_counsellor/randomPassword";
 $route['branch_manager/inquiry'] = "branch_manager_counsellor/inquiry";
 $route['branch_manager/delete_inquiry'] = "branch_manager_counsellor/delete_inquiry";
@@ -69,8 +69,8 @@ $route['faculty/search'] = "staff/search";
 
 //Counsellor
 $route['counsellor/studentregistration'] = "branch_manager_counsellor/studentregistration";
-$route['counsellor/feespayment'] = "branch_manager_counsellor/feespayment";
-$route['counsellor/feesreceipt'] = "branch_manager_counsellor/feesreceipt";
+$route['counsellor/fees_payment'] = "branch_manager_counsellor/fees_payment";
+$route['counsellor/fees_receipt'] = "branch_manager_counsellor/fees_receipt";
 $route['counsellor/randomPassword'] = "branch_manager_counsellor/randomPassword";
 $route['counsellor/inquiry'] = "branch_manager_counsellor/inquiry";
 $route['counsellor/delete_inquiry'] = "branch_manager_counsellor/delete_inquiry";

@@ -30,14 +30,14 @@ class Branch_manager_counsellor extends CI_Controller {
 	public function inquiry($inquiryID = '') {
 		$this -> load -> model("inquiry_model");
 		if ($inquiryID != '') {
-			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsByinquiry($this->branchId,$inquiryID);
-			echo json_encode($this->data);
+			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsByinquiry($this -> branchId, $inquiryID);
+			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Inquiry";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/inquiry_css');
 			$this -> load -> view('backend/master_page/header');
-			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsOfInquiry($this->branchId);
+			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsOfInquiry($this -> branchId);
 			if (isset($_POST['submitInquiry'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
@@ -59,8 +59,8 @@ class Branch_manager_counsellor extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'],'inquiryStudentMiddleName' => $_POST['middle_name'],'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'],'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $this->branchId);
-					if ($_POST['inquiryId'] != "" ? $this -> inquiry_model -> updateinquiry($inquiryData,$_POST['inquiryId']) : $this -> inquiry_model -> addinquiry($inquiryData)) {
+					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $this -> branchId);
+					if ($_POST['inquiryId'] != "" ? $this -> inquiry_model -> updateinquiry($inquiryData, $_POST['inquiryId']) : $this -> inquiry_model -> addinquiry($inquiryData)) {
 						redirect(base_url() . "branch_manager/inquiry");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -186,19 +186,61 @@ class Branch_manager_counsellor extends CI_Controller {
 	}
 
 	//Fees Payment
-	public function feespayment() {
-		$this -> data['title'] = "ADS | Fess Payment";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/fees_payment_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/fees_payment');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/fees_payment_js');
-		$this -> load -> view('backend/master_page/bottom');
+	public function fees_payment() {
+
+		if (isset($_POST['submitPayment'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('payment_date', 'Payment Date', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$this -> data['validate'] = true;
+			} else {
+				if (isset($_POST['paymemt_mode']))
+					$type = 1;
+				else
+					$type = 0;
+
+				$this -> load -> model('fee_model');
+				$feesData = array('feesAmount' => $_POST['total_amount'], 'feesDate' => date("Y-m-d", strtotime($_POST['payment_date'])), 'feesMode' => $type, 'studentId' => $_POST['studentid']);
+				if ($this -> fee_model -> addFee($feesData)) {
+					$getMaximumFeeId = $this -> fee_model -> getLastId($feesData);
+					$feeId = $getMaximumFeeId['feesId'];
+					if ($type == 1) {
+						$chequeData = array('feesId' => $feeId, 'chequeNumber' => $_POST['cheque_number'], 'feesChequeBankName' => $_POST['total_amount'], 'feesChequeIssueDate' => date("Y-m-d", strtotime($_POST['cheque_issue_date'])), 'feesChequeIFSC' => $_POST['ifrc_code'], 'feesChequeBankBranchName' => $_POST['branchname']);
+						$this -> load -> model('fees_cheque_model');
+						$this -> fees_cheque_model -> addFeeCheque($chequeData);
+					}
+
+					$size = sizeof($_POST["payment_studentBatchId"]);
+					$this -> load -> model('fees_details_model');
+					$this -> load -> model('student_batch_model');
+					for ($i = 0; $i < $size; $i++) 
+					{						
+						$feeDetailData = array('feesId' => $feeId, 'studentBatchId' => $_POST['payment_studentBatchId'][$i], 'feesDetailsAmount' => $_POST['payment_details'][$i]);
+						$this -> fees_details_model -> addFeeDetails($feeDetailData);
+					}
+					redirect(base_url() . "branch_manager/fees_payment");
+				} else {
+					$this -> data['error'] = "An Error Occured.";
+				}
+
+			}
+		} else {
+			$this -> load -> model('course_model');
+			$this -> load -> model('batch_model');
+			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
+			$this -> data['title'] = "ADS | Fess Payment";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/fees_payment_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> view('backend/branch_manager/fees_payment');
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/fees_payment_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
 	}
 
 	//Fees Receipt
-	public function feesreceipt() {
+	public function fees_receipt() {
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/feesreceipt_css');

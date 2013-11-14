@@ -233,7 +233,7 @@
 <a href='" . base_url() . $href . "/studentregistration'><span class='icon icone-angle-right'></span>Registration</a>
 </li>
 <li class=''>
-<a href='" . base_url() . $href . "/feespayment'><span class='icon icone-angle-right'></span>Fees Receipt</a>
+<a href='" . base_url() . $href . "/fees_payment'><span class='icon icone-angle-right'></span>Fees Receipt</a>
 </li>
 </ul>
 <!--/ END Submenu Menu -->
