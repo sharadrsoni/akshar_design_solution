@@ -272,11 +272,12 @@
 									<label class="control-label">Batch ID<span class="required">*</span></label>
 									<div class="controls">
 										<select class="span4" name="batch_id" id="batch_id">
-											<option value="">Select...</option>
-											<option value="Category 1">Category 1</option>
-											<option value="Category 2">Category 2</option>
-											<option value="Category 3">Category 5</option>
-											<option value="Category 4">Category 4</option>
+												<option value="">Select...</option>
+												<?php
+												foreach ($batch_list as $key) {
+													echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
+												}
+												?>
 										</select>
 									</div>
 								</div><!--/ Batch ID -->
@@ -288,21 +289,7 @@
 											<th class="hidden-480">Present/Absent </th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr class="odd gradeX">
-											<td> Student_ID XXX </td>
-											<td>
-											<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
-												<input type="checkbox" checked="" name="individual_Batch" id="individual_Batch"  class="toggle" />
-											</div></td>
-										</tr>
-										<tr class="odd gradeX">
-											<td> Student_ID XXX </td>
-											<td>
-											<div class="text-toggle-Attendance" data-on="Present" data-off="absent">
-												<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
-											</div></td>
-										</tr>
+									<tbody id="lst_students">
 									</tbody>
 								</table>
 								<!-- Form Action -->

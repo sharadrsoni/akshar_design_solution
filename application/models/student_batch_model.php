@@ -15,6 +15,13 @@ class student_batch_model extends CI_Model {
 		$this -> db -> from('student_batch');
 		return $this -> db -> get() -> result();
 	}
+
+	public function getDetailsByBatch($batchId) {
+		$this -> db -> where("batchId", $batchId);
+		$this -> db -> from('student_batch');
+		return $this -> db -> get() -> result();
+	}
+
 	
 	public function addStudentbatch($data) {
 		if(isset($data)) {
