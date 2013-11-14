@@ -229,7 +229,6 @@ function updatebranch(branchid) {
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$('#branchId').val(json.branch[0].branchId);
-				$("#submitBranch").text("Add Branch");
 				$("#submitBranch").text("Update Branch");
 				map = Branch.init_google();
 			}

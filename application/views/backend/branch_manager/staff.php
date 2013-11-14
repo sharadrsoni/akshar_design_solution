@@ -15,7 +15,6 @@
 		</div>
 	</div>
 	<!--/ END Bootstrap Navbar -->
-
 	<!-- START Content -->
 	<div class="container-fluid">
 		<!-- START Row -->
@@ -53,6 +52,7 @@
 												<th style="width:8px;">
 												<input type="checkbox" class="group-checkable" data-set="#tblStaff .checkboxes" />
 												</th>
+												<th>User ID</th>
 												<th>Staff Name</th>
 												<th class="hidden-480">Email</th>
 												<th class="hidden-480">ContactNo</th>
@@ -63,13 +63,13 @@
 											<?php
 											if (isset($staff_list)) {
 												foreach ($staff_list as $key) {
-echo "<tr class=\"odd gradeX\">
+													echo "<tr class=\"odd gradeX\">
 <td><input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>													
+<td class=\"center hidden-480\">{$key->userId}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
-<td ><span class=\"label label-success\"Edit</span></td>
-<td ><span class=\"label label-success\"Delete</span></td>
+<td ><span class=\"label label-success\" onclick='updatestaff(\"{base_url()}\", \"{$key->userId}\");' >Edit</span> <span class=\"label label-success\"> <a href='" . base_url() . "branch_manager/delete_staff/{$key->userId}'>Delete</a></span></td></tr>
 </tr>
 ";
 												}
@@ -81,7 +81,10 @@ echo "<tr class=\"odd gradeX\">
 							</div>
 						</div>
 						<div class="tab-pane" id="tab2">
-							<form class="form-horizontal span12 widget shadowed green" id="form_staff">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_staff');
+							echo form_open('branch_manager/staff', $attributes);
+ ?>
 								<div class="alert alert-error hide">
 									<button class="close" data-dismiss="alert"></button>
 									You have some form errors. Please check below.
@@ -93,6 +96,7 @@ echo "<tr class=\"odd gradeX\">
 
 								<div class="body-inner">
 									<h3 class="form-section">Staff Info.</h3>
+									
 									<!-- Staff Name -->
 									<div class="control-group">
 										<label class="control-label">Staff Name</label>
@@ -102,6 +106,7 @@ echo "<tr class=\"odd gradeX\">
 											<div class="span4"><input type="text" name="last_name" id="last_name" placeholder="LastName" class=""></div>
 										</div>
 									</div><!--/ Staff Name -->
+									
 									<!-- Contact Number -->
 									<div class="control-group">
 										<label class="control-label">Contact Number</label>
@@ -109,6 +114,7 @@ echo "<tr class=\"odd gradeX\">
 											<input type="text" name="contact_number" id="contact_number" class="span8">
 										</div>
 									</div><!--/ Contact Number -->
+									
 									<!-- Email -->
 									<div class="control-group">
 										<label class="control-label">Email</label>
@@ -116,16 +122,19 @@ echo "<tr class=\"odd gradeX\">
 											<input type="text" name="email" id="email" class="span8">
 										</div>
 									</div><!--/ Email -->
+									
 									<!-- Date Of Birth -->
 									<div class="control-group">
-										<label class="control-label">Date Of Birth</label>
+										<label class="control-label">Date Of Birth<span class="required">*</span></label>
 										<div class="controls">
-											<div class="input-append span6" id="dob_datepicker">
-												<input type="text" readonly="" name="dob" id="dob" class="m-wrap span7">
+											<div class="input-append span6" id="start_date_datepicker">
+												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
+											<span for="start_date" class="help-inline"><?php echo form_error('start_date'); ?></span>
 										</div>
 									</div><!--/ Date Of Birth -->
+																	
 									<!-- Qualification -->
 									<div class="control-group">
 										<label class="control-label">Qualification</label>
@@ -133,14 +142,16 @@ echo "<tr class=\"odd gradeX\">
 											<input type="text" name="qualification" id="qualification" class="span8">
 										</div>
 									</div><!--/ Qualification -->
+									
 									<!-- Date Of Joining -->
 									<div class="control-group">
 										<label class="control-label">Date Of Joining</label>
 										<div class="controls">
 											<div class="input-append span6" id="doj_datepicker">
-												<input type="text" readonly="" name="date_of_joining" id="date_of_joining" class="m-wrap span7">
+												<input type="text" data-format="dd-MM-yyyy" name="date_of_joining" id="date_of_joining" class="m-wrap span7">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
+											<span for="start_date" class="help-inline"><?php echo form_error('start_date'); ?></span>
 										</div>
 									</div><!--/ Date Of Joining -->
 									<h3 class="form-section">Address</h3>
@@ -186,10 +197,10 @@ echo "<tr class=\"odd gradeX\">
 
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-primary"  name="register" id="register">
 											Register
 										</button>
-										<button type="button" class="btn">
+										<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
 											Cancel
 										</button>
 									</div><!--/ Form Action -->
@@ -198,149 +209,146 @@ echo "<tr class=\"odd gradeX\">
 							</div>
 						</div>
 					</div>
-					<!--/ End Tabs -->
-					
 					<!--View Staff -->
-				<div class="form-horizontal form-view" id="ViewBatch">
-												<h3> View Staff Info - Bob Nilson </h3>
-												<h3 class="form-section">Person Info</h3>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">First Name:</label>
-															<div class="controls">
-																<span class="text">Bob</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="lastName">Last Name:</label>
-															<div class="controls">
-																<span class="text">Nilson</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Qualification</label>
-															<div class="controls">
-																<span class="text">MBA</span> 
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Date of Birth:</label>
-															<div class="controls">
-																<span class="text bold">20.01.1984</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Branch Name:</label>
-															<div class="controls">
-																<span class="text">Ahmedabad Branch</span> 
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Role:</label>
-															<div class="controls">
-																<span class="text bold">Faculty</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->        
-										<h3 class="form-section">Contact Info</h3>
-											<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="firstName">Contact No.:</label>
-															<div class="controls">
-																<span class="text">9999999999</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label" for="lastName">Email:</label>
-															<div class="controls">
-																<span class="text">Nilson@mail.com</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->
-										
-											               
-												<h3 class="form-section">Address</h3>
-												<div class="row-fluid">
-													<div class="span12 ">
-														<div class="control-group">
-															<label class="control-label">Street:</label>
-															<div class="controls">
-																<span class="text">#24 Sun Park Avenue, Rolton Str</span>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">City:</label>
-															<div class="controls">
-																<span class="text">New York</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													<div class="span6">
-														<div class="control-group">
-															<label class="control-label">State:</label>
-															<div class="controls">
-																<span class="text">New York</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-												</div>
-												<!--/row-->           
-												<div class="row-fluid">
-													<div class="span6 ">
-														<div class="control-group">
-															<label class="control-label">Post Code:</label>
-															<div class="controls">
-																<span class="text">457890</span>
-															</div>
-														</div>
-													</div>
-													<!--/span-->
-													
-												</div>
-				</div><!-- End View Staff -->
-					
+<div style="display: none" class="form-horizontal form-view" id="ViewBatch">
+	<h3> View Staff Info - Bob Nilson </h3>
+	<h3 class="form-section">Person Info</h3>
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="firstName">First Name:</label>
+				<div class="controls">
+					<span class="text">Bob</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="lastName">Last Name:</label>
+				<div class="controls">
+					<span class="text">Nilson</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Qualification</label>
+				<div class="controls">
+					<span class="text">MBA</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Date of Birth:</label>
+				<div class="controls">
+					<span class="text bold">20.01.1984</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Branch Name:</label>
+				<div class="controls">
+					<span class="text">Ahmedabad Branch</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Role:</label>
+				<div class="controls">
+					<span class="text bold">Faculty</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<h3 class="form-section">Contact Info</h3>
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="firstName">Contact No.:</label>
+				<div class="controls">
+					<span class="text">9999999999</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label" for="lastName">Email:</label>
+				<div class="controls">
+					<span class="text">Nilson@mail.com</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+
+	<h3 class="form-section">Address</h3>
+	<div class="row-fluid">
+		<div class="span12 ">
+			<div class="control-group">
+				<label class="control-label">Street:</label>
+				<div class="controls">
+					<span class="text">#24 Sun Park Avenue, Rolton Str</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">City:</label>
+				<div class="controls">
+					<span class="text">New York</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+		<div class="span6">
+			<div class="control-group">
+				<label class="control-label">State:</label>
+				<div class="controls">
+					<span class="text">New York</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<div class="row-fluid">
+		<div class="span6 ">
+			<div class="control-group">
+				<label class="control-label">Post Code:</label>
+				<div class="controls">
+					<span class="text">457890</span>
+				</div>
+			</div>
+		</div>
+		<!--/span-->
+
+	</div>
+</div><!-- End View Staff -->
+					<!--/ End Tabs -->			
 				</div>
 				<!--/ END Row -->
 			</div>
 			<!--Page Content End  -->
 		</div>
-		<!--/ END Content -->
+	<!--/ END Content -->
 </section>
