@@ -34,7 +34,7 @@ class CI_Controller {
 	private static $instance;
 	protected $userId;
 	protected $roleId;
-	protected $branchId;
+	protected $branchCode;
 	protected $data = array();
 	/**
 	 * Constructor
@@ -48,7 +48,7 @@ class CI_Controller {
 				$this -> roleId = $this -> session -> userdata("roleId");
 				$this -> load -> model("user_model");
 				$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
-				$this -> branchId = $userDetail -> branchId;
+				$this -> branchCode = $userDetail -> branchCode;
 				$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
 				$this -> load -> model("role_model");
 				$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;

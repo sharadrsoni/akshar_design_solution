@@ -4,13 +4,13 @@ if (!defined('BASEPATH'))
 
 class event_model extends CI_Model {
 
-	public function getDetailsByBranch($branchId) {
-		$this -> db -> where("event.branchId", $branchId);
+	public function getDetailsByBranch($branchCode) {
+		$this -> db -> where("event.branchCode", $branchCode);
 		return $this -> db -> get('event') -> result();
 	}
 	
-	public function getDetailsByEventBranch($branchId,$eventId) {
-		$this -> db -> where("event.branchId", $branchId);
+	public function getDetailsByEventBranch($branchCode,$eventId) {
+		$this -> db -> where("event.branchCode", $branchCode);
 		$this -> db -> where('eventId', $eventId);
 		return $this -> db -> get('event') -> result();
 	}

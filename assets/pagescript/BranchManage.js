@@ -185,7 +185,7 @@ var Branch = function() {
 				$('#pin_code').val("");
 				$('#longitude').val("");
 				$('#latitude').val("");
-				$('#branchId').val("");
+				$('#branchCode').val("");
 				$("#submitBranch").text("Add Branch");
 				$('.alert-error', $('#form_branch')).hide();
 				$("#form_branch").validate().resetForm();
@@ -195,9 +195,9 @@ var Branch = function() {
 		}
 	};
 }();
-function viewbranch(branchid) {
+function viewbranch(branchCode) {
 	$.ajax({
-		url : "branch/" + branchid,
+		url : "branch/" + branchCode,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
@@ -217,9 +217,9 @@ function viewbranch(branchid) {
 	});
 }
 
-function updatebranch(branchid) {
+function updatebranch(branchCode) {
 	$.ajax({
-		url : "branch/" + branchid,
+		url : "branch/" + branchCode,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
@@ -236,7 +236,7 @@ function updatebranch(branchid) {
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#branchId').val(json.branch[0].branchId);
+				$('#branchCode').val(json.branch[0].branchCode);
 				$("#submitBranch").text("Update Branch");
 				map = Branch.init_google();
 			}

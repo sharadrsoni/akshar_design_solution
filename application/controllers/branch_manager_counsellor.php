@@ -30,14 +30,14 @@ class Branch_manager_counsellor extends CI_Controller {
 	public function inquiry($inquiryID = '') {
 		$this -> load -> model("inquiry_model");
 		if ($inquiryID != '') {
-			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsByinquiry($this -> branchId, $inquiryID);
+			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsByinquiry($this -> branchCode, $inquiryID);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Inquiry";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/inquiry_css');
 			$this -> load -> view('backend/master_page/header');
-			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsOfInquiry($this -> branchId);
+			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsOfInquiry($this -> branchCode);
 			if (isset($_POST['submitInquiry'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
@@ -59,7 +59,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $this -> branchId);
+					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchCode' => $this -> branchCode);
 					if ($_POST['inquiryId'] != "" ? $this -> inquiry_model -> updateinquiry($inquiryData, $_POST['inquiryId']) : $this -> inquiry_model -> addinquiry($inquiryData)) {
 						redirect(base_url() . "branch_manager/inquiry");
 					} else {
@@ -106,7 +106,7 @@ class Branch_manager_counsellor extends CI_Controller {
 					$userId = "0" . $userId;
 				}
 				$pass = $this -> randomPassword();
-				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchId' => $this -> branchId, 'roleId' => 5, 'userPassword' => $pass, 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
+				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $pass, 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
 				if ($this -> user_model -> addUser($userData)) {
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
@@ -131,8 +131,8 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> model('batch_model');
 			$this -> data['title'] = "ADS | Student Registration";
 			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
-			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
-			$this -> data['batchId'] = $this -> batch_model -> getDetailsByBranch($this -> branchId);
+			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchCode, 5);
+			$this -> data['batchId'] = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/student_register_css');
 			$this -> load -> view('backend/master_page/header');
@@ -148,7 +148,7 @@ class Branch_manager_counsellor extends CI_Controller {
 	public function book_inventory($bookinventoryId = '') {
 		$this -> load -> model("book_inventory_model");
 		if ($bookinventoryId != '') {
-			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByInventory($this -> branchId, $bookinventoryId);
+			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByInventory($this -> branchCode, $bookinventoryId);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Book Inventory";
@@ -157,7 +157,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("course_model");
 			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
-			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByBranch($this -> branchId);
+			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByBranch($this -> branchCode);
 			if (isset($_POST['submitInventory'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
@@ -165,7 +165,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'], 'courseId' => $_POST['course_id'], 'branchId' => $this -> branchId);
+					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'], 'courseId' => $_POST['course_id'], 'branchCode' => $this -> branchCode);
 					if ($_POST['inventoryInwardId'] != "" ? $this -> book_inventory_model -> updateinventory($inventoryData, $_POST['inventoryInwardId']) : $this -> book_inventory_model -> addinventory($inventoryData)) {
 						redirect(base_url() . "branch_manager/book_inventory");
 					} else {
@@ -227,7 +227,7 @@ class Branch_manager_counsellor extends CI_Controller {
 		} else {
 			$this -> load -> model('course_model');
 			$this -> load -> model('batch_model');
-			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
+			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchCode, 5);
 			$this -> data['title'] = "ADS | Fess Payment";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/fees_payment_css');

@@ -5,13 +5,13 @@
 class book_inventory_model extends CI_Model {
 
 		
-	public function getDetailsByBranch($branchId) {
-		$this -> db -> where('branchId', $branchId);
+	public function getDetailsByBranch($branchCode) {
+		$this -> db -> where('branchCode', $branchCode);
 		return $this -> db -> get('inventory_inward') -> result();
 	}
 	
-	public function getDetailsByInventory($branchId,$inventoryInwardId) {
-		$this -> db -> where('branchId', $branchId);
+	public function getDetailsByInventory($branchCode,$inventoryInwardId) {
+		$this -> db -> where('branchCode', $branchCode);
 		$this -> db -> where('inventoryInwardId', $inventoryInwardId);
 		return $this -> db -> get('inventory_inward') -> result();
 	}

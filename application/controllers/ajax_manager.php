@@ -15,7 +15,7 @@ class Ajax_manager extends CI_Controller {
 	public function batch($courseCode) {
 		$this -> load -> model('batch_model');
 		$this -> load -> model('batch_timing_model');
-		$batch_data = $this -> batch_model -> getDetailsByBranchAndCourse($this -> branchId, $courseCode);
+		$batch_data = $this -> batch_model -> getDetailsByBranchAndCourse($this -> branchCode, $courseCode);
 		$this -> data['batch_list'] = $batch_data;
 		$weekdays = Array();
 		foreach ($batch_data as $key) {
@@ -40,7 +40,7 @@ class Ajax_manager extends CI_Controller {
 	//StudentList
 	public function studentlist($batchId) {
 		$this -> load -> model('user_model');
-		$student_data = $this -> user_model -> getDetailsByBatch($batchId, 5, $this -> branchId);
+		$student_data = $this -> user_model -> getDetailsByBatch($batchId, 5, $this -> branchCode);
 		$this -> data['student_list'] = $student_data;
 		echo json_encode($this -> data);
 	}
@@ -48,14 +48,14 @@ class Ajax_manager extends CI_Controller {
 	//StudentList Event
 	public function studentlistEvent($batchId) {
 		$this -> load -> model('event_attendance_model');
-		$student_data = $this -> event_attendance_model -> getDetailsByBatch($batchId, $this -> branchId);
+		$student_data = $this -> event_attendance_model -> getDetailsByBatch($batchId, $this -> branchCode);
 		$this -> data['student_list'] = $student_data;
 		echo json_encode($this -> data);
 	}
 
 	public function attendancelistbydate($batchId, $date) {
 		$this -> load -> model('attendance_model');
-		$student_data = $this -> attendance_model -> getDetailsByBatchByDate($batchId, 5, $this -> branchId, date("Y-m-d", strtotime($date)));
+		$student_data = $this -> attendance_model -> getDetailsByBatchByDate($batchId, 5, $this -> branchCode, date("Y-m-d", strtotime($date)));
 		$this -> data['student_list'] = $student_data;
 		echo json_encode($this -> data);
 	}

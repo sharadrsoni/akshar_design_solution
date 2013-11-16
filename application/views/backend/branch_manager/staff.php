@@ -97,15 +97,15 @@
 									<div class="control-group">
 										<label class="control-label">Branch<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="branchId" id="branchId">
+											<select class="span4" name="branchCode" id="branchCode">
 												<option value="">Select...</option>
 												<?php
 												foreach ($branch_list as $key) {
-													echo "<option value='{$key->branchId}'>{$key->branchName}</option>";
+													echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
 												}
 												?>
 											</select>
-											<span for="branchId" class="help-inline"><?php echo form_error('branchId'); ?></span>
+											<span for="branchCode" class="help-inline"><?php echo form_error('branchCode'); ?></span>
 										</div>
 									</div>
 									<!--/ Branch -->

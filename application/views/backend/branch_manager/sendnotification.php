@@ -91,7 +91,7 @@
 												<option value="">Select...</option>
 													<?php
 												foreach ($branch as $key) {
-													echo "<option value='{$key->branchId}'>{$key->branchName} - {$key->branchId}</option>";
+													echo "<option value='{$key->branchCode}'>{$key->branchName} - {$key->branchCode}</option>";
 												}
 												?>
 												
