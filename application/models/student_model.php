@@ -7,22 +7,16 @@ class student_model extends CI_Model
 	{
 		$this->db->where("user.userId",$id);
 		$this->db->from('user');
+		$this->db->join('student_profile',$id);
+		$this->db->join('branch','branch.branchId=user.branchId');
 		return $this->db->get()->result();
 	}
 	
-	 public function getDetilsByStudentId($id)
-	{
-		$this->db->where("student_profile.studentUserId",$id);
-		$this->db->from('student_profile');
-		return $this->db->get()->result();
-	}
 	
-	public function updateProfile($studentData,$otherData,$id)
+	public function updateStudentProfile($otherData,$id)
 	{
-		if(isset($studentData))
+		if(isset($otherData))
 		{
-			$this->db->where("user.userId",$id);
-			$this->db->update('user',$studentData);
 			$this->db->where("student_profile.studentUserId",$id);
 			$this->db->update('student_profile',$otherData);
 		}
@@ -31,7 +25,5 @@ class student_model extends CI_Model
 				return false;
 			}
 	}
-	
-	
 }
 ?>
