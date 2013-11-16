@@ -166,6 +166,38 @@ var Test = function() {
 					}
 				});
 			});
+
+			$("#tab3link").click(function() {
+				$.ajax({
+					url : "../ajax_manager/studentlistMarks/" + $("#tab3link").data("test_id"),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$('#testId').val($("#tab3link").data("test_id"));
+							$.each(json.student_list, function(i, item) {
+							if (item.testResultObtainedMarks == null)
+								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' name='obtained_marks[]' id='obtained_marks" + i + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
+							else
+								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' name='obtained_marks[]' id='obtained_marks" + i + "'value = '" + item.testResultObtainedMarks + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
+							});
+							$('.text-toggle-Attendance').toggleButtons({
+								width : 200,
+								label : {
+									enabled : $('.text-toggle-Attendance').attr("data-on"),
+									disabled : $('.text-toggle-Attendance').attr("data-off")
+								},
+								style : {
+									// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+									enabled : "info",
+									disabled : "danger"
+								}
+							});
+						}
+					}
+				});
+			});
+
 		}
 	};
 }();

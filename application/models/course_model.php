@@ -7,20 +7,26 @@ if (!defined('BASEPATH'))
 class course_model extends CI_Model {
 
 	public function getDetailsOfCourse() {
-
-		$this -> db -> from('course');
-		return $this -> db -> get() -> result();
-
+		return $this -> db -> get('course') -> result();
 	}
-
-	public function getAllDetails() {
-		return $this -> db -> get("course") -> result();
+	
+	public function getDetailsByCourse($courseCode) {
+		$this -> db -> where('courseCode', $courseCode);
+		return $this -> db -> get('course') -> result();
 	}
 
 	public function addCourse($data) {
 		if (isset($data)) {
-			//die (print_r($data));
 			return $this -> db -> insert('course', $data);
+		} else {
+			return false;
+		}
+	}
+	
+	public function updateCourse($data,$courseCode) {
+		if (isset($data)) {
+			$this -> db -> where('courseCode', $courseCode);
+			return $this -> db -> update('course', $data);
 		} else {
 			return false;
 		}
@@ -31,7 +37,6 @@ class course_model extends CI_Model {
 			$this -> db -> where('courseCode', $courseCode);
 			$this -> db -> delete('course');
 		}
-
 	}
 
 	public function getCourseName($courseCode) {

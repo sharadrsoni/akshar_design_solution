@@ -37,7 +37,7 @@ class Branch_manager extends CI_Controller {
 		} else {
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
 			$this -> load -> model("course_model");
-			$courses = $this -> course_model -> getAllDetails();
+			$courses = $this -> course_model -> getDetailsOfCourse();
 			$this -> load -> model('user_model');
 			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 3);
 			$this -> data['course'] = $courses;
@@ -93,7 +93,8 @@ class Branch_manager extends CI_Controller {
 					$batch_timings = array();
 					$size = sizeof($_POST["batch_timing"]);
 					if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
-						for ($i = 0; $i < $size; ) {
+						for ($i = 0; $i < $size; ) 
+						{
 							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
 							if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
 								$this -> data['error'] = "An Error Occured.";
@@ -153,16 +154,22 @@ class Branch_manager extends CI_Controller {
 		if ($eventId != '') {
 			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchId, $eventId);
 			echo json_encode($this -> data);
-		} else {
+		} 
+		else {
 			$this -> data['title'] = "ADS | Event";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/event_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("event_type_model");
 			$this -> load -> model('user_model');
+			$this -> load -> model("batch_model");
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
+			$this -> data['batch_list'] = $batch_data;
 			$this->data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
 			$this->data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
 			$this->data['event'] = $this -> event_model -> getDetailsByBranch($branchId);
+	
+	
 			if (isset($_POST['submitEvent'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim');
@@ -187,6 +194,23 @@ class Branch_manager extends CI_Controller {
 						$this->data['error'] = "An Error Occured.";
 					}
 				}
+			}
+			if (isset($_POST['submitEventAttendance'])) {
+				
+				$this -> load -> model('student_batch_model');
+				$this -> load -> model('event_attendance_model');
+				$student_data = $this -> student_batch_model -> getDetailsByBatch($_POST["batch_id"]);
+				foreach ($student_data as $key) {
+					$this -> event_attendance_model -> deleteAttendance($key -> studentId,$_POST["event_id"]);
+				}
+
+				$size = sizeof($_POST["student_ids"]);
+				for ($i = 0; $i < $size; $i++) {
+					$dummy = array('studentId' => $_POST["student_ids"][$i], 'eventId' => $_POST["event_id"], 'attendanceIsPresent' => 1);
+					$this -> event_attendance_model -> addAttendance($dummy);
+				}
+				redirect(base_url() . "branch_manager/event");
+				
 			}
 			$this -> load -> view('backend/branch_manager/event', $this->data);
 			$this -> load -> view('backend/master_page/footer');

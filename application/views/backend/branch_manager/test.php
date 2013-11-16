@@ -67,7 +67,7 @@
 <td class=\"hidden-480\">{$key->testName} </td>
 <td class=\"hidden-480\">{$key->testDate}</td>
 <td class=\"hidden-480\">{$key->testMaximumMarks}
-<td><a href=\"#tab3\" id=\"tab3link\" data-toggle=\"tab\"><span class=\"icon icone-pencil\"></span> Add Marks</a></td>
+<td><a href=\"#tab3\" id=\"tab3link\" data-batch_id=\"{$key->batchId}\" data-test_id=\"{$key->testId}\" data-toggle=\"tab\"><span class=\"icon icone-pencil\"></span> Add Marks</a></td>
 
 
 ";
@@ -139,8 +139,8 @@
                                     </div>
                                     <!-- Form Action -->
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-primary" name="add_register" id="register">
-                                            Register
+                                        <button type="submit" class="btn btn-primary" name="submitTest" id="submitTest">
+                                            Add Test
                                         </button>
                                         <button type="button" class="btn">
                                             Cancel
@@ -150,7 +150,10 @@
                             </form>
                         </div>
                         <div class="tab-pane" id="tab3">
-                            <form class="form-horizontal span12 widget shadowed yellow" id="form_mark">
+                        	<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_mark');
+							echo form_open('faculty/test', $attributes);
+ ?>
                                 <div class="alert alert-error hide">
                                     <button class="close" data-dismiss="alert"></button>
                                     You have some form errors. Please check below.
@@ -173,24 +176,15 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody id="lst_batch_timing">
-                                                <tr class="odd gradeX">
-                                                    <td class="hidden-480"> Student_ID XXX </td>
-                                                    <td class="hidden-480"><input type="text" name="obtained_marks1" id="obtained_marks1" class="span2 marks"/>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd gradeX">
-                                                    <td class="hidden-480"> Student_ID XXX </td>
-                                                    <td class="hidden-480"><input type="text" name="obtained_marks2" id="obtained_mark2" class="span2 marks"/>
-                                                    </td>
-                                                </tr>
+                                            <tbody id="lst_students">
                                             </tbody>
                                         </table>
                                     </div><!--/ List-->
                                     <!-- Form Action -->
+                                    <input type="hidden" name="testId" id="testId" value=""/>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-primary" name="register" id="register">
-                                            Register
+                                        <button type="submit" class="btn btn-primary" name="submitTestMarks" id="submitTestMarks">
+                                            Save Test Marks
                                         </button>
                                         <button type="button" class="btn">
                                             Cancel

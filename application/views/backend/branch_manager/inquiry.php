@@ -36,10 +36,10 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" data-toggle="tab"><span class="icon icone-eraser"></span>Inquiry</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Inquiry</a>
 						</li>
 						<li class="">
-							<a href="#tab2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Inquiry</a>
+							<a href="#tab2" id="tablink2" data-toggle="tab"><span class="icon icone-pencil"></span> Add Inquiry</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -49,33 +49,24 @@
 									<table class="table table-striped table-bordered table-hover" id="tblInquiry">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
-												
 												<th class="hidden-480">Student Name</th>
 												<th class="hidden-480">E-mail Address</th>
 												<th class="hidden-480">Inquiry State</th>
 												<th class="hidden-480">Contact Number</th>
 												<th class="hidden-480">Inquiry_Qualification</th>
-												
 												<th >View</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-											if (isset($inquiry_list)) {
-												foreach ($inquiry_list as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
-
-<td class=\"hidden-480\">{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
+											if (isset($inquiry)) {
+												foreach ($inquiry as $key) {
+													echo "<tr class=\"odd gradeX\"><td class=\"hidden-480\">{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
 <td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
 <td class=\"hidden-480\">{$key->inquiryState}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
 <td class=\"hidden-480\">{$key->inquiryQualification}</td>
-<td ><span class=\"label label-success\">Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -103,13 +94,27 @@
 								</div>
 								<div class="body-inner">
 									<h3 class="form-section">User Info</h3>
-									<!-- User Name -->
+									<!-- First Name -->
 									<div class="control-group">
-										<label class="control-label">User Name</label>
+										<label class="control-label">First Name</label>
 										<div class="controls">
-											<input type="text" name="user_name" id="user_name" class="span8">
+											<input type="text" name="first_name" id="first_name" class="span8">
 										</div>
-									</div><!--/ User Name -->
+									</div><!--/ First Name -->
+									<!-- Middle Name -->
+									<div class="control-group">
+										<label class="control-label">Middle Name</label>
+										<div class="controls">
+											<input type="text" name="middle_name" id="middle_name" class="span8">
+										</div>
+									</div><!--/ MIddle Name -->
+									<!-- Last Name -->
+									<div class="control-group">
+										<label class="control-label">Last Name</label>
+										<div class="controls">
+											<input type="text" name="last_name" id="last_name" class="span8">
+										</div>
+									</div><!--/ Last Name -->
 									<!-- Date of Birth -->
 									<div class="control-group">
 										<label class="control-label">Date of Birth</label>
@@ -139,6 +144,13 @@
 											<input type="text" name="qualification" id="qualification" class="span8">
 										</div>
 									</div><!--/ Qualification -->
+									<!-- ccupation of Self -->
+									<div class="control-group">
+										<label class="control-label">Occupation of Self</label>
+										<div class="controls">
+											<input type="text" name="occupation_of_student" id="occupation_of_student" class="span8">
+										</div>
+									</div><!--/ ccupation of Self -->
 									<h3 class="form-section">Address</h3>
 									<!-- Street -->
 									<div class="control-group">
@@ -188,7 +200,7 @@
 									</div><!--/ Name of Institute/Industry -->
 									<!-- ccupation of Guardian\Self -->
 									<div class="control-group">
-										<label class="control-label">Occupation of Guardian\Self</label>
+										<label class="control-label">Occupation of Guardian</label>
 										<div class="controls">
 											<input type="text" name="occupation_of_guardian" id="occupation_of_guardian" class="span8">
 										</div>
@@ -200,13 +212,11 @@
 											<input type="text" name="reference" id="reference" class="span8">
 										</div>
 									</div><!--/ Reference -->
+									<input type="hidden" name="inquiryId" id="inquiryId" value="" />
 									<!-- Form Action -->
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
-											Register
-										</button>
-										<button type="button" class="btn">
-											Cancel
+										<button type="submit" class="btn btn-primary" name="submitInquiry" id="submitInquiry">
+											Add Inquiry
 										</button>
 									</div><!--/ Form Action -->
 								</div>

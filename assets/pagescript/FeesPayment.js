@@ -88,6 +88,7 @@ var StudentFees = function() {
 
 			submitHandler : function(form) {
 				success1.show();
+				form.submit();
 				error1.hide();
 			}
 		});
@@ -173,11 +174,12 @@ var StudentFees = function() {
 					$("#cheque_details").attr("style", "display:none");
 				}
 			});
+			
 			$("#add_payment_details").click(function() {
 				if ($('#course').val() != "" && $('#course').val() != "null") {
 					if ($('#course_amount').val() != "") {
 						if (parseInt($("#total_amount").val()) + parseInt($(course_amount).val()) <= parseInt($("#remianing_amount").text())) {
-							$("#lst_Payment_Details").append("<tr class='odd gradeX'><td>" + $('#course option:selected').text() + "<input type='hidden' name='payment_details[]' value='" + $('#course').val() + "'/><td id='camount'>" + $('#course_amount').val() + "<input type='hidden' name='payment_details[]' value='" + $('#course_amount').val() + "'/><td><a onclick='removepaymentdetails(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+							$("#lst_Payment_Details").append("<tr class='odd gradeX'><td>" + $('#course option:selected').text() + "<input type='hidden' name='payment_studentBatchId[]' value='" + $('#course').val() + "'/><td id='camount'>" + $('#course_amount').val() + "<input type='hidden' name='payment_details[]' value='" + $('#course_amount').val() + "'/><td><a onclick='removepaymentdetails(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
 							$("#total_amount").val(parseInt($("#total_amount").val()) + parseInt($(course_amount).val()));
 						} else {
 							alert("You can not enter amount more than remaining amount");
@@ -190,8 +192,28 @@ var StudentFees = function() {
 					$('#course').closest('.help-inline').removeClass('ok');
 					$('#course').closest('.control-group').removeClass('success').addClass('error');
 				}
-
+				$('#course option:nth(0)').attr("selected", "selected");
+				$('#course_amount').val('');
 			});
+			
+			$("#studentid").change(function() {
+				$("#course").children().remove();
+				$('#course').append("<option value=\"\">Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/studentBatch/" + $("#studentid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.batch_list, function(i, item) {
+								$('#course').append("<option value=" + item.studentBatchId + ">" + item.courseName + "</option>");
+							});
+						}
+					}
+				});
+			});
+			
+			
 		}
 	};
 }();

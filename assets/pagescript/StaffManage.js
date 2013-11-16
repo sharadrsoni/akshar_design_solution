@@ -9,13 +9,7 @@ var Staff = function() {
 			$('#tblStaff').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, {
-					"bSortable" : false
-				}],
+				}, null, null,null,null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -63,6 +57,12 @@ var Staff = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
+					branchId:{
+						required : true
+					},
+					userroleId:{
+						required : true
+					},
 					first_name : {
 						required : true
 					},
@@ -79,13 +79,10 @@ var Staff = function() {
 					email : {
 						required : true,
 					},
-					dob : {
+					date_of_birth:{
 						required : true,
 					},
 					qualification : {
-						required : true,
-					},
-					date_of_joining : {
 						required : true,
 					},
 					street_1 : {
@@ -131,6 +128,7 @@ var Staff = function() {
 
 				submitHandler : function(form) {
 					success1.show();
+					form.submit();
 					error1.hide();
 				}
 			});
@@ -145,15 +143,67 @@ var Staff = function() {
 			$("#dob_datepicker .add-on").click(function() {
 				$("#dob_datepicker input").datepicker("show");
 			});
-
-			$("#doj_datepicker input").datepicker({
+			
+			$("#tablink2").click(function() {
+				$('#brnachId option:nth(0)').attr("selected", "selected");
+				$('#userroleId option:nth(0)').attr("selected", "selected");
+				$('#first_name').val("");
+				$('#middle_name').val("");
+				$('#last_name').val("");
+				$('#contact_number').val("");
+				$('#email').val("");
+				$('#date_of_birth').val("");
+				$('#qualification').val("");
+				$('#street_1').val("");
+				$('#street_2').val("");
+				$('#state option:nth(0)').attr("selected", "selected");
+				$('#city option:nth(0)').attr("selected", "selected");
+				$('#pin_code').val("");
+				$('#staffId').val("");
+				$("#submitStaff").text("Add Staff User");
+				$('.alert-error', $('#form_staff')).hide();
+				$("#form_staff").validate().resetForm();
+				$(".error").removeClass("error");
+				$(".success").removeClass("success");
+			});
+		/*$("#doj_datepicker input").datepicker({
 				isRTL : App.isRTL(),
 				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#doj_datepicker .add-on").click(function() {
 				$("#doj_datepicker input").datepicker("show");
-			});
+			});*/
 		}
 	};
 }();
+function updatestaff(staffid) {
+	$.ajax({
+		url : "staff/" + staffid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$('#branchId').val(json.staff[0].branchId);
+				$('#userroleId').val(json.staff[0].roleId);
+				$('#first_name').val(json.staff[0].userFirstName);
+				$('#middle_name').val(json.staff[0].userMiddleName);
+				$('#last_name').val(json.staff[0].userLastName);
+				$('#contact_number').val(json.staff[0].userContactNumber);
+				$('#email').val(json.staff[0].userEmailAddress);
+				$('#date_of_birth').val(json.staff[0].userDOB);
+				$('#qualification').val(json.staff[0].userQualification);
+				$('#street_1').val(json.staff[0].userStreet1);
+				$('#street_2').val(json.staff[0].userStreet2);
+				$('#state').val(json.staff[0].userState);
+				$('#city').val(json.staff[0].userCity);
+				$('#pin_code').val(json.staff[0].userPostalCode);
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab2').addClass("active");
+				$('#staffId').val(json.staff[0].userId);
+				$("#submitStaff").text("Update Staff User");
+			}
+		}
+	});
+}
