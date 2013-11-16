@@ -100,11 +100,19 @@
                                 <div class="body-inner">
                                     <h3 class="form-section">Batch Info</h3>
                                     <!-- Batch ID -->
-                                    <div class="control-group">
+                                    	<?php
+									$err=form_error('batch_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+                                    
                                         <label class="control-label">Batch ID<span class="required">*</span></label>
                                         <div class="controls">
                                         	
-                                            <select class="span4" name="batch_id" id="batch_id">
+                                            <select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
                                                 <option value="">Select...</option>
 												<?php
 												foreach ($batch_list as $key) {
@@ -112,23 +120,42 @@
 												}
 												?>
                                             </select>
+                                            <span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?></span>
                                         </div>
                                     </div><!--/ Batch ID -->
                                     <h3 class="form-section">Test Info</h3>
                                     <!-- Start Date -->
-                                    <div class="control-group">
+                                    	<?php
+									$err=form_error('test_date');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+                               
                                         <label class="control-label">Test Date<span class="required">*</span></label>
                                         <div class="controls">
                                             <div class="input-append span4" id="test_date_datepicker">
-                                                <input type="text" name="test_date" id="test_date" class="m-wrap">
+                                                <input type="text" name="test_date" id="test_date" class="m-wrap" value="<?php echo set_value("test_date"); ?>">
+                                                <span for="test_date" class="help-inline"><?php echo form_error('test_date'); ?></span>
                                                 <span class="add-on"><i class="icon-calendar"></i></span>
                                             </div>
                                         </div>
                                     </div><!--/ Start Date -->
-                                    <div class="control-group">
+                                    	<?php
+									$err=form_error('test_marks');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+                               
                                         <label class="control-label">Test Marks</label>
                                         <div class="controls">
-                                            <input type="text" name="test_marks" id="test_marks" class="span4">
+                                            <input type="text" name="test_marks" id="test_marks" class="span4" value="<?php echo set_value("test_marks"); ?>">
+                                            <span for="test_marks" class="help-inline"><?php echo form_error('test_marks'); ?></span>
                                         </div>
                                     </div>
                                     <div class="control-group">
