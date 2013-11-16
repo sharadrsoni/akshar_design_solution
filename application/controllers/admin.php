@@ -20,10 +20,9 @@ class Admin extends CI_Controller {
 		$this -> data['TargetPendingCount']=$this -> target_model ->getPendingCount();
 		$this -> load -> model("inquiry_model");
 		$this -> data['NewInquiryCount']=$this -> inquiry_model ->getNewInquiryCount();
-		$this -> load -> model("student_model");
-		$this -> data['StudentResigsterCount']=$this -> student_model ->getStudentRegisterCount();
-		$this -> load -> model("staff_model");
-		$this -> data['FacultyCount']=$this -> staff_model ->getFacultyCount();
+		$this -> load -> model("user_model");
+		$this -> data['StudentResigsterCount']=$this -> user_model ->getUserCount(5);
+		$this -> data['FacultyCount']=$this -> user_model ->getUserCount(3);
 		$this -> load -> view('backend/branch_manager/dashboard_admin',$this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/dashboard_js');
@@ -325,16 +324,15 @@ class Admin extends CI_Controller {
 
 	//Staff
 	public function staff($staffID = '') {
-		$this -> load -> model("staff_model");
+		$this -> load -> model("user_model");
 		if ($staffID != '') {
-			$this -> data['staff'] = $this -> staff_model -> getDetailsByStaff($staffID);
+			$this -> data['staff'] = $this -> user_model -> getDetailsbyUser($staffID);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Staff";
 			$this -> load -> view('backend/master_page/top', $this -> data);
-			$this -> load -> view('backend/css/staff_css');
 			$this -> load -> view('backend/master_page/header');
-			$this -> data['staff'] = $this -> staff_model -> getDetailsOfStaff();
+			$this -> data['staff'] = $this -> user_model -> getDetailsByRole(array('2','3','4'));
 			$this -> load -> model("branch_model");
 			$this -> data['branch_list'] = $this -> branch_model -> getDetailsOfBranch();
 			$this -> load -> model("role_model");
@@ -359,7 +357,7 @@ class Admin extends CI_Controller {
 					$this -> data['validate'] = true;
 				} else {
 					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchId' => $_POST['branchId'], 'roleId' => $_POST['userroleId']);
-					if ($_POST['staffId'] != "" ? $this -> staff_model -> updateStaff($staffData, $_POST['staffId']) : $this -> staff_model -> addStaff($staffData)) {
+					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
 						redirect(base_url() . "admin/staff");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -374,8 +372,8 @@ class Admin extends CI_Controller {
 	}
 
 	public function delete_staff($userId) {
-		$this -> load -> model('staff_model');
-		$this -> staff_model -> deleteStaff($userId);
+		$this -> load -> model('user_model');
+		$this -> user_model -> deleteUser($userId);
 		redirect(base_url() . "admin/staff");
 	}
 
