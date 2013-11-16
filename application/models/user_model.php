@@ -53,16 +53,15 @@ class user_model extends CI_Model {
 	 return $this -> db -> get() -> result();
 	 }*/
 
-	//Get user details by branchid and roleid
-	public function getDetailsByBranchAndRole($branchId, $roleId) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBranchAndRole($branchCode, $roleId) {
+		$this -> db -> where("branchCode", $branchCode);
+
 		$this -> db -> where("roleId", $roleId);
 		return $this -> db -> get('user') -> result();
 	}
 
-	//Get user details by branchid and roleid and batchid
-	public function getDetailsByBatch($batchId, $roleId, $branchId) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBatch($batchId, $roleId, $branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);
 		$this -> db -> where("batchId", $batchId);
 		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');

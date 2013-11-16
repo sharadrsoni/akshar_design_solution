@@ -4,14 +4,14 @@ if (!defined('BASEPATH'))
 
 class inquiry_model extends CI_Model {
 
-	public function getDetailsOfInquiry($branchId) {
-		$this -> db -> where("inquiry.inquirybranchId", $branchId);
+	public function getDetailsOfInquiry($branchCode) {
+		$this -> db -> where("inquiry.inquirybranchCode", $branchCode);
 		return $this -> db -> get('inquiry') -> result();
 	}
 
-	public function getDetailsByInquiry($branchId, $inquiryId) {
+	public function getDetailsByInquiry($branchCode, $inquiryId) {
 		$this -> db -> where('inquiryId', $inquiryId);
-		$this -> db -> where("inquiry.inquirybranchId", $branchId);
+		$this -> db -> where("inquiry.inquirybranchCode", $branchCode);
 		return $this -> db -> get('inquiry') -> result();
 	}
 

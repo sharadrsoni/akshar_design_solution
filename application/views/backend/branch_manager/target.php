@@ -179,7 +179,7 @@
 												<?php
 												foreach ($branch as $key) 
 												{
-													echo "<option value='{$key->branchId}'>{$key->branchName}</option>";
+													echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
 												}
 												?>
 											</select>

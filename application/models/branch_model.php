@@ -8,8 +8,8 @@ class branch_model extends CI_Model {
 		return $this -> db -> get("branch") -> result();
 	}
 
-	public function getDetailsByBranch($branchId) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBranch($branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
 		return $this -> db -> get('branch') -> result();
 	}
 
@@ -21,17 +21,17 @@ class branch_model extends CI_Model {
 		return false;
 	}
 
-	public function updateBranch($data, $branchId) {
-		if (isset($data) && isset($branchId)) {
-			$this -> db -> where('branchId', $branchId);
+	public function updateBranch($data, $branchCode) {
+		if (isset($data) && isset($branchCode)) {
+			$this -> db -> where('branchCode', $branchCode);
 			return $this -> db -> update('branch', $data);
 		}
 		return false;
 	}
 
-	public function deleteBranch($branchId) {
-		if (isset($branchId)) {
-			$this -> db -> where('branchId', $branchId);
+	public function deleteBranch($branchCode) {
+		if (isset($branchCode)) {
+			$this -> db -> where('branchCode', $branchCode);
 			$this -> db -> delete('branch');
 			return true;
 		}

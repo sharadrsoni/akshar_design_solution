@@ -63,10 +63,10 @@
 											<?php
 											foreach ($branch as $key) {
 												echo "<tr class=\"odd gradeX\">
-<td onclick='viewbranch(\"{$key->branchId}\");'>{$key->branchName}</td>
+<td onclick='viewbranch(\"{$key->branchCode}\");'>{$key->branchName}</td>
 <td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
-<td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchId}\");'>Edit</span></td>
+<td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchCode}\");'>Edit</span></td>
 </tr>";
 											}
 											?>
@@ -180,7 +180,7 @@
 										</div>
 									</div>
 								</div><!--/ Google Map -->
-								<input type="hidden" name="branchId" id="branchId" value="" />
+								<input type="hidden" name="branchCode" id="branchCode" value="" />
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" name="submitBranch" id="submitBranch" class="btn btn-primary">

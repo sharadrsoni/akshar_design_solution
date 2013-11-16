@@ -4,8 +4,8 @@ if (!defined('BASEPATH'))
 
 class attendance_model extends CI_Model {
 
-	public function getDetailsByBatchByDate($batchId, $roleId, $branchId, $date) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBatchByDate($batchId, $roleId, $branchCode, $date) {
+		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);
 		$this -> db -> where("batchId", $batchId);
 		$this -> db -> where("attendanceDate", $date);
