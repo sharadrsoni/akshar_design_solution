@@ -16,30 +16,6 @@ class target_model extends CI_Model {
 		return $this -> db -> get() -> result();
 	}
 
-	public function deleteTarget($targetId) {
-		if (isset($targetId)) {
-			$this -> db -> where('targetId', $targetId);
-			$this -> db -> delete('target');
-		}
-	}
-
-	public function addTarget($data) {
-		if (isset($data)) {
-			return $this -> db -> insert('target', $data);
-		} else {
-			return false;
-		}
-	}
-
-	public function updateTarget($data, $targetId) {
-		if (isset($data) && isset($targetId)) {
-			$this -> db -> where('targetId', $targetId);
-			return $this -> db -> update('target', $data);
-		} else {
-			return false;
-		}
-	}
-
 	public function getPendingCount() {
 		$this -> db -> where('targetIsAchieved', 1);
 		$this -> db -> from('target');
@@ -47,4 +23,27 @@ class target_model extends CI_Model {
 		return $count;
 	}
 
+	public function addTarget($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('target', $data);
+		}
+		return false;
+	}
+
+	public function updateTarget($data, $targetId) {
+		if (isset($data) && isset($targetId)) {
+			$this -> db -> where('targetId', $targetId);
+			return $this -> db -> update('target', $data);
+		}
+		return false;
+	}
+
+	public function deleteTarget($targetId) {
+		if (isset($targetId)) {
+			$this -> db -> where('targetId', $targetId);
+			$this -> db -> delete('target');
+		}
+	}
+
 }
+?>

@@ -15,14 +15,11 @@ class inquiry_model extends CI_Model {
 		return $this -> db -> get('inquiry') -> result();
 	}
 
-	public function deleteInquiry($inquiryId) {
-		if (isset($inquiryId)) {
-			$this -> db -> where('inquiryId', $inquiryId);
-			$this -> db -> delete('inquiry');
-			return false;
-		} else {
-			return true;
-		}
+	public function getNewInquiryCount() {
+		//$this -> db -> where('targetIsAchieved',);
+		$this -> db -> from('inquiry');
+		$count = $this -> db -> count_all_results();
+		return $count;
 	}
 
 	public function addinquiry($data) {
@@ -37,16 +34,17 @@ class inquiry_model extends CI_Model {
 		if (isset($data)) {
 			$this -> db -> where('inquiryId', $inquiryId);
 			return $this -> db -> update('inquiry', $data);
-		} else {
-			return false;
 		}
+		return false;
 	}
 
-	public function getNewInquiryCount() {
-		//$this -> db -> where('targetIsAchieved',);
-		$this -> db -> from('inquiry');
-		$count = $this -> db -> count_all_results();
-		return $count;
+	public function deleteInquiry($inquiryId) {
+		if (isset($inquiryId)) {
+			$this -> db -> where('inquiryId', $inquiryId);
+			$this -> db -> delete('inquiry');
+			return false;
+		}
+		return true;
 	}
 
 }

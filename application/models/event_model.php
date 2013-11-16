@@ -8,35 +8,36 @@ class event_model extends CI_Model {
 		$this -> db -> where("event.branchId", $branchId);
 		return $this -> db -> get('event') -> result();
 	}
-	
-	public function getDetailsByEventBranch($branchId,$eventId) {
+
+	public function getDetailsByEventBranch($branchId, $eventId) {
 		$this -> db -> where("event.branchId", $branchId);
 		$this -> db -> where('eventId', $eventId);
 		return $this -> db -> get('event') -> result();
+	}
+
+	public function addEvent($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('event', $data);
+		}
+		return false;
+	}
+
+	public function updateEvent($data, $eventId) {
+		if (isset($data)) {
+			$this -> db -> where('eventId', $eventId);
+			return $this -> db -> update('event', $data);
+		}
+		return false;
 	}
 
 	public function deleteEvent($eventId) {
 		if (isset($eventId)) {
 			$this -> db -> where('eventId', $eventId);
 			$this -> db -> delete('event');
+			return true;
 		}
+		return false;
 	}
-	
-	public function addEvent($data) {
-		if(isset($data)) {
-			return $this->db->insert('event', $data);
-		} else {
-			return false;
-		}
-	}
-	
-	public function updateEvent($data,$eventId) {
-		if(isset($data)) {
-			$this -> db -> where('eventId', $eventId);
-			return $this->db->update('event', $data);
-		} else {
-			return false;
-		}
-	}
-	
+
 }
+?>

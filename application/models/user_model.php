@@ -14,10 +14,7 @@ class user_model extends CI_Model {
 			$getResult = $this -> db -> get("user");
 			if ($getResult -> num_rows() == 1) {
 				return $getResult -> row() -> roleId;
-			} else {
-				return false;
 			}
-		} else {
 			return false;
 		}
 	}
@@ -34,9 +31,8 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
-
 	//get user data by user id
-	public function getDetailsbyUser($userId,$fieldlist) {
+	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
 		$this -> db -> join('branch', 'user.branchId = branch.branchId');
 		return $this -> db -> get('user') -> row();
@@ -75,7 +71,7 @@ class user_model extends CI_Model {
 
 	//Method for dashbord Student Registred and faculty Count
 	public function getUserCount($roleId) {
-		$this -> db -> where('roleId',$roleId);
+		$this -> db -> where('roleId', $roleId);
 		$this -> db -> from('user');
 		$count = $this -> db -> count_all_results();
 		return $count;

@@ -7,17 +7,14 @@ if (!defined('BASEPATH'))
  */
 class role_model extends CI_Model {
 
+	public function getDetailsOfRole() {
+		$this -> db -> where_in("roleId", array("2", "3", "4"));
+		return $this -> db -> get("role") -> result();
+	}
+
 	public function getDetailsByRole($roleId) {
 		$this -> db -> where("roleId", $roleId);
-		$this -> db -> from('role');
-		return $this -> db -> get() -> row();
-	}
-	
-	public function getDetailsOfRole() {
-		$this -> db -> where("roleId", 2);
-		$this -> db -> or_where("roleId", 3);
-		$this -> db -> or_where("roleId", 4);
-		return $this->db->get("role")->result();
+		return $this -> db -> get('role') -> row();
 	}
 
 }
