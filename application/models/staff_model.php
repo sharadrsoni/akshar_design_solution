@@ -36,9 +36,9 @@ class staff_model extends CI_Model {
 		}
 	}
 
-	public function updateStaff($data,$userId) {
+	public function updateStaff($data, $userId) {
 		if (isset($data)) {
-			$this -> db -> where('userId',$userId);
+			$this -> db -> where('userId', $userId);
 			return $this -> db -> update('user', $data);
 		} else {
 			return false;
@@ -51,6 +51,13 @@ class staff_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function getFacultyCount() {
+		$this -> db -> where('roleId', 3);
+		$this -> db -> from('user');
+		$count = $this -> db -> count_all_results();
+		return $count;
 	}
 
 }

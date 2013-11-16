@@ -205,7 +205,7 @@ class Branch_manager_counsellor extends CI_Controller {
 					$getMaximumFeeId = $this -> fee_model -> getLastId($feesData);
 					$feeId = $getMaximumFeeId['feesId'];
 					if ($type == 1) {
-						$chequeData = array('feesId' => $feeId, 'chequeNumber' => $_POST['cheque_number'], 'feesChequeBankName' => $_POST['total_amount'], 'feesChequeIssueDate' => date("Y-m-d", strtotime($_POST['cheque_issue_date'])), 'feesChequeIFSC' => $_POST['ifrc_code'], 'feesChequeBankBranchName' => $_POST['branchname']);
+						$chequeData = array('feesId' => $feeId, 'chequeNumber' => $_POST['cheque_number'], 'feesChequeBankName' => $_POST['bankname'], 'feesChequeIssueDate' => date("Y-m-d", strtotime($_POST['cheque_issue_date'])), 'feesChequeIFSC' => $_POST['ifrc_code'], 'feesChequeBankBranchName' => $_POST['branchname']);
 						$this -> load -> model('fees_cheque_model');
 						$this -> fees_cheque_model -> addFeeCheque($chequeData);
 					}

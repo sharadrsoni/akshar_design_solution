@@ -30,8 +30,8 @@ class target_model extends CI_Model {
 			return false;
 		}
 	}
-	
-	public function updateTarget($data,$targetId) {
+
+	public function updateTarget($data, $targetId) {
 		if (isset($data) && isset($targetId)) {
 			$this -> db -> where('targetId', $targetId);
 			return $this -> db -> update('target', $data);
@@ -39,4 +39,12 @@ class target_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function getPendingCount() {
+		$this -> db -> where('targetIsAchieved', 1);
+		$this -> db -> from('target');
+		$count = $this -> db -> count_all_results();
+		return $count;
+	}
+
 }

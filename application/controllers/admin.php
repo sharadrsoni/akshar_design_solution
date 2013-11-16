@@ -16,7 +16,15 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/dashboard');
+		$this -> load -> model("target_model");
+		$this -> data['TargetPendingCount']=$this -> target_model ->getPendingCount();
+		$this -> load -> model("inquiry_model");
+		$this -> data['NewInquiryCount']=$this -> inquiry_model ->getNewInquiryCount();
+		$this -> load -> model("student_model");
+		$this -> data['StudentResigsterCount']=$this -> student_model ->getStudentRegisterCount();
+		$this -> load -> model("staff_model");
+		$this -> data['FacultyCount']=$this -> staff_model ->getFacultyCount();
+		$this -> load -> view('backend/branch_manager/dashboard_admin',$this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');

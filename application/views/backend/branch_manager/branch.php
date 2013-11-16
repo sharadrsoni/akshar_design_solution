@@ -190,7 +190,11 @@
 							</div>
 							</form>
 						</div>
+						<div class="tab-pane" id="View">
+							hi
+						</div>
 					</div>
+					
 				</div>
 				<!--/ End Tabs -->
 			</div>

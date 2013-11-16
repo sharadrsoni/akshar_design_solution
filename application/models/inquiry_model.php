@@ -1,5 +1,5 @@
 <?php
-   if (!defined('BASEPATH'))
+if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
 class inquiry_model extends CI_Model {
@@ -8,13 +8,13 @@ class inquiry_model extends CI_Model {
 		$this -> db -> where("inquiry.inquirybranchId", $branchId);
 		return $this -> db -> get('inquiry') -> result();
 	}
-	
-	public function getDetailsByInquiry($branchId,$inquiryId) {
+
+	public function getDetailsByInquiry($branchId, $inquiryId) {
 		$this -> db -> where('inquiryId', $inquiryId);
 		$this -> db -> where("inquiry.inquirybranchId", $branchId);
 		return $this -> db -> get('inquiry') -> result();
 	}
-	
+
 	public function deleteInquiry($inquiryId) {
 		if (isset($inquiryId)) {
 			$this -> db -> where('inquiryId', $inquiryId);
@@ -24,22 +24,30 @@ class inquiry_model extends CI_Model {
 			return true;
 		}
 	}
-	
+
 	public function addinquiry($data) {
-		if(isset($data)) {
-			return $this->db->insert('inquiry', $data);
+		if (isset($data)) {
+			return $this -> db -> insert('inquiry', $data);
 		} else {
 			return false;
 		}
 	}
-	
-	public function updateinquiry($data,$inquiryId) {
-		if(isset($data)) {
+
+	public function updateinquiry($data, $inquiryId) {
+		if (isset($data)) {
 			$this -> db -> where('inquiryId', $inquiryId);
-			return $this->db->update('inquiry', $data);
+			return $this -> db -> update('inquiry', $data);
 		} else {
 			return false;
 		}
 	}
+
+	public function getNewInquiryCount() {
+		//$this -> db -> where('targetIsAchieved',);
+		$this -> db -> from('inquiry');
+		$count = $this -> db -> count_all_results();
+		return $count;
+	}
+
 }
 ?>
