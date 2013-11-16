@@ -93,121 +93,148 @@
 								<button class="close" data-dismiss="alert"></button>
 								Your form validation is successful!
 							</div>
-
 							<div class="body-inner">
 								<h3 class="form-section">Batch Info</h3>
 								<!-- Batch ID -->
-								<div class="control-group">
-									<label class="control-label">Batch ID<span class="required">*</span></label>
-									<div class="controls">
+								<?php
+								$err = form_error('batch_id');
+								if ($err != '') {
+									echo "<div class='control-group error'>";
+								} else {
+									echo "<div class='control-group'>";
+								}
+								?>
 
-										<select class="span4" name="batch_id" id="batch_id">
-											<option value="">Select...</option>
-											<?php
-											foreach ($batch_list as $key) {
-												echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
-											}
-											?>
-										</select>
-									</div>
-								</div><!--/ Batch ID -->
-								<h3 class="form-section">Test Info</h3>
-								<!-- Start Date -->
-								<div class="control-group">
-									<label class="control-label">Test Date<span class="required">*</span></label>
-									<div class="controls">
-										<div class="input-append span4" id="test_date_datepicker">
-											<input type="text" name="test_date" id="test_date" class="m-wrap">
-											<span class="add-on"><i class="icon-calendar"></i></span>
-										</div>
-									</div>
-								</div><!--/ Start Date -->
-								<div class="control-group">
-									<label class="control-label">Test Marks</label>
-									<div class="controls">
-										<input type="text" name="test_marks" id="test_marks" class="span4">
-									</div>
+								<label class="control-label">Batch ID<span class="required">*</span></label>
+								<div class="controls">
+
+									<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
+										<option value="">Select...</option>
+										<?php
+										foreach ($batch_list as $key) {
+											echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
+										}
+										?>
+									</select>
+									<span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?><
+										/span>
 								</div>
-								<div class="control-group">
-									<label class="control-label">Test Name</label>
-									<div class="controls">
-										<input type="text" name="test_name" id="test_name" class="span4">
-									</div>
-								</div>
-								<!-- Form Action -->
-								<div class="form-actions">
-									<button type="submit" class="btn btn-primary" name="submitTest" id="submitTest">
-										Add Test
-									</button>
-									<button type="button" class="btn">
-										Cancel
-									</button>
-								</div><!--/ Form Action -->
-							</div>
-							</form>
-						</div>
-						<div class="tab-pane" id="tab3">
+							</div><!--/ Batch ID -->
+							<h3 class="form-section">Test Info</h3>
+							<!-- Start Date -->
 							<?php
-							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_mark');
-							echo form_open('faculty/test', $attributes);
+							$err = form_error('test_date');
+							if ($err != '') {
+								echo "<div class='control-group error'>";
+							} else {
+								echo "<div class='control-group'>";
+							}
 							?>
-							<div class="alert alert-error hide">
-								<button class="close" data-dismiss="alert"></button>
-								You have some form errors. Please check below.
-							</div>
-							<div class="alert alert-success hide">
-								<button class="close" data-dismiss="alert"></button>
-								Your form validation is successful!
-							</div>
 
-							<div class="body-inner">
-								<h3 class="form-section">Student Info</h3>
-								<!-- LIst -->
-								<div class="control-group">
-									<table class="table table-striped table-bordered table-hover" id="obtainmarks">
-										<thead>
-											<tr>
-											<tr>
-												<th class="hidden-480">Student ID</th>
-												<th class="hidden-480">Obtained Marks </th>
-											</tr>
-										</thead>
-
-										<tbody id="lst_students"></tbody>
-									</table>
-								</div><!--/ List-->
-								<!-- Form Action -->
-								<input type="hidden" name="testId" id="testId" value=""/>
-								<div class="form-actions">
-									<button type="submit" class="btn btn-primary" name="submitTestMarks" id="submitTestMarks">
-										Save Test Marks
-									</button>
-									<button type="button" class="btn">
-										Cancel
-									</button>
-								</div><!--/ Form Action -->
+							<label class="control-label">Test Date<span class="required">*</span></label>
+							<div class="controls">
+								<div class="input-append span4" id="test_date_datepicker">
+									<input type="text" name="test_date" id="test_date" class="m-wrap" value="<?php echo set_value("test_date"); ?>">
+									<span for="test_date" class="help-inline"><?php echo form_error('test_date'); ?><
+										/span> <span class="add-on"><i class="icon-calendar"></i></span>
+								</div>
 							</div>
-							</form>
-						</div>
-						<div class="tab-pane" id="tab4">
-							<table class="table table-striped table-bordered table-hover" id="obtainmarks">
-								<thead>
-									<tr>
-									<tr>
-										<th class="hidden-480">Student ID</th>
-										<th class="hidden-480">Obtained Marks </th>
-									</tr>
-								</thead>
-
-								<tbody id="lst_students_view"></tbody>
-							</table>
+						</div><!--/ Start Date -->
+						<?php
+						$err = form_error('test_marks');
+						if ($err != '') {
+							echo "<div class='control-group error'>";
+						} else {
+							echo "<div class='control-group'>";
+						}
+						?>
+						<label class="control-label">Test Marks</label>
+						<div class="controls">
+							<input type="text" name="test_marks" id="test_marks" class="span4" value="<?php echo set_value("test_marks"); ?>">
+							<span for="test_marks" class="help-inline"><?php echo form_error('test_marks'); ?><
+								/span>
 						</div>
 					</div>
+					<div class="control-group">
+						<label class="control-label">Test Name</label>
+						<div class="controls">
+							<input type="text" name="test_name" id="test_name" class="span4">
+						</div>
+					</div>
+					<!-- Form Action -->
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary" name="submitTest" id="submitTest">
+							Add Test
+						</button>
+						<button type="button" class="btn">
+							Cancel
+						</button>
+					</div><!--/ Form Action -->
 				</div>
+				</form>
 			</div>
-			<!--/ End Tabs -->
+			<div class="tab-pane" id="tab3">
+				<?php
+				$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_mark');
+				echo form_open('faculty/test', $attributes);
+				?>
+				<div class="alert alert-error hide">
+					<button class="close" data-dismiss="alert"></button>
+					You have some form errors. Please check below.
+				</div>
+				<div class="alert alert-success hide">
+					<button class="close" data-dismiss="alert"></button>
+					Your form validation is successful!
+				</div>
+
+				<div class="body-inner">
+					<h3 class="form-section">Student Info</h3>
+					<!-- LIst -->
+					<div class="control-group">
+						<table class="table table-striped table-bordered table-hover" id="obtainmarks">
+							<thead>
+								<tr>
+								<tr>
+									<th class="hidden-480">Student ID</th>
+									<th class="hidden-480">Obtained Marks </th>
+								</tr>
+							</thead>
+
+							<tbody id="lst_students"></tbody>
+						</table>
+					</div><!--/ List-->
+					<!-- Form Action -->
+					<input type="hidden" name="testId" id="testId" value=""/>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary" name="submitTestMarks" id="submitTestMarks">
+							Save Test Marks
+						</button>
+						<button type="button" class="btn">
+							Cancel
+						</button>
+					</div><!--/ Form Action -->
+				</div>
+				</form>
+			</div>
+			<div class="tab-pane" id="tab4">
+				<table class="table table-striped table-bordered table-hover" id="obtainmarks">
+					<thead>
+						<tr>
+						<tr>
+							<th class="hidden-480">Student ID</th>
+							<th class="hidden-480">Obtained Marks </th>
+						</tr>
+					</thead>
+
+					<tbody id="lst_students_view"></tbody>
+				</table>
+			</div>
 		</div>
-		<!--/ END Row -->
+	</div>
+	</div>
+	<!--/ End Tabs -->
+	</div>
+	<!--/ END Row -->
 	</div>
 	<!--Page Content End  -->
 	</div>

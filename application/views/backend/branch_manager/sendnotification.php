@@ -111,11 +111,20 @@
 												<option value="Category 3">Category 5</option>
 												<option value="Category 4">Category 4</option>
 											</select>
+											<span for="batch_name" class="help-inline"><?php echo form_error('batch_name'); ?></span>
 										</div>
 									</div><!--/ Batch -->
 								
 									<!-- Individual Name -->
-									<div class="control-group" style="display:none" id="lst_user_div">
+									<?php
+									$err=form_error('user_name');
+									if ($err != '') {
+										echo "<div class='control-group error' style='display:none' id='lst_user_div'>";
+									} else {
+										echo "<div class='control-group' style='display:none' id='lst_user_div'>";
+									}
+									 ?>
+									
 										<label class="control-label">Name<span class="required">*</span></label>
 										<div class="controls">
 											<select name="user_name" id="user_name" multiple="" class="span4 select2">
@@ -129,14 +138,24 @@
 												<option value="9">Green Bay Packers</option>
 												<option value="0">Minnesota Vikings</option>
 											</select>
+											<span for="user_name" class="help-inline"><?php echo form_error('message'); ?></span>
 										</div>
 									</div><!--/ Individual Name -->
 									<!-- Message -->
-									<div class="control-group">
+									<?php
+									$err=form_error('message');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">Message<span class="required">*</span></label>
 										<div class="controls">
-											<textarea type="textarea" name="message" id="message" class="span8"/>
+											<textarea type="textarea" name="message" id="message" class="span8" value="<?php echo set_value("message"); ?>"/>
 											</textarea>
+											<span for="message" class="help-inline"><?php echo form_error('message'); ?></span>
 										</div>
 									</div><!--/ Message -->
 									<!-- Form Action -->

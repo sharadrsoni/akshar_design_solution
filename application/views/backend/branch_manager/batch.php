@@ -211,10 +211,18 @@
 								<div class="body-inner">
 									<h3 class="form-section">Batch Info</h3>
 									<!-- Course -->
-									<div class="control-group">
+									<?php
+									$err=form_error('course_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">Course<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="course_id" id="course_id">
+											<select class="span4" name="course_id" id="course_id" value="<?php echo set_value("course_id"); ?>">
 												<option value="">Select...</option>
 												<?php
 												foreach ($course as $key) {
@@ -227,10 +235,17 @@
 									</div><!--/ Course -->
 
 									<!-- Faculty -->
-									<div class="control-group">
+									<?php
+									$err=form_error('faculty_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
 										<label class="control-label">Faculty<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="faculty_id" id="faculty_id">
+											<select class="span4" name="faculty_id" id="faculty_id" value="<?php echo set_value("faculty_id"); ?>">
 												<option value="">Select...</option>
 												<?php
 												foreach ($faculty as $key) {
@@ -243,29 +258,53 @@
 									</div><!--/ Faculty -->
 
 									<!-- Start Date -->
-									<div class="control-group">
+									<?php
+									$err=form_error('start_date');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
 										<label class="control-label">Start Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
-												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
+												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7" value="<?php echo set_value("start_date"); ?>">
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 											<span for="start_date" class="help-inline"><?php echo form_error('start_date'); ?></span>
 										</div>
 									</div><!--/ Start Date -->
-
-									<div class="control-group">
+								
+								<?php
+									$err=form_error('duration');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
 										<label class="control-label">Duration <small>(in months)</small><span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="duration" id="duration" class="span2"/>
+											<input type="text" name="duration" id="duration" class="span2" value="<?php echo set_value("duration"); ?>"/>
 											<span for="duration" class="help-inline"><?php echo form_error('duration'); ?></span>
 										</div>
 									</div>
 									<!-- Strength -->
-									<div class="control-group">
+									<?php
+									$err=form_error('strength');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
 										<label class="control-label">Strength<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="strength" id="strength" class="span2"/>
+											<input type="text" name="strength" id="strength" class="span2" value="<?php echo set_value("strength"); ?>"/>
 											<span for="strength" class="help-inline"><?php echo form_error('strength'); ?></span>
 										</div>
 									</div><!--/ Strength-->
@@ -273,10 +312,18 @@
 									<h3 class="form-section">Batch Timing</h3>
 
 									<!-- weekday -->
-									<div class="control-group">
+									<?php
+									$err=form_error('weekday');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
 										<label class="control-label">weekday<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="weekday" id="weekday">
+											<select class="span4" name="weekday" id="weekday" value="<?php echo set_value("weekday"); ?>">
 												<option value="">Select...</option>
 												<option value="1">Monday</option>
 												<option value="2">Tuesday</option>
@@ -291,16 +338,24 @@
 									</div><!--/ weekday -->
 
 									<!-- Batch Time -->
+									<?php
+									$err=form_error('start_time');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
 									<div class="control-group">
 										<label class="control-label">Batch Time<span class="required">*</span></label>
 										<div id="start_time_picker" class="input-append span3">
-											<input type="text" name="start_time" id="start_time" placeholder="Start Time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
+											<input type="text" name="start_time" id="start_time" placeholder="Start Time" readonly="" class="m-wrap small" data-format="hh:mm:ss" value="<?php echo set_value("start_time"); ?>"/>
 											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 											<span for="start_time" class="help-inline"><?php echo form_error('start_time'); ?></span>
 										</div>
 
 										<div id="end_time_picker" class="input-append span3">
-											<input type="text" name="end_time" id="end_time" placeholder="End Time" readonly="" class="m-wrap small" data-format="hh:mm:ss"/>
+											<input type="text" name="end_time" id="end_time" placeholder="End Time" readonly="" class="m-wrap small" data-format="hh:mm:ss" value="<?php echo set_value("end_time"); ?>"/>
 											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 											<span for="end_time" class="help-inline"><?php echo form_error('end_time'); ?></span>
 										</div>
