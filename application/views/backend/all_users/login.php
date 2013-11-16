@@ -77,7 +77,7 @@
 											<i class="icon-lock input-icon"></i>
 										</div>
 									</div><!--/ Password -->
-<label style="color:#8E2800"><?php echo $error ?></label>
+									<span for="password" class="help-inline"><?php echo $error ?></span>
 									<!-- Register Link -->
 									<div class="control-group">
 										<div class="controls">

@@ -90,10 +90,18 @@
 								<div class="body-inner">
 									<h3 class="form-section">City Info.</h3>
 										<!-- State -->
-									<div class="control-group">
+											<?php
+									$err=form_error('state_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">State<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="state_id" id="state_id">
+											<select class="span4" name="state_id" id="state_id" value="<?php echo set_value("state_id"); ?>">
 												<option value="">Select...</option>
 												<?php
 												foreach ($state as $key) {
@@ -105,10 +113,19 @@
 										</div>
 									</div><!--/ State -->
 									<!-- City Name -->
-									<div class="control-group">
+										<?php
+									$err=form_error('city_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">City Name<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="city_name" id="city_name" class="span8">
+											<input type="text" name="city_name" id="city_name" class="span8" value="<?php echo set_value("city_name"); ?>">
+											<span for="city_name" class="help-inline"><?php echo form_error('city_name'); ?></span>
 										</div>
 									</div><!--/ City Name -->
 									<input type="hidden" name="cityId" id="cityId" value="" />
