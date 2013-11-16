@@ -97,9 +97,6 @@ var SendNotification = function() {
 			});
 			$("#user_name").select2({
 				allowClear : false,
-				escapeMarkup : function(m) {
-					return m;
-				}
 			});
 		}
 	};

@@ -118,16 +118,16 @@
 									<div class="control-group" style="display:none" id="lst_user_div">
 										<label class="control-label">Name<span class="required">*</span></label>
 										<div class="controls">
-											<select name="user_name" id="user_name" class="span4 select2">
-												<option value="">Select...</option>
-												<option>Dallas Cowboys</option>
-												<option>New York Giants</option>
-												<option>Philadelphia Eagles</option>
-												<option>Washington Redskins</option>
-												<option>Chicago Bears</option>
-												<option>Detroit Lions</option>
-												<option>Green Bay Packers</option>
-												<option>Minnesota Vikings</option>
+											<select name="user_name" id="user_name" multiple="" class="span4 select2">
+												<option value="1">Select...</option>
+												<option value="2">Dallas Cowboys</option>
+												<option value="3">New York Giants</option>
+												<option value="5">Philadelphia Eagles</option>
+												<option value="6">Washington Redskins</option>
+												<option value="7">Chicago Bears</option>
+												<option value="8">Detroit Lions</option>
+												<option value="9">Green Bay Packers</option>
+												<option value="0">Minnesota Vikings</option>
 											</select>
 										</div>
 									</div><!--/ Individual Name -->
