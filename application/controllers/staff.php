@@ -29,11 +29,11 @@ class Staff extends CI_Controller {
 		$this -> load -> model("branch_model");
 		$branchName = $this -> branch_model -> getDetailsOfBranch();
 		$this -> data['branch'] = $branchName;
-		$this -> data['title'] = "ADS | Target Type";
+		$this -> data['title'] = "ADS | Send Notifications";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/sendnotification_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/sendnotification');
+		$this -> load -> view('backend/branch_manager/send_notification');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/sendnotification_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -41,19 +41,82 @@ class Staff extends CI_Controller {
 
 	//Send Notification Admin
 	public function send_notification_admin() {
-		$this -> load -> model("branch_model");
-		$branchName = $this -> branch_model -> getDetailsOfBranch();
-		$this-> data['branch'] = $branchName;			
-		$this->data['title'] = "ADS | Target Type";
-		$this -> load -> view('backend/master_page/top', $this -> data);
-		$this -> load -> view('backend/css/sendnotification_css');
-		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/sendnotification');
-		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/sendnotification_js');
-		$this -> load -> view('backend/master_page/bottom');
-	}
+		if (isset($_POST['register'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('message', 'Message', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$this -> data['validate'] = true;
+			} else {
+				$date = date("Y/m/d");
+				$notificationData = array('notificationSendDate' => $date, 'notificationDescription' => $_POST['message'], 'userId' => $this -> userId);
+				if (isset($_POST['user_role'])) {
+					if (isset($_POST['branch_Batch'])) {
+						$branchId = explode(",", $_POST['branch_name']);
+						$this -> load -> model("notification_model");
+						$this -> load -> model("notification_receiver_model");
+						$this -> notification_model -> addNotification($notificationData);
+						$notificationId = $this -> notification_model -> getId($notificationData);
+						$size = sizeof($notificationId);
+						for ($i = 0; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $branchId[$i]);
+							$this -> notification_receiver_model -> addReceiver($receiverData);
+						}
+					} else {
+						$batchId = explode(",", $_POST['batch_name']);
+						$this -> load -> model("notification_model");
+						$this -> load -> model("notification_receiver_model");
+						$this -> notification_model -> addNotification($notificationData);
+						$notificationId = $this -> notification_model -> getId($notificationData);
+						$size = sizeof($notificationId);
+						for ($i = 0; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $batchId[$i]);
+							$this -> notification_receiver_model -> addReceiver($receiverData);
+						}
+					}
+				} else {
+					if (isset($_POST['individual_Batch'])) {
+						$userId = explode(",", $_POST['user_name']);
+						$this -> load -> model("notification_model");
+						$this -> load -> model("notification_receiver_model");
+						$this -> notification_model -> addNotification($notificationData);
+						$notificationId = $this -> notification_model -> getId($notificationData);
+						$size = sizeof($notificationId);
+						for ($i = 0; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $userId[$i]);
+							$this -> notification_receiver_model -> addReceiver($receiverData);
+						}
+					} else {
+						$branchId = explode(",", $_POST['branch_name']);
+						$this -> load -> model("notification_model");
+						$this -> load -> model("notification_receiver_model");
+						$this -> notification_model -> addNotification($notificationData);
+						$notificationId = $this -> notification_model -> getId($notificationData);
+						$size = sizeof($notificationId);
+						for ($i = 0; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $branchId[$i]);
+							$this -> notification_receiver_model -> addReceiver($receiverData);
+						}
+					}
 
+				}
+				
+				redirect(base_url() . "staff/send_notification_admin");
+			}
+		} else {
+
+			$this -> load -> model("branch_model");
+			$branchName = $this -> branch_model -> getDetailsOfBranch();
+			$this -> data['branch'] = $branchName;
+			$this -> data['title'] = "ADS | Send Notifications";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/sendnotification_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> load -> view('backend/branch_manager/send_notification',$this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/sendnotification_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
+	}
 
 	//Profile
 	public function profile() {
@@ -95,7 +158,7 @@ class Staff extends CI_Controller {
 				$this -> data['validate'] = true;
 			} else {
 
-				$currPass = $this -> user_model -> getDetailsbyUser($this -> userId,"userPassword");
+				$currPass = $this -> user_model -> getDetailsbyUser($this -> userId, "userPassword");
 				if ($currPass != $_POST['current_password']) {
 					die("Error");
 				} else {
