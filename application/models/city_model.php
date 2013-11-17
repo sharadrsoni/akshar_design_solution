@@ -13,6 +13,11 @@ class city_model extends CI_Model {
 		$this -> db -> where('cityId', $cityId);
 		return $this -> db -> get('city') -> result();
 	}
+	
+	public function getDetailsByState($stateId) {
+		$this -> db -> where('stateId', $stateId);
+		return $this -> db -> get('city') -> result();
+	}
 
 	public function addcity($data) {
 		if (isset($data)) {

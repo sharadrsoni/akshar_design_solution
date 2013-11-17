@@ -12,6 +12,12 @@ class branch_model extends CI_Model {
 		$this -> db -> where("branchCode", $branchCode);
 		return $this -> db -> get('branch') -> result();
 	}
+	
+	public function getCountByBranch($branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
+		$this -> db -> from('branch');
+		return $this -> db -> count_all_results();
+	}
 
 	public function addBranch($data) {
 		if (isset($data)) {

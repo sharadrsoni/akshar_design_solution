@@ -64,7 +64,7 @@
 											foreach ($branch as $key) {
 												echo "<tr class=\"odd gradeX\">
 <td onclick='viewbranch(\"{$key->branchCode}\");'>{$key->branchName}</td>
-<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
+<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->cityId} {$key->stateId} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
 <td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchCode}\");'>Edit</span></td>
 </tr>";
@@ -92,6 +92,22 @@
 
 							<div class="body-inner">
 								<h3 class="form-section">Branch Info.</h3>
+								<!-- Branch Code -->
+								<?php
+									$err=form_error('branchCode');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+									<label class="control-label">Branch Code</label>
+									<div class="controls">
+										<input type="text" name="branchCode" id="branchCode" class="span8" value="<?php echo set_value("branchCode"); ?>">
+										<span for="branchCode" class="help-inline"><?php echo form_error('branchCode'); ?></span>
+									</div>
+								</div><!--/ Branch Code -->
 								<!-- Branch Name -->
 								<?php
 									$err=form_error('branch_name');
@@ -170,24 +186,21 @@
 									<label class="control-label">State/City<span class="required">*</span></label>
 									<div class="controls">
 										<div class="span4">
-											<select class="span12" name="state" id="state" value="<?php echo set_value("state"); ?>">
+											<select class="span12 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($State as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
+												}
+												?>
 											</select>
-											<span for="state" class="help-inline"><?php echo form_error('state'); ?></span>
+											<span for="state" class="help-inline"><?php echo form_error('stateid'); ?></span>
 										</div>
 										<div class="span4">
-											<select class="span12" name="city" id="city" value="<?php echo set_value("city"); ?>">
+											<select class="span12 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
 											</select>
-											<span for="city" class="help-inline"><?php echo form_error('city'); ?></span>
+											<span for="city" class="help-inline"><?php echo form_error('cityid'); ?></span>
 										</div>
 									</div>
 								</div><!--/ State -->
@@ -235,7 +248,6 @@
 										</div>
 									</div>
 								</div><!--/ Google Map -->
-								<input type="hidden" name="branchCode" id="branchCode" value="" />
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" name="submitBranch" id="submitBranch" class="btn btn-primary">

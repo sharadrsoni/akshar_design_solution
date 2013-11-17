@@ -38,22 +38,27 @@ class Admin extends CI_Controller {
 		} else {
 			$this -> data['title'] = "ADS | Branch";
 			$this -> data['branch'] = $this -> branch_model -> getDetailsOfBranch();
+			$this -> load -> model("state_model");
+			$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
 			if (isset($_POST['submitBranch'])) {
 				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('branchCode', 'Branch Code', 'required|trim');
 				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
 				$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
 				$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
-				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code'], 'branchlongitude' => $_POST['longitude'], 'branchlatitude' => $_POST['latitude']);
-					if ($_POST['branchCode'] != "" ? $this -> branch_model -> updateBranch($branchValue, $_POST['branchCode']) : $this -> branch_model -> addBranch($branchValue)) {
+					// Company ID 1 
+					$branchValue = array('companyId' => 1, 'branchCode' => $_POST['branchCode'], 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'branchPincode' => $_POST['pin_code'], 'branchLongitude' => $_POST['longitude'], 'branchLatitude' => $_POST['latitude']);
+					$branchValueupdate = array('branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'branchPincode' => $_POST['pin_code'], 'branchLongitude' => $_POST['longitude'], 'branchLatitude' => $_POST['latitude']);
+					if ($this -> branch_model -> getCountByBranch($_POST['branchCode']) > 0 ? $this -> branch_model -> updateBranch($branchValueupdate, $_POST['branchCode']) : $this -> branch_model -> addBranch($branchValue)) {
 						redirect(base_url() . "admin/branch");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -356,7 +361,7 @@ class Admin extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchId' => $_POST['branchId'], 'roleId' => $_POST['userroleId']);
+					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
 					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
 						redirect(base_url() . "admin/staff");
 					} else {

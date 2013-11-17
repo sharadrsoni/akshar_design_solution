@@ -27,14 +27,14 @@ class user_model extends CI_Model {
 	//get details of user by role id
 	public function getDetailsByRole($roleId) {
 		$this -> db -> where_in("user.roleId", $roleId);
-		$this -> db -> join('branch', 'user.branchId = branch.branchId');
+		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
 		return $this -> db -> get('user') -> result();
 	}
 
 	//get user data by user id
 	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
-		$this -> db -> join('branch', 'user.branchId = branch.branchId');
+		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
 		return $this -> db -> get('user') -> row();
 	}
 
@@ -42,7 +42,7 @@ class user_model extends CI_Model {
 	public function getDetailsByStudent($studentId) {
 		$this -> db -> where("user.userId", $studentId);
 		$this -> db -> join('student_profile', $studentId);
-		$this -> db -> join('branch', 'branch.branchId=user.branchId');
+		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
 		return $this -> db -> get('user') -> result();
 	}
 
@@ -72,8 +72,7 @@ class user_model extends CI_Model {
 	public function getUserCount($roleId) {
 		$this -> db -> where('roleId', $roleId);
 		$this -> db -> from('user');
-		$count = $this -> db -> count_all_results();
-		return $count;
+		return $this -> db -> count_all_results();
 	}
 
 	//update Add user
