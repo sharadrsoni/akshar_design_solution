@@ -72,15 +72,12 @@ class Ajax_manager extends CI_Controller {
 		$this -> data['student_list'] = $student_data;
 		echo json_encode($this -> data);
 	}
-<<<<<<< HEAD
 	
 	public function citylist($stateId) {
 		$this -> load -> model('city_model');
 		$this -> data['city_list'] =$this -> city_model -> getDetailsByState($stateId);
 		echo json_encode($this -> data);
 	}
-	
-=======
 
 	//Course List
 	public function courseList($studentId) {
@@ -109,8 +106,6 @@ class Ajax_manager extends CI_Controller {
 		$this -> data['staff_list'] = $staff_data;
 		echo json_encode($this -> data);
 	}
-
->>>>>>> b0375c3944fb3a501d2bbba9797b3ab0cbec1b7f
 }
 ?>
 
