@@ -21,6 +21,45 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	
+	//Role
+	public function role($roleId = '') {
+		$this -> load -> model("role_model");
+		if ($roleId != '') {
+			$this -> data['role'] = $this -> role_model -> getDetailsByRole1($roleId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Role";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/role_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['role'] = $this -> role_model -> getAllDetailsOfRole();
+			if (isset($_POST['submitRole'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('role_name', 'Role Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$roleData = array('roleName' => $_POST['role_name']);
+					if ($_POST['roleId'] != "" ? $this -> role_model -> updaterole($roleData, $_POST['roleId']) : $this -> role_model -> addrole($roleData)) {
+						redirect(base_url() . "admin/role");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
+			}
+			$this -> load -> view('backend/branch_manager/role', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/role_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
+	}
+
+public function delete_role($roleId) {
+		$this -> load -> model('role_model');
+		$this -> role_model -> deleteRole($roleId);
+		redirect(base_url() . "admin/role");
+	}
 
 	//Branch
 	public function branch($branchId = '') {
