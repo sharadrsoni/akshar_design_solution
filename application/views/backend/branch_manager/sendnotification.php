@@ -103,13 +103,13 @@ if($role==1)
 							<option value="">Select...</option>
 							<?php
 							foreach ($branch as $key) {
-								echo "<option value='{$key->branchId}'>{$key->branchName}</option>";
+								echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
 							}
 							?>
 
 							</select>
-							<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?><
-							/span>
+							<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?>
+								</span>
 							</div>
 							</div><!--/ Branch -->
 							<!-- Batch -->

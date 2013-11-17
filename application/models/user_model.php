@@ -18,14 +18,6 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
-	public function getDetailsByBatch($batchId, $roleId, $branchId) {
-		$this -> db -> where("branchId", $branchId);
-		$this -> db -> where("roleId", $roleId);
-		$this -> db -> where("batchId", $batchId);
-		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');
-		return $this -> db -> get('user') -> result();
-	}
-
 	public function authenticate($data) {
 		if (isset($data)) {
 			$this -> db -> where("userId", $data['userId']);
@@ -72,12 +64,7 @@ class user_model extends CI_Model {
 	 return $this -> db -> get() -> result();
 	 }*/
 
-	public function getDetailsByBranchAndRole($branchCode, $roleId) {
-		$this -> db -> where("branchCode", $branchCode);
-
-		$this -> db -> where("roleId", $roleId);
-		return $this -> db -> get('user') -> result();
-	}
+	
 
 	public function getDetailsByBatch($batchId, $roleId, $branchCode) {
 		$this -> db -> where("branchCode", $branchCode);
