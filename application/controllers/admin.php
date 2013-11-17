@@ -16,37 +16,88 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/dashboard');
+		$this -> load -> model("target_model");
+		$this -> data['TargetPendingCount'] = $this -> target_model -> getPendingCount();
+		$this -> load -> model("inquiry_model");
+		$this -> data['NewInquiryCount'] = $this -> inquiry_model -> getNewInquiryCount();
+		$this -> load -> model("user_model");
+		$this -> data['StudentResigsterCount'] = $this -> user_model -> getUserCount(5);
+		$this -> data['FacultyCount'] = $this -> user_model -> getUserCount(3);
+		$this -> load -> view('backend/branch_manager/dashboard_admin', $this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
+	
+	//Role
+	public function role($roleId = '') {
+		$this -> load -> model("role_model");
+		if ($roleId != '') {
+			$this -> data['role'] = $this -> role_model -> getDetailsByRole1($roleId);
+			echo json_encode($this -> data);
+		} else {
+			$this -> data['title'] = "ADS | Role";
+			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/role_css');
+			$this -> load -> view('backend/master_page/header');
+			$this -> data['role'] = $this -> role_model -> getAllDetailsOfRole();
+			if (isset($_POST['submitRole'])) {
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('role_name', 'Role Name', 'required|trim');
+				if ($this -> form_validation -> run() == FALSE) {
+					$this -> data['validate'] = true;
+				} else {
+					$roleData = array('roleName' => $_POST['role_name']);
+					if ($_POST['roleId'] != "" ? $this -> role_model -> updaterole($roleData, $_POST['roleId']) : $this -> role_model -> addrole($roleData)) {
+						redirect(base_url() . "admin/role");
+					} else {
+						$this -> data['error'] = "An Error Occured.";
+					}
+				}
+			}
+			$this -> load -> view('backend/branch_manager/role', $this -> data);
+			$this -> load -> view('backend/master_page/footer');
+			$this -> load -> view('backend/js/role_js');
+			$this -> load -> view('backend/master_page/bottom');
+		}
+	}
+
+public function delete_role($roleId) {
+		$this -> load -> model('role_model');
+		$this -> role_model -> deleteRole($roleId);
+		redirect(base_url() . "admin/role");
+	}
 
 	//Branch
-	public function branch($branchId = '') {
+	public function branch($branchCode = '') {
 		$this -> load -> model("branch_model");
-		if ($branchId != '') {
-			$this -> data['branch'] = $this -> branch_model -> getDetailsByBranch($branchId);
+		if ($branchCode != '') {
+			$this -> data['branch'] = $this -> branch_model -> getDetailsByBranch($branchCode);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Branch";
 			$this -> data['branch'] = $this -> branch_model -> getDetailsOfBranch();
+			$this -> load -> model("state_model");
+			$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
 			if (isset($_POST['submitBranch'])) {
 				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('branchCode', 'Branch Code', 'required|trim');
 				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
 				$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
 				$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
-				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$branchValue = array('companyId' => 101010, 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'branchCity' => $_POST['city'], 'branchState' => $_POST['state'], 'branchPincode' => $_POST['pin_code'], 'branchlongitude' => $_POST['longitude'], 'branchlatitude' => $_POST['latitude']);
-					if ($_POST['branchId'] != "" ? $this -> branch_model -> updateBranch($branchValue, $_POST['branchId']) : $this -> branch_model -> addBranch($branchValue)) {
+					// Company ID 1 
+					$branchValue = array('companyId' => 1, 'branchCode' => $_POST['branchCode'], 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'branchPincode' => $_POST['pin_code'], 'branchLongitude' => $_POST['longitude'], 'branchLatitude' => $_POST['latitude']);
+					$branchValueupdate = array('branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'branchPincode' => $_POST['pin_code'], 'branchLongitude' => $_POST['longitude'], 'branchLatitude' => $_POST['latitude']);
+					if ($this -> branch_model -> getCountByBranch($_POST['branchCode']) > 0 ? $this -> branch_model -> updateBranch($branchValueupdate, $_POST['branchCode']) : $this -> branch_model -> addBranch($branchValue)) {
 						redirect(base_url() . "admin/branch");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -104,7 +155,7 @@ class Admin extends CI_Controller {
 		$this -> load -> model('course_model');
 		if ($courseId != '') {
 			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId);
-			echo json_encode($this->data);
+			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Course";
 			$this -> load -> model('course_category_model');
@@ -128,7 +179,7 @@ class Admin extends CI_Controller {
 				} else {
 					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseCode' => $_POST['course_code'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseMaterialOpeningStock' => $_POST['opening_stock']);
 					//die(print_r($courseValue));
-					if ($_POST['courseId'] != "" ? $this -> course_model -> updateCourse($courseValue,$_POST['courseId']) : $this -> course_model -> addCourse($courseValue)) {
+					if ($_POST['courseId'] != "" ? $this -> course_model -> updateCourse($courseValue, $_POST['courseId']) : $this -> course_model -> addCourse($courseValue)) {
 						redirect(base_url() . "admin/course");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -294,7 +345,7 @@ class Admin extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchId' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+					$targetData = array('targetSubject' => $_POST['target_name'], 'targetDescription' => $_POST['description'], 'targetIsAchieved' => 0, 'branchCode' => $_POST['branch'], 'targetTypeId' => $_POST['target_type'], 'targetStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'targetEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 					if ($_POST['targetId'] != "" ? $this -> target_model -> updateTarget($targetData, $_POST['targetId']) : $this -> target_model -> addTarget($targetData)) {
 						redirect(base_url() . "admin/target");
 					} else {
@@ -317,23 +368,22 @@ class Admin extends CI_Controller {
 
 	//Staff
 	public function staff($staffID = '') {
-		$this -> load -> model("staff_model");
+		$this -> load -> model("user_model");
 		if ($staffID != '') {
-			$this -> data['staff'] = $this -> staff_model -> getDetailsByStaff($staffID);
+			$this -> data['staff'] = $this -> user_model -> getDetailsbyUser($staffID);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Staff";
 			$this -> load -> view('backend/master_page/top', $this -> data);
-			$this -> load -> view('backend/css/staff_css');
 			$this -> load -> view('backend/master_page/header');
-			$this -> data['staff'] = $this -> staff_model -> getDetailsOfStaff();
+			$this -> data['staff'] = $this -> user_model -> getDetailsByRole(array('2', '3', '4'));
 			$this -> load -> model("branch_model");
 			$this -> data['branch_list'] = $this -> branch_model -> getDetailsOfBranch();
 			$this -> load -> model("role_model");
 			$this -> data['userrole_list'] = $this -> role_model -> getDetailsOfRole();
 			if (isset($_POST['submitStaff'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('branchId', 'Branch', 'required|trim');
+				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim');
 				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim');
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
 				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim');
@@ -350,8 +400,8 @@ class Admin extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchId' => $_POST['branchId'], 'roleId' => $_POST['userroleId']);
-					if ($_POST['staffId'] != "" ? $this -> staff_model -> updateStaff($staffData, $_POST['staffId']) : $this -> staff_model -> addStaff($staffData)) {
+					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
+					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
 						redirect(base_url() . "admin/staff");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -366,8 +416,8 @@ class Admin extends CI_Controller {
 	}
 
 	public function delete_staff($userId) {
-		$this -> load -> model('staff_model');
-		$this -> staff_model -> deleteStaff($userId);
+		$this -> load -> model('user_model');
+		$this -> user_model -> deleteUser($userId);
 		redirect(base_url() . "admin/staff");
 	}
 

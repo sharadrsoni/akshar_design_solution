@@ -57,7 +57,7 @@ var Staff = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					branchId:{
+					branchCode:{
 						required : true
 					},
 					userroleId:{
@@ -184,7 +184,7 @@ function updatestaff(staffid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#branchId').val(json.staff[0].branchId);
+				$('#branchCode').val(json.staff[0].branchCode);
 				$('#userroleId').val(json.staff[0].roleId);
 				$('#first_name').val(json.staff[0].userFirstName);
 				$('#middle_name').val(json.staff[0].userMiddleName);

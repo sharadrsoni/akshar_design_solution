@@ -1,5 +1,5 @@
 <?php
-   if (!defined('BASEPATH'))
+if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
 class fee_model extends CI_Model {
@@ -20,23 +20,21 @@ class fee_model extends CI_Model {
 
 	}
 	
-	public function deleteFees($feesId) {
-		if (isset($feesId)) {
+	public function addFee($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('fees', $data);
+		}
+		return false;
+	}
+
+	public function deleteFee($feesId) {
+		if (isset($eventtypeId)) {
 			$this -> db -> where('feesId', $feesId);
 			$this -> db -> delete('fees');
 			return false;
-		} else {
-			return true;
 		}
+		return true;
 	}
-	
-	public function addFee($data) {
-		if(isset($data)) {
-			return $this->db->insert('fees', $data);
-		} else {
-			return false;
-		}
-	}
-	
+
 }
 ?>

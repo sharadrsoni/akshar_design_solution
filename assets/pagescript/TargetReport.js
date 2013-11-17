@@ -130,12 +130,7 @@ function updatetarget(targetid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				
-				$('#target_name').text(json.target[0].targetSubject);
 				$('#description').text(json.target[0].targetDescription);
-				$('#start_date').text(json.target[0].targetStartDate);
-				$('#end_date').text(json.target[0].targetEndDate);
-			
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
@@ -143,4 +138,9 @@ function updatetarget(targetid) {
 			}
 		}
 	});
+}
+function viewtargetreports(targetid) {
+	$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tab3').addClass("active");
 }

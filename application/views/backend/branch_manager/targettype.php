@@ -88,10 +88,19 @@
 								<div class="body-inner">
 									<h3 class="form-section">Target Type Info.</h3>
 									<!-- Target Type Name -->
-									<div class="control-group">
+									<?php
+									$err=form_error('targettype_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">Target Type Name<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="targettype_name" id="targettype_name" class="span8">
+											<input type="text" name="targettype_name" id="targettype_name" class="span8" value="<?php echo set_value("targettype_name"); ?>">
+											<span for="targettype_name" class="help-inline"><?php echo form_error('targettype_name'); ?></span>
 										</div>
 									</div><!--/ Target Type Name -->
 									<input type="hidden" name="trgettypeId" id="trgettypeId" value="" />

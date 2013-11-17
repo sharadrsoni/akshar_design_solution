@@ -63,10 +63,10 @@
 											<?php
 											foreach ($branch as $key) {
 												echo "<tr class=\"odd gradeX\">
-<td onclick='viewbranch(\"{$key->branchId}\");'>{$key->branchName}</td>
-<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->branchCity} {$key->branchState} - {$key->branchPincode}</td>
+<td onclick='viewbranch(\"{$key->branchCode}\");'>{$key->branchName}</td>
+<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->cityId} {$key->stateId} - {$key->branchPincode}</td>
 <td class=\"hidden-480\">{$key->branchContactNumber}</td>
-<td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchId}\");'>Edit</span></td>
+<td ><span class=\"label label-success\" onclick='updatebranch(\"{$key->branchCode}\");'>Edit</span></td>
 </tr>";
 											}
 											?>
@@ -92,64 +92,132 @@
 
 							<div class="body-inner">
 								<h3 class="form-section">Branch Info.</h3>
+								<!-- Branch Code -->
+								<?php
+									$err=form_error('branchCode');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+									<label class="control-label">Branch Code</label>
+									<div class="controls">
+										<input type="text" name="branchCode" id="branchCode" class="span8" value="<?php echo set_value("branchCode"); ?>">
+										<span for="branchCode" class="help-inline"><?php echo form_error('branchCode'); ?></span>
+									</div>
+								</div><!--/ Branch Code -->
 								<!-- Branch Name -->
-								<div class="control-group">
+								<?php
+									$err=form_error('branch_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Branch Name</label>
 									<div class="controls">
-										<input type="text" name="branch_name" id="branch_name" class="span8">
+										<input type="text" name="branch_name" id="branch_name" class="span8" value="<?php echo set_value("branch_name"); ?>">
+										<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?></span>
 									</div>
 								</div><!--/ Branch Name -->
 								<!-- Contact no -->
-								<div class="control-group">
+								<?php
+									$err=form_error('conatct_no');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Conatact No</label>
 									<div class="controls">
-										<input type="text" name="conatct_no" id="conatct_no" class="span8">
+										<input type="text" name="conatct_no" id="conatct_no" class="span8" value="<?php echo set_value("conatct_no"); ?>">
+										<span for="conatct_no" class="help-inline"><?php echo form_error('conatct_no'); ?></span>
 									</div>
 								</div><!--/ Contact no -->
 								<h3 class="form-section">Address</h3>
 								<!-- Street -->
-								<div class="control-group">
+								<?php
+									$err=form_error('street_1');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Street<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8"/>
+										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8" value="<?php echo set_value("street_1"); ?>"/>
+										<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?></span>
 									</div>
 
 								</div>
-								<div class="control-group">
+								<?php
+									$err=form_error('street_2');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+							
 									<label class="control-label"><span class="required"></span></label>
 									<div class="controls">
-										<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8"/>
+										<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8" value="<?php echo set_value("street_2"); ?>"/>
+										<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
 									</div>
 								</div><!--/ Street -->
 								<!-- State -->
-								<div class="control-group">
+								<?php
+									$err=form_error('state');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">State/City<span class="required">*</span></label>
 									<div class="controls">
 										<div class="span4">
-											<select class="span12" name="state" id="state">
+											<select class="span12 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+												<?php
+												foreach ($State as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
+												}
+												?>
 											</select>
+											<span for="state" class="help-inline"><?php echo form_error('stateid'); ?></span>
 										</div>
 										<div class="span4">
-											<select class="span12" name="city" id="city">
+											<select class="span12 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
 											</select>
+											<span for="city" class="help-inline"><?php echo form_error('cityid'); ?></span>
 										</div>
 									</div>
 								</div><!--/ State -->
 								<!-- Postal Code -->
-								<div class="control-group">
+								<?php
+									$err=form_error('pin_code');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Postal Code<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="pin_code" id="pin_code" class="span8"/>
+										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
+										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
 									</div>
 								</div><!--/ Postal Code -->
 								<!-- Google Map LocationGoogle Map Location -->
@@ -180,7 +248,6 @@
 										</div>
 									</div>
 								</div><!--/ Google Map -->
-								<input type="hidden" name="branchId" id="branchId" value="" />
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" name="submitBranch" id="submitBranch" class="btn btn-primary">
@@ -190,7 +257,11 @@
 							</div>
 							</form>
 						</div>
+						<div class="tab-pane" id="View">
+							hi
+						</div>
 					</div>
+					
 				</div>
 				<!--/ End Tabs -->
 			</div>

@@ -8,7 +8,7 @@ class staff_model extends CI_Model {
 		$this -> db -> where("roleId", 2);
 		$this -> db -> or_where("roleId", 3);
 		$this -> db -> or_where("roleId", 4);
-		$this -> db -> join('branch', 'user.branchId = branch.branchId');
+		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
 		return $this -> db -> get('user') -> result();
 	}
 

@@ -60,6 +60,9 @@ var Branch = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
+					branchcode:{
+						required : true
+					},
 					branch_name : {
 						minlength : 5,
 						required : true
@@ -73,11 +76,11 @@ var Branch = function() {
 					street_2 : {
 						required : true,
 					},
-					city : {
-						required : true,
-					},
-					state : {
+					stateid : {
 						required : true
+					},
+					cityid : {
+						required : true,
 					},
 					pin_code : {
 						required : true,
@@ -168,24 +171,46 @@ var Branch = function() {
 		},
 		init_uijquery : function() {
 			/*$('#tablink2').click(function(e) {
-				e.preventDefault();
-				$(this).tab('show');
-				Branch.init_google();
-			});*/
+			 e.preventDefault();
+			 $(this).tab('show');
+			 Branch.init_google();
+			 });*/
 			$("#loadmap").click(function() {
 				Branch.init_google();
 			});
+			
+			$(".select2").select2({
+				allowClear : true,
+			});
+
+			$("#stateid").change(function() {
+				$('#cityid').html('');
+				$("#cityid").append("<option value=''>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/citylist/" + $("#stateid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#cityid").append("<option value='"+item.cityId+"'>"+item.cityName+"</option>");
+							});
+						}
+					}
+				});
+			});
+
 			$("#tablink2").click(function() {
+				$('#branchCode').val("");
 				$('#branch_name').val("");
 				$('#conatct_no').val("");
 				$('#street_1').val("");
 				$('#street_2').val("");
-				$('#state option:nth(0)').attr("selected", "selected");
-				$('#city option:nth(0)').attr("selected", "selected");
+				$('#stateid option:nth(0)').attr("selected", "selected");
+				$('#cityid option:nth(0)').attr("selected", "selected");
 				$('#pin_code').val("");
 				$('#longitude').val("");
 				$('#latitude').val("");
-				$('#branchId').val("");
 				$("#submitBranch").text("Add Branch");
 				$('.alert-error', $('#form_branch')).hide();
 				$("#form_branch").validate().resetForm();
@@ -195,48 +220,51 @@ var Branch = function() {
 		}
 	};
 }();
-function viewbranch(branchid) {
+function viewbranch(branchCode) {
 	$.ajax({
-		url : "branch/" + branchid,
+		url : "branch/" + branchCode,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
 			if (json) {
 				alert();
-				$("#ViewBatch").attr("style", "display");
-				App.scrollTo($('#ViewBatch'));
-				$('#view_branch_name').text(json.branch[0].branchName);
-				$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				/*	$('#viewstreet_2').text();
-				 $('#viewstate').text();
-				 $('#viewcity').text();
-				 $('#viewpin_code').text();*/
+				//$("#ViewBatch").attr("style", "display");
+				//App.scrollTo($('#ViewBatch'));
+				//$('#view_branch_name').text(json.branch[0].branchName);
+				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
+				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
+				//$('#viewstreet_2').text();
+				// $('#viewstate').text();
+				//$('#viewcity').text();
+				//$('#viewpin_code').text();
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tabView').addClass("active");
 			}
 		}
 	});
 }
 
-function updatebranch(branchid) {
+function updatebranch(branchCode) {
 	$.ajax({
-		url : "branch/" + branchid,
+		url : "branch/" + branchCode,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
 			if (json) {
+				$('#branchCode').val(json.branch[0].branchCode);
 				$('#branch_name').val(json.branch[0].branchName);
 				$('#conatct_no').val(json.branch[0].branchContactNumber);
 				$('#street_1').val(json.branch[0].branchStreet1);
 				$('#street_2').val(json.branch[0].branchStreet2);
-				$('#state').val(json.branch[0].branchState);
-				$('#city').val(json.branch[0].branchCity);
+				$('#stateid').val(json.branch[0].stateId);
+				$('#cityid').val(json.branch[0].cityId);
 				$('#pin_code').val(json.branch[0].branchPincode);
-				$('#longitude').val(json.branch[0].branchlongitude);
-				$('#latitude').val(json.branch[0].branchlatitude);
+				$('#longitude').val(json.branch[0].branchLongitude);
+				$('#latitude').val(json.branch[0].branchLatitude);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#branchId').val(json.branch[0].branchId);
 				$("#submitBranch").text("Update Branch");
 				map = Branch.init_google();
 			}

@@ -165,9 +165,6 @@ var SendNotification = function() {
 			});
 			$(".select2").select2({
 				allowClear : false,
-				escapeMarkup : function(m) {
-					return m;
-				}
 			});
 
 			$("#branch_name").change(function() {

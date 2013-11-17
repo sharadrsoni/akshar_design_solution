@@ -7,7 +7,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8" />
-    <title>Contact Us | Akshar Design Solution</title>
+    <title>About Us | Akshar Design Solution</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -28,7 +28,7 @@
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-<body>
+<body>  
 <!-- BEGIN TOP BAR -->
     <div class="front-topbar">
         <div class="container">
@@ -52,7 +52,7 @@
         </div>        
     </div>
     <!-- END TOP BAR -->
-	<!-- BEGIN HEADER -->
+     <!-- BEGIN HEADER -->
     
 <div class="front-header"> 
   <div class="container"> 
@@ -70,11 +70,12 @@
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="nav-collapse collapse"> 
           <ul class="nav">
-            <li> <a href="index.html"> Home </a> </li>
+            <li> <a href="index.html"> 
+              Home </a> </li>
             <li><a href="courses.html">Courses</a></li>
             <li><a href="photo_gallery.html">Photo Gallery</a></li>
-            <li><a href="about_us.html">About Us</a></li>
-            <li class="active"><a href="contact_us.html">Contact Us</a></li>
+			<li class="active"><a href="about_us.html">About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
             <li> <span class="sep"></span> <a href="#">Login</a></li>
           </ul>
         </div>
@@ -82,126 +83,56 @@
       </div>
     </div>
   </div>
-</div>  
+</div>
     <!-- END HEADER -->
 
     <!-- BEGIN BREADCRUMBS -->   
-    <div class="row-fluid breadcrumbs">
+    <div class="row-fluid breadcrumbs margin-bottom-40">
         <div class="container">
             <div class="span4">
-                <h1>Our Contacts</h1>
+                <h1>About Us</h1>
             </div>
             <div class="span8">
                 <ul class="pull-right breadcrumb">
                     <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-                    
-                    <li class="active">Contact Us</li>
+                    <li class="active">About Us</li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- END BREADCRUMBS -->
 
-    <!-- BEGIN GOOGLE MAP -->
-    <div class="row-fluid">
-        <div id="map" class="gmaps margin-bottom-40" style="height:400px;"></div>
-    </div>
-    <!-- END GOOGLE MAP -->
-
     <!-- BEGIN CONTAINER -->   
     <div class="container min-hight">
-        <div class="row-fluid">
-            <div class="span9">
-                <h2>Contact Form</h2>
-                <div class="space20"></div>
-                <!-- BEGIN FORM-->
-                <form action="#" class="horizontal-form margin-bottom-40">
-                    <div class="control-group">
-                        <label class="control-label">Name</label>
-                        <div class="controls">
-                            <input type="text" class="m-wrap span12" />
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" >Email <span class="color-red">*</span></label>
-                        <div class="controls">
-                            <input type="text" class="m-wrap span12" >
-                        </div>
-                    </div>
-                    <div class="control-group">
-										<label class="control-label">Course<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="course_id" id="course_id">
-												<option value="">Select...</option>
-												<?php
-												foreach ($course as $key) {
-													echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
-												}
-												?>
-											</select>
-											<span for="course_id" class="help-inline"><?php echo form_error('course_id'); ?></span>
-										</div>
-									</div>
-					<div class="control-group">
-										<label class="control-label">Branch<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="branch_id" id="branch_id">
-												<option value="">Select...</option>
-												<?php
-												foreach ($branch as $key) {
-													echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
-												}
-												?>
-											</select>
-											<span for="branch_id" class="help-inline"><?php echo form_error('branch_id'); ?></span>
-										</div>
-									</div>
-                    <div class="control-group">
-                        <label class="control-label" >Message</label>
-                        <div class="controls">
-                            <textarea class="m-wrap span12" rows="8"></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn theme-btn"><i class="icon-ok"></i> Send</button>
-                    <button type="button" class="btn">Cancel</button>
-                </form>
-                <!-- END FORM-->                  
+        <!-- BEGIN ABOUT INFO -->   
+        <div class="row-fluid margin-bottom-30">
+            <!-- BEGIN INFO BLOCK -->               
+            <div class="span12 space-mobile">
+                <h2>About CADD</h2>
+                <p>As Asia’s biggest network of CAD training centres, CADD Centre Training Services is the training arm of the 25 year old CADD Centre Group, head quartered at Chennai, India.</p> 
+                <p>CADD Centre being the only company in India to offer an end to end solution to CAD users, specialize in Computer Aided Design(CAD), Computer Aided Engineering(CAE), and Computer Aided Manufacturing(CAM) with its wings spread across the India and abroad  as well, it has the resources and the reach.</p>
+                <p>With over 300 franchise partners across India and in the countries like Bahrain, Bangladesh, Bhutan, Dubai, India, Malaysia, Maldives, Nigeria, Oman, Qatar, Sharjah, and Srilanka, in the last 25 years, CADD Centre has excelled in training over 8,00,000 engineers, graphic artists and management professionals, who are employed in over 50 countries.</p>
+                
+                <h2>About ADS</h2>
+                <p>Akshar Design Solution is a design academy and a school for creative studies. It offers world-class design education to promote design awareness and its application.</p>
+                <p>It Provides design inputs to the students as well as professionals to use design as an integrating force in varied areas like civil, architectural, mechanical, automobile, electrical etc. to raise quality of life through well designed products, services, processes, systems, etc.</p>
             </div>
+            <!-- END INFO BLOCK -->   
 
-            <div class="span3">
-                <h2>Our Contacts</h2>
-                <address>
-                    <strong>Loop, Inc.</strong><br>
-                    795 Park Ave, Suite 120<br>
-                    San Francisco, CA 94107<br>
-                    <abbr title="Phone">P:</abbr> (234) 145-1810
-                </address>
-                <address>
-                    <strong>Email</strong><br>
-                    <a href="mailto:#">info@email.com</a><br>
-                    <a href="mailto:#">support@example.com</a>
-                </address>
-                <ul class="social-icons margin-bottom-10">
-                    <li><a href="#" data-original-title="facebook" class="social_facebook"></a></li>
-                    <li><a href="#" data-original-title="github" class="social_github"></a></li>
-                    <li><a href="#" data-original-title="Goole Plus" class="social_googleplus"></a></li>
-                    <li><a href="#" data-original-title="linkedin" class="social_linkedin"></a></li>
-                    <li><a href="#" data-original-title="rss" class="social_rss"></a></li>
-                </ul>
-
-                <div class="clearfix margin-bottom-30"></div>
-
-                <h2>About Us</h2>
-                <p>Sediam nonummy nibh euismod tation ullamcorper suscipit</p>
-                <ul class="unstyled">
-                    <li><i class="icon-ok"></i> Officia deserunt molliti</li>
-                    <li><i class="icon-ok"></i> Consectetur adipiscing </li>
-                    <li><i class="icon-ok"></i> Deserunt fpicia</li>
-                </ul>                                
-            </div>            
+            <!-- BEGIN CAROUSEL -->            
+			<!-- END CAROUSEL -->             
         </div>
+        <!-- END ABOUT INFO -->   
+
+        <!-- BEGIN TESTIMONIALS AND PROGRESS BAR -->
+        <!-- END TESTIMONIALS AND PROGRESS BAR --> 
+
+        <!-- BEGIN OUR TEAM -->
+        <!-- END OUR TEAM -->
     </div>
     <!-- END CONTAINER -->
+
+   
 
     <!-- BEGIN COPYRIGHT -->
     <div class="front-copyright">
@@ -209,7 +140,7 @@
             <div class="row-fluid">
                 <div class="span8">
                     <p>
-                        <span class="margin-right-10">2013 © Metronic. ALL Rights Reserved.</span> 
+                        <span class="margin-right-10">2013 © Akshar Design Solution. ALL Rights Reserved.</span> 
                         <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                     </p>
                 </div>
@@ -233,21 +164,19 @@
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>    
     <script type="text/javascript" src="assets/plugins/bxslider/jquery.bxslider.js"></script>
-    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>    
-    <script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>
+    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>         
     <!--[if lt IE 9]>
     <script src="assets/plugins/respond.min.js"></script>  
     <![endif]-->   
     <!-- END CORE PLUGINS -->
-    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-    <script src="assets/plugins/gmaps/gmaps.js" type="text/javascript"></script>
-    <script src="assets/scripts/contact-us.js"></script>  
     <script src="assets/scripts/app.js"></script>      
-    <script>
-		jQuery(document).ready(function() {
-			App.init();
-			ContactUs.init();
-		});
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();
+                        
+            App.initBxSlider();
+        });
     </script>
     <!-- END JAVASCRIPTS -->
 <!-- END BODY -->

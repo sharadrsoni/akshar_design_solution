@@ -4,14 +4,15 @@ if (!defined('BASEPATH'))
 
 class batch_model extends CI_Model {
 
-	public function getDetailsByBranch($branchId) {
+	public function getMaxId() {
+		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
+	}
 
-		$this -> db -> where("batch.branchId", $branchId);
-		$this -> db -> from('batch');
+	public function getDetailsByBranch($branchCode) {
+		$this -> db -> where("batch.branchCode", $branchCode);
 		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
 		$this -> db -> join('user', 'user.userId = batch.facultyId');
-		return $this -> db -> get() -> result();
-
+		return $this -> db -> get('batch') -> result();
 	}
 
 	public function getDetailsBranch($branchId) {
@@ -23,20 +24,16 @@ class batch_model extends CI_Model {
 	}
 
 	
-	public function getDetailsByBranchAndBatch($branchId, $batchId) {
-
-		$this -> db -> where("batch.branchId", $branchId);
+	public function getDetailsByBranchAndBatch($branchCode, $batchId) {
+		$this -> db -> where("batch.branchCode", $branchCode);
 		$this -> db -> where("batch.batchId", $batchId);
-		$this -> db -> from('batch');
-		return $this -> db -> get() -> result();
-
+		return $this -> db -> get('batch') -> result();
 	}
-public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
 
-		$this -> db -> where("batch.branchId", $branchId);
+	public function getDetailsByBranchAndFaculty($branchCode, $facultyId) {
+		$this -> db -> where("batch.branchCode", $branchCode);
 		$this -> db -> where("batch.facultyId", $facultyId);
-		$this -> db -> from('batch');
-		return $this -> db -> get() -> result();
+		return $this -> db -> get('batch') -> result();
 	}
 
 	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
@@ -44,46 +41,7 @@ public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
 		$this -> db -> where("batchStrength - (select count(*) from student_batch where batch.batchId)", NULL, FALSE);
 		$this -> db -> where("batch.branchId", $branchId);
 		$this -> db -> where("batch.courseCode", $courseCode);
-		$this -> db -> from('batch');
-		return $this -> db -> get() -> result();
-
-	}
-
-	public function deleteBatch($batchId) {
-		if (isset($batchId)) {
-			$this -> db -> where('batchId', $batchId);
-			$this -> db -> delete('batch');
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	public function addBatch($data) {
-		if (isset($data)) {
-			return $this -> db -> insert('batch', $data);
-		} else {
-			return false;
-		}
-	}
-
-	public function updateBatch($data) {
-		if (isset($data)) {
-			$this -> db -> where('batchId', $data['batchId']);
-			return $this -> db -> update('batch', $data);
-		} else {
-			return false;
-		}
-	}
-
-	public function getMaxId() {
-		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
-		
-	}
-	
-	public function getBatchLimit($batchId) {
-		$this -> db -> where("batchId", $batchId);		
-		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
+		return $this -> db -> get('batch') -> result();
 	}
 
 	public function getCourseId($batchId) {
@@ -92,4 +50,34 @@ public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
 		return $this -> db -> get() -> result();
 	}
 
+	public function addBatch($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('batch', $data);
+		}
+		return false;
+	}
+
+	public function updateBatch($data) {
+		if (isset($data)) {
+			$this -> db -> where('batchId', $data['batchId']);
+			return $this -> db -> update('batch', $data);
+		}
+		return false;
+	}
+
+	public function getBatchLimit($batchId) {
+		$this -> db -> where("batchId", $batchId);		
+		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
+	}
+
+		public function deleteBatch($batchId) {
+		if (isset($batchId)) {
+			$this -> db -> where('batchId', $batchId);
+			$this -> db -> delete('batch');
+			return true;
+		}
+		return false;
+	}
+
 }
+?>

@@ -1,21 +1,15 @@
-var Target = function() {
+var Role = function() {
 	return {
 		//main function to initiate the module
 		init_table : function() {
 			if (!jQuery().dataTable) {
 				return;
 			}
-			// begin tblTarget table
-			$('#tblTarget').dataTable({
+			// begin tblrole table
+			$('#tblrole').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, {
-					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
-				}, {
-					"bSortable" : false
-				}],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -35,7 +29,7 @@ var Target = function() {
 				}]
 			});
 
-			jQuery('#tblTarget .group-checkable').change(function() {
+			jQuery('#tblrole .group-checkable').change(function() {
 				var set = jQuery(this).attr("data-set");
 				var checked = jQuery(this).is(":checked");
 				jQuery(set).each(function() {
@@ -48,14 +42,14 @@ var Target = function() {
 				jQuery.uniform.update(set);
 			});
 
-			jQuery('#tblTarget .dataTables_filter input').addClass("m-wrap medium");
+			jQuery('#tblrole .dataTables_filter input').addClass("m-wrap medium");
 			// modify table search input
-			jQuery('#tblTarget .dataTables_length select').addClass("m-wrap small");
+			jQuery('#tblrole .dataTables_length select').addClass("m-wrap small");
 			// modify table per page dropdown
-			//jQuery('#tblEvent .dataTables_length select').select2(); // initialize select2 dropdown
+			//jQuery('#tblstate .dataTables_length select').select2(); // initialize select2 dropdown
 		},
 		init_formvalidation : function() {
-			var form1 = $('#form_target');
+			var form1 = $('#form_role');
 			var error1 = $('.alert-error', form1);
 			var success1 = $('.alert-success', form1);
 			form1.validate({
@@ -64,28 +58,12 @@ var Target = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					branch : {
-						required : true,
-					},
-					target_name : {
-						required : true,
-					},
-					target_type : {
-						required : true,
-					},
-					start_date : {
-						required : true,
-					},
-					end_date : {
-						required : true,
-					},
-					description : {
+					role_name:{
 						required : true,
 					}
-
 				},
 
-				invalidHandler : function(target, validator) {//display error alert on form submit
+				invalidHandler : function(event, validator) {//display error alert on form submit
 					success1.hide();
 					error1.show();
 					App.scrollTo(error1, -200);
@@ -117,71 +95,31 @@ var Target = function() {
 			});
 		},
 		init_uijquery : function() {
-			$("#start_date_datepicker input").datepicker({
-				isRTL : App.isRTL(),
-				dateFormat: 'dd-mm-yy'
-			});
-
-			$("#start_date_datepicker .add-on").click(function() {
-				$("#start_date_datepicker input").datepicker("show");
-			});
-
-			$("#end_date_datepicker input").datepicker({
-				isRTL : App.isRTL(),
-				dateFormat: 'dd-mm-yy'
-			});
-
-			$("#end_date_datepicker .add-on").click(function() {
-				$("#end_date_datepicker input").datepicker("show");
-			});
 			$("#tablink2").click(function() {
-				$('#branch').val("");
-				$('#target_name').val("");
-				$('#target_type').val("");
-				$('#start_date').val("");
-				$('#end_date').val("");
-				$('#description').val("");
-				$('#targetId').val("");
-				$("#submitTarget").text("Add Target");
-				$('.alert-error', $('#form_target')).hide();
-				$("#form_target").validate().resetForm();
+				$('#role_name').val("");
+				$('#roleId').val("");
+				$("#submitRole").text("Add Role");
+				$('.alert-error', $('#form_role')).hide();
+				$("#form_role").validate().resetForm();
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});
 		}
 	};
 }();
-function viewtarget(targetid) {
+function updaterole(roleid) {
 	$.ajax({
-		url : "target/" + branchCode,
+		url : "role/" + roleid,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
 			if (json) {
-				
-			}
-		}
-	});
-}
-
-function updatetarget(targetid) {
-	$.ajax({
-		url : "target/" + targetid,
-		dataType : 'json',
-		async : true,
-		success : function(json) {
-			if (json) {
-				$('#branch').val(json.target[0].branchCode);
-				$('#target_name').val(json.target[0].targetSubject);
-				$('#target_type').val(json.target[0].targetTypeId);
-				$('#start_date').val(json.target[0].targetStartDate);
-				$('#end_date').val(json.target[0].targetEndDate);
-				$('#description').val(json.target[0].targetDescription);
+				$('#role_name').val(json.role[0].roleName);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#targetId').val(json.target[0].targetId);
-				$("#submitTarget").text("Update Target");
+				$('#roleId').val(json.role[0].roleId);
+				$("#submitRole").text("Update Role");
 			}
 		}
 	});

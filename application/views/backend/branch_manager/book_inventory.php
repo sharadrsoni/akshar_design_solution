@@ -91,10 +91,18 @@
 							<div class="body-inner">
 								<h3 class="form-section">Inventory Info.</h3>
 										<!-- course name -->
-									<div class="control-group">
+										<?php
+									$err=form_error('course_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
 										<label class="control-label">Course Name<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="course_id" id="course_id">
+											<select class="span4" name="course_id" id="course_id" value="<?php echo set_value("course_id"); ?>">
 												<option value="">Select...</option>
 												<?php
 												foreach ($course as $key) {
@@ -106,10 +114,19 @@
 										</div>
 									</div><!--/ course name -->
 								<!-- Inventory Quantity -->
-								<div class="control-group">
+								<?php
+									$err=form_error('inventory_quantity');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Inventory Inward Quantity<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="inventory_quantity" id="inventory_quantity" class="span8">
+										<input type="text" name="inventory_quantity" id="inventory_quantity" class="span8" value="<?php echo set_value("inventory_quantity"); ?>">
+										<span for="inventory_quantity" class="help-inline"><?php echo form_error('inventory_quantity'); ?></span>
 									</div>
 								</div><!--/ Inventory Quantity -->
 								<input type="hidden" name="inventoryInwardId" id="inventoryInwardId" value="" />

@@ -154,44 +154,57 @@ var Test = function() {
 			formValidatorAddTestmarks();
 		},
 		init_uijquery : function() {
-			$("#tab3link").click(function() {
-				$("#tab1link").parent().attr("class", "");
+
+			$("#test_date_datepicker input").datepicker({
+				isRTL : App.isRTL(),
+				dateFormat : 'dd-mm-yy'
 			});
-			$('.marks').each(function() {
-				$(this).rules('add', {
-					required : true,
-					messages : {
-						required : "your custom required message",
-						number : "your custom number message"
-					}
-				});
+			$("#test_date_datepicker .add-on").click(function() {
+				$("#test_date_datepicker input").datepicker("show");
 			});
 
-			$("#tab3link").click(function() {
+			$(".tab3link").click(function() {
+				$("#tab1link").parent().attr("class", "");
+				$("#lst_students").html("");
+				testid=$(this).data("test_id");
 				$.ajax({
-					url : "../ajax_manager/studentlistMarks/" + $("#tab3link").data("test_id"),
+					url : "../ajax_manager/studentlistMarks/" + $(this).data("test_id"),
 					dataType : 'json',
 					async : true,
 					success : function(json) {
 						if (json) {
-							$('#testId').val($("#tab3link").data("test_id"));
+							$('#testId').val(testid);
 							$.each(json.student_list, function(i, item) {
-							if (item.testResultObtainedMarks == null)
-								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' name='obtained_marks[]' id='obtained_marks" + i + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
-							else
-								$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' name='obtained_marks[]' id='obtained_marks" + i + "'value = '" + item.testResultObtainedMarks + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
+								if (item.testResultObtainedMarks == null)
+									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' class='marks span4' name='obtained_marks[]' id='obtained_marks" + i + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
+								else
+									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' class='marks span4' name='obtained_marks[]' id='obtained_marks" + i + "'value = '" + item.testResultObtainedMarks + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
 							});
-							$('.text-toggle-Attendance').toggleButtons({
-								width : 200,
-								label : {
-									enabled : $('.text-toggle-Attendance').attr("data-on"),
-									disabled : $('.text-toggle-Attendance').attr("data-off")
-								},
-								style : {
-									// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-									enabled : "info",
-									disabled : "danger"
-								}
+							$('.marks').each(function() {
+								$(this).rules('add', {
+									required : true,
+									number : true,
+									messages : {
+										required : "This field is required",
+										number : "only number allows"
+									}
+								});
+							});
+						}
+					}
+				});
+			});
+			$(".tab4link").click(function() {
+				$("#tab1link").parent().attr("class", "");
+				$("#lst_students_view").html("");
+				$.ajax({
+					url : "../ajax_manager/studentlistMarks/" + $(this).data("test_id"),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.student_list, function(i, item) {
+									$('#lst_students_view').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td>" + item.testResultObtainedMarks + "</td></tr>");
 							});
 						}
 					}
