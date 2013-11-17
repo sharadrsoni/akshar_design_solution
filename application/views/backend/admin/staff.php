@@ -95,7 +95,7 @@
 
 								<!-- Branch -->
 								<?php
-								$err = form_error('branchId');
+								$err = form_error('branchCode');
 								if ($err != '') {
 									echo "<div class='control-group error'>";
 								} else {

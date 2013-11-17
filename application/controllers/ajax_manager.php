@@ -97,12 +97,12 @@ class Ajax_manager extends CI_Controller {
 	}
 
 	//Batch List
-	public function baranchDataList($branchId) {
+	public function branchDataList($branchCode) {
 		$this -> load -> model('batch_model');
 		$this -> load -> model('user_model');
-		$batch_data = $this -> batch_model -> getDetailsBranch($branchId);
+		$batch_data = $this -> batch_model -> getDetailsBranch($branchCode);
 		$this -> data['batch_list'] = $batch_data;
-		$staff_data = $this -> user_model -> getDetailsByBranch($branchId);
+		$staff_data = $this -> user_model -> getDetailsByBranch($branchCode);
 		$this -> data['staff_list'] = $staff_data;
 		echo json_encode($this -> data);
 	}

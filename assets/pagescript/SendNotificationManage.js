@@ -172,7 +172,7 @@ var SendNotification = function() {
 				$("#user_name").children().remove();
 				$('#batch_name').html("<option value=\"\">Select...</option>");
 				$.ajax({
-					url : "../ajax_manager/baranchDataList/" + $("#branch_name").val(),
+					url : "../ajax_manager/branchDataList/" + $("#branch_name").val(),
 					dataType : 'json',
 					async : true,
 					success : function(json) {
