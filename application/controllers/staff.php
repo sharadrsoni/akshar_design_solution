@@ -39,6 +39,22 @@ class Staff extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//Send Notification Admin
+	public function send_notification_admin() {
+		$this -> load -> model("branch_model");
+		$branchName = $this -> branch_model -> getDetailsOfBranch();
+		$this-> data['branch'] = $branchName;			
+		$this->data['title'] = "ADS | Target Type";
+		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this -> load -> view('backend/css/sendnotification_css');
+		$this -> load -> view('backend/master_page/header');
+		$this -> load -> view('backend/branch_manager/sendnotification');
+		$this -> load -> view('backend/master_page/footer');
+		$this -> load -> view('backend/js/sendnotification_js');
+		$this -> load -> view('backend/master_page/bottom');
+	}
+
+
 	//Profile
 	public function profile() {
 

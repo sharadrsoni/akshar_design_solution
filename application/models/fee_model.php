@@ -11,9 +11,17 @@ class fee_model extends CI_Model {
 		$this -> db -> where('studentId', $data['studentId']);
 		return $this -> db -> get('fees') -> row_array();
 	}
+
+	public function getFeeDetailsByBranch($branchId) {
+		$this -> db -> from('fees');
+		$this -> db -> join('user', 'fees.studentId = user.userId');
+		$this -> db -> where('branchId', $branchId);
+		return $this -> db -> get() -> result();
+
+	}
 	
-	public function deleteFee($feesId) {
-		if (isset($eventtypeId)) {
+	public function deleteFees($feesId) {
+		if (isset($feesId)) {
 			$this -> db -> where('feesId', $feesId);
 			$this -> db -> delete('fees');
 			return false;

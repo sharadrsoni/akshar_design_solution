@@ -12,6 +12,12 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
+	public function getDetailsByBranch($branchId) {
+		$this -> db -> where("branchId", $branchId);
+		$this -> db -> where("roleId !=", 5);
+		return $this -> db -> get('user') -> result();
+	}
+
 	public function getDetailsByBatch($batchId, $roleId, $branchId) {
 		$this -> db -> where("branchId", $branchId);
 		$this -> db -> where("roleId", $roleId);
