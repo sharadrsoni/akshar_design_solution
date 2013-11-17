@@ -121,7 +121,7 @@ if($role==1)
 							</div>
 							</div><!--/ Batch -->
 
-							<!-- Individual Name -->
+							
 							<div class="control-group" style="display:none" id="lst_user_div">
 							<label class="control-label">Name<span class="required">*</span></label>
 							<div class="controls">
