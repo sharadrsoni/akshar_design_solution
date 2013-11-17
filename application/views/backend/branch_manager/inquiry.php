@@ -54,6 +54,8 @@
 												<th class="hidden-480">Inquiry State</th>
 												<th class="hidden-480">Contact Number</th>
 												<th class="hidden-480">Inquiry_Qualification</th>
+												<th class="hidden-480">Course Code</th>
+												<th class="hidden-480">Expected Date of Joining</th>
 												<th >View</th>
 											</tr>
 										</thead>
@@ -66,6 +68,8 @@
 <td class=\"hidden-480\">{$key->inquiryState}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
 <td class=\"hidden-480\">{$key->inquiryQualification}</td>
+<td class=\"hidden-480\">{$key->courseCode}</td>
+<td class=\"hidden-480\">{$key->inquiryExpectedDOJ}</td>
 <td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
@@ -291,6 +295,74 @@
 										</div>
 									</div><!--/ StateState -->
 									<h3 class="form-section">Other Info</h3>
+										<!-- Course Category -->
+								<?php
+									$err=form_error('coursecategory');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+										<label class="control-label">Course Category<span class="required">*</span></label>
+										<div class="controls">
+											<div class="span4">
+												<select class="span12" name="coursecategory" id="coursecategory" value="<?php echo set_value("coursecategory"); ?>">
+												<option value="">Select...</option>
+												<?php
+												foreach ($category as $key) {
+													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName} - {$key->courseCategoryId}</option>";
+												}
+												?>
+												</select>
+												<span for="coursecategory" class="help-inline"><?php echo form_error('coursecategory'); ?></span>
+											</div>
+										</div>
+									</div>
+												<!-- Course Category --> 
+													<!-- Course -->
+									<?php
+									$err=form_error('course');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+										<label class="control-label">Course Name<span class="required">*</span></label>
+										<div class="controls">
+											<div class="span4">
+												<select class="span12" name="course" id="course" value="<?php echo set_value("course"); ?>">
+													<option value="">Select...</option>
+													<option value="Category 1">Category 1</option>
+													<option value="Category 2">Category 2</option>
+													<option value="Category 3">Category 5</option>
+													<option value="Category 4">Category 4</option>
+												</select>
+												<span for="course" class="help-inline"><?php echo form_error('course'); ?></span>
+											</div>
+												</div>
+									</div>
+												<!-- Course-->
+													<!-- Expected DOJ -->
+										<?php
+									$err=form_error('date_of_doj');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+										<label class="control-label">Expected Date of Joining</label>
+										<div class="input-append span6" id="doj_datepicker">
+											<input type="text" readonly="" data-format="dd-MM-yyyy" name="date_of_doj" id="date_of_doj" class="m-wrap span7" value="<?php echo set_value("date_of_doj"); ?>">
+											<span for="date_of_doj" class="help-inline"><?php echo form_error('date_of_doj'); ?></span>
+											<span class="add-on"><i class="icon-calendar"></i></span>
+										</div>
+									</div><!--/ Expected DOJ --> 
 									<!-- Name of Institute/Industry -->
 										<?php
 									$err=form_error('name_of_institute');
