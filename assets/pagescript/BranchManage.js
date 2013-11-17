@@ -185,11 +185,11 @@ var Branch = function() {
 
 			$("#stateid").change(function() {
 				$('#cityid').html('');
-				$("#cityid").append("<option value=''>Select...</option>");
+				$("#cityid").append("<option>Select...</option>");
 				$.ajax({
 					url : "../ajax_manager/citylist/" + $("#stateid").val(),
 					dataType : 'json',
-					async : true,
+					async : false,
 					success : function(json) {
 						if (json) {
 							$.each(json.city_list, function(i, item) {
@@ -257,8 +257,9 @@ function updatebranch(branchCode) {
 				$('#conatct_no').val(json.branch[0].branchContactNumber);
 				$('#street_1').val(json.branch[0].branchStreet1);
 				$('#street_2').val(json.branch[0].branchStreet2);
-				$('#stateid').val(json.branch[0].stateId);
-				$('#cityid').val(json.branch[0].cityId);
+				$("#stateid").select2("val",json.branch[0].stateId);
+				$("#stateid").change();
+				$("#cityid").select2("val",json.branch[0].cityId);
 				$('#pin_code').val(json.branch[0].branchPincode);
 				$('#longitude').val(json.branch[0].branchLongitude);
 				$('#latitude').val(json.branch[0].branchLatitude);
