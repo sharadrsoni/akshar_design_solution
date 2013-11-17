@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
 		$this -> load -> model("user_model");
 		$this -> data['StudentResigsterCount'] = $this -> user_model -> getUserCount(5);
 		$this -> data['FacultyCount'] = $this -> user_model -> getUserCount(3);
-		$this -> load -> view('backend/branch_manager/dashboard_admin', $this -> data);
+		$this -> load -> view('backend/admin/dashboard', $this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -104,7 +104,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/branch');
+			$this -> load -> view('backend/admin/branch');
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/branch_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -137,7 +137,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/coursecategory', $this -> data);
+			$this -> load -> view('backend/admin/course_category', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/coursecategory_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -186,7 +186,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/course', $this -> data);
+			$this -> load -> view('backend/admin/course', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/course_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -266,7 +266,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/city', $this -> data);
+			$this -> load -> view('backend/admin/city', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/city_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -305,7 +305,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/targettype', $this -> data);
+			$this -> load -> view('backend/admin/target_type', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/targettype_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -353,7 +353,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/target', $this -> data);
+			$this -> load -> view('backend/admin/target', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/target_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -410,7 +410,7 @@ public function delete_role($roleId) {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/staff', $this -> data);
+			$this -> load -> view('backend/admin/staff', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/staff_js');
 			$this -> load -> view('backend/master_page/bottom');

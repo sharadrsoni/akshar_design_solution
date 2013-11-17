@@ -109,7 +109,7 @@ if($role==1)
 
 							</select>
 							<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?>
-								</span>
+							</span>
 							</div>
 							</div><!--/ Branch -->
 							<!-- Batch -->
@@ -121,7 +121,6 @@ if($role==1)
 							</div>
 							</div><!--/ Batch -->
 
-							
 							<div class="control-group" style="display:none" id="lst_user_div">
 							<label class="control-label">Name<span class="required">*</span></label>
 							<div class="controls">
