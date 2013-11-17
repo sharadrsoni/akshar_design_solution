@@ -13,7 +13,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Random Password Genterator Function
 	function randomPassword() {
-		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789`~!@#$%^&*";
 		$pass = array();
 		//remember to declare $pass as an array
 		$alphaLength = strlen($alphabet) - 1;
