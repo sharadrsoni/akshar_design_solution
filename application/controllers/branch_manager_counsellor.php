@@ -115,11 +115,20 @@ class Branch_manager_counsellor extends CI_Controller {
 			}
 		} else if (isset($_POST['registerCourse'])) {
 			$this -> load -> model('student_batch_model');
+				$this -> load -> model('batch_model');
+				$this -> load -> model('student_batch_model');
+				$presentCount = $this -> student_batch_model -> getBatchCount($_POST['batchid']);
+				$maxLimit = $this -> batch_model -> getBatchLimit($_POST['batchid']);
+				if($maxLimit['batchStrength'] - $presentCount['c'] ==0 && $presentCount != null)
+				{
+					$this -> data['error'] = "Batch Full";
+					redirect(base_url() . "branch_manager_counsellor/studentregistration");
+				}
 			if (isset($_POST['isbookissue']))
 				$val = 1;
 			else
 				$val = 0;
-			$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val, 'batchId' => $_POST['batchid']);
+			$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val, 'batchId' => $_POST['batchid'],'courseFees' => $_POST['course_fees']);
 			if ($this -> student_batch_model -> addStudentbatch($studentBatchData)) {
 				redirect(base_url() . "branch_manager_counsellor/studentregistration");
 			} else {
@@ -225,9 +234,10 @@ class Branch_manager_counsellor extends CI_Controller {
 
 			}
 		} else {
-			$this -> load -> model('course_model');
-			$this -> load -> model('batch_model');
+			$this -> load -> model('user_model');
 			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
+			$this -> load -> model("fee_model");
+			$this -> data['fee_list'] = $this -> fee_model -> getFeeDetailsByBranch($this -> branchId);
 			$this -> data['title'] = "ADS | Fess Payment";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/fees_payment_css');
@@ -237,6 +247,12 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> view('backend/js/fees_payment_js');
 			$this -> load -> view('backend/master_page/bottom');
 		}
+	}
+
+	public function delete_fees($feesId) {
+		$this -> load -> model('fee_model');
+		$this -> fee_model -> deletefees($feesId);
+		redirect(base_url() . "branch_manager_counsellor/fees_payment");
 	}
 
 	//Fees Receipt

@@ -139,12 +139,6 @@
 								<label class="control-label">Course<span class="required">*</span></label>
 								<div class="controls">
 									<select name="courseid" id="courseid" class="span6">
-											<option value="">Select...</option>
-											<?php
-											foreach ($course as $key) {
-												echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
-											}
-											?>
 									</select>
 								</div>
 							</div><!-- /Course -->
@@ -165,6 +159,15 @@
 									</div>
 								</div>
 							</div><!-- /Book receive or not -->
+							<!-- Course Fee -->
+							<div class="control-group">
+								<label class="control-label">Course Fees</label>
+								<div class="controls">
+									<div class="input-prepend">
+										<input class="m-wrap span12" type="text" name="course_fees" id="course_fees"/>
+									</div>
+								</div>
+							</div><!-- /Course Fee -->
 							<!-- Add -->
 							<div class="form-actions clearfix">
 								<button type="submit" class="btn purple-stripe" name="registerCourse" id="registerCourse">

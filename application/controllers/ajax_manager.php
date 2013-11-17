@@ -18,12 +18,17 @@ class Ajax_manager extends CI_Controller {
 		$batch_data = $this -> batch_model -> getDetailsByBranchAndCourse($this -> branchId, $courseCode);
 		$this -> data['batch_list'] = $batch_data;
 		$weekdays = Array();
+		$timmings = Array();
 		foreach ($batch_data as $key) {
 			$weekdays[$key -> batchId] = $this -> batch_timing_model -> getWeekDays($key -> batchId);
 			$timmings[$key -> batchId] = $this -> batch_timing_model -> getBatchTiming($key -> batchId);
 		}
 		$this -> data['weekdays'] = $weekdays;
 		$this -> data['timmings'] = $timmings;
+		
+		$this -> load -> model('course_model');
+		$available_data = $this -> course_model -> checkBooks($courseCode);
+		$this -> data['available_data'] = $available_data;		
 		echo json_encode($this -> data);
 	}
 
@@ -65,6 +70,34 @@ class Ajax_manager extends CI_Controller {
 		$this -> load -> model('test_result_model');
 		$student_data = $this -> test_result_model -> studentlistMarks($testId);
 		$this -> data['student_list'] = $student_data;
+		echo json_encode($this -> data);
+	}
+
+	//Course List
+	public function courseList($studentId) {
+		$this -> load -> model('course_model');
+		$this -> load -> model('student_batch_model');
+		$course_data = $this -> student_batch_model -> getDetailsByStudent($studentId);
+		$courseId = array();
+		$i = 0;
+		$courseId[$i++] = 0;
+
+		foreach ($course_data as $key) {
+			$courseId[$i++] = $key -> courseCode;
+		}
+		$course_data = $this -> course_model -> getDetailsNotCourse($courseId);
+		$this -> data['course_list'] = $course_data;
+		echo json_encode($this -> data);
+	}
+
+	//Batch List
+	public function baranchDataList($branchId) {
+		$this -> load -> model('batch_model');
+		$this -> load -> model('user_model');
+		$batch_data = $this -> batch_model -> getDetailsBranch($branchId);
+		$this -> data['batch_list'] = $batch_data;
+		$staff_data = $this -> user_model -> getDetailsByBranch($branchId);
+		$this -> data['staff_list'] = $staff_data;
 		echo json_encode($this -> data);
 	}
 

@@ -13,6 +13,15 @@ class batch_model extends CI_Model {
 		return $this -> db -> get() -> result();
 
 	}
+
+	public function getDetailsBranch($branchId) {
+
+		$this -> db -> where("branchId", $branchId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+
+	}
+
 	
 	public function getDetailsByBranchAndBatch($branchId, $batchId) {
 
@@ -32,6 +41,7 @@ public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
 
 	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
 
+		$this -> db -> where("batchStrength - (select count(*) from student_batch where batch.batchId)", NULL, FALSE);
 		$this -> db -> where("batch.branchId", $branchId);
 		$this -> db -> where("batch.courseCode", $courseCode);
 		$this -> db -> from('batch');
@@ -69,6 +79,11 @@ public function getDetailsByBranchAndFaculty($branchId, $facultyId) {
 	public function getMaxId() {
 		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
 		
+	}
+	
+	public function getBatchLimit($batchId) {
+		$this -> db -> where("batchId", $batchId);		
+		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
 	}
 
 	public function getCourseId($batchId) {
