@@ -184,7 +184,7 @@
 									 ?>
 									<label class="control-label">State<span class="required">*</span></label>
 									<div class="controls">
-											<select class="span8 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
+											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 											<option value="">Select...</option>
 												<?php
 												foreach ($State as $key) {
@@ -206,7 +206,7 @@
 									 ?>
 									<label class="control-label">City<span class="required">*</span></label>
 									<div class="controls">
-											<select class="span8 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
+											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
 											</select>
 											<span for="cityid" class="help-inline"><?php echo form_error('cityid'); ?></span>

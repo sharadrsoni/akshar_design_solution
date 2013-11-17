@@ -381,6 +381,8 @@ public function delete_role($roleId) {
 			$this -> data['branch_list'] = $this -> branch_model -> getDetailsOfBranch();
 			$this -> load -> model("role_model");
 			$this -> data['userrole_list'] = $this -> role_model -> getDetailsOfRole();
+			$this -> load -> model("state_model");
+			$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 			if (isset($_POST['submitStaff'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim');
@@ -394,13 +396,13 @@ public function delete_role($roleId) {
 				$this -> form_validation -> set_rules('qualification', 'Qualification', 'required|trim');
 				$this -> form_validation -> set_rules('street_1', 'Street1', 'required|trim');
 				$this -> form_validation -> set_rules('street_2', 'Street2', 'required|trim');
-				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Postal Code', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
+					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['stateid'], 'userCity' => $_POST['cityid'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
 					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
 						redirect(base_url() . "admin/staff");
 					} else {
