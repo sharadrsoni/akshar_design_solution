@@ -73,7 +73,7 @@ class Branch_manager_counsellor extends CI_Controller {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/inquiry', $this -> data);
+			$this -> load -> view('backend/branch_manager_counsellor/inquiry', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/inquiry_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -152,7 +152,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> view('backend/css/student_register_css');
 			$this -> load -> view('backend/master_page/header');
 
-			$this -> load -> view('backend/branch_manager/student_register');
+			$this -> load -> view('backend/branch_manager_counsellor/student_register');
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/student_register_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -188,7 +188,7 @@ class Branch_manager_counsellor extends CI_Controller {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/book_inventory', $this -> data);
+			$this -> load -> view('backend/branch_manager_counsellor/book_inventory', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/book_inventory_js');
 		}
@@ -248,7 +248,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/fees_payment_css');
 			$this -> load -> view('backend/master_page/header');
-			$this -> load -> view('backend/branch_manager/fees_payment');
+			$this -> load -> view('backend/branch_manager_counsellor/fees_payment');
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/fees_payment_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -267,7 +267,7 @@ class Branch_manager_counsellor extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/feesreceipt_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/feesreceipt');
+		$this -> load -> view('backend/branch_manager_counsellor/fees_receipt');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/feesreceipt_js');
 		$this -> load -> view('backend/master_page/bottom');
