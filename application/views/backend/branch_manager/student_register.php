@@ -156,7 +156,7 @@
 							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register2');
 							echo form_open('branch_manager_counsellor/studentregistration', $attributes);
 						?>
-							<h3 class="block">Select Courses & Batches</h3>
+							<h3 class="block">Select Courses &amp; Batches</h3>
 							<div class="alert alert-error hide">
 								<button class="close" data-dismiss="alert"></button>
 								You have some form errors. Please check below.
@@ -237,6 +237,15 @@
 									</div>
 								</div>
 							</div><!-- /Book receive or not -->
+							<!-- Course Fee -->
+							<div class="control-group">
+								<label class="control-label">Course Fees</label>
+								<div class="controls">
+									<div class="input-prepend">
+										<input class="m-wrap span12" type="text" name="course_fees" id="course_fees"/>
+									</div>
+								</div>
+							</div><!-- /Course Fee -->
 							<!-- Add -->
 							<div class="form-actions clearfix">
 								<button type="submit" class="btn purple-stripe" name="registerCourse" id="registerCourse">

@@ -34,6 +34,14 @@ class batch_model extends CI_Model {
 		return $this -> db -> get('batch') -> result();
 	}
 
+	public function getDetailsBranch($branchId) {
+
+		$this -> db -> where("branchId", $branchId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+
+	}
+
 	public function getDetailsByBranchAndBatch($branchCode, $batchId) {
 		$this -> db -> where("batch.branchCode", $branchCode);
 		$this -> db -> where("batch.batchId", $batchId);
@@ -46,8 +54,10 @@ class batch_model extends CI_Model {
 		return $this -> db -> get('batch') -> result();
 	}
 
-	public function getDetailsByBranchAndCourse($branchCode, $courseCode) {
-		$this -> db -> where("batch.branchCode", $branchCode);
+	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
+
+		$this -> db -> where("batchStrength - (select count(*) from student_batch where batch.batchId)", NULL, FALSE);
+		$this -> db -> where("batch.branchId", $branchId);
 		$this -> db -> where("batch.courseCode", $courseCode);
 		return $this -> db -> get('batch') -> result();
 	}
@@ -80,6 +90,17 @@ class batch_model extends CI_Model {
 			return true;
 		}
 		return false;
+	}
+
+	public function getBatchLimit($batchId) {
+		$this -> db -> where("batchId", $batchId);
+		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
+	}
+
+	public function getCourseId($batchId) {
+		$this -> db -> where("batch.batchId", $batchId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
 	}
 
 }

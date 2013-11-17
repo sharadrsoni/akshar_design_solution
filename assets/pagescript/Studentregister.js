@@ -17,9 +17,6 @@ var StudentRegistration = function() {
 				lastname : {
 					required : true
 				},
-				middlename : {
-					required : true
-				},
 				email : {
 					required : true
 				},
@@ -132,11 +129,32 @@ var StudentRegistration = function() {
 							$.each(json.batch_list, function(i, item) {
 								$('#batchid').append("<option value=" + item.batchId + ">" + item.batchStartDate + "</option>");
 							});
+							if (json.available_data.courseCode)//Enable
+								$('#isbookissue').prop('disable', true);
+							else// Disable
+								$('#isbookissue').prop('disable', true);
 						}
+					}
+				});
+				$.ajax({
+					url : "../ajax_manager/checkBookAvialablity/" + $("#courseid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						alert('12');
+						if (json) {
+							alert('12');
+							$.each(json.course_list, function(i, item) {
+
+							});
+						} else
+							alert('12');
+
 					}
 				});
 			});
 			$("#studentid").change(function() {
+				$("#courseid").children().remove();
 				$.ajax({
 					url : "../ajax_manager/studentBatch/" + $("#studentid").val(),
 					dataType : 'json',
@@ -145,7 +163,19 @@ var StudentRegistration = function() {
 						if (json) {
 							$('#lst_Courses').html("");
 							$.each(json.batch_list, function(i, item) {
-								$('#lst_Courses').append("<tr><td class='hidden-480'>"+item.courseName+"</td><td class='hidden-480'>"+item.batchId+"</td><td><a href='branch_manager/delete_course_register/"+item.studentBatchId+"' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+								$('#lst_Courses').append("<tr><td class='hidden-480'>" + item.courseName + "</td><td class='hidden-480'>" + item.batchId + "</td><td><a href='branch_manager/delete_course_register/" + item.studentBatchId + "' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+							});
+						}
+					}
+				});
+				$.ajax({
+					url : "../ajax_manager/courseList/" + $("#studentid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.course_list, function(i, item) {
+								$('#courseid').append("<option value=" + item.courseCode + ">" + item.courseName + "</option>");
 							});
 						}
 					}

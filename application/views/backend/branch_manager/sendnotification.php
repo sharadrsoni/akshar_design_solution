@@ -48,124 +48,202 @@
 
 						</div-->
 						<div class="tab-pane active" id="tab1">
-							<form class="form-horizontal span12 widget shadowed purple" id="form_sendnotification">
-								<div class="alert alert-error hide">
-									<button class="close" data-dismiss="alert"></button>
-									You have some form errors. Please check below.
-								</div>
-								<div class="alert alert-success hide">
-									<button class="close" data-dismiss="alert"></button>
-									Your form validation is successful!
-								</div>
+							<?php
+$role=$this->session->userdata('roleId');
+if($role==1)
+{
+							?>
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed purple', 'id' => 'form_sendnotification');
+							echo form_open('staff/send_notification_admin', $attributes);
+							?>
+							<div class="alert alert-error hide">
+							<button class="close" data-dismiss="alert"></button>
+							You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success hide">
+							<button class="close" data-dismiss="alert"></button>
+							Your form validation is successful!
+							</div>
 
-								<div class="body-inner">
-								<h3 class="form-section">Send Notification Info.</h3>
-									<!-- Student/Staff -->
-									<div class="control-group">
-										<label class="control-label">Student/Staff<span class="required">*</span></label>
-										<div class="controls">
-											<div class="text-toggle-Userrole" data-on="Student" data-off="Staff" >
-												<input type="checkbox" checked="" name="user_role" id="user_role"  class="toggle" />
-											</div>
-										</div>
-									</div><!--/ Student/Staff -->
-									<!-- Individual/Batch -->
-									<div class="control-group">
-										<label class="control-label">Individual/Batch<span class="required">*</span></label>
-										<div class="controls">
-											<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Branch|Batch">
-												<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
-											</div>
-										</div>
-									</div><!--/ Individual/Batch -->
-										<?php
-									$role=$this->session->userdata('roleId');
-									if($role==1)
-									{
-									?>
-									<!-- Branch -->
-									<div class="control-group">
-										<label class="control-label">Branch<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="branch_name" id="branch_name">
-												<option value="">Select...</option>
-													<?php
-												foreach ($branch as $key) {
-													echo "<option value='{$key->branchCode}'>{$key->branchName} - {$key->branchCode}</option>";
-												}
-												?>
-												
-											</select>
-											<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?></span>
-										</div>
-									</div><!--/ Branch -->
-										<?php } ?>
-									<!-- Batch -->
-									<div class="control-group" id="lst_batch_div">
-										<label class="control-label">Batch<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="batch_name" id="batch_name">
-												<option value="All">All...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
-											</select>
-											<span for="batch_name" class="help-inline"><?php echo form_error('batch_name'); ?></span>
-										</div>
-									</div><!--/ Batch -->
-								
-									<!-- Individual Name -->
-									<?php
-									$err=form_error('user_name');
-									if ($err != '') {
-										echo "<div class='control-group error' style='display:none' id='lst_user_div'>";
-									} else {
-										echo "<div class='control-group' style='display:none' id='lst_user_div'>";
-									}
-									 ?>
-									
-										<label class="control-label">Name<span class="required">*</span></label>
-										<div class="controls">
-											<select name="user_name" id="user_name" multiple="" class="span4 select2">
-												<option value="1">Select...</option>
-												<option value="2">Dallas Cowboys</option>
-												<option value="3">New York Giants</option>
-												<option value="5">Philadelphia Eagles</option>
-												<option value="6">Washington Redskins</option>
-												<option value="7">Chicago Bears</option>
-												<option value="8">Detroit Lions</option>
-												<option value="9">Green Bay Packers</option>
-												<option value="0">Minnesota Vikings</option>
-											</select>
-											<span for="user_name" class="help-inline"><?php echo form_error('message'); ?></span>
-										</div>
-									</div><!--/ Individual Name -->
-									<!-- Message -->
-									<?php
-									$err=form_error('message');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-								
-										<label class="control-label">Message<span class="required">*</span></label>
-										<div class="controls">
-											<textarea type="textarea" name="message" id="message" class="span8" value="<?php echo set_value("message"); ?>"/>
-											</textarea>
-											<span for="message" class="help-inline"><?php echo form_error('message'); ?></span>
-										</div>
-									</div><!--/ Message -->
-									<!-- Form Action -->
-									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="register" id="register">
-											Register
-										</button>
-									</div><!--/ Form Action -->
-								</div>
+							<div class="body-inner">
+							<h3 class="form-section">Send Notification Info.</h3>
+							<!-- Student/Staff -->
+							<div class="control-group">
+							<label class="control-label">Student/Staff<span class="required">*</span></label>
+							<div class="controls">
+							<div class="text-toggle-Userrole" data-on="Student" data-off="Staff" >
+							<input type="checkbox" data-role_id = "<?php echo $this -> session -> userdata('roleId'); ?>"  checked="" name="user_role" id="user_role"  class="toggle" />
+							</div>
+							</div>
+							</div><!--/ Student/Staff -->
+							<!-- Branch/Batch -->
+							<div class="control-group" id="check_box_studnet">
+							<label class="control-label">Branch/Batch<span class="required">*</span></label>
+							<div class="controls">
+							<div class="text-toggle-Branch_Batch" data-on="Branch" data-off="Batch">
+							<input type="checkbox" name="branch_Batch" id="branch_Batch"  class="toggle" />
+							</div>
+							</div>
+							</div><!--/ Branch/Batch -->
+							<!-- Individual/Batch -->
+							<div class="control-group"  id="check_box_staff" style="display: none">
+							<label class="control-label">Individual/Batch<span class="required">*</span></label>
+							<div class="controls">
+							<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Branch">
+							<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
+							</div>
+							</div>
+							</div><!--/ Individual/Batch -->
+							<!-- Branch -->
+							<div class="control-group">
+							<label class="control-label">Branch<span class="required">*</span></label>
+							<div class="controls">
+							<select class="span4 select2" name="branch_name" multiple="" id="branch_name">
+							<option value="">Select...</option>
+							<?php
+							foreach ($branch as $key) {
+								echo "<option value='{$key->branchId}'>{$key->branchName}</option>";
+							}
+							?>
+
+							</select>
+							<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?><
+							/span>
+							</div>
+							</div><!--/ Branch -->
+							<!-- Batch -->
+							<div class="control-group" id="lst_batch_div">
+							<label class="control-label">Batch<span class="required">*</span></label>
+							<div class="controls">
+							<select class="span4" name="batch_name" id="batch_name">
+							</select>
+							</div>
+							</div><!--/ Batch -->
+
+							<!-- Individual Name -->
+							<div class="control-group" style="display:none" id="lst_user_div">
+							<label class="control-label">Name<span class="required">*</span></label>
+							<div class="controls">
+							<select name="user_name" id="user_name" multiple="" class="span4 select2">
+							</select>
+							</div>
+							</div><!--/ Individual Name -->
+							<!-- Message -->
+							<div class="control-group">
+							<label class="control-label">Message<span class="required">*</span></label>
+							<div class="controls">
+							<textarea type="textarea" name="message" id="message" class="span8"/>
+							</textarea>
+							</div>
+							</div><!--/ Message -->
+							<!-- Form Action -->
+							<div class="form-actions">
+							<button type="submit" class="btn btn-primary" name="register" id="register">
+							Register
+							</button>
+							</div><!--/ Form Action -->
+							</div>
 							</form>
+							<?php }
+
+								else {
+							?>
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed purple', 'id' => 'form_sendnotification');
+							echo form_open('staff/send_notification', $attributes);
+							?>
+							<div class="alert alert-error hide">
+								<button class="close" data-dismiss="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success hide">
+								<button class="close" data-dismiss="alert"></button>
+								Your form validation is successful!
+							</div>
+
+							<div class="body-inner">
+								<h3 class="form-section">Send Notification Info.</h3>
+								<!-- Student/Staff -->
+								<div class="control-group">
+									<label class="control-label">Student/Staff<span class="required">*</span></label>
+									<div class="controls">
+										<div class="text-toggle-Userrole" data-on="Student" data-off="Staff" >
+											<input type="checkbox" data-role_id = "<?php echo $this -> session -> userdata('roleId'); ?>" checked="" name="user_role" id="user_role"  class="toggle" />
+										</div>
+									</div>
+								</div><!--/ Student/Staff -->
+								<!-- Individual/All -->
+								<div class="control-group" id="check_box_staff" style="display: none">
+									<label class="control-label">Individual/All<span class="required">*</span></label>
+									<div class="controls">
+										<div class="text-toggle-Branch_Batch" data-on="Individual" data-off="All">
+											<input type="checkbox" name="individual_all" id="individual_all"  class="toggle" />
+										</div>
+									</div>
+								</div><!--/ Branch/All -->
+								<!-- Individual/Batch -->
+								<div class="control-group" id="check_box_studnet">
+									<label class="control-label">Individual/Batch<span class="required">*</span></label>
+									<div class="controls">
+										<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Batch">
+											<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
+										</div>
+									</div>
+								</div><!--/ Individual/Batch -->
+								<!-- Batch -->
+								<div class="control-group" id="lst_batch_div">
+									<label class="control-label">Batch<span class="required">*</span></label>
+									<div class="controls">
+										<select class="span4" name="batch_name" id="batch_name">
+											<option value="">Select...</option>
+											<?php
+											foreach ($branch as $key) {
+												echo "<option value='{$key->branchId}'>{$key->branchName}</option>";
+											}
+											?>
+										</select>
+									</div>
+								</div><!--/ Batch -->
+
+								<!-- Individual Name -->
+								<div class="control-group" style="display:none" id="lst_user_div">
+									<label class="control-label">Name<span class="required">*</span></label>
+									<div class="controls">
+										<select name="user_name" id="user_name" class="span4 select2"></select>
+									</div>
+								</div><!--/ Individual Name -->
+								<!-- Faculty Name -->
+								<div class="control-group" style="display:none" id="lst_user_div">
+									<label class="control-label">Name<span class="required">*</span></label>
+									<div class="controls">
+										<select name="faculty_name" id="faculty_name" multiple="" class="span4 select2">
+											<option value="">Select...</option>
+											<?php
+											foreach ($branch as $key) {
+												echo "<option value='{$key->userId}'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</option>";
+											}
+											?>
+										</select>
+									</div>
+								</div><!--/ Faculty Name -->
+								<!-- Message -->
+								<div class="control-group">
+									<label class="control-label">Message<span class="required">*</span></label>
+									<div class="controls">
+										<textarea type="textarea" name="message" id="message" class="span8"/>
+										</textarea>
+									</div>
+								</div><!--/ Message -->
+								<!-- Form Action -->
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary" name="register" id="register">
+										Register
+									</button>
+								</div><!--/ Form Action -->
+							</div>
+							</form>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
