@@ -175,19 +175,17 @@
 								</div><!--/ Street -->
 								<!-- State -->
 								<?php
-									$err=form_error('state');
+									$err=form_error('stateid');
 									if ($err != '') {
 										echo "<div class='control-group error'>";
 									} else {
 										echo "<div class='control-group'>";
 									}
 									 ?>
-								
-									<label class="control-label">State/City<span class="required">*</span></label>
+									<label class="control-label">State<span class="required">*</span></label>
 									<div class="controls">
-										<div class="span4">
-											<select class="span12 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
-												<option value="">Select...</option>
+											<select class="span8 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
+											<option value="">Select...</option>
 												<?php
 												foreach ($State as $key) {
 													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
@@ -195,15 +193,25 @@
 												?>
 											</select>
 											<span for="state" class="help-inline"><?php echo form_error('stateid'); ?></span>
-										</div>
-										<div class="span4">
-											<select class="span12 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
-												<option value="">Select...</option>
-											</select>
-											<span for="city" class="help-inline"><?php echo form_error('cityid'); ?></span>
-										</div>
 									</div>
 								</div><!--/ State -->
+								<!-- City -->
+								<?php
+									$err=form_error('cityid');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									<label class="control-label">City<span class="required">*</span></label>
+									<div class="controls">
+											<select class="span8 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
+												<option value="">Select...</option>
+											</select>
+											<span for="cityid" class="help-inline"><?php echo form_error('cityid'); ?></span>
+									</div>
+								</div><!--/ City -->
 								<!-- Postal Code -->
 								<?php
 									$err=form_error('pin_code');
