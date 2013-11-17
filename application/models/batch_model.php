@@ -5,7 +5,26 @@ if (!defined('BASEPATH'))
 class batch_model extends CI_Model {
 
 	public function getMaxId() {
-		return $this -> db -> select_max('batchId') -> get('batch') -> row_array();
+		//die("yes");
+		$dataResponse = $this -> db -> like('batchId', $year . $branchCode, "after") -> get('batch') -> result();
+		//die(print_r($dataResponse));
+		$minimum = 0;
+		foreach ($dataResponse as $key) {
+			$threeDigit = substr($key -> batchId, 7, 9);
+			if ($minimum < intval($threeDigit)) {
+				$minimum = intval($threeDigit);
+			}
+		}
+		$minimum += 1;
+		if ($minimum > 999) {
+			return 0;
+		}
+		if ($minimum < 10) {
+			$minimum = "00" . $minimum;
+		} else if ($minimum < 100 && $minimum > 9) {
+			$minimum = "0" . $minimum;
+		}
+		return $minimum;
 	}
 
 	public function getDetailsByBranch($branchCode) {
@@ -13,6 +32,14 @@ class batch_model extends CI_Model {
 		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
 		$this -> db -> join('user', 'user.userId = batch.facultyId');
 		return $this -> db -> get('batch') -> result();
+	}
+
+	public function getDetailsBranch($branchId) {
+
+		$this -> db -> where("branchId", $branchId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
+
 	}
 
 	public function getDetailsByBranchAndBatch($branchCode, $batchId) {
@@ -27,8 +54,10 @@ class batch_model extends CI_Model {
 		return $this -> db -> get('batch') -> result();
 	}
 
-	public function getDetailsByBranchAndCourse($branchCode, $courseCode) {
-		$this -> db -> where("batch.branchCode", $branchCode);
+	public function getDetailsByBranchAndCourse($branchId, $courseCode) {
+
+		$this -> db -> where("batchStrength - (select count(*) from student_batch where batch.batchId)", NULL, FALSE);
+		$this -> db -> where("batch.branchId", $branchId);
 		$this -> db -> where("batch.courseCode", $courseCode);
 		return $this -> db -> get('batch') -> result();
 	}
@@ -61,6 +90,17 @@ class batch_model extends CI_Model {
 			return true;
 		}
 		return false;
+	}
+
+	public function getBatchLimit($batchId) {
+		$this -> db -> where("batchId", $batchId);
+		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
+	}
+
+	public function getCourseId($batchId) {
+		$this -> db -> where("batch.batchId", $batchId);
+		$this -> db -> from('batch');
+		return $this -> db -> get() -> result();
 	}
 
 }

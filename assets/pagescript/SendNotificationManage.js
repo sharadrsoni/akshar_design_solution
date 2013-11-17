@@ -81,23 +81,113 @@ var SendNotification = function() {
 					disabled : "success"
 				}
 			});
+			$('.text-toggle-Branch_Batch').toggleButtons({
+				width : 200,
+				label : {
+					enabled : $('.text-toggle-Branch_Batch').attr("data-on"),
+					disabled : $('.text-toggle-Branch_Batch').attr("data-off")
+				},
+				style : {
+					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+					enabled : "warning",
+					disabled : "success"
+				}
+			});
 			$("#individual_Batch").change(function() {
+				$("#batch_name").children().remove();
+				$("#user_name").children().remove();
+				$("#branch_name").val("");
 				if ($('#individual_Batch').is(':checked') == true) {
 					$("#lst_user_div").attr("style", "display");
 				} else {
 					$("#lst_user_div").attr("style", "display:none");
 				}
 			});
-			$("#user_role").change(function() {
-				if ($('#user_role').is(':checked') == true) {
-					$("#lst_batch_div").attr("style", "display");
+
+			$("#individual_all").change(function() {
+				$("#batch_name").children().remove();
+				$("#user_name").children().remove();
+				$("#branch_name").val("");
+				if ($('#individual_all').is(':checked') == true) {
+					$("#lst_user_div").attr("style", "display");
 				} else {
-					$("#lst_batch_div").attr("style", "display:none");
+					$("#lst_user_div").attr("style", "display:none");
 				}
 			});
-			$("#user_name").select2({
+
+
+			$("#branch_Batch").change(function() {
+				$("#batch_name").children().remove();
+				$("#user_name").children().remove();
+				$("#branch_name").val("");
+				if ($('#branch_Batch').is(':checked') == true) {
+					$("#lst_batch_div").attr("style", "display:none");
+				} else {
+					$("#lst_batch_div").attr("style", "display");
+				}
+			});
+
+			$("#user_role").change(function() {
+				$("#batch_name").children().remove();
+				$("#user_name").children().remove();
+				$("#branch_name").val("");
+				if ($('#user_role').is(':checked') == true) {
+					if ($("#user_role").data("role_id") == 1) {
+						$("#lst_batch_div").attr("style", "display");
+						$("#check_box_studnet").attr("style", "display");
+						$("#check_box_staff").attr("style", "display:none");
+						$("#lst_user_div").attr("style", "display:none");
+					}
+					else
+					{
+						$("#check_box_studnet").attr("style", "display");
+						$("#check_box_staff").attr("style", "display:none");
+						$("#lst_batch_div").attr("style", "display");
+					} 
+				} else {
+					if ($("#user_role").data("role_id") == 1) {
+						$("#check_box_studnet").attr("style", "display:none");
+						if ($('#individual_Batch').is(':checked') == true)
+							$("#lst_user_div").attr("style", "display");
+						$("#check_box_staff").attr("style", "display");
+						$("#lst_batch_div").attr("style", "display:none");
+					}
+					else {
+						$("#check_box_staff").attr("style", "display");
+						if ($('#individual_all').is(':checked') == true)
+							$("#lst_batch_div").attr("style", "display");
+						else
+							$("#lst_batch_div").attr("style", "display:none");
+						$("#check_box_studnet").attr("style", "display:none");
+						$("#lst_user_div").attr("style", "display:none");
+					}
+				}
+			});
+			$(".select2").select2({
 				allowClear : false,
 			});
+
+			$("#branch_name").change(function() {
+				$("#batch_name").children().remove();
+				$("#user_name").children().remove();
+				$('#batch_name').html("<option value=\"\">Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/baranchDataList/" + $("#branch_name").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.batch_list, function(i, item) {
+								$('#batch_name').append("<option value=" + item.batchId + ">" + item.batchStartDate + "</option>");
+							});
+							$.each(json.staff_list, function(i, item) {
+								$('#user_name').append("<option value=" + item.userId + ">" + item.userFirstName + ' ' + item.userMiddleName + ' ' + item.userLastName + "</option>");
+							});
+						}
+					}
+				});
+			});
+
 		}
 	};
 }();

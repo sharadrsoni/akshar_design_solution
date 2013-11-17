@@ -52,21 +52,32 @@
 									<table class="table table-striped table-bordered table-hover" id="tblfeespyament">
 										<thead>
 											<tr>
-												<th class="hidden-480">StudentID</th>
 												<th class="hidden-480">Student Name</th>
 												<th class="hidden-480">Amount</th>
 												<th class="hidden-480">Date</th>
+												<th class="hidden-480">Mode</th>
 												<th class="hidden-480">Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="odd gradeX">
-												<td>shuxer</td>
-												<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-												<td class="hidden-480">120</td>
-												<td class="hidden-480">120</td>
-												<td class="hidden-480">120</td>
-											</tr>
+											<?php
+if (isset($fee_list)) {
+foreach ($fee_list as $key) {
+echo "
+<td class=\"hidden-480\">{$key->userFirstName}{$key->userMiddleName}{$key->userLastName}</td>
+<td class=\"hidden-480\">{$key->feesAmount}</td>
+<td class=\"hidden-480\">{$key->feesDate}</td>";
+
+if ($key->feesMode == 1)
+echo "<td class=\"hidden-480\">Cheque</td>";
+else
+echo "<td class=\"hidden-480\">Cash</td>";
+
+echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch_manager_counsellor/fees_receipt/{$key->feesId}'>View</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager_counsellor/delete_fees/{$key->feesId}'>Delete</span></td></tr>
+";
+}
+}
+											?>
 										</tbody>
 									</table>
 								</div>
