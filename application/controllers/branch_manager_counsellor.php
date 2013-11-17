@@ -29,6 +29,9 @@ class Branch_manager_counsellor extends CI_Controller {
 	//Inquiry
 	public function inquiry($inquiryID = '') {
 		$this -> load -> model("inquiry_model");
+		$this -> load -> model("course_category_model");
+		$courseCategoryName = $this -> course_category_model -> getDetailsOfCourseCategory();
+		$this->data['category'] = $courseCategoryName;
 		if ($inquiryID != '') {
 			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsByinquiry($this -> branchId, $inquiryID);
 			echo json_encode($this -> data);
@@ -53,13 +56,16 @@ class Branch_manager_counsellor extends CI_Controller {
 				$this -> form_validation -> set_rules('street_2', 'Street', 'required|trim');
 				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
 				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('coursecategory', 'Course Category', 'required|trim');
+				$this -> form_validation -> set_rules('course', 'Course', 'required|trim');
+				$this -> form_validation -> set_rules('date_of_doj', 'Date of Joining', 'required|trim');
 				$this -> form_validation -> set_rules('name_of_institute', 'Institute Name', 'required|trim');
 				$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim');
 				$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $this -> branchId);
+					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchId' => $this -> branchId,'courseCode' => $_POST['course'],'inquiryExpectedDOJ' => date("Y-m-d", strtotime($_POST['date_of_doj'])),'inquiryDate' => now());
 					if ($_POST['inquiryId'] != "" ? $this -> inquiry_model -> updateinquiry($inquiryData, $_POST['inquiryId']) : $this -> inquiry_model -> addinquiry($inquiryData)) {
 						redirect(base_url() . "branch_manager/inquiry");
 					} else {
