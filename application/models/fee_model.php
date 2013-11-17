@@ -27,8 +27,9 @@ class fee_model extends CI_Model {
 		return false;
 	}
 
-	public function deleteFee($feesId) {
-		if (isset($eventtypeId)) {
+
+	public function deleteFees($feesId) {
+		if (isset($feesId)) {
 			$this -> db -> where('feesId', $feesId);
 			$this -> db -> delete('fees');
 			return false;

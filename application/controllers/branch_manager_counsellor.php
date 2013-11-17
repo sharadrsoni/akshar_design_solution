@@ -244,9 +244,6 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
 			$this -> load -> model("fee_model");
 			$this -> data['fee_list'] = $this -> fee_model -> getFeeDetailsByBranch($this -> branchId);
-			$this -> load -> model('course_model');
-			$this -> load -> model('batch_model');
-			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchCode, 5);
 			$this -> data['title'] = "ADS | Fess Payment";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/fees_payment_css');

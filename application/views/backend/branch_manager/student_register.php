@@ -156,7 +156,7 @@
 							$attributes = array('class' => 'form-horizontal form-row-seperated', 'id' => 'form_student_register2');
 							echo form_open('branch_manager_counsellor/studentregistration', $attributes);
 						?>
-							<h3 class="block">Select Courses & Batches</h3>
+							<h3 class="block">Select Courses &amp; Batches</h3>
 							<div class="alert alert-error hide">
 								<button class="close" data-dismiss="alert"></button>
 								You have some form errors. Please check below.
@@ -201,6 +201,15 @@
 								<label class="control-label">Course<span class="required">*</span></label>
 								<div class="controls">
 									<select name="courseid" id="courseid" class="span6" value="<?php echo set_value("courseid"); ?>">
+<<<<<<< HEAD
+=======
+											<option value="">Select...</option>
+											<?php
+											foreach ($course as $key) {
+												echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
+											}
+											?>
+>>>>>>> upstream/master
 									</select>
 									<span for="courseid" class="help-inline"><?php echo form_error('courseid'); ?></span>
 								</div>

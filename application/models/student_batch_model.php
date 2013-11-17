@@ -35,7 +35,6 @@ class student_batch_model extends CI_Model {
 		$this -> db -> where("batchId", $batchId);
 		return $this -> db -> select('count(*) as c') -> get('student_batch') -> row_array();
 	}
-	
 	public function addStudentbatch($data) {
 		if (isset($data)) {
 			return $this -> db -> insert('student_batch', $data);
