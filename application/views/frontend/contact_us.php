@@ -7,23 +7,24 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8" />
-    <title>Contact Us | Akshar Design Solution</title>
+    <title>Courses | Akshar Design Solution Course : <?php echo $courseCode;?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/reset.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style-metro.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">               
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="assets/plugins/bxslider/jquery.bxslider.css" />    
+    
+      <link href="<?php echo base_url() ."assets/plugins/bootstrap/css/bootstrap.min.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/plugins/bootstrap/css/bootstrap-responsive.min.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/reset.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/style-metro.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/style.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/style-responsive.css";?>" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo base_url()."assets/plugins/fancybox/source/jquery.fancybox.css";?>">               
+    <link href="<?php echo base_url()."assets/plugins/font-awesome/css/font-awesome.min.css";?>" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo base_url()."assets/plugins/bxslider/jquery.bxslider.css" ;?>"/>    
     <!-- END GLOBAL MANDATORY STYLES -->
-    <link href="assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>    
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="<?php echo base_url()."assets/css/themes/blue.css";?>" rel="stylesheet" type="text/css" id="style_color"/>    
+    <link rel="shortcut icon" href="<?php echo base_url()."favicon.ico";?>" />
 </head>
 <!-- END HEAD -->
 
@@ -71,11 +72,11 @@
         <div class="nav-collapse collapse"> 
           <ul class="nav">
             <li> <a href="index.html"> Home </a> </li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="photo_gallery.html">Photo Gallery</a></li>
-            <li><a href="about_us.html">About Us</a></li>
-            <li class="active"><a href="contact_us.html">Contact Us</a></li>
-            <li> <span class="sep"></span> <a href="#">Login</a></li>
+            <li><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
+            <li><a href="<?php echo base_url()."photo_gallery"; ?>">Photo Gallery</a></li>
+            <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
+            <li class="active"><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
+            <li> <span class="sep"></span> <a href="<?php echo base_url()."login"; ?>">Login</a></li>
           </ul>
         </div>
         <!-- BEGIN TOP NAVIGATION MENU -->
@@ -122,6 +123,13 @@
                             <input type="text" class="m-wrap span12" />
                         </div>
                     </div>
+                     <div class="control-group">
+                        <label class="control-label">Contact No.</label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap span12" />
+                        </div>
+                    </div>
+                  
                     <div class="control-group">
                         <label class="control-label" >Email <span class="color-red">*</span></label>
                         <div class="controls">
@@ -135,7 +143,14 @@
 												<option value="">Select...</option>
 												<?php
 												foreach ($course as $key) {
-													echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
+													if($key->courseCode==$courseCode)
+													{
+													echo "<option value='{$key->courseCode}' selected>{$key->courseName}</option>";
+													}
+													else
+													{
+														echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
+													}
 												}
 												?>
 											</select>
@@ -228,21 +243,21 @@
 
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- BEGIN CORE PLUGINS -->
-    <script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>    
-    <script type="text/javascript" src="assets/plugins/bxslider/jquery.bxslider.js"></script>
-    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>    
-    <script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>
+    <script src="<?php echo base_url()."assets/plugins/jquery-1.10.1.min.js";?>" type="text/javascript"></script>
+    <script src="<?php echo base_url()."assets/plugins/jquery-migrate-1.2.1.min.js";?>" type="text/javascript"></script>
+    <script src="<?php echo base_url()."assets/plugins/bootstrap/js/bootstrap.min.js";?>" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url()."assets/plugins/back-to-top.js";?>"></script>    
+    <script type="text/javascript" src="<?php echo base_url()."assets/plugins/bxslider/jquery.bxslider.js";?>"></script>
+    <script type="text/javascript" src="<?php echo base_url()."assets/plugins/fancybox/source/jquery.fancybox.pack.js";?>"></script>    
+    <script type="text/javascript" src="<?php echo base_url()."assets/plugins/hover-dropdown.js";?>"></script>
     <!--[if lt IE 9]>
     <script src="assets/plugins/respond.min.js"></script>  
     <![endif]-->   
     <!-- END CORE PLUGINS -->
     <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-    <script src="assets/plugins/gmaps/gmaps.js" type="text/javascript"></script>
-    <script src="assets/scripts/contact-us.js"></script>  
-    <script src="assets/scripts/app.js"></script>      
+    <script src="<?php echo base_url()."assets/plugins/gmaps/gmaps.js";?>" type="text/javascript"></script>
+    <script src="<?php echo base_url()."assets/scripts/contact-us.js";?>"></script>  
+    <script src="<?php echo base_url()."assets/scripts/app.js";?>"></script>      
     <script>
 		jQuery(document).ready(function() {
 			App.init();
