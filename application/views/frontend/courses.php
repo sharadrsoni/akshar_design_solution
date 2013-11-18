@@ -125,8 +125,8 @@
                 <li class="span3 mix category_1">
                     <img src="assets/img/works/img1.jpg" alt="">
                     <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
+                        <h2>sfdds</h2>
+                        <a class="hover-portfolio-lft" href="course_details"><i class="icon-link"></i></a>
                     </div>                                        
                 </li>
                 <li class="span3 mix category_2">

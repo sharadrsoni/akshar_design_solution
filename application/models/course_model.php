@@ -19,6 +19,12 @@ class course_model extends CI_Model {
 		return $this -> db -> get('course') -> row();
 	}
 	
+	public function getDetailsCourse($courseCode)
+	{
+		$this->db->where('course.courseCode',$courseCode);
+		return $this->db->get('course')->result();
+	}
+	
 	public function getCountByCourse($courseCode) {
 		$this -> db -> where("courseCode", $courseCode);
 		$this -> db -> from('course');

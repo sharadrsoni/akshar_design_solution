@@ -156,7 +156,7 @@
                 <div class="row-fluid front-lists-v2 margin-bottom-15">
                     <div class="span6">
                         <ul class="unstyled">
-                            <li><i class="icon-html5"></i> HTML5/CSS3</li>
+                            <li><i class="icon-html5"></i><?php echo $course_details[0]->courseName ;?></li>
                             <li><i class="icon-bell"></i> Web Deisgn</li>
                             <li><i class="icon-globe"></i> Web Development</li>
                             <li><i class="icon-shopping-cart"></i> Shoping Cart</li>
