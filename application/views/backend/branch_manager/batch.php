@@ -65,7 +65,7 @@
 												foreach ($batch_list as $key) {
 
 													echo "<tr class=\"odd gradeX\">
-<td id={$key->batchId} onclick='viewbatch(\"{$key->batchId}\");'>{$key->batchId}</td>
+<td onclick='viewbatch(\"{$key->batchId}\");'>{$key->batchId}</td>
 <td class=\"hidden-480\">{$weekdays[$key->batchId]}</td>
 <td class=\"hidden-480\">{$key->courseName}</td>
 <td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
@@ -287,7 +287,70 @@
 								</div>
 							</form>
 						</div>
+						<!--End of tabView -->
 					</div>
+						<div class="tab-pane" id="tabView">
+							<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBatch">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Batch Name</td>
+														<td><viewBatchName></viewBatchName></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Course</td>
+														<td><viewCourseName></viewCourseName></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Week Days</td>
+														<td><viewWeek Days></viewWeek></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Faculty Name</td>
+														<td><viewFacultyName></viewFacultyName></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Start Date</td>
+														<td><viewStartDate></viewStartDate></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Duration</td>
+														<td><viewDuration></viewDuration></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Strength</td>
+														<td><viewStrength></viewStrength></td>
+												   </tr>
+											
+												 </table>
+								</div></div>
+								<br>
+								<h4>Batch Time</h4>
+								<div class="body-inner">
+								<div class="portlet-body">
+								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBatchTime">
+										<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Monday</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Tuesday</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Wednesday</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Thursday</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Friday</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Saturday</td>
+										 </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3"><viewMonday>5 to 6</viewMonday></td>
+														<td class="unstyled profile-nav span3"><viewTuesday>5 to 6</viewTuesday></td>
+														<td class="unstyled profile-nav span3"><viewWednesday>5 to 6</viewWednesday></td>
+														<td class="unstyled profile-nav span3"><viewThursday>5 to 6</viewThursday></td>
+														<td class="unstyled profile-nav span3"><viewFriday>5 to 6</viewFriday></td>
+														<td class="unstyled profile-nav span3"><viewSaturday>5 to 6</viewSaturday></td>
+												   </tr>
+												 
+								</table>
+								</div>
+								</div>
+						</div><!--End tabView -->
 				</div><!--/ End Tabs -->
 				
 			</div>

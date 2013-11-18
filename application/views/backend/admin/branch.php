@@ -266,60 +266,37 @@
 							</form>
 						</div>
 						<div class="tab-pane" id="tabView">
-							<div class="row-fluid">
-									<div class="span8 profile-info">
-
-										
-										<div class="">
-											<h4>Sharad R Soni</h4>
-											<h4>Address</h4>
-											<address>
-												
-												Jawahar Chowk												<br>
-												Maninagar												
-												<br>
-												308-380008												
-												<br>
-												11												
-												<br>
-											
-												<abbr title="Phone">P:</abbr> 9601591389											</address>
-											<address>
-												<strong>Email</strong>
-												<br>
-												<a href="mailto:#">sharadrsoni@gmail.com</a>
-											</address>
-										</div>
-
-										<ul class="unstyled inline">
-											<li>
-												<i class="icon-map-marker"></i> 308											</li>
-											<li>
-												<i class="icon-calendar"></i>1991-02-15											</li>
-										</ul>
-									</div>
-									<!--end span8-->
-									<div class="span4">
-										<div class="portlet sale-summary">
-											<div class="portlet-body">
-												<ul class="unstyled">
-													<li>
-														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
-														<span class="sale-num">84%</span>
-													</li>
-													<li>
-														<span class="sale-info"><i class="icon-img-down"></i></span>
-														<span class="sale-num"></span>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<!--end span4-->
+						<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
+										<?php
+											foreach ($branch as $key) {
+												echo "
+												<tr class=\"odd gradeX\">
+												<td style='background:#f0f6fa' class=\"unstyled profile-nav span3\"><a>Branch Code</a></td>
+												<td> {$key->branchCode}</td>
+												</tr>
+												<tr class=\"odd gradeX\">
+												 <td class=\"unstyled profile-nav span3\"><a>Branch Name</a></td>
+												  <td>{$key->branchName}</td>
+												</tr>
+												<tr class=\"odd gradeX\">
+												  <td style='background:#f0f6fa' class=\"unstyled profile-nav span3\"><a>Address</a></td>
+												<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->cityId} {$key->stateId} - {$key->branchPincode}</td>
+												</tr>
+												<tr class=\"odd gradeX\">
+												 <td class=\"unstyled profile-nav span3\"><a>Contact Number</a></td>
+												  <td>{$key->branchContactNumber}</td>
+											</tr>";
+											}
+											?>
+										</tbody>
+									</table>
 								</div>
-								
-
-
+							</div>
+						</div>			
+								</div>
 						</div>
 					</div>
 					

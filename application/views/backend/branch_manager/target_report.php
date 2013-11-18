@@ -67,7 +67,7 @@
 													echo "<tr class=\"odd gradeX\">
 <td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>
-<td class=\"hidden-480\">{$key->targetSubject}</td>
+<td onclick='viewtargetreport(\"{$key->targetId}\");'>{$key->targetSubject}</td>
 <td class=\"hidden-480\">{$key->targetStartDate}</td>
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetTypeName}</td>
@@ -146,87 +146,46 @@
 							</div>
 							</form>
 						</div>
-						<div class="tab-pane" id="tab3">
-							<table class="table table-striped table-bordered table-hover" id="obtainmarks">
-								<thead>
-									<tr>
-									<tr>
-										<th class="hidden-480">Date</th>
-										<th class="hidden-480">Description</th>
-									</tr>
-								</thead>
-
-								<tbody id="lst_Tatget_Reports"></tbody>
-							</table>
+						<div class="tab-pane" id="tabView">
+							<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+								<table class="table table-striped table-bordered table-hover dataTable" id="viewtbltarget">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Target Name</td>
+														<td><viewTargetName></viewTargetName></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Target Description</td>
+														<td><viewTargetDescription></viewTargetDescription></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Target Start Date</td>
+														<td><viewTargetStartDate></viewTargetStartDate></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Target End Date</td>
+														<td><viewTargetEndDate></viewTargetEndDate></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Status</td>
+														<td><viewStatus></viewStatus></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Target Type</td>
+														<td><viewTargetType></viewTargetType></td>
+												   </tr>
+												   <tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Branch Code</td>
+														<td><viewBranchCode></viewBranchCode></td>
+												   </tr>
+												</table>
+								</div></div>
+					</div><!-- End tabView -->
 						</div>
 					</div>
 				</div>
 				<!--/ End Tabs -->
-
-				<!--View Target Report -->
-				<div class="form-horizontal form-view" id="ViewBatch">
-					<h3> View Target Report</h3>
-					<h3 class="form-section">Target Info</h3>
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label" for="firstName">Target Name</label>
-								<div class="controls">
-									<span class="text" id="target_name"></span>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Description:</label>
-								<div class="controls">
-									<span class="text" id="description"></span>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<!--/row-->
-
-					<h3 class="form-section">Dates</h3>
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Start Date:</label>
-								<div class="controls">
-									<span class="text" id="start_date"></span>
-								</div>
-							</div>
-						</div>
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">End Date:</label>
-								<div class="controls">
-									<span class="text" id="end_date"></span>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Status:</label>
-								<div class="controls">
-									<span class="text" id="status"></span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-
-					</div>
-				</div><!-- End View Targer Report -->
-
 			</div>
 			<!--/ END Row -->
 		</div>

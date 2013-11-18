@@ -49,7 +49,7 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblStaff">
 										<thead>
 											<tr>
-												<th>User ID</th>
+												<th>Branch Name</th>
 												<th>Staff Name</th>
 												<th class="hidden-480">Email</th>
 												<th class="hidden-480">ContactNo</th>
@@ -61,10 +61,10 @@
 											if (isset($staff)) {
 												foreach ($staff as $key) {
 													echo "<tr class=\"odd gradeX\">
-<td class=\"center hidden-480\">{$key->branchName}</td>
-<td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
+<td onclick='viewstaff(\"{$key->userId}\");'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
+<td class=\"center hidden-480\">{$key->branchCode}</td>
 <td ><span class=\"label label-success\" onclick='updatestaff(\"{$key->userId}\");' >Edit</span> <span class=\"label label-success\"> <a href='" . base_url() . "admin/delete_staff/{$key->userId}'>Delete</a></span></td></tr>
 </tr>
 ";
@@ -366,144 +366,110 @@
 	</div>
 	</form>
 	</div>
+	<div class="tab-pane" id="tabView">
+		<div class="tab-content">
+						<div class="tab-pane active" id="tab1">
+							<ul class="unstyled profile-nav span3">
+								<li><img alt="" /><a href="#" class="profile-edit">edit</a>
+								</li>
+								<li>
+									<viewUserID>User ID</viewUserID>
+								</li>
+								<li>
+									<viewBranchName>Branch Name</viewBranchName>
+								</li>				</ul>
+							<div class="span9">
+								<div class="row-fluid">
+									<div class="span8 profile-info">
+
+										
+										<div class="">
+											<viewUserName><h4>User Name</h4></viewUserName>
+											<h4>Address</h4>
+											<address>
+												User Street1
+												<br>
+												User Street2												
+												<br>
+												City ID - User Postal Code												
+												<br>
+												State ID												
+												<br>
+											    Contact Number
+												<abbr title="Phone">P:</abbr> 
+											</address>
+											<address>
+												<strong>Email</strong>
+												<br>
+												
+											</address>
+										</div>
+
+										<ul class="unstyled inline">
+											<li>
+												<i class="icon-map-marker"></i> <viewCityID>city ID</viewCityID>
+											</li>
+											<li>
+												<i class="icon-calendar"></i> <viewUserDOB>User DOB</viewuserDOB>
+											</li>
+										</ul>
+									</div>
+									<!--end span8-->
+									<div class="span4">
+										<div class="portlet sale-summary">
+											<div class="portlet-body">
+												<ul class="unstyled">
+													<li>
+														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
+														<span class="sale-num">84%</span>
+													</li>
+													<li>
+														<span class="sale-info"><i class="icon-img-down"></i></span>
+														<span class="sale-num"></span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!--end span4-->
+								</div>
+								<!--end row-fluid-->
+								<div class="tabbable tabbable-custom tabbable-custom-profile">
+									<ul class="nav nav-tabs">
+										<li class="active">
+											<a href="#tab_1_11" data-toggle="tab">Batches</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active" id="tab_1_11">
+											<div class="portlet-body" style="display: block;">
+												<table class="table table-striped table-bordered table-advance table-hover">
+													<thead>
+														<tr>
+															<th><i class="icon-star"></i>Batch</th>
+															<th class="hidden-phone"><i class="icon-question-sign"></i>Strength</th>
+															<th><i class="icon-bookmark"></i> Course</th>
+															<th><i class="icon-bookmark"></i> Performance</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td><a href="#">Pixel Ltd</a></td>
+															<td class="hidden-phone">Server hardware purchase</td>
+															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
+															<td class="hidden-phone">Server hardware purchase</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!--tab-pane-->
+	</div>			
 	</div>
 	</div>
-	<!--View Staff -->
-	<div style="display: none" class="form-horizontal form-view" id="ViewBatch">
-		<h3> View Staff Info - Bob Nilson </h3>
-		<h3 class="form-section">Person Info</h3>
-		<div class="row-fluid">
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label" for="firstName">First Name:</label>
-					<div class="controls">
-						<span class="text">Bob</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label" for="lastName">Last Name:</label>
-					<div class="controls">
-						<span class="text">Nilson</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-		<!--/row-->
-		<div class="row-fluid">
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label">Qualification</label>
-					<div class="controls">
-						<span class="text">MBA</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label">Date of Birth:</label>
-					<div class="controls">
-						<span class="text bold">20.01.1984</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-
-		<div class="row-fluid">
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label">Branch Name:</label>
-					<div class="controls">
-						<span class="text">Ahmedabad Branch</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label">Role:</label>
-					<div class="controls">
-						<span class="text bold">Faculty</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-		<!--/row-->
-		<h3 class="form-section">Contact Info</h3>
-		<div class="row-fluid">
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label" for="firstName">Contact No.:</label>
-					<div class="controls">
-						<span class="text">9999999999</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label" for="lastName">Email:</label>
-					<div class="controls">
-						<span class="text">Nilson@mail.com</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-		<!--/row-->
-
-		<h3 class="form-section">Address</h3>
-		<div class="row-fluid">
-			<div class="span12 ">
-				<div class="control-group">
-					<label class="control-label">Street:</label>
-					<div class="controls">
-						<span class="text">#24 Sun Park Avenue, Rolton Str</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label">City:</label>
-					<div class="controls">
-						<span class="text">New York</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-			<div class="span6">
-				<div class="control-group">
-					<label class="control-label">State:</label>
-					<div class="controls">
-						<span class="text">New York</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-		<!--/row-->
-		<div class="row-fluid">
-			<div class="span6 ">
-				<div class="control-group">
-					<label class="control-label">Post Code:</label>
-					<div class="controls">
-						<span class="text">457890</span>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-
-		</div>
-	</div><!-- End View Staff -->
+	</div>
 	<!--/ End Tabs -->
+	
 	</div>
 	<!--/ END Row -->
 	</div>

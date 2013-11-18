@@ -59,8 +59,7 @@
 												<th>EventName</th>
 												<th class="hidden-480">Organize by</th>
 												<th class="hidden-480">Veue</th>
-												<th class="hidden-480">Description</th>
-												<th class="hidden-480">Start Date</th>
+											    <th class="hidden-480">Start Date</th>
 												<th class="hidden-480">End Date</th>
 												<th >View</th>
 											</tr>
@@ -72,10 +71,9 @@
 													echo "<tr class=\"odd gradeX\"><td>
 <input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
 </td>
-<td class=\"hidden-480\">{$key->eventName}</td>
+<td onclick='viewevent(\"{$key->eventId}\");'>{$key->eventName}</td>
 <td class=\"hidden-480\">{$key->eventOrganizerName}</td>
 <td class=\"hidden-480\">{$key->eventState}</td>
-<td class=\"hidden-480\">{$key->eventDescription}</td>
 <td class=\"hidden-480\">{$key->eventStartDate}</td>
 <td class=\"hidden-480\">{$key->eventEndDate}</td>
 <td ><span class=\"label label-success\" onclick='updateevent(\"{$key->eventId}\");'>Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_event/{$key->eventId}'>Delete</span></td></tr>
@@ -401,9 +399,54 @@
 							</div>
 							</form>
 						</div>
+						<div class="tab-pane" id="tabView">
+							<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblevent">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Event Name</td>
+														<td><viewEventName></viewEventName></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Event Description</td>
+														<td><viewEventDescription></viewEventDescription></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Event Start Date</td>
+														<td><viewEventStartDate></viewEventStartDate></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Event End Date</td>
+														<td><viewEventEndDate></viewEventEndDate></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Address</td>
+														<td><viewAddress></viewAddress></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Organizer Name</td>
+														<td><viewOrganizerName></viewOrganizerName></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Faculty ID</td>
+														<td><viewFacultyID></viewFacultyID></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Event Type ID</td>
+														<td><viewEventTypeID></viewEventTypeID></td>
+													</tr>
+											 		<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Branch Code</td>
+														<td><viewBranchCode></viewBranchCode></td>
+												   </tr>
+												</table>
+								</div></div>
+					</div><!-- End tabView -->
 					</div>
 				</div>
 				<!--/ End Tabs -->
+				
 			</div>
 			<!--/ END Row -->
 		</div>
