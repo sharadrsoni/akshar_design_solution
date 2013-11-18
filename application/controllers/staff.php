@@ -33,7 +33,7 @@ class Staff extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/sendnotification_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/sendnotification');
+		$this -> load -> view('backend/branch_manager/send_notification');
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/sendnotification_js');
 		$this -> load -> view('backend/master_page/bottom');

@@ -19,10 +19,10 @@ class fee_model extends CI_Model {
 		return false;
 	}
 
-	public function getFeeDetailsByBranch($branchId) {
+	public function getFeeDetailsByBranch($branchCode) {
 		$this -> db -> from('fees');
 		$this -> db -> join('user', 'fees.studentId = user.userId');
-		$this -> db -> where('branchId', $branchId);
+		$this -> db -> where('branchCode', $branchCode);
 		return $this -> db -> get() -> result();
 
 	}

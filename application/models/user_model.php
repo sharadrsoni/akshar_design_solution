@@ -33,14 +33,14 @@ class user_model extends CI_Model {
 		}
 	}
 
-	public function getDetailsByBranchAndRole($branchId, $roleId) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBranchAndRole($branchCode, $roleId) {
+		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);
 		return $this -> db -> get('user') -> result();
 	}
 
-	public function getDetailsByBranch($branchId) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBranch($branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId !=", 5);
 		return $this -> db -> get('user') -> result();
 	}
@@ -129,7 +129,7 @@ class user_model extends CI_Model {
 	public function updateStudetDetails($StudentData, $studentId) {
 		if (isset($studentData)) {
 			$this -> db -> where("student_profile.studentUserId", $studentId);
-			die( $this -> db -> update('student_profile', $StudentData));
+			die($this -> db -> update('student_profile', $StudentData));
 		}
 		return false;
 	}

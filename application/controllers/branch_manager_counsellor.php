@@ -96,8 +96,17 @@ class Branch_manager_counsellor extends CI_Controller {
 				} else if ($userId < 100 && $userId > 9) {
 					$userId = "0" . $userId;
 				}
+				$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
+				$this -> load -> library('email', $config);
+				$this -> email -> set_newline("\r\n");
+				$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Sharad Soni');
+				$this -> email -> to('sharadrsoni@yahoo.com');
+				$this -> email -> subject('Email Test');
+				$this -> email -> message('Testing the email class.');
+
+				//echo $this -> email -> print_debugger();
 				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $this -> user_model -> randomPassword(), 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
-				if ($this -> user_model -> addUser($userData)) {
+				if ($this -> email -> send() && $this -> user_model -> addUser($userData)) {
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
 					$this -> data['error'] = "An Error Occured.";
@@ -223,9 +232,9 @@ class Branch_manager_counsellor extends CI_Controller {
 			}
 		} else {
 			$this -> load -> model('user_model');
-			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 5);
+			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchCode, 5);
 			$this -> load -> model("fee_model");
-			$this -> data['fee_list'] = $this -> fee_model -> getFeeDetailsByBranch($this -> branchId);
+			$this -> data['fee_list'] = $this -> fee_model -> getFeeDetailsByBranch($this -> branchCode);
 			$this -> data['title'] = "ADS | Fess Payment";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/fees_payment_css');
