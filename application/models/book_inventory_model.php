@@ -29,6 +29,16 @@ class book_inventory_model extends CI_Model {
 		}
 		return false;
 	}
+	
+	public function updateopeningStock($data,$branchId,$courseId) {
+		if (isset($data)) {
+			$this -> db -> where('branchCode', $branchId);
+			$this -> db -> where('courseCode', $courseId);
+			$this -> db -> where('inventoryIsOS', 1);
+			return $this -> db -> update('inventory_inward', $data);
+		}
+		return false;
+	}
 
 	public function deleteInventory($inventoryInwardId) {
 		if (isset($inventoryInwardId)) {

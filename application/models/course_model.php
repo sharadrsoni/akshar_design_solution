@@ -7,12 +7,22 @@ if (!defined('BASEPATH'))
 class course_model extends CI_Model {
 
 	public function getDetailsOfCourse() {
+		$this -> db -> join('course_category', 'course.courseCategoryId = course_category.courseCategoryId');
 		return $this -> db -> get('course') -> result();
 	}
 
-	public function getDetailsByCourse($courseCode) {
-		$this -> db -> where('courseCode', $courseCode);
-		return $this -> db -> get('course') -> result();
+	public function getDetailsByCourse($courseCode,$branch) {
+		$this -> db -> where('course.courseCode', $courseCode);
+		$this -> db -> join('inventory_inward', 'course.courseCode = inventory_inward.courseCode');
+		$this -> db -> where('branchCode', $branch);
+		$this -> db -> where('inventoryIsOS', '1');
+		return $this -> db -> get('course') -> row();
+	}
+	
+	public function getCountByCourse($courseCode) {
+		$this -> db -> where("courseCode", $courseCode);
+		$this -> db -> from('course');
+		return $this -> db -> count_all_results();
 	}
 
 	public function getDetailsNotCourse($courseCode) {
@@ -38,8 +48,7 @@ class course_model extends CI_Model {
 	public function deleteCourse($courseCode) {
 		if (isset($courseCode)) {
 			$this -> db -> where('courseCode', $courseCode);
-			$this -> db -> delete('course');
-			return true;
+			return $this -> db -> delete('course');;
 		}
 		return false;
 	}

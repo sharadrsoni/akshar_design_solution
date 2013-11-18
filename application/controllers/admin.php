@@ -154,7 +154,7 @@ class Admin extends CI_Controller {
 	public function course($courseId = '') {
 		$this -> load -> model('course_model');
 		if ($courseId != '') {
-			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId);
+			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId,$this -> branchCode);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Course";
@@ -168,18 +168,22 @@ class Admin extends CI_Controller {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
 				$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim');
-				$this -> form_validation -> set_rules('course_code', 'Course Code', 'required|trim|is_unique[course.courseCode]');
+				//$this -> form_validation -> set_rules('courseCode', 'Course Code', 'required|trim|is_unique[course.courseCode]');
 				$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
 				$this -> form_validation -> set_rules('material_id', 'Course MaterialId', 'required|trim');
 				$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
 				$this -> form_validation -> set_rules('opening_stock', 'Material Opening Stock', 'required|trim');
+				$this -> form_validation -> set_rules('description', 'Course description', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					//die(validation_errors());
 					$this -> data['validate'] = true;
 				} else {
-					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseCode' => $_POST['course_code'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseMaterialOpeningStock' => $_POST['opening_stock']);
-					//die(print_r($courseValue));
-					if ($_POST['courseId'] != "" ? $this -> course_model -> updateCourse($courseValue, $_POST['courseId']) : $this -> course_model -> addCourse($courseValue)) {
+					$this -> load -> model('book_inventory_model');
+					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['courseCode'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description']);
+					$inventoryData = array('inventoryInwardQuantity' => $_POST['opening_stock'], 'courseCode' => $_POST['courseCode'], 'branchCode' => $this -> branchCode,'inventoryInwardDate' => date('y-m-d'),'inventoryIsOS' => '1');	
+					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])<=0) {
+						$courseValue['courseCode'] = $_POST['courseCode'];
+					}
+					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])>0 ? $this -> course_model -> updateCourse($courseValue, $_POST['courseCode']) && $this -> book_inventory_model -> updateopeningStock($inventoryData,$this -> branchCode,$_POST['courseCode']) : $this -> course_model -> addCourse($courseValue) && $this -> book_inventory_model -> addinventory($inventoryData)) {
 						redirect(base_url() . "admin/course");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -405,10 +409,10 @@ class Admin extends CI_Controller {
 				} else {
 					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
 					if ($_POST['staffId'] == "") {
-						$staffData['userId'] =$this -> user_model -> getMaxId(date('Y'), $_POST['branchCode'], $_POST['userroleId']);
-						$staffData['userPassword']=$this -> user_model -> randomPassword();
-						$staffData['userPhotograph']="profile.png";
-						$staffData['userJoiningDate']=date("Y-m-d");
+						$staffData['userId'] = $this -> user_model -> getMaxId(date('Y'), $_POST['branchCode'], $_POST['userroleId']);
+						$staffData['userPassword'] = $this -> user_model -> randomPassword();
+						$staffData['userPhotograph'] = "profile.png";
+						$staffData['userJoiningDate'] = date("Y-m-d");
 					}
 					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
 						redirect(base_url() . "admin/staff");

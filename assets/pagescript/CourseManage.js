@@ -120,12 +120,12 @@ var Course= function() {
 			$("#tablink2").click(function() {
 				$('#course_name').val("");
 				$('#courseCategory_id').val("");
-				$('#course_code').val("");
+				$('#courseCode').val("");
 				$('#course_duration').val("");
 				$('#material_id').val("");
 				$('#total_books').val("");
+				$('#description').val("");
 				$('#opening_stock').val("");
-				$('#courseId').val("");
 				$("#submitCourse").text("Add Course");
 				$('.alert-error', $('#form_course')).hide();
 				$("#form_course").validate().resetForm();
@@ -142,17 +142,17 @@ function updateCourse(couseid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#course_name').val(json.course[0].courseName);
-				$('#courseCategory_id').val(json.course[0].courseCategoryId);
-				$('#course_code').val(json.course[0].courseCode);
-				$('#course_duration').val(json.course[0].courseDuration);
-				$('#material_id').val(json.course[0].courseMaterialId);
-				$('#total_books').val(json.course[0].courseMaterialTotalBooks);
-				$('#opening_stock').val(json.course[0].courseMaterialOpeningStock);
+				$('#course_name').val(json.course.courseName);
+				$('#courseCategory_id').val(json.course.courseCategoryId);
+				$('#courseCode').val(json.course.courseCode);
+				$('#course_duration').val(json.course.courseDuration);
+				$('#material_id').val(json.course.courseMaterialId);
+				$('#total_books').val(json.course.courseMaterialTotalBooks);
+				$('#opening_stock').val(json.course.inventoryInwardQuantity);
+				$('#description').val(json.course.courseDescription);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#courseId').val(json.course[0].courseCode);
 				$("#submitCourse").text("Update Course");
 				map = Branch.init_google();
 			}

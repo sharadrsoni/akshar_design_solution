@@ -115,11 +115,11 @@ function updatecoursecategory(oursecategoryid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#coursecategory_name').val(json.coursecategory[0].courseCategoryName);
+				$('#coursecategory_name').val(json.coursecategory.courseCategoryName);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#coursecategoryId').val(json.coursecategory[0].courseCategoryId);
+				$('#coursecategoryId').val(json.coursecategory.courseCategoryId);
 				$("#submitCourseCategory").text("Update Course Category");
 			}
 		}

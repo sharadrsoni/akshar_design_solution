@@ -10,7 +10,7 @@ class course_category_model extends CI_Model {
 
 	public function getDetailsByCourseCategory($coursecategoryId) {
 		$this -> db -> where('courseCategoryId', $coursecategoryId);
-		return $this -> db -> get('course_category') -> result();
+		return $this -> db -> get('course_category') -> row();
 	}
 
 	public function addcoursecategory($data) {

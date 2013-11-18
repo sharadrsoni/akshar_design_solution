@@ -64,7 +64,7 @@
 <td>{$key->courseName}</td>
 <td class=\"hidden-480\">{$key->courseCode}</td>
 <td class=\"hidden-480\">{$key->courseDuration}</td>
-<td class=\"hidden-480\">{$key->courseCategoryId}</td>
+<td class=\"hidden-480\">{$key->courseCategoryName}</td>
 <td ><span class=\"label label-success\" onclick='updateCourse(\"{$key->courseCode}\");'>Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "admin/delete_course/{$key->courseCode}'>Delete</a></span></td></tr>
 ";
 											}
@@ -172,7 +172,7 @@
 									<h3 class="form-section">Course Info.</h3>
 									<!-- Course Code -->
 											<?php
-									$err=form_error('course_code');
+									$err=form_error('courseCode');
 									if ($err != '') {
 										echo "<div class='control-group error'>";
 									} else {
@@ -182,8 +182,8 @@
 								
 										<label class="control-label">Course Code<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="course_code" id="course_code" class="span4" value="<?php echo set_value("course_code"); ?>"/>
-											<span for="course_code" class="help-inline"><?php echo form_error('course_code');?></span>
+											<input type="text" name="courseCode" id="courseCode" class="span4" value="<?php echo set_value("courseCode"); ?>"/>
+											<span for="courseCode" class="help-inline"><?php echo form_error('courseCode');?></span>
 										</div>
 									</div><!--/ Course Code -->
 									<!-- CourseCategory ID -->
@@ -202,7 +202,7 @@
 												<option value="">Select...</option>
 												<?php
 												foreach ($course_category as $key) {
-													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryId}</option>";
+													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
 												}
 												?>
 											</select>
@@ -290,8 +290,23 @@
 											<span for="opening_stock" class="help-inline"><?php echo form_error('opening_stock'); ?></span>
 										</div>
 									</div><!--/ Course Material Opening Stock -->
+									<!-- Course Description -->
+											<?php
+									$err=form_error('description');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
+										<label class="control-label">Description<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
+											<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
+										</div>
+									</div><!--/ Course Description -->
 									<!-- Form Action -->
-									<input type="hidden" name="courseId" id="courseId" value="" />
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">
 											Add Course
