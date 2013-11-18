@@ -15,7 +15,7 @@ var Inquiry = function() {
 					"bSortable" : false
 				}, {
 					"bSortable" : false
-				}],
+				},null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -188,8 +188,8 @@ var Inquiry = function() {
 				$('#reference').val("");
 				$('#inquiryId').val("");
 				$("#submitInquiry").text("Add Inquiry");
-				$('.alert-error', $('#form_branch')).hide();
-				$("#form_branch").validate().resetForm();
+				$('.alert-error', $('#form_inquiry')).hide();
+				$("#form_inquiry").validate().resetForm();
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});
@@ -226,6 +226,30 @@ function updateinquiry(inquiryid) {
 				$('#tab2').addClass("active");
 				$('#inquiryId').val(json.inquiry[0].inquiryId);
 				$("#submitInquiry").text("Update Inquiry");
+			}
+		}
+	});
+}
+function viewinquiry(inquiryId) {
+	$.ajax({
+		url : "../branch_manager_counsellor/inquiry/" + inquiryId,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				alert();
+				//$("#ViewBatch").attr("style", "display");
+				//App.scrollTo($('#ViewBatch'));
+				//$('#view_branch_name').text(json.branch[0].branchName);
+				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
+				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
+				//$('#viewstreet_2').text();
+				// $('#viewstate').text();
+				//$('#viewcity').text();
+				//$('#viewpin_code').text();
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tabView').addClass("active");
 			}
 		}
 	});

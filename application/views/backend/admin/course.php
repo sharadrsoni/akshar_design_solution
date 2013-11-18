@@ -61,7 +61,7 @@
 											<?php
 											foreach ($course as $key) {
 												echo "<tr class=\"odd gradeX\">
-<td>{$key->courseName}</td>
+<td onclick='viewcourse(\"{$key->courseCode}\");'>{$key->courseName}</td>
 <td class=\"hidden-480\">{$key->courseCode}</td>
 <td class=\"hidden-480\">{$key->courseDuration}</td>
 <td class=\"hidden-480\">{$key->courseCategoryName}</td>
@@ -204,6 +204,47 @@
 								</div>
 							</form>
 						</div>
+						<div class="tab-pane" id="tabView">
+							<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
+										<tr>
+											<td><img alt="" />Image</td>
+											<td>
+												<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Course Code</td>
+														<td></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Course Name</td>
+														<td><viewCourseName></viewCourseName></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Course Category</td>
+														<td><viewCategory></viewCategory></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Course Total Book</td>
+														<td><viewTotalBook></viewTotalBook></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Description</td>
+														<td><viewDescription></viewDescription></td>
+												   </tr>
+												 </table>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div></div>
+							</div>
+								</div>
+								<!--end row-fluid-->
+										
+	</div>			
+
 					</div>
 				</div>
 				<!--/ End Tabs -->
