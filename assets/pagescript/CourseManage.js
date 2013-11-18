@@ -155,3 +155,27 @@ function updateCourse(couseid) {
 		}
 	});
 }
+function viewcourse(courseCode) {
+	$.ajax({
+		url : "course/" + courseCode,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				alert();
+				//$("#ViewBatch").attr("style", "display");
+				//App.scrollTo($('#ViewBatch'));
+				//$('#view_branch_name').text(json.branch[0].branchName);
+				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
+				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
+				//$('#viewstreet_2').text();
+				// $('#viewstate').text();
+				//$('#viewcity').text();
+				//$('#viewpin_code').text();
+				$('#tablink1').parent().removeClass("active");
+				$('#tab1').removeClass("active");
+				$('#tabView').addClass("active");
+			}
+		}
+	});
+}

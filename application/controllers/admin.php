@@ -385,6 +385,8 @@ class Admin extends CI_Controller {
 			$this -> data['userrole_list'] = $this -> role_model -> getDetailsOfRole();
 			$this -> load -> model("state_model");
 			$this -> data['State'] = $this -> state_model -> getDetailsOfState();
+			$this -> load -> model('user_model');
+		    $data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
 			if (isset($_POST['submitStaff'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim');

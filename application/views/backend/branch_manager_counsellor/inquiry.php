@@ -53,7 +53,6 @@
 												<th class="hidden-480">E-mail Address</th>
 												<th class="hidden-480">Inquiry State</th>
 												<th class="hidden-480">Contact Number</th>
-												<th class="hidden-480">Inquiry_Qualification</th>
 												<th class="hidden-480">Course Code</th>
 												<th class="hidden-480">Expected Date of Joining</th>
 												<th >View</th>
@@ -63,13 +62,13 @@
 											<?php
 											if (isset($inquiry)) {
 												foreach ($inquiry as $key) {
-													echo "<tr class=\"odd gradeX\"><td class=\"hidden-480\">{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
+													echo "<tr class=\"odd gradeX\">
+		<td onclick='viewinquiry(\"{$key->inquiryId}\");'>{$key->inquiryStudentFirstName} {$key->inquiryStudentMiddleName} {$key->inquiryStudentLastName}</td>
 <td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
-<td class=\"hidden-480\">{$key->inquiryState}
+<td class=\"hidden-480\">{$key->stateId}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
-<td class=\"hidden-480\">{$key->inquiryQualification}</td>
-<td class=\"hidden-480\">{$key->courseCode}</td>
-<td class=\"hidden-480\">{$key->inquiryExpectedDOJ}</td>
+<td></td>
+<td></td>
 <td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
@@ -312,7 +311,7 @@
 												<option value="">Select...</option>
 												<?php
 												foreach ($category as $key) {
-													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName} - {$key->courseCategoryId}</option>";
+													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
 												}
 												?>
 												</select>
@@ -421,7 +420,61 @@
 								</div>
 							</form>
 						</div>
+						<div class="tab-pane" id="tabView">
+								<div class="tab-pane active" id="tab1">
+							<div class="body-inner">
+								<div class="portlet-body">
+								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblinquiry">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Student Name</td>
+														<td><viewStudentName></viewStudentName></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Date of Birth</td>
+														<td><viewDOB></viewDOB></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Contact Number</td>
+														<td><viewContactNumber></viewContactNumber></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Email</td>
+														<td><viewEmail></viewEmail></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Qualification</td>
+														<td><viewQualification></viewQualification></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Address</td>
+														<td><viewAddress></viewAddress></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Institute Name</td>
+														<td><viewInstituteName></viewInstituteName></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Student Occupation</td>
+														<td><viewOccupation></viewOccupation></td>
+													</tr>
+											 		<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Guardian Name</td>
+														<td><viewGuardianName></viewGuardianName></td>
+												   </tr>
+												    <tr>
+														<td class="unstyled profile-nav span3">Guardian Occupation</td>
+														<td><viewGuradianOccupation></viewGuradianOccupation></td>
+													</tr>
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Reference Name</td>
+														<td><viewReference></viewReference></td>
+												   </tr>
+												 </table>
+								</div></div>
+					</div><!-- End tabView -->
 					</div>
+					
+					
 				</div>
 				<!--/ End Tabs -->
 			</div>
