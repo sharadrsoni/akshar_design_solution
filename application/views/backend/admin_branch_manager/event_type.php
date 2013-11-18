@@ -89,10 +89,19 @@
 								<div class="body-inner">
 									<h3 class="form-section">Event Type Info.</h3>
 									<!-- Event Type Name -->
-									<div class="control-group">
+										<?php
+									$err=form_error('eventtype_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
 										<label class="control-label">Event Type Name<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="eventtype_name" id="eventtype_name" class="span8">
+											<input type="text" name="eventtype_name" id="eventtype_name" class="span8" value="<?php echo set_value("eventtype_name"); ?>">
+											<span for="eventtype_name" class="help-inline"><?php echo form_error('eventtype_name'); ?></span>
 										</div>
 									</div><!--/ Event Type Name -->
 									<input type="hidden" name="eventtypeId" id="eventtypeId" value="" />

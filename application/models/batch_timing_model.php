@@ -49,7 +49,6 @@ class batch_timing_model extends CI_Model {
 		}
 	}
 
-
 	public function getBatchTimmingDetail($batchId) {
 		if (isset($batchId)) {
 			$data = $this -> db -> where("batchId", $batchId) -> get("batch_timing") -> result();
@@ -57,9 +56,9 @@ class batch_timing_model extends CI_Model {
 			$days = Array();
 			foreach ($data as $key) {
 				$weekdays = Array();
-				$weekdays['batchId'] = $key->batchId;
-				$weekdays['batchTimingStartTime'] = $key->batchTimingStartTime;
-				$weekdays['batchTimingEndTime'] = $key->batchTimingEndTime;
+				$weekdays['batchId'] = $key -> batchId;
+				$weekdays['batchTimingStartTime'] = $key -> batchTimingStartTime;
+				$weekdays['batchTimingEndTime'] = $key -> batchTimingEndTime;
 				switch ($key->batchTimingWeekday) {
 					case 1 :
 						$day = "Monday";
@@ -93,13 +92,11 @@ class batch_timing_model extends CI_Model {
 		}
 	}
 
-	
 	public function getBatchTiming($batchId) {
 		if (isset($batchId)) {
 			return $this -> db -> where("batchId", $batchId) -> get("batch_timing") -> result();
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	public function addBatchTime($data) {
@@ -107,10 +104,9 @@ class batch_timing_model extends CI_Model {
 			if ($data['batchTimingWeekday'] >= 1 && $data['batchTimingWeekday'] <= 7) {
 				$this -> db -> insert('batch_timing', $data);
 				return true;
-			} else {
-				return false;
 			}
 		}
+		return false;
 	}
 
 	public function updateBatchTime($data) {
@@ -119,15 +115,20 @@ class batch_timing_model extends CI_Model {
 				$this -> db -> where("batchId", $data['batchId']);
 				$this -> db -> update('batch_timing', $data);
 				return true;
-			} else {
-				return false;
 			}
 		}
+		return false;
 	}
 
 	public function deleteDetailsByBatch($batchId) {
-		$this->where("batchId", $batchId);
-		$this->db->delete("batch_timing");
+		if (isset($batchId)) {
+			if (isset($batchId)) {
+				$this -> where("batchId", $batchId);
+				$this -> db -> delete("batch_timing");
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

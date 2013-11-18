@@ -58,10 +58,18 @@
 
 								<div class="body-inner">
 									<!-- Batch ID -->
-									<div class="control-group">
+										<?php
+									$err=form_error('batch_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">Batch ID<span class="required">*</span></label>
 										<div class="controls">
-											<select class="span4" name="batch_id" id="batch_id">
+											<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
 												<option value="">Select...</option>
 												<?php
 												foreach ($batch_list as $key) {
@@ -69,14 +77,24 @@
 												}
 												?>
 											</select>
+											<span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?></span>
 										</div>
 									</div><!--/ Batch ID -->
 									<!-- Date -->
-									<div class="control-group">
+										<?php
+									$err=form_error('Attendance_date');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">Date<span class="required">*</span></label>
 										<div class="controls">
 											<div class="input-append span6" id="Attendance_date_datepicker">
-												<input type="text" data-format="dd-MM-yyyy" name="Attendance_date" id="Attendance_date" class="m-wrap span7">
+												<input type="text" data-format="dd-MM-yyyy" name="Attendance_date" id="Attendance_date" class="m-wrap span7" value="<?php echo set_value("Attendance_date"); ?>">
+												<span for="Attendance_date" class="help-inline"><?php echo form_error('Attendance_date'); ?></span>
 												<span class="add-on"><i class="icon-calendar"></i></span>
 											</div>
 										</div>

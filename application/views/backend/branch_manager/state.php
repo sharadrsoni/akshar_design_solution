@@ -88,10 +88,19 @@
 							<div class="body-inner">
 								<h3 class="form-section">State Info.</h3>
 								<!-- State Name -->
-								<div class="control-group">
+									<?php
+									$err=form_error('state_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">State Name<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="state_name" id="state_name" class="span8">
+										<input type="text" name="state_name" id="state_name" class="span8" value="<?php echo set_value("state_name"); ?>">
+										<span for="state_name" class="help-inline"><?php echo form_error('state_name'); ?></span>
 									</div>
 								</div><!--/ State Name -->
 								<input type="hidden" name="stateId" id="stateId" value="" />

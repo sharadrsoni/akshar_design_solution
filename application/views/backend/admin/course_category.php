@@ -88,10 +88,19 @@
 								<div class="body-inner">
 									<h3 class="form-section">Course Category Info.</h3>
 									<!-- Course Category Name -->
-									<div class="control-group">
+									<?php
+									$err=form_error('coursecategory_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 										<label class="control-label">Course Category Name<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="coursecategory_name" id="coursecategory_name" class="span8">
+											<input type="text" name="coursecategory_name" id="coursecategory_name" class="span8" value="<?php echo set_value("coursecategory_name"); ?>">
+											<span for="coursecategory_name" class="help-inline"><?php echo form_error('coursecategory_name'); ?></span>
 										</div>
 									</div><!--/ Course Category Name -->
 									<input type="hidden" name="coursecategoryId" id="coursecategoryId" value="" />

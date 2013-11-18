@@ -5,38 +5,44 @@ if (!defined('BASEPATH'))
 class branch_model extends CI_Model {
 
 	public function getDetailsOfBranch() {
-		return $this->db->get("branch")->result();
+		return $this -> db -> get("branch") -> result();
+	}
+
+	public function getDetailsByBranch($branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
+		return $this -> db -> get('branch') -> row();
 	}
 	
-	public function getDetailsByBranch($branchId) {
-		$this -> db -> where("branchId", $branchId);
+	public function getCountByBranch($branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> from('branch');
-		return $this -> db -> get() -> result();
+		return $this -> db -> count_all_results();
 	}
 
 	public function addBranch($data) {
 		if (isset($data)) {
 			//die (print_r($data));
 			return $this -> db -> insert('branch', $data);
-		} else {
-			return false;
 		}
-	}
-	
-	public function deleteBranch($branchId) {
-		if (isset($branchId)) {
-			$this -> db -> where('branchId', $branchId);
-			$this -> db -> delete('branch');
-			}
+		return false;
 	}
 
-	public function updateBranch($data,$branchId) {
-		if (isset($data) && isset($branchId)) {
-			$this -> db -> where('branchId',$branchId);
+	public function updateBranch($data, $branchCode) {
+		if (isset($data) && isset($branchCode)) {
+			$this -> db -> where('branchCode', $branchCode);
 			return $this -> db -> update('branch', $data);
-		} else {
-			return false;
 		}
+		return false;
 	}
+
+	public function deleteBranch($branchCode) {
+		if (isset($branchCode)) {
+			$this -> db -> where('branchCode', $branchCode);
+			$this -> db -> delete('branch');
+			return true;
+		}
+		return false;
+	}
+
 }
 ?>

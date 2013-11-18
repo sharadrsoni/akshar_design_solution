@@ -153,7 +153,7 @@ var Target = function() {
 }();
 function viewtarget(targetid) {
 	$.ajax({
-		url : "target/" + branchid,
+		url : "target/" + branchCode,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
@@ -171,7 +171,7 @@ function updatetarget(targetid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#branch').val(json.target[0].branchId);
+				$('#branch').val(json.target[0].branchCode);
 				$('#target_name').val(json.target[0].targetSubject);
 				$('#target_type').val(json.target[0].targetTypeId);
 				$('#start_date').val(json.target[0].targetStartDate);

@@ -4,27 +4,8 @@ if (!defined('BASEPATH'))
 
 class attendance_model extends CI_Model {
 
-	public function addAttendance($data) {
-		if (isset($data)) {
-			return $this -> db -> insert('attendance', $data);
-		} else {
-			return false;
-		}
-	}
-
-	public function updateAttendance($data) {
-		if (isset($data)) {
-			$this -> db -> where('attendanceDate', $data['attendanceDate']);
-			$this -> db -> where('studentBatchId', $data['studentBatchId']);
-			$this -> db -> set('attendanceIsPresent	', $data['attendanceIsPresent']);
-			return $this -> db -> update('attendance', $data);
-		} else {
-			return false;
-		}
-	}
-
-	public function getDetailsByBatchByDate($batchId, $roleId, $branchId, $date) {
-		$this -> db -> where("branchId", $branchId);
+	public function getDetailsByBatchByDate($batchId, $roleId, $branchCode, $date) {
+		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);
 		$this -> db -> where("batchId", $batchId);
 		$this -> db -> where("attendanceDate", $date);
@@ -43,8 +24,25 @@ class attendance_model extends CI_Model {
 		if ($count > 0) {
 			return $count;
 		}
-
 		return NULL;
 	}
 
+	public function addAttendance($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('attendance', $data);
+		}
+		return false;
+	}
+
+	public function updateAttendance($data) {
+		if (isset($data)) {
+			$this -> db -> where('attendanceDate', $data['attendanceDate']);
+			$this -> db -> where('studentBatchId', $data['studentBatchId']);
+			$this -> db -> set('attendanceIsPresent	', $data['attendanceIsPresent']);
+			return $this -> db -> update('attendance', $data);
+		}
+		return false;
+	}
+
 }
+?>

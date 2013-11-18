@@ -38,7 +38,7 @@ class Admin_branch_manager extends CI_Controller {
 					}
 				}
 			}
-			$this -> load -> view('backend/branch_manager/eventtype', $this->data);
+			$this -> load -> view('backend/admin_branch_manager/event_type', $this->data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/eventtype_js');
 			$this -> load -> view('backend/master_page/bottom');

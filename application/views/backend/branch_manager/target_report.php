@@ -72,7 +72,9 @@
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetTypeName}</td>
 <td class=\"hidden-480\">{$key->targetIsAchieved}</td>
-<td ><span class=\"label label-success\" onclick='updatetarget(\"{$key->targetId}\");' >Submit Report</span><span class=icon icone-pencil></span></td>
+<td ><span class=\"label label-success\" onclick='updatetarget(\"{$key->targetId}\");' >Submit Report</span>
+<span class=\"label label-success\" onclick='viewtargetreports(\"{$key->targetId}\");' >View Report</span>
+<span class=\"label label-success\" >Achive or Not<span></td>
 </tr>";
 												}
 											}
@@ -86,7 +88,7 @@
 
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_target_report');
-							echo form_open('branch_manager/targetreport', $attributes);
+							echo form_open('branch_manager/target_report', $attributes);
 							?>
 
 							<!-- <form class="form-horizontal span12 widget shadowed yellow" id="form_target_report" method="post" action="<?php echo base_url(); ?>branch_manager/addReport"> -->
@@ -101,45 +103,17 @@
 
 							<div class="body-inner">
 								<h3 class="form-section">Target Report </h3>
-								<!-- Target Name-->
-								<div class="control-group">
-									<label class="control-label">Target Name</label>
-									<div class="controls">
-										<lable>
-											<div id="target_name"></div>
-										</lable>
-									</div>
-								</div><!--/ Target Name	 -->
+								
 								<!-- Description -->
 								<div class="control-group">
-									<label class="control-label">Description</label>
+									<label class="control-label">Description about target</label>
 									<div class="controls">
-										<lable>
-											<div id="description"></div>
+										<lable class="control-label span8" style="text-align:left" id="description">
+								
 										</lable>
 									</div>
 								</div>
-								<!--/ Description         -->
-
-								<!-- Start Date -->
-								<div class="control-group">
-									<label class="control-label">Start Date</label>
-									<div class="controls">
-										<lable>
-											<div id="start_date"></div>
-										</lable>
-									</div>
-								</div><!--/ Start Date -->
-
-								<!-- End Date -->
-								<div class="control-group">
-									<label class="control-label">End Date</label>
-									<div class="controls">
-										<lable>
-											<div id="end_date"></div>
-										</lable>
-									</div>
-								</div><!--/ End Date -->
+								<!--/ Description         --
 
 								<!-- date -->
 								<div class="control-group">
@@ -171,6 +145,19 @@
 								</div><!--/ Form Action -->
 							</div>
 							</form>
+						</div>
+						<div class="tab-pane" id="tab3">
+							<table class="table table-striped table-bordered table-hover" id="obtainmarks">
+								<thead>
+									<tr>
+									<tr>
+										<th class="hidden-480">Date</th>
+										<th class="hidden-480">Description</th>
+									</tr>
+								</thead>
+
+								<tbody id="lst_Tatget_Reports"></tbody>
+							</table>
 						</div>
 					</div>
 				</div>

@@ -6,7 +6,9 @@ if (!defined('BASEPATH'))
 class Courses extends CI_Controller{
 
 	public function index(){
-		$this -> load -> view('frontend/courses');
+		$this->load->model('course_model');
+		$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
+		$this -> load -> view('frontend/courses',$this->data);
 	}
 }
 ?>

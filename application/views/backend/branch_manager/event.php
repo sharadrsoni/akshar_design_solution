@@ -106,10 +106,19 @@
 							<div class="body-inner">
 								<h3 class="form-section">Event Info</h3>
 								<!-- Event Name -->
-								<div class="control-group">
+								<?php
+									$err=form_error('event_name');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+							
 									<label class="control-label">Event Name<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="event_name" id="event_name" class="span8"/>
+										<input type="text" name="event_name" id="event_name" class="span8" value="<?php echo set_value("event_name"); ?>"/>
+										<span for="event_name" class="help-inline"><?php echo form_error('event_name'); ?></span>
 									</div>
 								</div><!--/ Event Name	 -->
 
@@ -117,7 +126,7 @@
 								<div class="control-group">
 									<label class="control-label">Event Type<span class="required">*</span></label>
 									<div class="controls">
-										<select class="span4" name="event_type_id" id="event_type_id">
+										<select class="span4" name="event_type_id" id="event_type_id" >
 											<option value="">Select...</option>
 											<?php
 											foreach ($event_type as $key) {
@@ -129,88 +138,161 @@
 								</div><!--/ Event Type -->
 
 								<!-- Start Date -->
-								<div class="control-group">
+								<?php
+									$err=form_error('start_date');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Start Date<span class="required">*</span></label>
 									<div class="controls">
 										<div class="input-append span6" id="start_date_datepicker">
-											<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7">
+											<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7" value="<?php echo set_value("start_date"); ?>">
+											<span for="start_date" class="help-inline"><?php echo form_error('start_date'); ?></span>
 											<span class="add-on"><i class="icon-calendar"></i></span>
 										</div>
 									</div>
 								</div><!--/ Start Date -->
 
 								<!-- End Date -->
-								<div class="control-group">
+								<?php
+									$err=form_error('end_date');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">End Date<span class="required">*</span></label>
 									<div class="controls">
 										<div class="input-append span6" id="end_date_datepicker">
-											<input type="text" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7">
+											<input type="text" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7" value="<?php echo set_value("end_date"); ?>">
+											<span for="end_date" class="help-inline"><?php echo form_error('end_date'); ?></span>
 											<span class="add-on"><i class="icon-calendar"></i></span>
 										</div>
 									</div>
 								</div><!--/ End Date -->
 
 								<!-- Description -->
-								<div class="control-group">
+								<?php
+									$err=form_error('description');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+							
 									<label class="control-label">Description<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="description" id="description" class="span8"/>
+										<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
+										<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
 									</div>
 								</div><!--/ Description	 -->
 
 								<h3 class="form-section">Event Venue</h3>
 
 								<!-- Street -->
-								<div class="control-group">
+								<?php
+									$err=form_error('street_1');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Street<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8"/>
+										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8" value="<?php echo set_value("street_1"); ?>"/>
+										<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?></span>
 									</div>
 
 								</div>
-								<div class="control-group">
+								<?php
+									$err=form_error('street_2');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label"><span class="required"></span></label>
 									<div class="controls">
-										<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8"/>
+										<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8" value="<?php echo set_value("street_2"); ?>"/>
+										<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
 									</div>
 								</div><!--/ Street -->
 								<!-- State -->
-								<div class="control-group">
+								<?php
+									$err=form_error('state');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">State/City<span class="required">*</span></label>
 									<div class="controls">
 										<div class="span4">
-											<select class="span12" name="state" id="state">
+											<select class="span12" name="state" id="state" value="<?php echo set_value("state"); ?>">
 												<option value="">Select...</option>
 												<option value="Category 1">Category 1</option>
 												<option value="Category 2">Category 2</option>
 												<option value="Category 3">Category 5</option>
 												<option value="Category 4">Category 4</option>
 											</select>
+											<span for="state" class="help-inline"><?php echo form_error('state'); ?></span>
 										</div>
 										<div class="span4">
-											<select class="span12" name="city" id="city">
+											<select class="span12" name="city" id="city" value="<?php echo set_value("city"); ?>">
 												<option value="">Select...</option>
 												<option value="Category 1">Category 1</option>
 												<option value="Category 2">Category 2</option>
 												<option value="Category 3">Category 5</option>
 												<option value="Category 4">Category 4</option>
 											</select>
+											<span for="city" class="help-inline"><?php echo form_error('city'); ?></span>
 										</div>
 									</div>
 								</div><!--/ State -->
 								<!-- Postal Code -->
-								<div class="control-group">
+								<?php
+									$err=form_error('pin_code');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Postal Code<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="pin_code" id="pin_code" class="span8"/>
+										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
+										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
 									</div>
 								</div><!--/ Postal Code -->
 								<h3 class="form-section">Other Info</h3>
 								<!-- Organize By -->
-								<div class="control-group">
+								<?php
+									$err=form_error('organize_by');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Organize By<span class="required">*</span></label>
 									<div class="controls">
-										<input type="text" name="organize_by" id="organize_by" class="span8"/>
+										<input type="text" name="organize_by" id="organize_by" class="span8" value="<?php echo set_value("first_name"); ?>"/>
+										<span for="organize_by" class="help-inline"><?php echo form_error('inventory_quantity'); ?></span>
 									</div>
 								</div><!--/ Organize By -->
 
@@ -254,10 +336,18 @@
 
 							<div class="body-inner">
 								<!-- Event -->
-								<div class="control-group">
+								<?php
+									$err=form_error('event_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
 									<label class="control-label">Event Name<span class="required">*</span></label>
 									<div class="controls">
-										<select class="span4" name="event_id" id="event_id">
+										<select class="span4" name="event_id" id="event_id" value="<?php echo set_value("event_id"); ?>">
 											<option value="">Select...</option>
 											<?php
 											foreach ($event as $key) {
@@ -265,13 +355,22 @@
 											}
 											?>
 										</select>
+										<span for="event_id" class="help-inline"><?php echo form_error('event_id'); ?></span>
 									</div>
 								</div><!--/ Event -->
 								<!-- Batch ID -->
-								<div class="control-group">
+								<?php
+									$err=form_error('batch_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+							
 									<label class="control-label">Batch ID<span class="required">*</span></label>
 									<div class="controls">
-										<select class="span4" name="batch_id" id="batch_id">
+										<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
 												<option value="">Select...</option>
 												<?php
 												foreach ($batch_list as $key) {
@@ -279,6 +378,7 @@
 												}
 												?>
 										</select>
+										<span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?></span>
 									</div>
 								</div><!--/ Batch ID -->
 								<table class="table table-striped table-bordered table-hover" id="attendance">

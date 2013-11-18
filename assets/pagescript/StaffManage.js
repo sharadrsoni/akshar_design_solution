@@ -9,7 +9,7 @@ var Staff = function() {
 			$('#tblStaff').dataTable({
 				"aoColumns" : [{
 					"bSortable" : false
-				}, null, null,null,null],
+				}, null, null, null, null],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -57,10 +57,10 @@ var Staff = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					branchId:{
+					branchCode : {
 						required : true
 					},
-					userroleId:{
+					userroleId : {
 						required : true
 					},
 					first_name : {
@@ -79,7 +79,7 @@ var Staff = function() {
 					email : {
 						required : true,
 					},
-					date_of_birth:{
+					date_of_birth : {
 						required : true,
 					},
 					qualification : {
@@ -134,16 +134,37 @@ var Staff = function() {
 			});
 		},
 		init_uijquery : function() {
+
 			$("#dob_datepicker input").datepicker({
 				isRTL : App.isRTL(),
-				dateFormat: 'dd-mm-yy'
-				
+				dateFormat : 'dd-mm-yy'
 			});
 
 			$("#dob_datepicker .add-on").click(function() {
 				$("#dob_datepicker input").datepicker("show");
 			});
-			
+
+			$(".select2").select2({
+				allowClear : true,
+			});
+
+			$("#stateid").change(function() {
+				$('#cityid').html('');
+				$("#cityid").append("<option>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/citylist/" + $("#stateid").val(),
+					dataType : 'json',
+					async : false,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#cityid").append("<option value='" + item.cityId + "'>" + item.cityName + "</option>");
+							});
+						}
+					}
+				});
+			});
+
 			$("#tablink2").click(function() {
 				$('#brnachId option:nth(0)').attr("selected", "selected");
 				$('#userroleId option:nth(0)').attr("selected", "selected");
@@ -156,8 +177,8 @@ var Staff = function() {
 				$('#qualification').val("");
 				$('#street_1').val("");
 				$('#street_2').val("");
-				$('#state option:nth(0)').attr("selected", "selected");
-				$('#city option:nth(0)').attr("selected", "selected");
+				$("#stateid").select2("val", 0);
+				$("#cityid").select2("val", 0);
 				$('#pin_code').val("");
 				$('#staffId').val("");
 				$("#submitStaff").text("Add Staff User");
@@ -165,15 +186,9 @@ var Staff = function() {
 				$("#form_staff").validate().resetForm();
 				$(".error").removeClass("error");
 				$(".success").removeClass("success");
-			});
-		/*$("#doj_datepicker input").datepicker({
-				isRTL : App.isRTL(),
-				dateFormat: 'dd-mm-yy'
+				$(".note").attr("style","display");
 			});
 
-			$("#doj_datepicker .add-on").click(function() {
-				$("#doj_datepicker input").datepicker("show");
-			});*/
 		}
 	};
 }();
@@ -184,25 +199,29 @@ function updatestaff(staffid) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#branchId').val(json.staff[0].branchId);
-				$('#userroleId').val(json.staff[0].roleId);
-				$('#first_name').val(json.staff[0].userFirstName);
-				$('#middle_name').val(json.staff[0].userMiddleName);
-				$('#last_name').val(json.staff[0].userLastName);
-				$('#contact_number').val(json.staff[0].userContactNumber);
-				$('#email').val(json.staff[0].userEmailAddress);
-				$('#date_of_birth').val(json.staff[0].userDOB);
-				$('#qualification').val(json.staff[0].userQualification);
-				$('#street_1').val(json.staff[0].userStreet1);
-				$('#street_2').val(json.staff[0].userStreet2);
-				$('#state').val(json.staff[0].userState);
-				$('#city').val(json.staff[0].userCity);
-				$('#pin_code').val(json.staff[0].userPostalCode);
+				$('#branchCode').val(json.staff.branchCode);
+				$('#userroleId').val(json.staff.roleId);
+				$('#branchCode option:not(:selected)').attr('disabled', true);
+				$('#userroleId option:not(:selected)').attr('disabled', true);
+				$('#first_name').val(json.staff.userFirstName);
+				$('#middle_name').val(json.staff.userMiddleName);
+				$('#last_name').val(json.staff.userLastName);
+				$('#contact_number').val(json.staff.userContactNumber);
+				$('#email').val(json.staff.userEmailAddress);
+				$('#date_of_birth').val(json.staff.userDOB);
+				$('#qualification').val(json.staff.userQualification);
+				$('#street_1').val(json.staff.userStreet1);
+				$('#street_2').val(json.staff.userStreet2);
+				$("#stateid").select2("val", json.staff.stateId);
+				$("#stateid").change();
+				$("#cityid").select2("val", json.staff.cityId);
+				$('#pin_code').val(json.staff.userPostalCode);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
-				$('#staffId').val(json.staff[0].userId);
+				$('#staffId').val(json.staff.userId);
 				$("#submitStaff").text("Update Staff User");
+				$(".note").attr("style","display:none");
 			}
 		}
 	});

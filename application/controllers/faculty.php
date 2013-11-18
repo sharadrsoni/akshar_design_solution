@@ -35,7 +35,7 @@ class Faculty extends CI_Controller {
 
 				$this -> load -> model('user_model');
 				$this -> load -> model('attendance_model');
-				$student_data = $this -> user_model -> getDetailsByBatch($_POST["batch_id"], 5, $this -> branchId);
+				$student_data = $this -> user_model -> getDetailsByBatch($_POST["batch_id"], 5, $this -> branchCode);
 				$date = date("Y-m-d", strtotime($_POST['Attendance_date']));
 				$count_data = $this -> attendance_model -> getCountByDate($_POST["batch_id"], $date);
 				if ($count_data == null)
@@ -63,8 +63,8 @@ class Faculty extends CI_Controller {
 			$this -> load -> model("test_model");
 			$this -> load -> model("batch_model");
 			$this -> data['test_list'] = $this -> test_model -> getDetailsBytest();
-			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
-			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this -> branchId, $this -> userId);
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
+			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this -> branchCode, $this -> userId);
 
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/student_attendance_css');
@@ -120,8 +120,8 @@ class Faculty extends CI_Controller {
 			$this -> load -> model("test_model");
 			$this -> load -> model("batch_model");
 			$this -> data['test_list'] = $this -> test_model -> getDetailsBytest();
-			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
-			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this -> branchId, $this -> userId);
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
+			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this -> branchCode, $this -> userId);
 
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/test_css');

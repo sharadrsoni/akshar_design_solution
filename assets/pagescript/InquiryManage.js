@@ -105,6 +105,15 @@ var Inquiry = function() {
 					pin_code : {
 						required : true,
 					},
+					coursecategory : {
+						required : true,
+					},
+					course : {
+						required : true,
+					},
+					date_of_doj : {
+						required : true,
+					},
 					name_of_institute : {
 						required : true,
 					},
@@ -160,6 +169,7 @@ var Inquiry = function() {
 				$("#dob_datepicker input").datepicker("show");
 			});
 			
+	
 			$("#tablink2").click(function() {
 				$('#user_name').val("");
 				$('#date_of_birth').val("");
@@ -171,7 +181,9 @@ var Inquiry = function() {
 				$('#state option:nth(0)').attr("selected", "selected");
 				$('#city option:nth(0)').attr("selected", "selected");
 				$('#pin_code').val("");
-				$('#name_of_institute').val("");
+				$('#coursecategory option:nth(0)').attr("selected", "selected");
+				$('#date_of_doj').val("");
+		     	$('#name_of_institute').val("");
 				$('#occupation_of_guardian').val("");
 				$('#reference').val("");
 				$('#inquiryId').val("");
@@ -203,6 +215,8 @@ function updateinquiry(inquiryid) {
 				$('#state').val(json.inquiry[0].inquiryState);
 				$('#city').val(json.inquiry[0].inquiryCity);
 				$('#pin_code').val(json.inquiry[0].inquiryPostalCode);
+				$('#course').val(json.inquiry[0].courseCode);
+				$('#date_of_doj').val(json.inquiry[0].inquiryExpectedDOJ);
 				$('#occupation_of_student').val(json.inquiry[0].inquiryStudentOccupation);
 				$('#name_of_institute').val(json.inquiry[0].inquiryInstituteName);
 				$('#occupation_of_guardian').val(json.inquiry[0].inquiryGuardianOccupation);

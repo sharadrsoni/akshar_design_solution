@@ -46,13 +46,13 @@
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab1">
 							<ul class="unstyled profile-nav span3">
-								<li><img src="<?php echo base_url() . "images/avatar/avatar2.jpg"; ?>" alt="" /><a href="#" class="profile-edit">edit</a>
+								<li><img src="<?php echo base_url() . "images/avatar/"; ?><?php echo $profile[0]->avtar;?>" alt="" /><a href="#" class="profile-edit">edit</a>
 								</li>
 								<li>
-									<a href="#"><?php echo $profile[0]->userFirstName;?></a>
+									<a href="#"><?php echo $profile[0]->userId;?></a>
 								</li>
 								<li>
-									<a href="#"><?php echo $profile[0]->userCity;?></a>
+									<a href="#"><?php echo $profile[0]->branchName;?></a>
 								</li>
 
 							</ul>
@@ -62,6 +62,7 @@
 
 										
 										<div class="">
+											<h4><?php echo $username;?></h4>
 											<h4>Address</h4>
 											<address>
 												
@@ -301,25 +302,25 @@
 													<div class="control-group">
 														<label class="control-label">Student Name of Institute/Industry</label>
 														<div class="controls">
-															<input type="text" name="name_of_institute" id="name_of_institute" class="span8" value="<?php echo $moreinfo[0]->studentInstituteName;?>">
+															<input type="text" name="name_of_institute" id="name_of_institute" class="span8" value="<?php echo $profile[0]->studentInstituteName;?>">
 														</div>
 													</div><!--/ Name of Institute/Industry --><!-- Guardian Name -->
 													<div class="control-group">
 														<label class="control-label">Guardian Name</label>
 														<div class="controls">
-															<input type="text" name="guardian_name" id="guardian_name" class="span8" value="<?php echo $moreinfo[0]->studentGuardianName;?>">
+															<input type="text" name="guardian_name" id="guardian_name" class="span8" value="<?php echo $profile[0]->studentGuardianName;?>">
 														</div>
 													</div><!--/ Guradian Name --><!-- ccupation of Guardian\Self -->
 													<div class="control-group">
 														<label class="control-label">Occupation of Guardian\Self</label>
 														<div class="controls">
-															<input type="text" name="occupation_of_guardian" id="occupation_of_guardian" class="span8" value="<?php echo $moreinfo[0]->studentGuardianOccupation;?>">
+															<input type="text" name="occupation_of_guardian" id="occupation_of_guardian" class="span8" value="<?php echo $profile[0]->studentGuardianOccupation;?>">
 														</div>
 													</div><!--/ ccupation of Guardian\Self --><!-- Reference -->
 													<div class="control-group">
 														<label class="control-label">Reference</label>
 														<div class="controls">
-															<input type="text" name="reference" id="reference" class="span8" value="<?php echo $moreinfo[0]->studentReferenceName;?>">
+															<input type="text" name="reference" id="reference" class="span8" value="<?php echo $profile[0]->studentReferenceName;?>">
 														</div>
 													</div><!--/ Reference --><!-- Form Action -->
 													<div class="form-actions">
@@ -332,7 +333,11 @@
 										</div>
 										<div id="tab_2-2" class="tab-pane">
 											<div style="height: auto;" id="accordion2-2" class="accordion collapse">
-												<form class="form-horizontal" action="#" id="form_change_avtar">
+												<?php
+													$attributes=array('id' => 'form_change_avtar','class'=>'form-horizontal');
+													
+													 echo form_open_multipart('student/profile',$attributes);
+												?>
 													<div class="alert alert-error hide">
 														<button class="close" data-dismiss="alert"></button>
 														You have some form errors. Please check below.
@@ -348,7 +353,10 @@
 																<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 																	<img src="" alt="" />
 																</div>
-																<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+																<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+																	<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+																	
+																</div>
 																<div>
 																	<span class="btn btn-file"><span class="fileupload-new">Select image</span> <span class="fileupload-exists">Change</span>
 																		<input type="file" id="student_avtar" name="student_avtar" class="default" />
@@ -362,7 +370,7 @@
 													</div>
 													<!-- Form Action -->
 													<div class="form-actions">
-														<button type="submit" class="btn yellow">
+														<button type="submit" class="btn yellow" name="change_avatar" id="change_avatar">
 															Change Avtar
 														</button>
 													</div><!--/ Form Action -->
@@ -371,7 +379,12 @@
 										</div>
 										<div id="tab_3-3" class="tab-pane">
 											<div style="height: auto;" id="accordion3-3" class="accordion collapse">
-												<form action="#" id="form_change_password">
+												
+													<?php
+													$attributes=array('id' => 'form_change_password');
+													 echo form_open('student/profile', $attributes); 
+													 ?>
+												
 													<div class="alert alert-error hide">
 														<button class="close" data-dismiss="alert"></button>
 														You have some form errors. Please check below.
@@ -384,7 +397,8 @@
 													<div class="control-group">
 														<label class="control-label">Current Password<span class="required">*</span></label>
 														<div class="controls">
-															<input type="password" name="current_password" id="currentpassword" class="span8"/>
+															<input type="password" name="current_password" id="current_password" class="span8"/>
+															<span for="strength" class="help-inline"><?php echo form_error('current_password'); ?></span>
 														</div>
 													</div><!--/ password -->
 													<!-- New password -->
@@ -392,6 +406,7 @@
 														<label class="control-label">New Password<span class="required">*</span></label>
 														<div class="controls">
 															<input type="password" name="new_password" id="new_password" class="span8"/>
+															<span for="strength" class="help-inline"><?php echo form_error('new_password'); ?></span>
 														</div>
 													</div><!--/ New password -->
 													<!-- Re-type New password -->
@@ -399,11 +414,12 @@
 														<label class="control-label">Re-type New Password<span class="required">*</span></label>
 														<div class="controls">
 															<input type="password" name="re_new_password" id="re_new_password" class="span8"/>
+															<span for="strength" class="help-inline"><?php echo form_error('re_new_password'); ?></span>
 														</div>
 													</div><!--/ Re-type New password -->
 													<!-- Form Action -->
 													<div class="form-actions">
-														<button type="submit" class="btn green">
+														<button type="submit" class="btn green" id="change_password" name="change_password"> 
 															Change Password
 														</button>
 													</div><!--/ Form Action -->
@@ -412,7 +428,13 @@
 										</div>
 										<div id="tab_4-4" class="tab-pane">
 											<div style="height: auto;" id="accordion4-4" class="accordion collapse">
-												<form class="form-horizontal" action="#" id="form_student_resume">
+												
+												
+												<?php
+													$attributes=array('id' => 'form_student_resume','class'=>'form-horizontal');
+													
+													  echo form_open_multipart('student/profile',$attributes); 
+													 ?>
 													<div class="alert alert-error hide">
 														<button class="close" data-dismiss="alert"></button>
 														You have some form errors. Please check below.
@@ -427,6 +449,7 @@
 															<div class="fileupload fileupload-new" data-provides="fileupload">
 																<span class="btn btn-file"> <span class="fileupload-new">Select file</span> <span class="fileupload-exists">Change</span>
 																	<input type="file" id="student_resume" name="student_resume" class="default" />
+																	
 																</span>
 																<span class="fileupload-preview"></span>
 																<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none"></a>
@@ -434,8 +457,8 @@
 														</div>
 													</div><!-- Form Action -->
 													<div class="form-actions">
-														<button type="submit" class="btn blue">
-															Edit Profile
+														<button type="submit" class="btn blue" id="change_resume" name="change_resume">
+															Upload
 														</button>
 													</div><!--/ Form Action -->
 												</form>

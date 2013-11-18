@@ -29,17 +29,17 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> model("batch_timing_model");
 		$weekdays = array();
 		if ($batchId != '') {
-			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this -> branchId, $batchId);
+			$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this -> branchCode, $batchId);
 			$this -> data['batch_list'] = $batch_data;
 			$weekdays = $this -> batch_timing_model -> getBatchTiming($batchId);
 			$this -> data['weekdays'] = $weekdays;
 			echo json_encode($this -> data);
 		} else {
-			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
 			$this -> load -> model("course_model");
 			$courses = $this -> course_model -> getDetailsOfCourse();
 			$this -> load -> model('user_model');
-			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this -> branchId, 3);
+			$facultyName = $this -> user_model -> getDetailsByBranchAndRole($this -> branchCode, 3);
 			$this -> data['course'] = $courses;
 			$this -> data['faculty'] = $facultyName;
 			$this -> data['batch_list'] = $batch_data;
@@ -58,30 +58,21 @@ class Branch_manager extends CI_Controller {
 					$this -> data['validate'] = true;
 				} else {
 					$this -> load -> model('batch_model');
-					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchId' => $this -> branchId, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
+					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchCode' => $this -> branchCode, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 					$update = false;
 					$time_update = false;
 					$this -> load -> model('batch_timing_model');
 					if ($_POST['batchId'] == '') {
 						$year = date('Y');
-						if ($this -> branchId < 10) {
-							$this -> branchId = "0" . $this -> branchId;
-						}
-						$getMaximumBatchId = $this -> batch_model -> getMaxId();
-						$batchId = substr($getMaximumBatchId['batchId'], 6, 8);
-						$batchId = floatval($batchId);
-						if ($batchId != null) {
-							$batchId++;
+						$getMaximumBatchId = $this -> batch_model -> getMaxId($year, $this -> branchCode);
+						if ($getMaximumBatchId > 0) {
+							$batchId = $year . $this -> branchCode . $getMaximumBatchId;
+							//die($getMaximumBatchId . "----" . $batchId);
+							$branchData['batchId'] = $batchId;
+							//die($branchData['batchId']);
 						} else {
-							$batchId = 1;
+							$this -> data['validate'] = true;
 						}
-						if ($batchId < 10) {
-							$batchId = "00" . $batchId;
-						} else if ($batchId < 100 && $batchId > 9) {
-							$batchId = "0" . $batchId;
-						}
-						$batchId = $year . $this -> branchId . $batchId;
-						$branchData['batchId'] = floatval($batchId);
 					} else {
 						$batchId = $_POST['batchId'];
 						if ($_POST['flagbtalter'] != "") {
@@ -90,22 +81,24 @@ class Branch_manager extends CI_Controller {
 						}
 						$update = true;
 					}
-					$batch_timings = array();
-					$size = sizeof($_POST["batch_timing"]);
-					if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
-						for ($i = 0; $i < $size; ) {
-							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
-							if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
-								$this -> data['error'] = "An Error Occured.";
-								break;
+					if (!isset($this -> data['validate'])) {
+						$batch_timings = array();
+						$size = sizeof($_POST["batch_timing"]);
+						if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
+							for ($i = 0; $i < $size; ) {
+								$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
+								if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
+									$this -> data['error'] = "An Error Occured.";
+									break;
+								}
+								$i++;
 							}
-							$i++;
+							if ($this -> data['error'] == null) {
+								redirect(base_url() . "branch_manager/batch");
+							}
+						} else {
+							$this -> data['error'] = "An Error Occured.";
 						}
-						if ($this -> data['error'] == null) {
-							redirect(base_url() . "branch_manager/batch");
-						}
-					} else {
-						$this -> data['error'] = "An Error Occured.";
 					}
 				}
 			}
@@ -145,16 +138,15 @@ class Branch_manager extends CI_Controller {
 		$this -> batch_model -> deleteBatch($batchId);
 		redirect(base_url() . "branch_manager/batch");
 	}
-	
+
 	//Event
 	public function event($eventId = '') {
 		$this -> load -> model('event_model');
-		$branchId = $this -> branchId;
+		$branchCode = $this -> branchCode;
 		if ($eventId != '') {
-			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchId, $eventId);
+			$this -> data['event'] = $this -> event_model -> getDetailsByEventBranch($branchCode, $eventId);
 			echo json_encode($this -> data);
-		} 
-		else {
+		} else {
 			$this -> data['title'] = "ADS | Event";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/event_css');
@@ -162,13 +154,12 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> model("event_type_model");
 			$this -> load -> model('user_model');
 			$this -> load -> model("batch_model");
-			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchId);
+			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
 			$this -> data['batch_list'] = $batch_data;
-			$this->data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
-			$this->data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchId, 3);
-			$this->data['event'] = $this -> event_model -> getDetailsByBranch($branchId);
-	
-	
+			$this -> data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
+			$this -> data['faculty'] = $this -> user_model -> getDetailsByBranchAndRole($branchCode, 3);
+			$this -> data['event'] = $this -> event_model -> getDetailsByBranch($branchCode);
+
 			if (isset($_POST['submitEvent'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim');
@@ -184,23 +175,23 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Pin Code', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
-					$this->data['validate'] = true;
+					$this -> data['validate'] = true;
 				} else {
-					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchId' => $branchId, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchCode' => $branchCode, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 					if ($_POST['eventId'] != "" ? $this -> event_model -> updateEvent($eventData, $_POST['eventId']) : $this -> event_model -> addEvent($eventData)) {
 						redirect(base_url() . "branch_manager/event");
 					} else {
-						$this->data['error'] = "An Error Occured.";
+						$this -> data['error'] = "An Error Occured.";
 					}
 				}
 			}
 			if (isset($_POST['submitEventAttendance'])) {
-				
+
 				$this -> load -> model('student_batch_model');
 				$this -> load -> model('event_attendance_model');
 				$student_data = $this -> student_batch_model -> getDetailsByBatch($_POST["batch_id"]);
 				foreach ($student_data as $key) {
-					$this -> event_attendance_model -> deleteAttendance($key -> studentId,$_POST["event_id"]);
+					$this -> event_attendance_model -> deleteAttendance($key -> studentId, $_POST["event_id"]);
 				}
 
 				$size = sizeof($_POST["student_ids"]);
@@ -209,9 +200,9 @@ class Branch_manager extends CI_Controller {
 					$this -> event_attendance_model -> addAttendance($dummy);
 				}
 				redirect(base_url() . "branch_manager/event");
-				
+
 			}
-			$this -> load -> view('backend/branch_manager/event', $this->data);
+			$this -> load -> view('backend/branch_manager/event', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/event_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -236,14 +227,12 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> view('backend/css/target_report_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> load -> model("target_report_model");
-			$target_data = $this -> target_report_model -> getDetailsByBranch($this -> branchId);
+			$target_data = $this -> target_report_model -> getDetailsByBranch($this -> branchCode);
 			$this -> data['target_report_list'] = $target_data;
-
 			if (isset($_POST['addreport'])) {
 				$reportData = array('targetReportDescription' => $_POST['report_description'], 'targetReportDate' => date("Y-m-d", strtotime($_POST['date'])), 'targetId' => $_POST['targetId']);
 				$this -> target_report_model -> addReport($reportData);
 				redirect(base_url() . "branch_manager/target_report");
-
 			}
 			$this -> load -> view('backend/branch_manager/target_report', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
