@@ -154,7 +154,7 @@ class Admin extends CI_Controller {
 	public function course($courseId = '') {
 		$this -> load -> model('course_model');
 		if ($courseId != '') {
-			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId,$this -> branchCode);
+			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Course";
@@ -170,20 +170,17 @@ class Admin extends CI_Controller {
 				$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim');
 				//$this -> form_validation -> set_rules('courseCode', 'Course Code', 'required|trim|is_unique[course.courseCode]');
 				$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
-				$this -> form_validation -> set_rules('material_id', 'Course MaterialId', 'required|trim');
 				$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
-				$this -> form_validation -> set_rules('opening_stock', 'Material Opening Stock', 'required|trim');
 				$this -> form_validation -> set_rules('description', 'Course description', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
 					$this -> load -> model('book_inventory_model');
-					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['courseCode'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialId' => $_POST['material_id'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description']);
-					$inventoryData = array('inventoryInwardQuantity' => $_POST['opening_stock'], 'courseCode' => $_POST['courseCode'], 'branchCode' => $this -> branchCode,'inventoryInwardDate' => date('y-m-d'),'inventoryIsOS' => '1');	
+					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description']);
 					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])<=0) {
 						$courseValue['courseCode'] = $_POST['courseCode'];
 					}
-					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])>0 ? $this -> course_model -> updateCourse($courseValue, $_POST['courseCode']) && $this -> book_inventory_model -> updateopeningStock($inventoryData,$this -> branchCode,$_POST['courseCode']) : $this -> course_model -> addCourse($courseValue) && $this -> book_inventory_model -> addinventory($inventoryData)) {
+					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])>0 ? $this -> course_model -> updateCourse($courseValue, $_POST['courseCode']): $this -> course_model -> addCourse($courseValue)) {
 						redirect(base_url() . "admin/course");
 					} else {
 						$this -> data['error'] = "An Error Occured.";

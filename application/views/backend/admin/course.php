@@ -242,22 +242,6 @@
 											<span for="course_duration" class="help-inline"><?php echo form_error('course_duration'); ?></span>
 										</div>
 									</div><!--/ Course Duration -->
-									<!-- Course Material Id -->
-											<?php
-									$err=form_error('material_id');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-								
-										<label class="control-label">Course Material Id<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="material_id" id="material_id" class="span8" value="<?php echo set_value("material_id"); ?>"/>
-											<span for="material_id" class="help-inline"><?php echo form_error('material_id'); ?></span>
-										</div>
-									</div><!--/ Course Material Id -->
 									<!-- Course Material Total Books -->
 											<?php
 									$err=form_error('total_books');
@@ -274,22 +258,6 @@
 											<span for="total_books" class="help-inline"><?php echo form_error('total_books'); ?></span>
 										</div>
 									</div><!--/ Course Material Total Books -->
-									<!-- Course Material Opening Stock -->
-											<?php
-									$err=form_error('opening_stock');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Material Opening Stock<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="opening_stock" id="opening_stock" class="span8" value="<?php echo set_value("opening_stock"); ?>"/>
-											<span for="opening_stock" class="help-inline"><?php echo form_error('opening_stock'); ?></span>
-										</div>
-									</div><!--/ Course Material Opening Stock -->
 									<!-- Course Description -->
 											<?php
 									$err=form_error('description');

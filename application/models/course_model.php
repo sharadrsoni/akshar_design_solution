@@ -11,11 +11,8 @@ class course_model extends CI_Model {
 		return $this -> db -> get('course') -> result();
 	}
 
-	public function getDetailsByCourse($courseCode,$branch) {
+	public function getDetailsByCourse($courseCode) {
 		$this -> db -> where('course.courseCode', $courseCode);
-		$this -> db -> join('inventory_inward', 'course.courseCode = inventory_inward.courseCode');
-		$this -> db -> where('branchCode', $branch);
-		$this -> db -> where('inventoryIsOS', '1');
 		return $this -> db -> get('course') -> row();
 	}
 	
