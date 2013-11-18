@@ -11,11 +11,8 @@ class course_model extends CI_Model {
 		return $this -> db -> get('course') -> result();
 	}
 
-	public function getDetailsByCourse($courseCode,$branch) {
+	public function getDetailsByCourse($courseCode) {
 		$this -> db -> where('course.courseCode', $courseCode);
-		$this -> db -> join('inventory_inward', 'course.courseCode = inventory_inward.courseCode');
-		$this -> db -> where('branchCode', $branch);
-		$this -> db -> where('inventoryIsOS', '1');
 		return $this -> db -> get('course') -> row();
 	}
 	
@@ -55,7 +52,7 @@ class course_model extends CI_Model {
 
 	public function checkBooks($courseCode) {
 		$this -> db -> where("course.courseCode", $courseCode);
-		$this -> db -> where("(select SUM(inventoryInwardQuantity) from inventory_inward i where i.courseId = course.courseCode) > (select count(*) from batch b,student_batch sb where b.courseCode = course.courseCode and StudentBatchHasReceivedSet = 1)");
+		$this -> db -> where("(select SUM(inventoryInwardQuantity) from inventory_inward i where i.courseCode = course.courseCode) > (select count(*) from batch b,student_batch sb where b.courseCode = course.courseCode and StudentBatchHasReceivedSet = 1)");
 		
 		return $this -> db -> select('courseCode') -> get('course') -> row_array();
 	}

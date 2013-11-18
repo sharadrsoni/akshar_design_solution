@@ -253,7 +253,7 @@ function updatebranch(branchCode) {
 		success : function(json) {
 			if (json) {
 				$('#branchCode').val(json.branch.branchCode);
-				$('#branchCode').attr("disabled","disabled");
+				$('#branchCode').attr("readonly","readonly");
 				$('#branch_name').val(json.branch.branchName);
 				$('#conatct_no').val(json.branch.branchContactNumber);
 				$('#street_1').val(json.branch.branchStreet1);

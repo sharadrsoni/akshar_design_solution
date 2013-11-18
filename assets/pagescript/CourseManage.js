@@ -122,10 +122,8 @@ var Course= function() {
 				$('#courseCategory_id').val("");
 				$('#courseCode').val("");
 				$('#course_duration').val("");
-				$('#material_id').val("");
 				$('#total_books').val("");
 				$('#description').val("");
-				$('#opening_stock').val("");
 				$("#submitCourse").text("Add Course");
 				$('.alert-error', $('#form_course')).hide();
 				$("#form_course").validate().resetForm();
@@ -143,19 +141,16 @@ function updateCourse(couseid) {
 		success : function(json) {
 			if (json) {
 				$('#courseCode').val(json.course.courseCode);
-				$('#courseCode').attr("disabled","disabled");
+				$('#courseCode').attr("readonly","readonly");
 				$('#course_name').val(json.course.courseName);
 				$('#courseCategory_id').val(json.course.courseCategoryId);
 				$('#course_duration').val(json.course.courseDuration);
-				$('#material_id').val(json.course.courseMaterialId);
 				$('#total_books').val(json.course.courseMaterialTotalBooks);
-				$('#opening_stock').val(json.course.inventoryInwardQuantity);
 				$('#description').val(json.course.courseDescription);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
 				$("#submitCourse").text("Update Course");
-				map = Branch.init_google();
 			}
 		}
 	});

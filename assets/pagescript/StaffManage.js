@@ -201,8 +201,8 @@ function updatestaff(staffid) {
 			if (json) {
 				$('#branchCode').val(json.staff.branchCode);
 				$('#userroleId').val(json.staff.roleId);
-				$('#branchCode').attr("disabled", "disabled");
-				$('#userroleId').attr("disabled", "disabled");
+				$('#branchCode option:not(:selected)').attr('disabled', true);
+				$('#userroleId option:not(:selected)').attr('disabled', true);
 				$('#first_name').val(json.staff.userFirstName);
 				$('#middle_name').val(json.staff.userMiddleName);
 				$('#last_name').val(json.staff.userLastName);

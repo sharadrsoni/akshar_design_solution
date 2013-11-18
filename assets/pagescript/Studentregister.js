@@ -129,10 +129,12 @@ var StudentRegistration = function() {
 							$.each(json.batch_list, function(i, item) {
 								$('#batchid').append("<option value=" + item.batchId + ">" + item.batchStartDate + "</option>");
 							});
-							if (json.available_data.courseCode)//Enable
-								$('#isbookissue').prop('disable', true);
-							else// Disable
-								$('#isbookissue').prop('disable', true);
+							if (json.available_data.courseCode){//e
+								//enable
+							}
+							else{
+								//disable	
+							}
 						}
 					}
 				});

@@ -12,19 +12,19 @@ class fee_model extends CI_Model {
 		return $this -> db -> get('fees') -> row_array();
 	}
 
-	public function addFee($data) {
-		if (isset($data)) {
-			return $this -> db -> insert('fees', $data);
-		}
-		return false;
-	}
-
 	public function getFeeDetailsByBranch($branchCode) {
 		$this -> db -> from('fees');
 		$this -> db -> join('user', 'fees.studentId = user.userId');
 		$this -> db -> where('branchCode', $branchCode);
 		return $this -> db -> get() -> result();
 
+	}
+
+	public function addFee($data) {
+		if (isset($data)) {
+			return $this -> db -> insert('fees', $data);
+		}
+		return false;
 	}
 
 	public function deleteFees($feesId) {

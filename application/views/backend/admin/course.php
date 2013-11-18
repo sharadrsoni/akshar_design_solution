@@ -73,85 +73,6 @@
 									</table>
 								</div>
 							</div>
-							
-				<!--View Course -->
-				<div class="form-horizontal form-view" id="ViewBatch">
-					<h3> View Course Info </h3>
-					
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label" for="firstName">Course Category:</label>
-								<span class="text" id="view_coursecategory_id"></span>
-							</div>
-							
-							
-						</div>
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label" for="lastName">Course Name:</label>
-								<div class="controls">
-									<span class="text" id="view_course_name"></span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Duration:</label>
-								<div class="controls">
-									<span class="text bold" id="view_course_duration"></span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-					</div>
-					<!--/row-->
-					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Course Material Id:</label>
-								<div class="controls">
-									<span class="text bold" id="view_material_id"></span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Material Total Books:</label>
-								<div class="controls">
-									<span class="text bold" id="view_total_books"></span>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						
-					</div>
-					<!--/row-->
-					
-					<div class="row-fluid">
-						<div class="span12 ">
-							<div class="control-group">
-								<label class="control-label">Material Opening Stock:</label>
-								<div class="controls">
-									<span class="text" id="view_opening_stock"></span>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-					
-					
-				</div><!-- End View course-->
-			
-							
 						</div>
 						<div class="tab-pane" id="tab2">
 							<?php
@@ -242,22 +163,6 @@
 											<span for="course_duration" class="help-inline"><?php echo form_error('course_duration'); ?></span>
 										</div>
 									</div><!--/ Course Duration -->
-									<!-- Course Material Id -->
-											<?php
-									$err=form_error('material_id');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-								
-										<label class="control-label">Course Material Id<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="material_id" id="material_id" class="span8" value="<?php echo set_value("material_id"); ?>"/>
-											<span for="material_id" class="help-inline"><?php echo form_error('material_id'); ?></span>
-										</div>
-									</div><!--/ Course Material Id -->
 									<!-- Course Material Total Books -->
 											<?php
 									$err=form_error('total_books');
@@ -274,22 +179,6 @@
 											<span for="total_books" class="help-inline"><?php echo form_error('total_books'); ?></span>
 										</div>
 									</div><!--/ Course Material Total Books -->
-									<!-- Course Material Opening Stock -->
-											<?php
-									$err=form_error('opening_stock');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Material Opening Stock<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="opening_stock" id="opening_stock" class="span8" value="<?php echo set_value("opening_stock"); ?>"/>
-											<span for="opening_stock" class="help-inline"><?php echo form_error('opening_stock'); ?></span>
-										</div>
-									</div><!--/ Course Material Opening Stock -->
 									<!-- Course Description -->
 											<?php
 									$err=form_error('description');
