@@ -142,9 +142,10 @@ function updateCourse(couseid) {
 		async : true,
 		success : function(json) {
 			if (json) {
+				$('#courseCode').val(json.course.courseCode);
+				$('#courseCode').attr("disabled","disabled");
 				$('#course_name').val(json.course.courseName);
 				$('#courseCategory_id').val(json.course.courseCategoryId);
-				$('#courseCode').val(json.course.courseCode);
 				$('#course_duration').val(json.course.courseDuration);
 				$('#material_id').val(json.course.courseMaterialId);
 				$('#total_books').val(json.course.courseMaterialTotalBooks);
