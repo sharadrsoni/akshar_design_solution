@@ -250,25 +250,48 @@
 											<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
 										</div>
 									</div><!--/ Street -->
-									<!-- City -->
-										<?php
-									$err=form_error('city');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-								
-										<label class="control-label">City<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="city" id="city" class="span8" value="<?php echo set_value("city"); ?>"/>
-											<span for="city" class="help-inline"><?php echo form_error('city'); ?></span>
-										</div>
-									</div><!--/ City -->
 									<!-- State -->
-										<?php
-									$err=form_error('state');
+								<?php
+									$err=form_error('stateid');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									<label class="control-label">State<span class="required">*</span></label>
+									<div class="controls">
+											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
+											<option value="">Select...</option>
+												<?php
+												foreach ($State as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
+												}
+												?>
+											</select>
+											<span for="state" class="help-inline"><?php echo form_error('stateid'); ?></span>
+									</div>
+								</div><!--/ State -->
+								<!-- City -->
+								<?php
+									$err=form_error('cityid');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									<label class="control-label">City<span class="required">*</span></label>
+									<div class="controls">
+											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
+												<option value="">Select...</option>
+											</select>
+											<span for="cityid" class="help-inline"><?php echo form_error('cityid'); ?></span>
+									</div>
+								</div><!--/ City -->
+								<!-- Postal Code -->
+								<?php
+									$err=form_error('pin_code');
 									if ($err != '') {
 										echo "<div class='control-group error'>";
 									} else {
@@ -276,24 +299,12 @@
 									}
 									 ?>
 								
-										<label class="control-label">State<span class="required">*</span></label>
-										<div class="controls">
-											<div class="span4">
-												<select class="span12" name="state" id="state" value="<?php echo set_value("state"); ?>">
-													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
-												</select>
-												<span for="state" class="help-inline"><?php echo form_error('state'); ?></span>
-											</div>
-											<div class="span4">
-												<input type="text" name="pin_code" id="pin_code" class="span12" value="<?php echo set_value("pin_code"); ?>"/>
-												<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
-											</div>
-										</div>
-									</div><!--/ StateState -->
+									<label class="control-label">Postal Code<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
+										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
+									</div>
+								</div><!--/ Postal Code -->
 									<h3 class="form-section">Other Info</h3>
 										<!-- Course Category -->
 								<?php

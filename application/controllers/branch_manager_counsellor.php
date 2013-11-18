@@ -15,6 +15,8 @@ class Branch_manager_counsellor extends CI_Controller {
 	public function inquiry($inquiryID = '') {
 		$this -> load -> model("inquiry_model");
 		$this -> load -> model("course_category_model");
+		$this -> load -> model("state_model");
+		$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 		$courseCategoryName = $this -> course_category_model -> getDetailsOfCourseCategory();
 		$this -> data['category'] = $courseCategoryName;
 		if ($inquiryID != '') {

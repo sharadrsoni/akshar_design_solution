@@ -169,6 +169,39 @@ var Inquiry = function() {
 				$("#dob_datepicker input").datepicker("show");
 			});
 			
+			$("#doj_datepicker input").datepicker({
+				isRTL : App.isRTL(),
+				changeMonth : true,
+				changeYear : true,
+				yearRange : "c-60:c",
+				dateFormat: 'dd-mm-yy'
+			});
+
+			$("#doj_datepicker .add-on").click(function() {
+				$("#doj_datepicker input").datepicker("show");
+			});
+			
+			$(".select2").select2({
+				allowClear : true,
+			});
+			
+			$("#stateid").change(function() {
+				$('#cityid').html('');
+				$("#cityid").append("<option>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/citylist/" + $("#stateid").val(),
+					dataType : 'json',
+					async : false,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#cityid").append("<option value='"+item.cityId+"'>"+item.cityName+"</option>");
+							});
+						}
+					}
+				});
+			});
+			
 	
 			$("#tablink2").click(function() {
 				$('#user_name').val("");
@@ -189,7 +222,7 @@ var Inquiry = function() {
 				$('#inquiryId').val("");
 				$("#submitInquiry").text("Add Inquiry");
 				$('.alert-error', $('#form_branch')).hide();
-				$("#form_branch").validate().resetForm();
+				$("#form_inquiry").validate().resetForm();
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});
