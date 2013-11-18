@@ -46,13 +46,13 @@
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab1">
 							<ul class="unstyled profile-nav span3">
-								<li><img src="<?php echo base_url() . "images/avatar/"; ?><?php echo $profile[0]->avtar;?>" alt="" /><a href="#" class="profile-edit">edit</a>
+								<li><img src="<?php echo base_url() . "images/avatar/"; ?><?php echo $profile->userPhotograph;?>" alt="" /><a href="#" class="profile-edit">edit</a>
 								</li>
 								<li>
-									<a href="#"><?php echo $profile[0]->userId;?></a>
+									<a href="#"><?php echo $profile->userId;?></a>
 								</li>
 								<li>
-									<a href="#"><?php echo $profile[0]->branchName;?></a>
+									<a href="#"><?php echo $profile->branchName;?></a>
 								</li>				</ul>
 							<div class="span9">
 								<div class="row-fluid">
@@ -64,30 +64,30 @@
 											<h4>Address</h4>
 											<address>
 												
-												<?php echo $profile[0]->userStreet1;?>
+												<?php echo $profile->userStreet1;?>
 												<br>
-												<?php echo $profile[0]->userStreet2;?>												
+												<?php echo $profile->userStreet2;?>												
 												<br>
-												<?php echo $profile[0]->userCity;?>-<?php echo $profile[0]->userPostalCode;?>												
+												<?php echo $profile->cityId;?>-<?php echo $profile->userPostalCode;?>												
 												<br>
-												<?php echo $profile[0]->userState;?>												
+												<?php echo $profile->stateId;?>												
 												<br>
 											
-												<abbr title="Phone">P:</abbr> <?php echo $profile[0]->userContactNumber;?>
+												<abbr title="Phone">P:</abbr> <?php echo $profile->userContactNumber;?>
 											</address>
 											<address>
 												<strong>Email</strong>
 												<br>
-												<a href="mailto:#"><?php echo $profile[0]->userEmailAddress;?></a>
+												<a href="mailto:#"><?php echo $profile->userEmailAddress;?></a>
 											</address>
 										</div>
 
 										<ul class="unstyled inline">
 											<li>
-												<i class="icon-map-marker"></i> <?php echo $profile[0]->userCity;?>
+												<i class="icon-map-marker"></i> <?php echo $profile->cityId;?>
 											</li>
 											<li>
-												<i class="icon-calendar"></i><?php echo $profile[0]->userDOB;?>
+												<i class="icon-calendar"></i><?php echo $profile->userDOB;?>
 											</li>
 										</ul>
 									</div>
@@ -205,64 +205,64 @@
 													<div class="control-group">
 														<label class="control-label">First Name:</label>
 														<div class="controls" >
-															<input type="text" name="first_name" id="first_name" class="span6" value="<?php echo $profile[0]->userFirstName;?>">
+															<input type="text" name="first_name" id="first_name" class="span6" value="<?php echo $profile->userFirstName;?>">
 														</div>
 													</div></td>
 													<td>
 													<div class="control-group">
 														<label class="control-label">Middle Name:</label>
 														<div class="controls" >
-															<input type="text" name="middle_name" id="middle_name" class="span6" value="<?php echo $profile[0]->userMiddleName;?>">
+															<input type="text" name="middle_name" id="middle_name" class="span6" value="<?php echo $profile->userMiddleName;?>">
 														</div>
 													</div></td>
 													<td>
 													<div class="control-group">
 														<label class="control-label">Last Name:</label>
 														<div class="controls" >
-															<input type="text" name="last_name" id="last_name" class="span6" value="<?php echo $profile[0]->userLastName;?>">
+															<input type="text" name="last_name" id="last_name" class="span6" value="<?php echo $profile->userLastName;?>">
 														</div>
 													</div><!--/ Name--><!-- Date of Birth -->
 													<div class="control-group">
 														<label class="control-label">Date of Birth</label>
 														<div class="input-append" id="dob_datepicker">
-															<input type="text" readonly="" name="date_of_birth" id="date_of_birth" class="m-wrap span6." value="<?php echo $profile[0]->userDOB;?>">
+															<input type="text" readonly="" name="date_of_birth" id="date_of_birth" class="m-wrap span6." value="<?php echo $profile->userDOB;?>">
 															<span class="add-on"><i class="icon-calendar"></i></span>
 														</div>
 													</div><!--/ Date of Birth --><!-- Mobile No -->
 													<div class="control-group">
 														<label class="control-label">Mobile No.</label>
 														<div class="controls">
-															<input type="text" name="mobile_no" id="mobile_no" class="span6" value="<?php echo $profile[0]->userContactNumber;?>">
+															<input type="text" name="mobile_no" id="mobile_no" class="span6" value="<?php echo $profile->userContactNumber;?>">
 														</div>
 													</div><!--/ Mobile No--><!-- E-mail -->
 													<div class="control-group">
 														<label class="control-label">E-mail</label>
 														<div class="controls">
-															<input type="text" name="email" id="email" class="span6" value="<?php echo $profile[0]->userEmailAddress;?>">
+															<input type="text" name="email" id="email" class="span6" value="<?php echo $profile->userEmailAddress;?>">
 														</div>
 													</div><!--/ E-mail --><!-- Qualification -->
 													<div class="control-group">
 														<label class="control-label">Qualification</label>
 														<div class="controls">
-															<input type="text" name="qualification" id="qualification" class="span6" value="<?php echo $profile[0]->userQualification;?>">
+															<input type="text" name="qualification" id="qualification" class="span6" value="<?php echo $profile->userQualification;?>">
 														</div>
 													</div><!--/ Qualification --><h3 class="form-section">Address</h3><!-- Street -->
 													<div class="control-group">
 														<label class="control-label">Street<span class="required">*</span></label>
 														<div class="controls">
-															<input type="text" name="street_1" id="street_1" class="span6"/ value="<?php echo $profile[0]->userStreet1;?>">
+															<input type="text" name="street_1" id="street_1" class="span6"/ value="<?php echo $profile->userStreet1;?>">
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label"><span class="required"></span></label>
 														<div class="controls">
-															<input type="text" name="street_2" id="street_2" class="span6"/ value="<?php echo $profile[0]->userStreet2;?>">
+															<input type="text" name="street_2" id="street_2" class="span6"/ value="<?php echo $profile->userStreet2;?>">
 														</div>
 													</div><!--/ Street --><!-- City -->
 													<div class="control-group">
 														<label class="control-label">Postal Code<span class="required">*</span></label>
 														<div class="controls">
-															<input type="text" name="pin_code" id="pin_code" class="span4"/ value="<?php echo $profile[0]->userPostalCode;?>">
+															<input type="text" name="pin_code" id="pin_code" class="span4"/ value="<?php echo $profile->userPostalCode;?>">
 														</div>
 													</div><!--/ City --><!-- State -->
 													<div class="control-group">

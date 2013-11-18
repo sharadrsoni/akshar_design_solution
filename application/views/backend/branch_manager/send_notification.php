@@ -230,7 +230,7 @@ if($role==1)
 								<div class="control-group">
 									<label class="control-label">Message<span class="required">*</span></label>
 									<div class="controls">
-										<textarea type="textarea" name="message" id="message" class="span8"/>
+										<textarea type="textarea" name="message" id="message" class="span8">
 										</textarea>
 									</div>
 								</div><!--/ Message -->

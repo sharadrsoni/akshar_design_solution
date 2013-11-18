@@ -232,7 +232,7 @@
 							<div class="control-group">
 								<label class="control-label">Books issue<span class="required">*</span></label>
 								<div class="controls">
-									<div class="switch" data-on="info" data-off="success" data-on-label="Yes" data-off-label="No">
+									<div class="switch" id="isbookissuetogglediv" data-on="info" data-off="success" data-on-label="Yes" data-off-label="No">
 										<input name="isbookissue" id="isbookissue" value="1" type="checkbox" class="toggle"/>
 									</div>
 								</div>
