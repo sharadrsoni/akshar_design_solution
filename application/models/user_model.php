@@ -6,16 +6,19 @@ if (!defined('BASEPATH'))
  */
 class user_model extends CI_Model {
 
-	public function getDetailsByBranchAndRole($branchId, $roleId) {
-		$this -> db -> where("branchId", $branchId);
-		$this -> db -> where("roleId", $roleId);
-		return $this -> db -> get('user') -> result();
-	}
-
-	public function getDetailsByBranch($branchId) {
-		$this -> db -> where("branchId", $branchId);
-		$this -> db -> where("roleId !=", 5);
-		return $this -> db -> get('user') -> result();
+	//Random Password Genterator Function
+	function randomPassword() {
+		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+		$pass = array();
+		//remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1;
+		//put the length -1 in cache
+		for ($i = 0; $i < 8; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass);
+		//turn the array into a string
 	}
 
 	public function authenticate($data) {
@@ -30,9 +33,34 @@ class user_model extends CI_Model {
 		}
 	}
 
+	public function getDetailsByBranchAndRole($branchId, $roleId) {
+		$this -> db -> where("branchId", $branchId);
+		$this -> db -> where("roleId", $roleId);
+		return $this -> db -> get('user') -> result();
+	}
+
+	public function getDetailsByBranch($branchId) {
+		$this -> db -> where("branchId", $branchId);
+		$this -> db -> where("roleId !=", 5);
+		return $this -> db -> get('user') -> result();
+	}
+
 	//get max id for next id
-	public function getMaxId() {
-		return $this -> db -> select_max('userId') -> get('user') -> row_array();
+	public function getMaxId($year, $branch, $role) {
+		$userId = $this -> db -> query("select max(RIGHT(userId,3))+1 as userid from user where userId like '" . $year . $branch . $role . "%'") -> row();
+		$userId = $userId -> userid;
+		if ($userId) {
+			if ($userId < 10) {
+				return $year . $branch . $role . "000" . $userId;
+			} elseif ($userId < 100) {
+				return $year . $branch . $role . "00" . $userId;
+			} elseif ($userId < 1000) {
+				return $year . $branch . $role . "0" . $userId;
+			}
+			return $year . $branch . $role . $userId;
+		} else {
+			return $year . $branch . $role . "0001";
+		}
 	}
 
 	//get details of user by role id
@@ -64,8 +92,6 @@ class user_model extends CI_Model {
 	 return $this -> db -> get() -> result();
 	 }*/
 
-	
-
 	public function getDetailsByBatch($batchId, $roleId, $branchCode) {
 		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);
@@ -92,10 +118,9 @@ class user_model extends CI_Model {
 
 	//update user details
 	public function updateUser($userData, $userId) {
-		if (isset($studentData)) {
+		if (isset($userData)) {
 			$this -> db -> where("user.userId", $userId);
-			$this -> db -> update('user', $userData);
-			return true;
+			return $this -> db -> update('user', $userData);
 		}
 		return false;
 	}
@@ -104,8 +129,7 @@ class user_model extends CI_Model {
 	public function updateStudetDetails($StudentData, $studentId) {
 		if (isset($studentData)) {
 			$this -> db -> where("student_profile.studentUserId", $studentId);
-			$this -> db -> update('student_profile', $StudentData);
-			return true;
+			die( $this -> db -> update('student_profile', $StudentData));
 		}
 		return false;
 	}

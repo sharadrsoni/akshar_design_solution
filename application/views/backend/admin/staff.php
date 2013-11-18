@@ -89,6 +89,8 @@
 								<button class="close" data-dismiss="alert"></button>
 								Your form validation is successful!
 							</div>
+							
+							
 
 							<div class="body-inner">
 								<h3 class="form-section">Staff Info.</h3>
@@ -113,9 +115,11 @@
 										}
 										?>
 									</select>
-									<span for="branchCode" class="help-inline"><?php echo form_error('branchCode'); ?><
-										/span>
+									<span for="branchCode" class="help-inline"><?php echo form_error('branchCode'); ?></span>
 								</div>
+								<div class="controls note">
+                                	<strong>Note!</strong> You can not Chage Branch after record insert.
+                            	</div>
 							</div>
 							<!--/ Branch -->
 
@@ -139,9 +143,11 @@
 									}
 									?>
 								</select>
-								<span for="userroleId" class="help-inline"><?php echo form_error('userroleId'); ?><
-									/span>
+								<span for="userroleId" class="help-inline"><?php echo form_error('userroleId'); ?></span>
 							</div>
+							<div class="controls note">
+                                <strong>Note!</strong> You can not Chage User Role after record insert.
+                            </div>
 						</div>
 						<!--/ User Role -->
 
@@ -158,8 +164,7 @@
 						<label class="control-label">First Name</label>
 						<div class="controls">
 							<input type="text" name="first_name" id="first_name" class="span8" value="<?php echo set_value("first_name"); ?>">
-							<span for="first_name" class="help-inline"><?php echo form_error('first_name'); ?><
-								/span>
+							<span for="first_name" class="help-inline"><?php echo form_error('first_name'); ?></span>
 						</div>
 					</div>
 					<?php
@@ -174,8 +179,7 @@
 					<label class="control-label">Middle Name</label>
 					<div class="controls">
 						<input type="text" name="middle_name" id="middle_name" class="span8" value="<?php echo set_value("middle_name"); ?>">
-						<span for="middle_name" class="help-inline"><?php echo form_error('middle_name'); ?><
-							/span>
+						<span for="middle_name" class="help-inline"><?php echo form_error('middle_name'); ?></span>
 					</div>
 				</div>
 				<?php
@@ -190,8 +194,7 @@
 				<label class="control-label">Last Name</label>
 				<div class="controls">
 					<input type="text" name="last_name" id="last_name" class="span8" value="<?php echo set_value("last_name"); ?>">
-					<span for="last_name" class="help-inline"><?php echo form_error('last_name'); ?><
-						/span>
+					<span for="last_name" class="help-inline"><?php echo form_error('last_name'); ?></span>
 				</div>
 			</div><!--/ Staff Name -->
 
@@ -208,8 +211,7 @@
 			<label class="control-label">Contact Number</label>
 			<div class="controls">
 				<input type="text" name="contact_number" id="contact_number" class="span8" value="<?php echo set_value("contact_number"); ?>">
-				<span for="contact_number" class="help-inline"><?php echo form_error('contact_number'); ?><
-					/span>
+				<span for="contact_number" class="help-inline"><?php echo form_error('contact_number'); ?></span>
 			</div>
 		</div><!--/ Contact Number -->
 
@@ -226,8 +228,7 @@
 		<label class="control-label">Email</label>
 		<div class="controls">
 			<input type="text" name="email" id="email" class="span8" value="<?php echo set_value("email"); ?>">
-			<span for="email" class="help-inline"><?php echo form_error('email'); ?><
-				/span>
+			<span for="email" class="help-inline"><?php echo form_error('email'); ?></span>
 		</div>
 	</div><!--/ Email -->
 
@@ -247,8 +248,7 @@
 			<input type="text" readonly="" name="date_of_birth" id="date_of_birth" class="m-wrap span7" value="<?php echo set_value("date_of_birth"); ?>">
 			<span class="add-on"><i class="icon-calendar"></i></span>
 		</div>
-		<span for="date_of_birth" class="help-inline"><?php echo form_error('date_of_birth'); ?><
-			/span>
+		<span for="date_of_birth" class="help-inline"><?php echo form_error('date_of_birth'); ?></span>
 	</div>
 	</div><!--/ Date Of Birth -->
 
@@ -265,8 +265,7 @@
 	<label class="control-label">Qualification</label>
 	<div class="controls">
 		<input type="text" name="qualification" id="qualification" class="span8" value="<?php echo set_value("qualification"); ?>">
-		<span for="qualification" class="help-inline"><?php echo form_error('qualification'); ?><
-			/span>
+		<span for="qualification" class="help-inline"><?php echo form_error('qualification'); ?></span>
 	</div>
 	</div><!--/ Qualification -->
 
@@ -284,8 +283,7 @@
 	<label class="control-label">Street<span class="required">*</span></label>
 	<div class="controls">
 		<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8" value="<?php echo set_value("street_1"); ?>"/>
-		<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?><
-			/span>
+		<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?></span>
 	</div>
 	</div>
 	<?php
@@ -300,8 +298,7 @@
 	<label class="control-label"><span class="required"></span></label>
 	<div class="controls">
 		<input type="text" name="street_2" id="street_2" placeholder="Street2" class="span8" value="<?php echo set_value("street_2"); ?>"/>
-		<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?><
-			/span>
+		<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
 	</div>
 	</div><!--/ Street -->
 	<!-- State -->
@@ -315,7 +312,7 @@
 									 ?>
 									<label class="control-label">State<span class="required">*</span></label>
 									<div class="controls">
-											<select class="span8 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
+											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 											<option value="">Select...</option>
 												<?php
 												foreach ($State as $key) {
@@ -337,7 +334,7 @@
 									 ?>
 									<label class="control-label">City<span class="required">*</span></label>
 									<div class="controls">
-											<select class="span8 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
+											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
 											</select>
 											<span for="cityid" class="help-inline"><?php echo form_error('cityid'); ?></span>
@@ -355,9 +352,8 @@
 
 	<label class="control-label">Postal Code<span class="required">*</span></label>
 	<div class="controls">
-		<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
-		<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?><
-			/span>
+		<input type="text" name="pin_code" id="pin_code" class="span4" value="<?php echo set_value("pin_code"); ?>"/>
+		<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
 	</div>
 	</div><!--/ Postal Code -->
 	<input type="hidden" name="staffId" id="staffId" value="" />

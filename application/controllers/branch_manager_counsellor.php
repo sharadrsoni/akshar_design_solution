@@ -11,27 +11,12 @@ class Branch_manager_counsellor extends CI_Controller {
 		parent::authenticate($users);
 	}
 
-	//Random Password Genterator Function
-	function randomPassword() {
-		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789`~!@#$%^&*";
-		$pass = array();
-		//remember to declare $pass as an array
-		$alphaLength = strlen($alphabet) - 1;
-		//put the length -1 in cache
-		for ($i = 0; $i < 8; $i++) {
-			$n = rand(0, $alphaLength);
-			$pass[] = $alphabet[$n];
-		}
-		return implode($pass);
-		//turn the array into a string
-	}
-
 	//Inquiry
 	public function inquiry($inquiryID = '') {
 		$this -> load -> model("inquiry_model");
 		$this -> load -> model("course_category_model");
 		$courseCategoryName = $this -> course_category_model -> getDetailsOfCourseCategory();
-		$this->data['category'] = $courseCategoryName;
+		$this -> data['category'] = $courseCategoryName;
 		if ($inquiryID != '') {
 			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsByinquiry($this -> branchCode, $inquiryID);
 			echo json_encode($this -> data);
@@ -65,7 +50,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchCode' => $this -> branchCode,'courseCode' => $_POST['course'],'inquiryExpectedDOJ' => date("Y-m-d", strtotime($_POST['date_of_doj'])),'inquiryDate' => now());
+					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchCode' => $this -> branchCode, 'courseCode' => $_POST['course'], 'inquiryExpectedDOJ' => date("Y-m-d", strtotime($_POST['date_of_doj'])), 'inquiryDate' => now());
 					if ($_POST['inquiryId'] != "" ? $this -> inquiry_model -> updateinquiry($inquiryData, $_POST['inquiryId']) : $this -> inquiry_model -> addinquiry($inquiryData)) {
 						redirect(base_url() . "branch_manager/inquiry");
 					} else {
@@ -111,8 +96,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				} else if ($userId < 100 && $userId > 9) {
 					$userId = "0" . $userId;
 				}
-				$pass = $this -> randomPassword();
-				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $pass, 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
+				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $this -> user_model -> randomPassword(), 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
 				if ($this -> user_model -> addUser($userData)) {
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
@@ -121,20 +105,19 @@ class Branch_manager_counsellor extends CI_Controller {
 			}
 		} else if (isset($_POST['registerCourse'])) {
 			$this -> load -> model('student_batch_model');
-				$this -> load -> model('batch_model');
-				$this -> load -> model('student_batch_model');
-				$presentCount = $this -> student_batch_model -> getBatchCount($_POST['batchid']);
-				$maxLimit = $this -> batch_model -> getBatchLimit($_POST['batchid']);
-				if($maxLimit['batchStrength'] - $presentCount['c'] ==0 && $presentCount != null)
-				{
-					$this -> data['error'] = "Batch Full";
-					redirect(base_url() . "branch_manager_counsellor/studentregistration");
-				}
+			$this -> load -> model('batch_model');
+			$this -> load -> model('student_batch_model');
+			$presentCount = $this -> student_batch_model -> getBatchCount($_POST['batchid']);
+			$maxLimit = $this -> batch_model -> getBatchLimit($_POST['batchid']);
+			if ($maxLimit['batchStrength'] - $presentCount['c'] == 0 && $presentCount != null) {
+				$this -> data['error'] = "Batch Full";
+				redirect(base_url() . "branch_manager_counsellor/studentregistration");
+			}
 			if (isset($_POST['isbookissue']))
 				$val = 1;
 			else
 				$val = 0;
-			$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val, 'batchId' => $_POST['batchid'],'courseFees' => $_POST['course_fees']);
+			$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val, 'batchId' => $_POST['batchid'], 'courseFees' => $_POST['course_fees']);
 			if ($this -> student_batch_model -> addStudentbatch($studentBatchData)) {
 				redirect(base_url() . "branch_manager_counsellor/studentregistration");
 			} else {
@@ -228,8 +211,7 @@ class Branch_manager_counsellor extends CI_Controller {
 					$size = sizeof($_POST["payment_studentBatchId"]);
 					$this -> load -> model('fees_details_model');
 					$this -> load -> model('student_batch_model');
-					for ($i = 0; $i < $size; $i++) 
-					{						
+					for ($i = 0; $i < $size; $i++) {
 						$feeDetailData = array('feesId' => $feeId, 'studentBatchId' => $_POST['payment_studentBatchId'][$i], 'feesDetailsAmount' => $_POST['payment_details'][$i]);
 						$this -> fees_details_model -> addFeeDetails($feeDetailData);
 					}

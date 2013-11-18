@@ -28,7 +28,7 @@ class Admin extends CI_Controller {
 		$this -> load -> view('backend/js/dashboard_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
-	
+
 	//Role
 	public function role($roleId = '') {
 		$this -> load -> model("role_model");
@@ -62,7 +62,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
-public function delete_role($roleId) {
+	public function delete_role($roleId) {
 		$this -> load -> model('role_model');
 		$this -> role_model -> deleteRole($roleId);
 		redirect(base_url() . "admin/role");
@@ -94,7 +94,7 @@ public function delete_role($roleId) {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					// Company ID 1 
+					// Company ID 1
 					$branchValue = array('companyId' => 1, 'branchCode' => $_POST['branchCode'], 'branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'branchPincode' => $_POST['pin_code'], 'branchLongitude' => $_POST['longitude'], 'branchLatitude' => $_POST['latitude']);
 					$branchValueupdate = array('branchName' => $_POST['branch_name'], 'branchContactNumber' => $_POST['conatct_no'], 'branchStreet1' => $_POST['street_1'], 'branchStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'branchPincode' => $_POST['pin_code'], 'branchLongitude' => $_POST['longitude'], 'branchLatitude' => $_POST['latitude']);
 					if ($this -> branch_model -> getCountByBranch($_POST['branchCode']) > 0 ? $this -> branch_model -> updateBranch($branchValueupdate, $_POST['branchCode']) : $this -> branch_model -> addBranch($branchValue)) {
@@ -375,6 +375,7 @@ public function delete_role($roleId) {
 		} else {
 			$this -> data['title'] = "ADS | Staff";
 			$this -> load -> view('backend/master_page/top', $this -> data);
+			$this -> load -> view('backend/css/staff_css');
 			$this -> load -> view('backend/master_page/header');
 			$this -> data['staff'] = $this -> user_model -> getDetailsByRole(array('2', '3', '4'));
 			$this -> load -> model("branch_model");
@@ -402,7 +403,13 @@ public function delete_role($roleId) {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['stateid'], 'userCity' => $_POST['cityid'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
+					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
+					if ($_POST['staffId'] == "") {
+						$staffData['userId'] =$this -> user_model -> getMaxId(date('Y'), $_POST['branchCode'], $_POST['userroleId']);
+						$staffData['userPassword']=$this -> user_model -> randomPassword();
+						$staffData['userPhotograph']="profile.png";
+						$staffData['userJoiningDate']=date("Y-m-d");
+					}
 					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
 						redirect(base_url() . "admin/staff");
 					} else {

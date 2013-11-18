@@ -201,13 +201,13 @@ var Branch = function() {
 			});
 
 			$("#tablink2").click(function() {
-				$('#branchCode').val("");
+				$('#branchCode').val(0);
 				$('#branch_name').val("");
 				$('#conatct_no').val("");
 				$('#street_1').val("");
 				$('#street_2').val("");
-				$('#stateid option:nth(0)').attr("selected", "selected");
-				$('#cityid option:nth(0)').attr("selected", "selected");
+				$("#stateid").select2("val", 0);
+				$("#cityid").select2("val", 0);
 				$('#pin_code').val("");
 				$('#longitude').val("");
 				$('#latitude').val("");
@@ -252,17 +252,18 @@ function updatebranch(branchCode) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				$('#branchCode').val(json.branch[0].branchCode);
-				$('#branch_name').val(json.branch[0].branchName);
-				$('#conatct_no').val(json.branch[0].branchContactNumber);
-				$('#street_1').val(json.branch[0].branchStreet1);
-				$('#street_2').val(json.branch[0].branchStreet2);
-				$("#stateid").select2("val",json.branch[0].stateId);
+				$('#branchCode').val(json.branch.branchCode);
+				$('#branchCode').attr("disabled","disabled");
+				$('#branch_name').val(json.branch.branchName);
+				$('#conatct_no').val(json.branch.branchContactNumber);
+				$('#street_1').val(json.branch.branchStreet1);
+				$('#street_2').val(json.branch.branchStreet2);
+				$("#stateid").select2("val",json.branch.stateId);
 				$("#stateid").change();
-				$("#cityid").select2("val",json.branch[0].cityId);
-				$('#pin_code').val(json.branch[0].branchPincode);
-				$('#longitude').val(json.branch[0].branchLongitude);
-				$('#latitude').val(json.branch[0].branchLatitude);
+				$("#cityid").select2("val",json.branch.cityId);
+				$('#pin_code').val(json.branch.branchPincode);
+				$('#longitude').val(json.branch.branchLongitude);
+				$('#latitude').val(json.branch.branchLatitude);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");
