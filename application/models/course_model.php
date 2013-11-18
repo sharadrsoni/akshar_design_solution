@@ -7,10 +7,23 @@ if (!defined('BASEPATH'))
 class course_model extends CI_Model {
 
 	public function getDetailsOfCourse() {
+		
 		$this -> db -> join('course_category', 'course.courseCategoryId = course_category.courseCategoryId');
 		return $this -> db -> get('course') -> result();
 	}
 
+	public function getDetailsOfCourseByCode($courseCode) {
+		
+		$this -> db -> where('course.courseCode',$courseCode);
+		return $this -> db -> get('course') -> result();
+	}
+
+	
+	
+	public function getCourseCategory()
+	{
+		return $this->db->get('course_category')->result();
+	}
 	public function getDetailsByCourse($courseCode,$branch) {
 		$this -> db -> where('course.courseCode', $courseCode);
 		$this -> db -> join('inventory_inward', 'course.courseCode = inventory_inward.courseCode');
@@ -19,11 +32,7 @@ class course_model extends CI_Model {
 		return $this -> db -> get('course') -> row();
 	}
 	
-	public function getDetailsCourse($courseCode)
-	{
-		$this->db->where('course.courseCode',$courseCode);
-		return $this->db->get('course')->result();
-	}
+	
 	
 	public function getCountByCourse($courseCode) {
 		$this -> db -> where("courseCode", $courseCode);
