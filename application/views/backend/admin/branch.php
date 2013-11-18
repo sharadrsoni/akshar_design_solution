@@ -265,8 +265,8 @@
 							</div>
 							</form>
 						</div>
-						<div class="tab-pane" id="View">
-							hi
+						<div class="tab-pane" id="tabView">
+						
 						</div>
 					</div>
 					
