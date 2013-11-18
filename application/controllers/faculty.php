@@ -28,7 +28,7 @@ class Faculty extends CI_Controller {
 	public function student_attendance() {
 		if (isset($_POST['saveAttendance'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('Attendance_date', 'Attendence Date', 'required|trim');
+			$this -> form_validation -> set_rules('Attendance_date', 'Attendence Date', 'required|trim|callback__checkingDate');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
@@ -81,8 +81,8 @@ class Faculty extends CI_Controller {
 
 		if (isset($_POST['submitTest'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('test_date', 'Test Date', 'required|trim');
-			$this -> form_validation -> set_rules('test_marks', 'Test Marks', 'required|trim');
+			$this -> form_validation -> set_rules('test_date', 'Test Date', 'required|trim|callback__checkingDate');
+			$this -> form_validation -> set_rules('test_marks', 'Test Marks', 'required|trim|numeric');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
