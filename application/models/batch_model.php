@@ -77,25 +77,18 @@ class batch_model extends CI_Model {
 		return false;
 	}
 
-	public function deleteBatch($batchId) {
+	public function getBatchLimit($batchId) {
+		$this -> db -> where("batchId", $batchId);
+		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
+	}
+
+		public function deleteBatch($batchId) {
 		if (isset($batchId)) {
 			$this -> db -> where('batchId', $batchId);
 			$this -> db -> delete('batch');
 			return true;
 		}
 		return false;
-	}
-
-	public function getBatchLimit($batchId) {
-		$this -> db -> where("batchId", $batchId);
-		return $this -> db -> select('batchStrength') -> get('batch') -> row_array();
-	}
-
-	public function getCourseId($batchId) {
-		$this -> db -> where("batch.batchId", $batchId);
-		$this -> db -> from('batch');
-		return $this -> db -> get() -> result();
-	}
-
+		}
 }
 ?>

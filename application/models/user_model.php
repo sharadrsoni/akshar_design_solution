@@ -92,10 +92,10 @@ class user_model extends CI_Model {
 	 return $this -> db -> get() -> result();
 	 }*/
 
-	public function getDetailsByBatch($batchId, $roleId, $branchCode) {
+	public function getDetailsByBatch($batchCode, $roleId, $branchCode) {
 		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);
-		$this -> db -> where("batchId", $batchId);
+		$this -> db -> where("batchId", $batchCode);
 		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');
 		return $this -> db -> get('user') -> result();
 	}

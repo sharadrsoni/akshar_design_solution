@@ -108,8 +108,7 @@ if($role==1)
 							?>
 
 							</select>
-							<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?>
-							</span>
+							<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?></span>
 							</div>
 							</div><!--/ Branch -->
 							<!-- Batch -->
@@ -121,6 +120,7 @@ if($role==1)
 							</div>
 							</div><!--/ Batch -->
 
+							<!-- Individual Name -->
 							<div class="control-group" style="display:none" id="lst_user_div">
 							<label class="control-label">Name<span class="required">*</span></label>
 							<div class="controls">
@@ -230,7 +230,7 @@ if($role==1)
 								<div class="control-group">
 									<label class="control-label">Message<span class="required">*</span></label>
 									<div class="controls">
-										<textarea type="textarea" name="message" id="message" class="span8">
+										<textarea type="textarea" name="message" id="message" class="span8"/>
 										</textarea>
 									</div>
 								</div><!--/ Message -->
@@ -249,7 +249,6 @@ if($role==1)
 				<!--/ End Tabs -->
 			</div>
 			<!--/ END Row -->
-
 		</div>
 		<!--Page Content End  -->
 	</div>

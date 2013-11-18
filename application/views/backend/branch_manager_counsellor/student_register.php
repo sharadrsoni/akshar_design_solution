@@ -201,12 +201,15 @@
 								<label class="control-label">Course<span class="required">*</span></label>
 								<div class="controls">
 									<select name="courseid" id="courseid" class="span6" value="<?php echo set_value("courseid"); ?>">
+<<<<<<< HEAD
+=======
 											<option value="">Select...</option>
 											<?php
 											foreach ($course as $key) {
 												echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
 											}
 											?>
+>>>>>>> upstream/master
 									</select>
 									<span for="courseid" class="help-inline"><?php echo form_error('courseid'); ?></span>
 								</div>
