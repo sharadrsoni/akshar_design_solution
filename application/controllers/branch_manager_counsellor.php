@@ -106,7 +106,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 				//echo $this -> email -> print_debugger();
 				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $this -> user_model -> randomPassword(), 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
-				if ($this -> email -> send() && $this -> user_model -> addUser($userData)) {
+				if ($this -> user_model -> addUser($userData) && $this -> email -> send()) {
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
 					$this -> data['error'] = "An Error Occured.";
