@@ -67,21 +67,32 @@ var Inquiry = function() {
 				rules : {
 					first_name : {
 						required : true,
-						alphanumeric:true
+						minlength : 2,
+						maxlength:50,
+						lettersonly:true,
 					},
 					middle_name : {
 						required : true,
+						minlength : 2,
+						maxlength:50,
+						lettersonly:true,
 					},
 					last_name : {
 						required : true,
+						minlength : 2,
+						maxlength:50,
+						lettersonly:true,
 					},
 					date_of_birth : {
 						required : true,
+						maxDate:true,
 					},
 					mobile_no : {
+						digits:true,
 						required : true,
 						minlength : 10,
-						number : true
+						maxlength:10,
+						
 					},
 					email : {
 						email : true,
@@ -89,12 +100,18 @@ var Inquiry = function() {
 					},
 					qualification : {
 						required : true,
+						minlength:2,
+						maxlength:50,
 					},
 					street_1 : {
 						required : true,
+						minlength : 4,
+						maxlength:100,
 					},
 					street_2 : {
 						required : true,
+						minlength : 4,
+						maxlength:100,
 					},
 					city : {
 						required : true,
@@ -113,15 +130,22 @@ var Inquiry = function() {
 					},
 					date_of_doj : {
 						required : true,
+						minDate:true,
 					},
 					name_of_institute : {
 						required : true,
+						minlength:3,
+						maxlength:100,
 					},
 					occupation_of_guardian : {
 						required : true,
+						minlength:2,
+						maxlength:100,
 					},
 					reference : {
 						required : true,
+						minlength:3,
+						maxlength:100,
 					}
 				},
 

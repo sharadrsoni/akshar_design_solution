@@ -15,6 +15,9 @@ var StudentFees = function() {
 				payment_date : {
 					required : true
 				},
+				course_amount:{
+					required:true,
+				},
 				cheque_number : {
 					required : function() {
 						if ($("#paymemt_mode").is(':checked')) {
@@ -22,7 +25,9 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					digits:true,
+					
 				},
 				cheque_issue_date : {
 					required : function() {
@@ -31,7 +36,8 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					maxDate:true,
 				},
 				bankname : {
 					required : function() {
@@ -40,7 +46,10 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					minlength:3,
+					maxlength:100,
+					lettersonly:true,
 				},
 				branchname : {
 					required : function() {
@@ -49,7 +58,9 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					minlength:3,
+					maxlength:100,
 				},
 				ifrc_code : {
 					required : function() {

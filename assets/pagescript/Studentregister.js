@@ -12,16 +12,29 @@ var StudentRegistration = function() {
 			ignore : "",
 			rules : {
 				firstname : {
-					required : true
+					required : true,
+					minlength : 2,
+					maxlength:50,
+					lettersonly:true,
 				},
 				lastname : {
-					required : true
+					required : true,
+					minlength : 2,
+					maxlength:50,
+					lettersonly:true,
 				},
 				email : {
-					required : true
+					required : true,
+					email:true,
+					maxlength:50,
 				},
+				
 				contact_number : {
+					minlength : 10,
+					maxlength:10,
+					digits:true,
 					required : true
+					
 				}
 			},
 
@@ -76,6 +89,11 @@ var StudentRegistration = function() {
 				},
 				batchid : {
 					required : true
+				},
+				course_fees:{
+					required:true,
+					number:true,
+					min:0,
 				}
 			},
 
