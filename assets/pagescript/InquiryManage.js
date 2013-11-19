@@ -8,14 +8,20 @@ var Inquiry = function() {
 			// begin tblTarget table
 			$('#tblInquiry').dataTable({
 				"aoColumns" : [{
-					"bSortable" : false
+					"bSortable" : true
 				}, {
 					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
 				}, {
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				},null],
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : false
+				},{
+					"bSortable" : false
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value

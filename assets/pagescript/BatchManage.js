@@ -8,8 +8,16 @@ var Batch = function() {
 			// begin tblEvent table
 			$('#tblBatch').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				}, null, null, null, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
