@@ -48,9 +48,6 @@
 									<table class="table table-striped table-bordered table-hover" id="tblTargetReport">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th class="hidden-480">Target Name</th>
 												<th class="hidden-480">Start Date</th>
 												<th class="hidden-480">End Date</th>
@@ -65,8 +62,6 @@
 											if (isset($target_report_list)) {
 												foreach ($target_report_list as $key) {
 													echo "<tr class=\"odd gradeX\">
-<td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>
 <td onclick='viewtargetreport(\"{$key->targetId}\");'>{$key->targetSubject}</td>
 <td class=\"hidden-480\">{$key->targetStartDate}</td>
 <td class=\"hidden-480\">{$key->targetEndDate}</td>

@@ -8,10 +8,14 @@ var Branch = function() {
 			// begin tblBranch table
 			$('#tblBranch').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -62,12 +66,14 @@ var Branch = function() {
 				rules : {
 					branchCode:{
 						required : true,
-						alphanumeric:true,
 						maxlength:100,
+						lettersonly:true,
 					},
 					branch_name : {
-						minlength : 5,
+						
 						required : true,
+						lettersonly:true,
+						minlength : 3,
 						maxlength:100,
 					},
 					conatct_no : {
@@ -97,7 +103,8 @@ var Branch = function() {
 						minlength:6,
 						maxlength:6,
 						digits:true,
-					}
+					},
+					
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
