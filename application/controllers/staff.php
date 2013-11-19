@@ -161,7 +161,8 @@ class Staff extends CI_Controller {
 
 			$this -> load -> model("branch_model");
 			$branchName = $this -> branch_model -> getDetailsOfBranch();
-			$this -> data['branch'] = $branchName;
+			$this -> data['branchName'] = $branchName;
+	//		die($branchName);
 			$this -> data['title'] = "ADS | Send Notifications";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/sendnotification_css');

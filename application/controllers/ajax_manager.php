@@ -79,6 +79,14 @@ class Ajax_manager extends CI_Controller {
 		echo json_encode($this -> data);
 	}
 
+	//Course List by Course Category
+	public function courseByCourseCategory($courseCategoryId) {
+		$this -> load -> model('course_model');
+		$this -> data['city_list'] = $this -> course_model -> getDetailsByCategory($courseCategoryId);
+		echo json_encode($this -> data);
+	}
+
+
 	//Course List
 	public function courseList($studentId) {
 		$this -> load -> model('course_model');

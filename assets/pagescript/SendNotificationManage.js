@@ -148,9 +148,7 @@ var SendNotification = function() {
 			});
 
 			$("#user_role").change(function() {
-				//				$("#batch_name").children().remove();
-				//				$("#user_name").children().remove();
-				$("#branch_name").val("");
+//				$("#branch_name").val("");
 				if ($('#user_role').is(':checked') == true) {
 					if ($("#user_role").data("role_id") == 1) {
 						$("#lst_batch_div").attr("style", "display");
@@ -188,14 +186,10 @@ var SendNotification = function() {
 				allowClear : false,
 			});
 
-			$("#user_name").change(function() {
-				alert($("#user_name").val());
-			});
-
 			$("#branch_name").change(function() {
 				$("#batch_name").children().remove();
 				$("#user_name").children().remove();
-				//				console.log($("#branch_name").val());
+								console.log($("#branch_name").val());
 				$.ajax({
 					url : "../ajax_manager/branchDataList",
 					dataType : 'json',
