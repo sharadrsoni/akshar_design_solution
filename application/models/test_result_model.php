@@ -9,7 +9,7 @@ class test_result_model extends CI_Model {
 		$this -> db -> join('student_batch', 'test.batchId = student_batch.batchId');
 		$this -> db -> join('user', 'user.userId = student_batch.studentId');
 		$this -> db -> join('test_result', 'student_batch.studentBatchId = test_result.studentBatchId', 'left outer');
-		$this -> db -> select('student_batch.studentbatchId , test.testId, userFirstName , userMiddleName , userLastName , studentId , testResultObtainedMarks');
+		$this -> db -> select('student_batch.studentbatchId, test.testRemarks , test.testId, userFirstName , userMiddleName , userLastName , studentId , testResultObtainedMarks');
 		return $this -> db -> get('test') -> result();
 	}
 

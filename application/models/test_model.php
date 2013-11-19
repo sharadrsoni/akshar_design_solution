@@ -21,5 +21,14 @@ class test_model extends CI_Model {
 		return false;
 	}
 
+	//update Test details
+	public function updateTest($testRemarks, $testId) {
+		if (isset($testRemarks)) {
+			$this -> db -> where("test.testId", $testId);
+			return $this -> db -> update('test', $testRemarks);
+		}
+		return false;
+	}
+
 }
 ?>
