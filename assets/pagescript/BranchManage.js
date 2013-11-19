@@ -60,20 +60,30 @@ var Branch = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					branchcode:{
-						required : true
+					branchCode:{
+						required : true,
+						alphanumeric:true,
+						maxlength:100,
 					},
 					branch_name : {
 						minlength : 5,
-						required : true
+						required : true,
+						maxlength:100,
 					},
 					conatct_no : {
 						required : true,
+						minlength:10,
+						maxlength:10,
+						digits:true,
 					},
 					street_1 : {
+						minlength : 4,
 						required : true,
+						maxlength:100,
 					},
 					street_2 : {
+						minlength : 4,
+						maxlength:100,
 						required : true,
 					},
 					stateid : {
@@ -84,6 +94,9 @@ var Branch = function() {
 					},
 					pin_code : {
 						required : true,
+						minlength:6,
+						maxlength:6,
+						digits:true,
 					}
 				},
 

@@ -71,10 +71,10 @@
         <div class="nav-collapse collapse"> 
           <ul class="nav">
             <li> <a href="index.html"> Home </a> </li>
-            <li><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
+            <li  class="active"><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
             <li><a href="<?php echo base_url()."photo_gallery"; ?>">Photo Gallery</a></li>
             <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
-            <li class="active"><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
+            <li><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
             <li> <span class="sep"></span> <a href="<?php echo base_url()."login"; ?>">Login</a></li>
            </ul>
           <div class="search-box"> 
@@ -97,7 +97,7 @@
     <div class="row-fluid breadcrumbs margin-bottom-40">
         <div class="container">
             <div class="span4">
-                <h1>Portfolio 4 Column</h1>
+                <h1>Courses</h1>
             </div>
             <div class="span8">
                 <ul class="pull-right breadcrumb">

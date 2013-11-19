@@ -66,19 +66,34 @@ var Course= function() {
                         required: true,
                     },
                     course_name: {
-                        required: true
-                    },
-					course_code: {
                         required: true,
+                        alphanumeric:true,
+                        maxlength:100,
+                        minlength:2,
+                    },
+					courseCode: {
+                        required: true,
+                        alphanumeric:true,
+                        maxlength:8,
+                        minlength:2,
                     },
 					course_duration: {
                         required: true,
+                        number:true,
+                        min:0,	
                     },
 					material_id: {
                         required: true,
-                    },
+                     },
 					total_books: {
                         required: true,
+                        number:true,
+                        min:0,
+  
+                    },
+                    description:{
+                    	 required: true,
+                    	 minlength:5,
                     },
 					opening_stock: {
                         required: true,
