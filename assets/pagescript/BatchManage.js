@@ -9,13 +9,13 @@ var Batch = function() {
 			$('#tblBatch').dataTable({
 				"aoColumns" : [{
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : false
 				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
@@ -77,16 +77,16 @@ var Batch = function() {
 					},
 					strength : {
 						required : true,
-						digits:true,
+						digits : true,
 					},
-					weekday:{
-						required:true,
+					weekday : {
+						required : true,
 					},
-					duration:{
-						required:true,
-						number:true,
-                        min:0,	
-                  
+					duration : {
+						required : true,
+						number : true,
+						min : 0,
+
 					},
 				},
 
@@ -205,7 +205,7 @@ function updatebatch(batchid) {
 				$("#strength").val(json.batch_list[0].batchStrength);
 				$('#lst_batch_timing').html("");
 				$.each(json.weekdays, function(i, item) {
-					$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $("#weekday option[value='"+item.batchTimingWeekday+"']").text()+ "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingWeekday + "'/></td><td class='hidden-480'>" + item.batchTimingStartTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingStartTime + "'/></td><td class='hidden-480'>" + item.batchTimingEndTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingEndTime + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
+					$('#lst_batch_timing').append("<tr class='odd gradeX'><td>" + $("#weekday option[value='" + item.batchTimingWeekday + "']").text() + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingWeekday + "'/></td><td class='hidden-480'>" + item.batchTimingStartTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingStartTime + "'/></td><td class='hidden-480'>" + item.batchTimingEndTime + "<input type='hidden' name='batch_timing[]' value='" + item.batchTimingEndTime + "'/></td><td><a onclick='removebatchtime(this)' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
 				});
 				$("#tablink1").parent().removeClass("active");
 				$("#tab1").removeClass("active");
@@ -215,18 +215,30 @@ function updatebatch(batchid) {
 		}
 	});
 }
-function viewbatch(batchId) {
+
+function viewbatch(batchid) {
 	$.ajax({
-		url : "batch/" + batchId,
+		url : "batch/" + batchid,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert(json);
-				/*$('#viewBranchCode').text(json.branch.branchCode);
-				$('#viewBranchName').text(json.branch.branchName);
-				$('#viewBranchAddress').html(json.branch.branchStreet1 + "<Br/>" + json.branch.branchStreet2 + "<Br/>" + json.branch.branchCity + ", " + json.branch.branchState + "<Br/>" + json.branch.branchPincode);
-				$('#viewContactNo').text();*/
+				$("#viewBatchName").text(json.batch_list[0].batchId);
+				$("#viewCourseName").text(json.batch_list[0].courseCode);
+				$("#viewFacultyName").text(json.batch_list[0].facultyId);
+				$("#viewStartDate").text(json.batch_list[0].batchStartDate);
+				$("#viewDuration").text(json.batch_list[0].batchDuration);
+				$("#viewStrength").text(json.batch_list[0].batchStrength);
+				$('#viewWeekday1').text("");
+				$('#viewWeekday2').text("");
+				$('#viewWeekday3').text("");
+				$('#viewWeekday4').text("");
+				$('#viewWeekday5').text("");
+				$('#viewWeekday6').text("");
+				$('#viewWeekday7').text("");
+				$.each(json.weekdays, function(i, item) {
+					$('#viewWeekday'+item.batchTimingWeekday).text(item.batchTimingStartTime+" To "+item.batchTimingEndTime);
+				});
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");
