@@ -59,9 +59,11 @@ var CourseCategory = function() {
 				ignore : "",
 				rules : {
 					coursecategory_name: {
+                        required: true,
+                        lettersonly:true,
                         minlength: 5,
                         maxlength:100,
-                        required: true,
+                        
                     }
 				},
 

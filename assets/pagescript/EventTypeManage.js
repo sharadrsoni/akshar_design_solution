@@ -62,6 +62,7 @@ var EventType = function() {
 						required : true,
 						minlength:3,
 						maxlength:100,
+						lettersonly:true,
 					}
 				},
 

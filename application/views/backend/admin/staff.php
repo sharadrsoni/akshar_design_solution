@@ -61,10 +61,10 @@
 											if (isset($staff)) {
 												foreach ($staff as $key) {
 													echo "<tr class=\"odd gradeX\">
-<td onclick='viewstaff(\"{$key->userId}\");'>{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
+<td onclick='viewstaff(\"{$key->userId}\");'>{$key->branchName}</td>
+<td class=\"center hidden-480\">{$key->userFirstName} {$key->userMiddleName} {$key->userLastName}</td>
 <td class=\"center hidden-480\">{$key->userEmailAddress}</td>
 <td class=\"center hidden-480\">{$key->userContactNumber}</td>
-<td class=\"center hidden-480\">{$key->branchCode}</td>
 <td ><span class=\"label label-success\" onclick='updatestaff(\"{$key->userId}\");' >Edit</span> <span class=\"label label-success\"> <a href='" . base_url() . "admin/delete_staff/{$key->userId}'>Delete</a></span></td></tr>
 </tr>
 ";

@@ -62,7 +62,7 @@ var Course= function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-                	coursecategory_id: {
+                	courseCategory_id: {
                         required: true,
                     },
                     course_name: {
