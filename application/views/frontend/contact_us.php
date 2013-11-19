@@ -72,7 +72,7 @@
           <ul class="nav">
             <li> <a href="index.html"> Home </a> </li>
             <li><a href="courses.html">Courses</a></li>
-            <li><a href="photo_gallery.html">Photo Gallery</a></li>
+            <li><a href="event.html">Event</a></li>
             <li><a href="about_us.html">About Us</a></li>
             <li class="active"><a href="contact_us.html">Contact Us</a></li>
             <li> <span class="sep"></span> <a href="#">Login</a></li>
