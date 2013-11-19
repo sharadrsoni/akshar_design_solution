@@ -107,10 +107,16 @@ var Test = function() {
 			// begin tblEvent table
 			$('#tbltest').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
