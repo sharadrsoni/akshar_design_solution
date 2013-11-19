@@ -313,16 +313,20 @@ function viewinquiry(inquiryId) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewInquiryDate').text(json.inquiry[0].inquiryDate);
+				$('#viewCourseCode').text(json.inquiry[0].courseCode);
+				$('#viewDOJ').text(json.inquiry[0].inquiryDate);
+				$('#viewStudentName').text(json.inquiry[0].inquiryStudentFirstName+" "+json.inquiry[0].inquiryStudentMiddleName+" "+json.inquiry[0].inquiryStudentLastName);
+				$('#viewDOB').text(json.inquiry[0].inquiryDOB);
+				$('#viewContactNumber').text(json.inquiry[0].inquiryContactNumber);
+				$('#viewEmail').text(json.inquiry[0].inquiryEmailAddress);
+				$('#viewQualification').text(json.inquiry[0].inquiryQualification);
+				$('#viewAddress').html(json.inquiry[0].inquiryStreet1+",<br/>"+json.inquiry[0].inquiryStreet2+",<br/>"+json.inquiry[0].inquiryCity+","+json.inquiry[0].inquiryState+"-"+json.inquiry[0].inquiryPostalCode);
+				$('#viewOccupation').text(json.inquiry[0].inquiryStudentOccupation);
+				$('#viewInstituteName').text(json.inquiry[0].inquiryInstituteName);
+				$('#viewGuardianName').text(json.inquiry[0].inquiryGuardianName);
+				$('#viewGuradianOccupation').text(json.inquiry[0].inquiryGuardianOccupation);
+				$('#viewReference').text(json.inquiry[0].inquiryReferenceName);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");

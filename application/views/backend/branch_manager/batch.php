@@ -303,19 +303,19 @@
 														<td id="viewCourseName"></td>
 												   </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3">Faculty Name</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Faculty Name</td>
 														<td id="viewFacultyName"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Start Date</td>
+														<td  class="unstyled profile-nav span3">Start Date</td>
 														<td id="viewStartDate"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Duration</td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Duration</td>
 														<td id="viewDuration"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Strength</td>
+														<td  class="unstyled profile-nav span3">Strength</td>
 														<td id="viewStrength"></td>
 												   </tr>
 											
