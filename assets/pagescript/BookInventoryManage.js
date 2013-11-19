@@ -68,8 +68,14 @@ var BookInventory = function() {
 						required : true,
 					},
 					inventory_quantity:{
-						required : true,	
+						required : true,
+						digits:true,
+						min:0,
+					},
+					inward_date:{
+						required:true,
 					}
+					
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit

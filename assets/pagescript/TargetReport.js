@@ -71,9 +71,13 @@ var TargetReport = function() {
 
 					report_description : {
 						required : true,
+						minlength:10,
+						maxlength:200,
+						
 					},
 					date : {
 						required : true,
+						maxDate:true,
 					}
 					
 
