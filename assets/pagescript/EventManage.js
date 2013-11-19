@@ -361,16 +361,14 @@ function viewevent(eventId) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewEventName').text(json.event[0].eventName);
+				$('#viewEventTypeID').text(json.event[0].eventTypeId);
+				$('#viewEventStartDate').text(json.event[0].eventStartDate);
+				$('#viewEventEndDate').text(json.event[0].eventEndDate);
+				$('#viewEventDescription').text(json.event[0].eventDescription);
+				$('#viewAddress').html(json.event[0].eventStreet1+",<br/>"+json.event[0].eventStreet2+",<br/>"+json.event[0].eventCity+","+json.event[0].eventState+"-"+json.event[0].eventPincode);
+				$('#viewOrganizerName').text(json.event[0].eventOrganizerName);
+				$('#viewFacultyID').text(json.event[0].facultyId);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");

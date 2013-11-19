@@ -406,40 +406,36 @@
 								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblevent">
 													<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Event Name</td>
-														<td><viewEventName></viewEventName></td>
+														<td id="viewEventName"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Event Description</td>
-														<td><viewEventDescription></viewEventDescription></td>
+														<td id="viewEventDescription"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Event Start Date</td>
-														<td><viewEventStartDate></viewEventStartDate></td>
+														<td id="viewEventStartDate"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Event End Date</td>
-														<td><viewEventEndDate></viewEventEndDate></td>
+														<td id="viewEventEndDate"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Address</td>
-														<td><viewAddress></viewAddress></td>
+														<td id="viewAddress"></td>
 												   </tr>
 												    <tr>
 														<td class="unstyled profile-nav span3">Organizer Name</td>
-														<td><viewOrganizerName></viewOrganizerName></td>
+														<td id="viewOrganizerName"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Faculty ID</td>
-														<td><viewFacultyID></viewFacultyID></td>
+														<td id="viewFacultyID"></td>
 												   </tr>
 												    <tr>
 														<td class="unstyled profile-nav span3">Event Type ID</td>
-														<td><viewEventTypeID></viewEventTypeID></td>
+														<td id="viewEventTypeID"></td>
 													</tr>
-											 		<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Branch Code</td>
-														<td><viewBranchCode></viewBranchCode></td>
-												   </tr>
 												</table>
 								</div></div>
 					</div><!-- End tabView -->
