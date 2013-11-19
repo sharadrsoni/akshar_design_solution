@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 		$this->data = array('error' => '');
 		if (isset($_POST['login'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('username', 'Username', 'required|trim|alpha|max_length[50]');
+			$this -> form_validation -> set_rules('username', 'Username', 'required|trim|alpha_numeric|max_length[50]');
 			$this -> form_validation -> set_rules('password', 'Password', 'required|trim|alpha_numeric');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this->data['validate'] = true;
