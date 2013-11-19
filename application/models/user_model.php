@@ -40,7 +40,7 @@ class user_model extends CI_Model {
 	}
 
 	public function getDetailsByBranch($branchCode) {
-		$this->db->where_in("branchCode", $branchCode,null);
+		$this -> db -> where_in("branchCode", $branchCode, null);
 		$this -> db -> where("roleId !=", 5);
 		return $this -> db -> get('user') -> result();
 	}
@@ -142,6 +142,19 @@ class user_model extends CI_Model {
 			return true;
 		}
 		return false;
+	}
+
+	public function getSearchUserList($value) {
+		$this->db->distinct("U.*");
+		$this->db->from('user as U');
+		$this->db->join("(select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC", 'U.userId = SBC.studentId', 'left'); 
+		$this->db->like('courseName', $value)->or_like('userId', $value)->or_like('userFirstName', $value)->or_like('userMiddleName', $value)->or_like('userLastName', $value)->or_like('batchId', $value);
+		$queryData = $this->db->get()->result();
+		foreach ($queryData as $key) {
+			$this->load->model("student_batch_model");
+			$courseData = $this->student_batch_model->getDetailsByStudent($key->userId);
+			die(print_r($courseData));
+		}
 	}
 
 }

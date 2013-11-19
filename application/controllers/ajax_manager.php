@@ -79,6 +79,14 @@ class Ajax_manager extends CI_Controller {
 		echo json_encode($this -> data);
 	}
 
+	//Course List by Course Category
+	public function courseByCourseCategory($courseCategoryId) {
+		$this -> load -> model('course_model');
+		$this -> data['city_list'] = $this -> course_model -> getDetailsByCategory($courseCategoryId);
+		echo json_encode($this -> data);
+	}
+
+
 	//Course List
 	public function courseList($studentId) {
 		$this -> load -> model('course_model');
@@ -101,12 +109,19 @@ class Ajax_manager extends CI_Controller {
 		$this -> load -> model('batch_model');
 		$this -> load -> model('user_model');
 		$batch_data = $this -> batch_model -> getDetailsBranch($_POST['batchId']);
-
 		$this -> data['batch_list'] = $batch_data;
 		$staff_data = $this -> user_model -> getDetailsByBranch($_POST['batchId']);
-
 		$this -> data['staff_list'] = $staff_data;
 		echo json_encode($this -> data);
+	}
+
+	public function search($value = '') {
+		if ($value == '') {
+			echo null;
+		} else {
+			$this -> load -> model("user_model");
+			echo json_encode($this -> user_model -> getSearchUserList($value));
+		}
 	}
 
 }

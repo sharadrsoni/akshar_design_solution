@@ -48,7 +48,7 @@
 									<div class="chat-form">
 										<div class="dataTables_filter" id="tblBranch_filter">
 											<label>Search:
-												<input type="text" aria-controls="tblBranch" onchange="">
+												<input type="text" aria-controls="tblBranch" id="searchUser">
 											</label>
 										</div>
 										<button type="button" class="btn green">
@@ -58,7 +58,7 @@
 								</form>
 							</div>
 							<div class="portlet-body">
-								<table class="table table-striped table-hover">
+								<table class="table table-striped table-hover" id="tblSearch" style="display: none;">
 									<thead>
 										<tr>
 											<th>Photo</th>
@@ -70,25 +70,8 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td><img src="assets/img/avatar1.jpg" alt="" /></td>
-											<td class="hidden-phone">Mark Nilson</td>
-											<td>makr124</td>
-											<td class="hidden-phone">19 Jan 2012</td>
-											<td class="hidden-phone">1245</td>
-											<td><span class="label label-success">Approved</span></td>
-											<td><a class="btn mini red-stripe" href="#">View</a></td>
-										</tr>
-										<tr>
-											<td><img src="assets/img/avatar2.jpg" alt="" /></td>
-											<td class="hidden-phone">Filip Rolton</td>
-											<td>jac123</td>
-											<td class="hidden-phone">09 Feb 2012</td>
-											<td class="hidden-phone">15</td>
-											<td><span class="label label-info">Pending</span></td>
-											<td><a class="btn mini blue-stripe" href="#">View</a></td>
-										</tr>
+									<tbody id="searchData">
+										
 									</tbody>
 								</table>
 							</div>

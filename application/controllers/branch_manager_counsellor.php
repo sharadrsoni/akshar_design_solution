@@ -31,7 +31,6 @@ class Branch_manager_counsellor extends CI_Controller {
 			if (isset($_POST['submitInquiry'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
-				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim');
 				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim');
 				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim');
 				$this -> form_validation -> set_rules('mobile_no', 'Mobile No', 'required|trim');
@@ -41,18 +40,20 @@ class Branch_manager_counsellor extends CI_Controller {
 				$this -> form_validation -> set_rules('occupation_of_student', 'Ocuupation of self', 'required|trim');
 				$this -> form_validation -> set_rules('street_1', 'Street', 'required|trim');
 				$this -> form_validation -> set_rules('street_2', 'Street', 'required|trim');
-				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
 				$this -> form_validation -> set_rules('coursecategory', 'Course Category', 'required|trim');
 				$this -> form_validation -> set_rules('course', 'Course', 'required|trim');
 				$this -> form_validation -> set_rules('date_of_doj', 'Date of Joining', 'required|trim');
 				$this -> form_validation -> set_rules('name_of_institute', 'Institute Name', 'required|trim');
+				$this -> form_validation -> set_rules('name_of_guardian', 'Guardian Name', 'required|trim');
 				$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim');
 				$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
+					die(validation_errors());
 					$this -> data['validate'] = true;
 				} else {
-					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'inquiryCity' => $_POST['city'], 'inquiryState' => $_POST['state'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchCode' => $this -> branchCode, 'courseCode' => $_POST['course'], 'inquiryExpectedDOJ' => date("Y-m-d", strtotime($_POST['date_of_doj'])), 'inquiryDate' => now());
+					$inquiryData = array('inquiryStudentFirstName' => $_POST['first_name'], 'inquiryStudentMiddleName' => $_POST['middle_name'], 'inquiryStudentLastName' => $_POST['last_name'], 'inquiryDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'inquiryContactNumber' => $_POST['mobile_no'], 'inquiryStudentOccupation' => $_POST['occupation_of_student'], 'inquiryQualification' => $_POST['qualification'], 'inquiryEmailAddress' => $_POST['email'], 'inquiryStreet1' => $_POST['street_1'], 'inquiryStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'inquiryPostalCode' => $_POST['pin_code'], 'inquiryInstituteName' => $_POST['name_of_institute'], 'inquiryGuardianName' => $_POST['name_of_guardian'], 'inquiryGuardianOccupation' => $_POST['occupation_of_guardian'], 'inquiryReferenceName' => $_POST['reference'], 'inquirybranchCode' => $this -> branchCode, 'courseCode' => $_POST['course'], 'inquiryExpectedJoiningDate' => date("Y-m-d", strtotime($_POST['date_of_doj'])), 'inquiryDate' => date("Y-m-d"));
 					if ($_POST['inquiryId'] != "" ? $this -> inquiry_model -> updateinquiry($inquiryData, $_POST['inquiryId']) : $this -> inquiry_model -> addinquiry($inquiryData)) {
 						redirect(base_url() . "branch_manager/inquiry");
 					} else {
@@ -86,7 +87,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				$this -> data['validate'] = true;
 			} else {
 				$userData = array();
-				$userData['userId'] = $this -> user_model -> getMaxId(date('Y'), $this->branchCode,5);
+				$userData['userId'] = $this -> user_model -> getMaxId(date('Y'), $this -> branchCode, 5);
 				$userData['userPassword'] = $this -> user_model -> randomPassword();
 				$userData['userFirstName'] = $_POST['firstname'];
 				$userData['branchCode'] = $this -> branchCode;
@@ -95,7 +96,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				$userData['userLastName'] = $_POST['lastname'];
 				$userData['userEmailAddress'] = $_POST['email'];
 				$userData['userContactNumber'] = $_POST['contact_number'];
-
+				$userData['userJoiningDate'] = date("Y-m-d");
 
 				$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
 				$this -> load -> library('email', $config);
@@ -104,20 +105,9 @@ class Branch_manager_counsellor extends CI_Controller {
 				$this -> email -> to($_POST['email']);
 				$this -> email -> subject('Email Test');
 
-	  $text = 'Hi '.$_POST['firstname'].' '.$_POST['middlename'].' '.$_POST['lastname'].','
-      . "<br>"
-      . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.'
-      . "<br><br>"
-      . 'Your Login Credentials are:'
-      . "<br>"
-      . 'LoginId - ' . $userData['userId']
-      . "<br>"
-      . 'LoginId - ' . $userData['userPassword']
-      . "<br><br><br>"
-      . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';				
+				$text = 'Hi ' . $_POST['firstname'] . ' ' . $_POST['middlename'] . ' ' . $_POST['lastname'] . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.' . "<br><br>" . 'Your Login Credentials are:' . "<br>" . 'LoginId - ' . $userData['userId'] . "<br>" . 'LoginId - ' . $userData['userPassword'] . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 				$this -> email -> message($text);
 				//echo $this -> email -> print_debugger();
-				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $this -> user_model -> randomPassword(), 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
 				if ($this -> user_model -> addUser($userData) && $this -> email -> send()) {
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
@@ -138,7 +128,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				$val = 1;
 			else
 				$val = 0;
-			$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val, 'batchId' => $_POST['batchid'], 'courseFees' => $_POST['course_fees']);
+			$studentBatchData = array('studentId' => $_POST['studentid'], 'StudentBatchHasReceivedSet' => $val, 'batchId' => $_POST['batchid'], 'studentBatchFeeAmount' => $_POST['course_fees'], 'studentBatchRegistrationDate' => date("Y-m-d"));
 			if ($this -> student_batch_model -> addStudentbatch($studentBatchData)) {
 				redirect(base_url() . "branch_manager_counsellor/studentregistration");
 			} else {
@@ -146,12 +136,11 @@ class Branch_manager_counsellor extends CI_Controller {
 			}
 		} else {
 
-			$this -> load -> model('course_model');
-			$this -> load -> model('batch_model');
+			$this -> load -> model('course_category_model');
 			$this -> data['title'] = "ADS | Student Registration";
-			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
+			$courseCategoryName = $this -> course_category_model -> getDetailsOfCourseCategory();
+			$this -> data['category'] = $courseCategoryName;
 			$this -> data['student'] = $this -> user_model -> getDetailsByBranchAndRole($this -> branchCode, 5);
-			$this -> data['batchId'] = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/student_register_css');
 			$this -> load -> view('backend/master_page/header');
@@ -184,7 +173,7 @@ class Branch_manager_counsellor extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'], 'courseId' => $_POST['course_id'], 'branchCode' => $this -> branchCode);
+					$inventoryData = array('inventoryInwardQuantity' => $_POST['inventory_quantity'], 'inventoryInwardDate' => date("Y-m-d", strtotime($_POST['inward_date'])), 'courseCode' => $_POST['course_id'], 'branchCode' => $this -> branchCode);
 					if ($_POST['inventoryInwardId'] != "" ? $this -> book_inventory_model -> updateinventory($inventoryData, $_POST['inventoryInwardId']) : $this -> book_inventory_model -> addinventory($inventoryData)) {
 						redirect(base_url() . "branch_manager/book_inventory");
 					} else {

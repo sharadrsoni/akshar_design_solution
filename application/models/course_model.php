@@ -18,6 +18,13 @@ class course_model extends CI_Model {
 		return $this -> db -> get('course') -> row();
 	}
 
+	public function getDetailsByCategory($courseCategoryId) {
+
+		$this -> db -> where('courseCategoryId', $courseCategoryId);
+		return $this -> db -> get('course') -> result();
+	}
+
+
 	public function getCourseCategory() {
 		return $this -> db -> get('course_category') -> result();
 	}
@@ -51,7 +58,7 @@ class course_model extends CI_Model {
 	public function deleteCourse($courseCode) {
 		if (isset($courseCode)) {
 			$this -> db -> where('courseCode', $courseCode);
-			return $this -> db -> delete('course'); ;
+			return $this -> db -> delete('course');
 		}
 		return false;
 	}

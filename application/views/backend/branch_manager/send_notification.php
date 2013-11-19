@@ -102,7 +102,7 @@ if($role==1)
 							<select class="span4 select2" name="branch_name[]" multiple="" id="branch_name">
 							<option value="">Select...</option>
 							<?php
-							foreach ($branch as $key) {
+							foreach ($branchName as $key) {
 								echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
 							}
 							?>

@@ -155,6 +155,22 @@ var StudentRegistration = function() {
 					}
 				});
 			});
+			$("#coursecategory").change(function() {
+				$('#courseid').html('');
+				$("#courseid").append("<option>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/courseByCourseCategory/" + $("#coursecategory").val(),
+					dataType : 'json',
+					async : false,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#courseid").append("<option value='"+item.courseCode+"'>"+item.courseName+"</option>");
+							});
+						}
+					}
+				});
+			});
 			$("#studentid").change(function() {
 				$("#courseid").children().remove();
 				$.ajax({
