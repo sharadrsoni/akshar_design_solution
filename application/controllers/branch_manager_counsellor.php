@@ -85,27 +85,37 @@ class Branch_manager_counsellor extends CI_Controller {
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
-				$maxuserId = $this -> user_model -> getMaxId();
-				$userId = $maxuserId['userId'];
-				$userId = floatval($userId);
-				if ($userId != null) {
-					$userId++;
-				} else {
-					$userId = 1;
-				}
-				if ($userId < 10) {
-					$userId = "00" . $userId;
-				} else if ($userId < 100 && $userId > 9) {
-					$userId = "0" . $userId;
-				}
+				$userData = array();
+				$userData['userId'] = $this -> user_model -> getMaxId(date('Y'), $this->branchCode,5);
+				$userData['userPassword'] = $this -> user_model -> randomPassword();
+				$userData['userFirstName'] = $_POST['firstname'];
+				$userData['branchCode'] = $this -> branchCode;
+				$userData['roleId'] = 5;
+				$userData['userMiddleName'] = $_POST['middlename'];
+				$userData['userLastName'] = $_POST['lastname'];
+				$userData['userEmailAddress'] = $_POST['email'];
+				$userData['userContactNumber'] = $_POST['contact_number'];
+
+
 				$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
 				$this -> load -> library('email', $config);
 				$this -> email -> set_newline("\r\n");
 				$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Sharad Soni');
-				$this -> email -> to('sharadrsoni@yahoo.com');
+				$this -> email -> to($_POST['email']);
 				$this -> email -> subject('Email Test');
-				$this -> email -> message('Testing the email class.');
 
+	  $text = 'Hi '.$_POST['firstname'].' '.$_POST['middlename'].' '.$_POST['lastname'].','
+      . "<br>"
+      . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.'
+      . "<br><br>"
+      . 'Your Login Credentials are:'
+      . "<br>"
+      . 'LoginId - ' . $userData['userId']
+      . "<br>"
+      . 'LoginId - ' . $userData['userPassword']
+      . "<br><br><br>"
+      . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';				
+				$this -> email -> message($text);
 				//echo $this -> email -> print_debugger();
 				$userData = array('userId' => $userId, 'userFirstName' => $_POST['firstname'], 'branchCode' => $this -> branchCode, 'roleId' => 5, 'userPassword' => $this -> user_model -> randomPassword(), 'userMiddleName' => $_POST['middlename'], 'userLastName' => $_POST['lastname'], 'userEmailAddress' => $_POST['email'], 'userContactNumber' => $_POST['contact_number']);
 				if ($this -> user_model -> addUser($userData) && $this -> email -> send()) {

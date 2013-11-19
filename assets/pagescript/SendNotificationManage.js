@@ -69,6 +69,18 @@ var SendNotification = function() {
 					disabled : "info"
 				}
 			});
+			$('.text-toggle-Individual_Branch').toggleButtons({
+				width : 200,
+				label : {
+					enabled : $('.text-toggle-Individual_Branch').attr("data-on"),
+					disabled : $('.text-toggle-Individual_Branch').attr("data-off")
+				},
+				style : {
+					// Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+					enabled : "warning",
+					disabled : "success"
+				}
+			});
 			$('.text-toggle-Individual_Batch').toggleButtons({
 				width : 200,
 				label : {
@@ -93,11 +105,11 @@ var SendNotification = function() {
 					disabled : "success"
 				}
 			});
-			$("#individual_Batch").change(function() {
-				$("#batch_name").children().remove();
-				$("#user_name").children().remove();
+			$("#individual_Branch").change(function() {
+				//				$("#batch_name").children().remove();
+				//				$("#user_name").children().remove();
 				$("#branch_name").val("");
-				if ($('#individual_Batch').is(':checked') == true) {
+				if ($('#individual_Branch').is(':checked') == true) {
 					$("#lst_user_div").attr("style", "display");
 				} else {
 					$("#lst_user_div").attr("style", "display:none");
@@ -115,6 +127,14 @@ var SendNotification = function() {
 				}
 			});
 
+			$("#individual_Batch").change(function() {
+				$("#user_name").children().remove();
+				if ($('#individual_Batch').is(':checked') == true) {
+					$("#lst_user_div").attr("style", "display");
+				} else {
+					$("#lst_user_div").attr("style", "display:none");
+				}
+			});
 
 			$("#branch_Batch").change(function() {
 				$("#batch_name").children().remove();
@@ -128,8 +148,8 @@ var SendNotification = function() {
 			});
 
 			$("#user_role").change(function() {
-				$("#batch_name").children().remove();
-				$("#user_name").children().remove();
+				//				$("#batch_name").children().remove();
+				//				$("#user_name").children().remove();
 				$("#branch_name").val("");
 				if ($('#user_role').is(':checked') == true) {
 					if ($("#user_role").data("role_id") == 1) {
@@ -137,29 +157,30 @@ var SendNotification = function() {
 						$("#check_box_studnet").attr("style", "display");
 						$("#check_box_staff").attr("style", "display:none");
 						$("#lst_user_div").attr("style", "display:none");
-					}
-					else
-					{
-						$("#check_box_studnet").attr("style", "display");
+					} else {
+						if ($('#individual_Batch').is(':checked') == true)
+							$("#check_box_studnet").attr("style", "display");
+						else
+							$("#check_box_studnet").attr("style", "display:none");
 						$("#check_box_staff").attr("style", "display:none");
 						$("#lst_batch_div").attr("style", "display");
-					} 
+					}
 				} else {
 					if ($("#user_role").data("role_id") == 1) {
 						$("#check_box_studnet").attr("style", "display:none");
-						if ($('#individual_Batch').is(':checked') == true)
+						if ($('#individual_Branch').is(':checked') == true)
 							$("#lst_user_div").attr("style", "display");
 						$("#check_box_staff").attr("style", "display");
 						$("#lst_batch_div").attr("style", "display:none");
-					}
-					else {
+					} else {
 						$("#check_box_staff").attr("style", "display");
 						if ($('#individual_all').is(':checked') == true)
-							$("#lst_batch_div").attr("style", "display");
+							$("#lst_user_div").attr("style", "display");
 						else
-							$("#lst_batch_div").attr("style", "display:none");
+							$("#lst_user_div").attr("style", "display:none");
+
+						$("#lst_batch_div").attr("style", "display:none");
 						$("#check_box_studnet").attr("style", "display:none");
-						$("#lst_user_div").attr("style", "display:none");
 					}
 				}
 			});
@@ -167,14 +188,23 @@ var SendNotification = function() {
 				allowClear : false,
 			});
 
+			$("#user_name").change(function() {
+				alert($("#user_name").val());
+			});
+
 			$("#branch_name").change(function() {
 				$("#batch_name").children().remove();
 				$("#user_name").children().remove();
-				$('#batch_name').html("<option value=\"\">Select...</option>");
+				//				console.log($("#branch_name").val());
 				$.ajax({
-					url : "../ajax_manager/branchDataList/" + $("#branch_name").val(),
+					url : "../ajax_manager/branchDataList",
 					dataType : 'json',
 					async : true,
+					type : 'POST',
+					data : {
+						csrf_test_name : $("input[name$='csrf_test_name']").val(),
+						batchId : $("#branch_name").val()
+					},
 					success : function(json) {
 						if (json) {
 							$.each(json.batch_list, function(i, item) {

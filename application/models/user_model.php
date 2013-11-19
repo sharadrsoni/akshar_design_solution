@@ -40,7 +40,7 @@ class user_model extends CI_Model {
 	}
 
 	public function getDetailsByBranch($branchCode) {
-		$this -> db -> where("branchCode", $branchCode);
+		$this->db->where_in("branchCode", $branchCode,null);
 		$this -> db -> where("roleId !=", 5);
 		return $this -> db -> get('user') -> result();
 	}
