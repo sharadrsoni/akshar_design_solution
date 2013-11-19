@@ -12,9 +12,9 @@ var Target = function() {
 				}, {
 					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
 					"bSortable" : true
 				}, {

@@ -10,9 +10,9 @@ var TargetReport = function() {
 				"aoColumns" : [{
 					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
 					"bSortable" : true
 				}, {

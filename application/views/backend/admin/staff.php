@@ -370,9 +370,11 @@
 				<div class="body-inner">
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
-										<tr>
-											<td  style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewProfielImage" /></td>
-											<td>
+										<tr><table class="table table-striped table-bordered table-hover dataTable">
+											<tr><td  style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewProfielImage" /></td></tr>
+											<tr><td style="text-align:center;" id="viewUserID"></td></tr>
+											<tr><td style="text-align:center;" id="viewBranchName"></td></tr>
+											</table><td>
 												<table class="table table-striped table-bordered table-hover dataTable">
 													<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">User Name</td>

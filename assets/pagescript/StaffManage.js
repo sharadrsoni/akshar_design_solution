@@ -12,9 +12,9 @@ var Staff = function() {
 				}, {
 					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
 					"bSortable" : false
 				}],
@@ -275,7 +275,6 @@ function viewstaff(userId) {
 				$('#viewUserEmail').html(json.staff.userEmailAddress);
 				$('#viewUserDOB').html(json.staff.userDOB);
 				$('#viewUserDOJ').html(json.staff.userJoiningDate);
-				alert(json.staff.userPhotograph);
 				$('#ViewProfielImage').attr("src",json.staff.userPhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");

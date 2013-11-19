@@ -9,8 +9,14 @@ var UISliders = function () {
 			// begin tblEvent table
 			$('#tbl_test_result').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, null, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value

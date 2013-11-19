@@ -8,10 +8,10 @@ var Course= function() {
 			// begin tblcity table
 			$('#tblCourse').dataTable({
 				"aoColumns" : [
-                  { "bSortable": false },
-                  { "bSortable": false },
-                  null,
-                  { "bSortable": false },
+                  { "bSortable": true },
+                  { "bSortable": true },
+                  { "bSortable": true },
+                  { "bSortable": true },
                   { "bSortable": false }
                 ],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here

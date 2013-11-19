@@ -157,13 +157,13 @@ var Event = function() {
 				"aoColumns" : [{
 					"bSortable" : true
 				}, {
-					"bSortable" : false
+					"bSortable" : true
 				},{
 					"bSortable" : true
 				},{
-					"bSortable" : false
+					"bSortable" : true
 				},{
-					"bSortable" : false
+					"bSortable" : true
 				}, {
 					"bSortable" : false
 				}],
