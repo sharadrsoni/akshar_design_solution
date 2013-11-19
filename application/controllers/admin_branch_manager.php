@@ -26,7 +26,7 @@ class Admin_branch_manager extends CI_Controller {
 			$this->data['eventtype'] = $this -> event_type_model -> getDetailsOfEventType();
 			if (isset($_POST['submitEventType'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('eventtype_name', 'Event Type Name', 'required|trim');
+				$this -> form_validation -> set_rules('eventtype_name', 'Event Type Name', 'required|trim|alpha|max_length[50]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this->data['validate'] = true;
 				} else {

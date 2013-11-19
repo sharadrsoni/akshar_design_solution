@@ -49,11 +49,11 @@ class Branch_manager extends CI_Controller {
 			$this -> data['weekdays'] = $weekdays;
 			if (isset($_POST['register'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
-				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
+				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim|alpha_numeric');
+				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim|alpha_numeric|max_length[108]|');
 				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
-				$this -> form_validation -> set_rules('duration', 'Duration', 'required|trim');
-				$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim');
+				$this -> form_validation -> set_rules('duration', 'Duration', 'required|trim|numeric');
+				$this -> form_validation -> set_rules('strength', 'Strength', 'required|trim|numeric');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
@@ -162,18 +162,18 @@ class Branch_manager extends CI_Controller {
 
 			if (isset($_POST['submitEvent'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim');
-				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim');
-				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
-				$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim');
-				$this -> form_validation -> set_rules('event_name', 'Event Name', 'required|trim');
-				$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
-				$this -> form_validation -> set_rules('street_1', 'Address 1', 'required|trim');
-				$this -> form_validation -> set_rules('street_2', 'Address 2', 'required|trim');
-				$this -> form_validation -> set_rules('organize_by', 'Organize By', 'required|trim');
-				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
-				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('pin_code', 'Pin Code', 'required|trim');
+				$this -> form_validation -> set_rules('event_type_id', 'Event Type', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('faculty_id', 'Faculty Name', 'required|trim|alpha_numeric|max_length[108]');
+				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('event_name', 'Event Name', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('description', 'Description', 'required|trim|max_length[500]');
+				$this -> form_validation -> set_rules('street_1', 'Address 1', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('street_2', 'Address 2', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('organize_by', 'Organize By', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('state', 'State', 'required|trim|alpha_numeric|max_length[50]');
+				$this -> form_validation -> set_rules('city', 'City', 'required|trim|alpha_numeric|max_length[50]');
+				$this -> form_validation -> set_rules('pin_code', 'Pin Code', 'required|trim|numeric|exact_length[6]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {

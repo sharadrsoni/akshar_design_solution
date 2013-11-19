@@ -43,7 +43,7 @@ class Admin extends CI_Controller {
 			$this -> data['role'] = $this -> role_model -> getAllDetailsOfRole();
 			if (isset($_POST['submitRole'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('role_name', 'Role Name', 'required|trim');
+				$this -> form_validation -> set_rules('role_name', 'Role Name', 'required|trim|alpha_numeric|min_length[3]|max_length[50]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
@@ -84,13 +84,13 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/master_page/header');
 			if (isset($_POST['submitBranch'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('branchCode', 'Branch Code', 'required|trim');
-				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');
-				$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim');
-				$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim');
-				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
-				$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim');
+				$this -> form_validation -> set_rules('branchCode', 'Branch Code', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('conatct_no', 'Contact Number', 'required|trim|numeric|exact_length[10]');
+				$this -> form_validation -> set_rules('street_1', 'Street Address', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim|numeric|max_length[50]');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim|numeric[11]');
+				$this -> form_validation -> set_rules('pin_code', 'Pincode', 'required|trim|numeric|exact_length[6]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
@@ -166,11 +166,11 @@ class Admin extends CI_Controller {
 			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
 			if (isset($_POST['submitCourse'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim');
-				$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim');
+				$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim|numeric|max_length[11]');
 				//$this -> form_validation -> set_rules('courseCode', 'Course Code', 'required|trim|is_unique[course.courseCode]');
-				$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim');
-				$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim');
+				$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim|numeric');
+				$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim|numeric');
 				$this -> form_validation -> set_rules('description', 'Course description', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
@@ -214,7 +214,7 @@ class Admin extends CI_Controller {
 			$this -> data['state'] = $this -> state_model -> getDetailsOfState();
 			if (isset($_POST['submitState'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim');
+				$this -> form_validation -> set_rules('state_name', 'State Name', 'required|trim|alpha_numeric|max_length[100]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
@@ -337,12 +337,12 @@ class Admin extends CI_Controller {
 			$this -> data['target'] = $this -> target_model -> getDetailsOfTarget();
 			if (isset($_POST['submitTarget'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim');
-				$this -> form_validation -> set_rules('branch', 'Branch', 'required|trim');
-				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim');
-				$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim');
-				$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim');
-				$this -> form_validation -> set_rules('description', 'Description', 'required|trim');
+				$this -> form_validation -> set_rules('target_type', 'Target Type', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('branch', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('target_name', 'Target Name', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('description', 'Description', 'required|trim|max_length[500]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
@@ -389,20 +389,20 @@ class Admin extends CI_Controller {
 		    $data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
 			if (isset($_POST['submitStaff'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim');
-				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim');
-				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
-				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim');
-				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim');
-				$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim');
-				$this -> form_validation -> set_rules('email', 'Email', 'required|trim');
-				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim');
+				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|alpha|max_length[100]');
+				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim|numeric|max_length[100]');
+				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim|alpha|max_length[100]');
+				$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim|min_length[10]|max_length[15]');
+				$this -> form_validation -> set_rules('email', 'Email', 'required|trim|valid_email');
+				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim|callback__checkingDate');
 				$this -> form_validation -> set_rules('qualification', 'Qualification', 'required|trim');
-				$this -> form_validation -> set_rules('street_1', 'Street1', 'required|trim');
-				$this -> form_validation -> set_rules('street_2', 'Street2', 'required|trim');
-				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
-				$this -> form_validation -> set_rules('pin_code', 'Postal Code', 'required|trim');
+				$this -> form_validation -> set_rules('street_1', 'Street1', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('street_2', 'Street2', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('pin_code', 'Postal Code', 'required|trim|exact_length[6]|numeric');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {

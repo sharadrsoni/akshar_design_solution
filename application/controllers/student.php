@@ -88,9 +88,9 @@ class Student extends CI_Controller {
 			redirect(base_url() . "student/profile");
 		} elseif (isset($_POST['change_password'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('current_password', 'Current Password', 'required|trim');
-			$this -> form_validation -> set_rules('new_password', 'New Password', 'required|trim');
-			$this -> form_validation -> set_rules('re_new_password', 'Enter Same Password', 'required|trim|matches[new_password]');
+			$this -> form_validation -> set_rules('current_password', 'Current Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('new_password', 'New Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('re_new_password', 'Enter Same Password', 'required|trim|alpha_numeric|matches[new_password]|max_length[50]');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {

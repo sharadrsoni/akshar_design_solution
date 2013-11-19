@@ -30,25 +30,27 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> data['inquiry'] = $this -> inquiry_model -> getDetailsOfInquiry($this -> branchCode);
 			if (isset($_POST['submitInquiry'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim');
-				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim');
-				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim');
-				$this -> form_validation -> set_rules('mobile_no', 'Mobile No', 'required|trim');
-				$this -> form_validation -> set_rules('email', 'email', 'required|trim');
-				$this -> form_validation -> set_rules('qualification', 'qualification', 'required|trim');
-				$this -> form_validation -> set_rules('email', 'email', 'required|trim');
-				$this -> form_validation -> set_rules('occupation_of_student', 'Ocuupation of self', 'required|trim');
-				$this -> form_validation -> set_rules('street_1', 'Street', 'required|trim');
-				$this -> form_validation -> set_rules('street_2', 'Street', 'required|trim');
-				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
-				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
-				$this -> form_validation -> set_rules('coursecategory', 'Course Category', 'required|trim');
-				$this -> form_validation -> set_rules('course', 'Course', 'required|trim');
-				$this -> form_validation -> set_rules('date_of_doj', 'Date of Joining', 'required|trim');
-				$this -> form_validation -> set_rules('name_of_institute', 'Institute Name', 'required|trim');
-				$this -> form_validation -> set_rules('name_of_guardian', 'Guardian Name', 'required|trim');
-				$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim');
-				$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim');
+
+				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|min_length[2]|max_length[50]|alpha');
+				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim|min_length[2]|max_length[50]|alpha');
+				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim|min_length[2]|max_length[50]|alpha');
+				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('mobile_no', 'Mobile No', 'required|trim|numeric|min_length[10]|max_length[15]');
+				$this -> form_validation -> set_rules('email', 'email', 'required|trim|valid_email');
+				$this -> form_validation -> set_rules('qualification', 'qualification', 'required|trim|min_length[2]|max_length[50]|alpha_numeric');
+				$this -> form_validation -> set_rules('email', 'email', 'required|trim|valid_email');
+				$this -> form_validation -> set_rules('occupation_of_student', 'Ocuupation of self', 'required|trim|alpha_numeric|max_length[50]');
+				$this -> form_validation -> set_rules('street_1', 'Street', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('street_2', 'Street', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('city', 'City', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('state', 'State', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('coursecategory', 'Course Category', 'required|trim|numeric|max_length[11]');
+				$this -> form_validation -> set_rules('course', 'Course', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('date_of_doj', 'Date of Joining', 'required|trim|callback__checkingDate');
+				$this -> form_validation -> set_rules('name_of_institute', 'Institute Name', 'required|trim|alpha|min_length[5]');
+				$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim|alpha|max_length[50]');
+				$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim|alpha');
+
 				if ($this -> form_validation -> run() == FALSE) {
 					die(validation_errors());
 					$this -> data['validate'] = true;
@@ -79,10 +81,10 @@ class Branch_manager_counsellor extends CI_Controller {
 		$this -> load -> model('user_model');
 		if (isset($_POST['registerStudent'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('firstname', 'First Name', 'required|trim');
-			$this -> form_validation -> set_rules('lastname', 'Last Name', 'required|trim');
-			$this -> form_validation -> set_rules('email', 'Email ID', 'required|trim');
-			$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim');
+			$this -> form_validation -> set_rules('firstname', 'First Name', 'required|trim|alpha|max_length[50]');
+			$this -> form_validation -> set_rules('lastname', 'Last Name', 'required|trim|alpha|max_length[50]');
+			$this -> form_validation -> set_rules('email', 'Email ID', 'required|trim|valid_email');
+			$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim|numeric|max_length[15]|min_length[10]');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
@@ -168,8 +170,8 @@ class Branch_manager_counsellor extends CI_Controller {
 			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByBranch($this -> branchCode);
 			if (isset($_POST['submitInventory'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim');
-				$this -> form_validation -> set_rules('inventory_quantity', 'Quantity', 'required|trim');
+				$this -> form_validation -> set_rules('course_id', 'Course Name', 'required|trim|alpha_numeric');
+				$this -> form_validation -> set_rules('inventory_quantity', 'Quantity', 'required|trim|numeric|max_length[10]');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
@@ -198,7 +200,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 		if (isset($_POST['submitPayment'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('payment_date', 'Payment Date', 'required|trim');
+			$this -> form_validation -> set_rules('payment_date', 'Payment Date', 'required|trim|callback__checkingDate');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
