@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 class event_attendance_model extends CI_Model {
 
 	public function getDetailsByBatch($batchId) {
-		$this -> db -> where("batchId", $batchId);
+		$this -> db -> where("student_batch.batchId", $batchId);
 		$this -> db -> join('event_attendance', 'event_attendance.studentId = user.userId', 'left outer');
 		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');
 		return $this -> db -> get('user') -> result();
@@ -39,10 +39,3 @@ class event_attendance_model extends CI_Model {
 	}
 
 }
-?>
-?>
-?>
-?>
-?>
-?>
-?>

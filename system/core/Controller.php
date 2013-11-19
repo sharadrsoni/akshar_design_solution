@@ -47,7 +47,7 @@ class CI_Controller {
 				$this -> userId = $this -> session -> userdata("userId");
 				$this -> roleId = $this -> session -> userdata("roleId");
 				$this -> load -> model("user_model");
-				$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
+				$userDetail = $this -> user_model -> getUserDetails($this -> userId);
 				$this -> branchCode = $userDetail -> branchCode;
 				$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
 				$this -> load -> model("role_model");

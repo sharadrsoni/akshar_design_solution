@@ -154,6 +154,8 @@ class Branch_manager extends CI_Controller {
 			$this -> load -> model("event_type_model");
 			$this -> load -> model('user_model');
 			$this -> load -> model("batch_model");
+			$this -> load -> model("state_model");
+			$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
 			$this -> data['batch_list'] = $batch_data;
 			$this -> data['event_type'] = $this -> event_type_model -> getDetailsOfEventType();
@@ -171,13 +173,13 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('street_1', 'Address 1', 'required|trim');
 				$this -> form_validation -> set_rules('street_2', 'Address 2', 'required|trim');
 				$this -> form_validation -> set_rules('organize_by', 'Organize By', 'required|trim');
-				$this -> form_validation -> set_rules('state', 'State', 'required|trim');
-				$this -> form_validation -> set_rules('city', 'City', 'required|trim');
+				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim');
+				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim');
 				$this -> form_validation -> set_rules('pin_code', 'Pin Code', 'required|trim');
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'eventCity' => $_POST['city'], 'eventState' => $_POST['state'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchCode' => $branchCode, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
+					$eventData = array('eventName' => $_POST['event_name'], 'eventDescription' => $_POST['description'], 'eventStreet1' => $_POST['street_1'], 'eventStreet2' => $_POST['street_2'], 'cityId' => $_POST['cityid'], 'stateId' => $_POST['stateid'], 'eventPinCode' => $_POST['pin_code'], 'eventOrganizerName' => $_POST['organize_by'], 'branchCode' => $branchCode, 'facultyId' => $_POST['faculty_id'], 'eventTypeId' => $_POST['event_type_id'], 'eventStartDate' => date("Y-m-d", strtotime($_POST['start_date'])), 'eventEndDate' => date("Y-m-d", strtotime($_POST['end_date'])));
 					if ($_POST['eventId'] != "" ? $this -> event_model -> updateEvent($eventData, $_POST['eventId']) : $this -> event_model -> addEvent($eventData)) {
 						redirect(base_url() . "branch_manager/event");
 					} else {

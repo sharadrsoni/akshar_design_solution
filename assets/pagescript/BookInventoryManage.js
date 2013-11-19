@@ -8,8 +8,14 @@ var BookInventory = function() {
 			// begin tblstate table
 			$('#tblinventory').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				},null,null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -113,7 +119,7 @@ var BookInventory = function() {
 				dateFormat : 'dd-mm-yy'
 			});
 	
-			$("#inward_date_datepicker.add-on").click(function() {
+			$("#inward_date_datepicker .add-on").click(function() {
 				$("#inward_date_datepicker input").datepicker("show");
 			});
 		}

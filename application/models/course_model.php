@@ -18,12 +18,9 @@ class course_model extends CI_Model {
 		return $this -> db -> get('course') -> row();
 	}
 
-	public function getDetailsByCategory($courseCategoryId) {
-
-		$this -> db -> where('courseCategoryId', $courseCategoryId);
-		return $this -> db -> get('course') -> result();
+	public function getDetailsByCategory($courseCategoryId,$studentId) {
+		return $this -> db -> query("select course.* from course where courseCategoryId = " . $courseCategoryId . " and courseCode Not In(Select courseCode from student_batch s,batch b where s.batchId = b.batchId and s.studentId = '" . $studentId . "')")->result();
 	}
-
 
 	public function getCourseCategory() {
 		return $this -> db -> get('course_category') -> result();
@@ -36,8 +33,9 @@ class course_model extends CI_Model {
 	}
 
 	public function getDetailsNotCourse($courseCode) {
-		$this -> db -> where_not_in('courseCode', $courseCode);
+		$this -> db -> query("Select * from course where courseCode Not In(" . $courseCode . ")");
 		return $this -> db -> get('course') -> result();
+		$this -> db -> query('YOUR QUERY HERE');
 	}
 
 	public function addCourse($data) {
