@@ -210,28 +210,32 @@
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
 										<tr>
-											<td><img alt="" />Image</td>
+											<td><img alt="" id="ViewCourseImage" />Image</td>
 											<td>
 												<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
 													<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Course Code</td>
-														<td></td>
+														<td id="viewCourseCode"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Course Name</td>
-														<td><viewCourseName></viewCourseName></td>
+														<td id="viewCourseName"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Course Category</td>
-														<td><viewCategory></viewCategory></td>
+														<td id="viewCategory"></td>
+												   </tr>
+												   <tr>
+														<td class="unstyled profile-nav span3">Course Duration</td>
+														<td id="viewCourseDuration"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Course Total Book</td>
-														<td><viewTotalBook></viewTotalBook></td>
+														<td id="viewTotalBook"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Description</td>
-														<td><viewDescription></viewDescription></td>
+														<td id="viewDescription"></td>
 												   </tr>
 												 </table>
 											</td>
@@ -242,10 +246,7 @@
 							</div>
 								</div>
 								<!--end row-fluid-->
-										
-	</div>			
-
-					</div>
+						</div>
 				</div>
 				<!--/ End Tabs -->
 			</div>

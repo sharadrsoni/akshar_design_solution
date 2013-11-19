@@ -366,75 +366,45 @@
 	</div>
 	</form>
 	</div>
-	<div class="tab-pane" id="tabView">
-		<div class="tab-content">
+			<div class="tab-pane" id="tabView">
+		<div class="tab-content profile">
 						<div class="tab-pane active" id="tab1">
 							<ul class="unstyled profile-nav span3">
-								<li><img alt="" /><a href="#" class="profile-edit">edit</a>
+								<li><img id="ViewProfielImage" alt="" src="" />
 								</li>
-								<li>
-									<viewUserID>User ID</viewUserID>
+								<li id="viewUserID">
+								
 								</li>
-								<li>
-									<viewBranchName>Branch Name</viewBranchName>
-								</li>				</ul>
+								<li id="viewBranchName">
+								</li>				
+							</ul>
 							<div class="span9">
 								<div class="row-fluid">
 									<div class="span8 profile-info">
-
-										
-										<div class="">
-											<viewUserName><h4>User Name</h4></viewUserName>
+										<div >
+											<h4 id="viewUserName"></h4>
 											<h4>Address</h4>
-											<address>
-												User Street1
-												<br>
-												User Street2												
-												<br>
-												City ID - User Postal Code												
-												<br>
-												State ID												
-												<br>
-											    Contact Number
-												<abbr title="Phone">P:</abbr> 
+											<address >
+												<p id="viewUserAddress"></p>
+												<h5>Contact Number:</h5>
+												<abbr id="viewUserContactNO" title="Phone"></abbr>
 											</address>
-											<address>
-												<strong>Email</strong>
-												<br>
-												
-											</address>
+											<strong>Email:</strong>
+											<abbr id="viewUserEmail"></abbr>
 										</div>
-
+										<h4 id="viewUserName"></h4>						
 										<ul class="unstyled inline">
-											<li>
-												<i class="icon-map-marker"></i> <viewCityID>city ID</viewCityID>
+											<li id="viewCityID">
 											</li>
-											<li>
-												<i class="icon-calendar"></i> <viewUserDOB>User DOB</viewuserDOB>
+											<li id="viewUserDOB">
+											</li>
+											<li id="viewUserDOJ">
 											</li>
 										</ul>
 									</div>
-									<!--end span8-->
-									<div class="span4">
-										<div class="portlet sale-summary">
-											<div class="portlet-body">
-												<ul class="unstyled">
-													<li>
-														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
-														<span class="sale-num">84%</span>
-													</li>
-													<li>
-														<span class="sale-info"><i class="icon-img-down"></i></span>
-														<span class="sale-num"></span>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<!--end span4-->
 								</div>
 								<!--end row-fluid-->
-								<div class="tabbable tabbable-custom tabbable-custom-profile">
+								<div style="display: none" class="tabbable tabbable-custom tabbable-custom-profile">
 									<ul class="nav nav-tabs">
 										<li class="active">
 											<a href="#tab_1_11" data-toggle="tab">Batches</a>
@@ -464,7 +434,10 @@
 											</div>
 										</div>
 										<!--tab-pane-->
-	</div>			
+									</div>	
+								</div>
+							</div>
+					</div>
 	</div>
 	</div>
 	</div>

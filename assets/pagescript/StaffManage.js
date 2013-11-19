@@ -186,7 +186,7 @@ var Staff = function() {
 				$("#form_staff").validate().resetForm();
 				$(".error").removeClass("error");
 				$(".success").removeClass("success");
-				$(".note").attr("style","display");
+				$(".note").attr("style", "display");
 			});
 
 		}
@@ -221,11 +221,12 @@ function updatestaff(staffid) {
 				$('#tab2').addClass("active");
 				$('#staffId').val(json.staff.userId);
 				$("#submitStaff").text("Update Staff User");
-				$(".note").attr("style","display:none");
+				$(".note").attr("style", "display:none");
 			}
 		}
 	});
 }
+
 function viewstaff(userId) {
 	$.ajax({
 		url : "staff/" + userId,
@@ -233,16 +234,16 @@ function viewstaff(userId) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewUserID').text(json.staff.userId);
+				$('#viewBranchName').text(json.staff.branchName);
+				$('#viewUserName').text(json.staff.userFirstName + " " + json.staff.userMiddleName + " " + json.staff.userLastName);
+				$('#viewUserContactNO').text(json.staff.userContactNumber);
+				$('#viewUserAddress').html(json.staff.userStreet1 + "<Br/>" + json.staff.userStreet2 + "<Br/>" + json.staff.cityId + ", " + json.staff.stateId + "<Br/>" + json.staff.userPostalCode);
+				$('#viewUserEmail').html(json.staff.userEmailAddress);
+				$('#viewCityID').html("<i class=\"icon-map-marker\"></i> " +json.staff.cityName);
+				$('#viewUserDOB').html("<i class=\"icon-calendar\"></i> " +json.staff.userDOB);
+				$('#viewUserDOJ').html("<i class=\"icon-calendar\"></i> " +json.staff.userJoiningDate);
+				$('#ViewProfielImage').attr("src",json.staff.userPhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");
