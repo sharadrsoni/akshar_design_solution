@@ -10,7 +10,7 @@ var BookInventory = function() {
 				"aoColumns" : [{
 					"bSortable" : true
 				},{
-					"bSortable" : false
+					"bSortable" : true
 				},{
 					"bSortable" : true
 				},{
@@ -119,7 +119,7 @@ var BookInventory = function() {
 				dateFormat : 'dd-mm-yy'
 			});
 	
-			$("#inward_date_datepicker.add-on").click(function() {
+			$("#inward_date_datepicker .add-on").click(function() {
 				$("#inward_date_datepicker input").datepicker("show");
 			});
 		}

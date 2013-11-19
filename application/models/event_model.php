@@ -6,6 +6,8 @@ class event_model extends CI_Model {
 
 	public function getDetailsByBranch($branchCode) {
 		$this -> db -> where("event.branchCode", $branchCode);
+		$this -> db -> join('city', 'city.cityId = event.cityId');
+		$this -> db -> join('state', 'state.stateId = event.stateId');
 		return $this -> db -> get('event') -> result();
 	}
 	

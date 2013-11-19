@@ -213,6 +213,28 @@ var Event = function() {
 			$("#end_date_datepicker .add-on").click(function() {
 				$("#end_date_datepicker input").datepicker("show");
 			});
+
+			$(".select2").select2({
+				allowClear : true,
+			});
+			$("#stateid").change(function() {
+				$('#cityid').html('');
+				$("#cityid").append("<option>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/citylist/" + $("#stateid").val(),
+					dataType : 'json',
+					async : false,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#cityid").append("<option value='"+item.cityId+"'>"+item.cityName+"</option>");
+							});
+						}
+					}
+				});
+			});
+			
+
 			$('.text-toggle-Attendance').toggleButtons({
 				width : 200,
 				label : {
