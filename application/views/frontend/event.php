@@ -12,7 +12,7 @@
 	<!-- /Added by HTTrack -->
 	<head>
 		<meta charset="utf-8" />
-		<title>Events</title>
+		<title>Events | Akshar Design Solution</title>
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
@@ -33,267 +33,242 @@
 
 	<!-- BEGIN BODY -->
 	<body>
-		<!-- BEGIN STYLE CUSTOMIZER -->
-		<div class="color-panel hidden-phone">
-			<div class="color-mode-icons icon-color"></div>
-			<div class="color-mode-icons icon-color-close"></div>
-			<div class="color-mode">
-				<p>
-					THEME COLOR
-				</p>
-				<ul class="inline">
-					<li class="color-blue current color-default" data-style="blue"></li>
-					<li class="color-red" data-style="red"></li>
-					<li class="color-green" data-style="green"></li>
-					<li class="color-orange" data-style="orange"></li>
-				</ul>
+		<div class="front-topbar">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span6">
+						<ul class="unstyled inline">
+							<li>
+								<i class="icon-phone topbar-info-icon top-2"></i>Call us: <span>(1) 456 6717</span>
+							</li>
+							<li class="sep">
+								<span>|</span>
+							</li>
+							<li>
+								<i class="icon-envelope-alt topbar-info-icon top-2"></i>Email: <span>info@akshardesignsolution.com</span>
+							</li>
+						</ul>
+					</div>
+					<div class="span6 topbar-social">
+						<ul class="unstyled inline">
+							<li>
+								<a href="#"><i class="icon-facebook"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="icon-twitter"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="icon-google-plus"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="icon-linkedin"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
-		<!-- END BEGIN STYLE CUSTOMIZER -->
+		<!-- END TOP BAR -->
 
 		<!-- BEGIN HEADER -->
 		<div class="front-header">
 			<div class="container">
 				<div class="navbar">
 					<div class="navbar-inner">
+						<!-- BEGIN LOGO (you can use logo image instead of text)-->
+						<a class="brand logo-v1" href="index-2.html"> <img src="assets/img/logo_blue.png" id="logoimg" alt=""> </a>
+						<!-- END LOGO -->
 						<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
 						<!-- END RESPONSIVE MENU TOGGLER -->
-
-						<!-- BEGIN HEADER -->
-
-						<div class="front-header">
-							<div class="container">
-								<div class="navbar">
-									<div class="navbar-inner">
-										<!-- BEGIN RESPONSIVE MENU TOGGLER -->
-										<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-										<!-- END RESPONSIVE MENU TOGGLER -->
-										<!-- BEGIN TOP NAVIGATION MENU -->
-										<div class="nav-collapse collapse">
-											<ul class="nav">
-												<li>
-													<a href="index.html">Home</a>
-												</li>
-												<li >
-													<a href="courses.html">Courses</a>
-												</li>
-												<li class="active">
-													<a href="event.html">Event</a>
-												</li>
-												<li>
-													<a href="about_us.html">About Us</a>
-												</li>
-												<li>
-													<a href="contact_us.html">Contact Us</a>
-												</li>
-												<li>
-													<span class="sep"></span><a href="#">Login</a>
-												</li>
-											</ul>
-										</div>
-										<!-- BEGIN TOP NAVIGATION MENU -->
-									</div>
-								</div>
-							</div>
+						<!-- BEGIN TOP NAVIGATION MENU -->
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li>
+									<a href="index.html">Home</a>
+								</li>
+								<li >
+									<a href="courses.html">Courses</a>
+								</li>
+								<li class="active">
+									<a href="event.html">Event</a>
+								</li>
+								<li>
+									<a href="about_us.html">About Us</a>
+								</li>
+								<li>
+									<a href="contact_us.html">Contact Us</a>
+								</li>
+								<li>
+									<span class="sep"></span><a href="#">Login</a>
+								</li>
+							</ul>
 						</div>
-						<!-- END HEADER -->
+						<!-- BEGIN TOP NAVIGATION MENU -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END HEADER -->
+		<!-- BEGIN BREADCRUMBS -->
+		<div class="row-fluid breadcrumbs margin-bottom-40">
+				<div class="span11">
+					<ul class="pull-right breadcrumb">
+						<li>
+							<a href="index.html">Home</a><span class="divider">/</span>
+						</li>
+						<li class="active">
+							Events
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- END BREADCRUMBS -->
 
-						<!-- BEGIN CONTAINER -->
-						<div class="container min-hight">
-							<!-- BEGIN BLOG -->
-							<div class="row-fluid">
-								<!-- BEGIN LEFT SIDEBAR -->
-								<div class="span12 blog-posts margin-bottom-40">
-									<div class="row-fluid">
-										<div class="span4">
-											<!-- BEGIN CAROUSEL -->
-											<div class="front-carousel">
-												<div id="myCarousel" class="carousel slide">
-													<!-- Carousel items -->
-													<div class="carousel-inner">
-														<div class="active item">
-															<img src="assets/img/works/img1.jpg" alt="">
-														</div>
-														<div class="item">
-															<img src="assets/img/works/img2.jpg" alt="">
-														</div>
-														<div class="item">
-															<img src="assets/img/works/img3.jpg" alt="">
-														</div>
-													</div>
-													<!-- Carousel nav -->
-													<a class="carousel-control left" href="#myCarousel" data-slide="prev"> <i class="icon-angle-left"></i> </a>
-													<a class="carousel-control right" href="#myCarousel" data-slide="next"> <i class="icon-angle-right"></i> </a>
-												</div>
-											</div>
-											<!-- END CAROUSEL -->
-										</div>
-										<div class="span8">
-											<h2><a href="blog_item.html">Corrupti quos dolores etquas</a></h2>
-											<ul class="blog-info">
-												<li>
-													<i class="icon-calendar"></i> 25/07/2013
-												</li>
-											</ul>
-											<p>
-												At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.
-											</p>
-										</div>
-									</div>
-									<hr class="blog-post-sep">
-									<div class="row-fluid">
-										<div class="span4">
-											<img src="assets/img/works/img4.jpg" alt="">
-										</div>
-										<div class="span8">
-											<h2><a href="blog_item.html">Corrupti quos dolores etquas</a></h2>
-											<ul class="blog-info">
-												<li>
-													<i class="icon-calendar"></i> 25/07/2013
-												</li>
-											</ul>
-											<p>
-												At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.
-											</p>
-										</div>
-									</div>
-									<hr class="blog-post-sep">
-									<div class="row-fluid">
-										<div class="span4">
-											<!-- BEGIN VIDEO -->
-											<iframe src="http://player.vimeo.com/video/56974716?portrait=0" height="205" style="width:100%; border:0" allowFullScreen></iframe>
-											<!-- END VIDEO -->
-										</div>
-										<div class="span8">
-											<h2><a href="blog_item.html">Corrupti quos dolores etquas</a></h2>
-											<ul class="blog-info">
-												<li>
-													<i class="icon-calendar"></i> 25/07/2013
-												</li>
-											</ul>
-											<p>
-												At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.
-											</p>
-											</div>
-									</div>
-									<hr class="blog-post-sep">
-									<div class="row-fluid">
-										<div class="span4">
-											<img src="assets/img/works/img2.jpg" alt="">
-										</div>
-										<div class="span8">
-											<h2><a href="#">Corrupti quos dolores etquas</a></h2>
-											<ul class="blog-info">
-												<li>
-													<i class="icon-calendar"></i> 25/07/2013
-												</li>
-											</ul>
-											<p>
-												At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.
-											</p>
-											</div>
-									</div>
-									<div class="pagination pagination-centered">
-										<ul>
-											<li>
-												<a href="#">Prev</a>
-											</li>
-											<li>
-												<a href="#">1</a>
-											</li>
-											<li>
-												<a href="#">2</a>
-											</li>
-											<li class="active">
-												<a href="#">3</a>
-											</li>
-											<li>
-												<a href="#">4</a>
-											</li>
-											<li>
-												<a href="#">5</a>
-											</li>
-											<li>
-												<a href="#">Next</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<!-- END LEFT SIDEBAR -->
-							</div>
-							<!-- END BEGIN BLOG -->
-						</div>
-						<!-- END CONTAINER -->
+		<!-- BEGIN CONTAINER -->
+		<div class="container min-hight">
+			<!-- BEGIN BLOG -->
+			<div class="row-fluid">
+				<!-- BEGIN LEFT SIDEBAR -->
+				<div class="span12 blog-posts margin-bottom-40">
+					<?php
+					foreach ($newsCategories as $key) {
+						echo "<div class='row-fluid'>
+<div class='span4'>
+<!-- BEGIN CAROUSEL -->
+<div class='front-carousel'>
+<div id='myCarousel' class='carousel slide'>
+<!-- Carousel items -->
+<div class='carousel-inner'>";
+						foreach ($newCategoryDetails[$key->newsCategoryId] as $key2) {
+							echo "<div class='active item'>
+<img src='$key2->newsCategoryDetailsPhotograph' alt=''>
+</div>";
+						}
+						echo "</div>
+<!-- Carousel nav -->
+<a class='carousel-control left' href='#myCarousel' data-slide='prev'>
+<i class='icon-angle-left'></i>
+</a>
+<a class='carousel-control right' href='#myCarousel' data-slide='next'>
+<i class='icon-angle-right'></i>
+</a>
+</div>
+</div>
+<!-- END CAROUSEL -->
+</div>
+<div class='span8'>
+<h2>$key->newsCategoryTitle</h2>
+<ul class='blog-info'>
+<li><i class='icon-calendar'></i> $key->newsCategoryDate</li>
+</ul>
+<p>$key->newsCategoryDescription</p>
+</div>
+</div>
+<hr class='blog-post-sep'>";
+					}
+					?>
+					<div class="pagination pagination-centered">
+						<ul>
+							<li>
+								<a href="#">Prev</a>
+							</li>
+							<li>
+								<a href="#">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li class="active">
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">4</a>
+							</li>
+							<li>
+								<a href="#">5</a>
+							</li>
+							<li>
+								<a href="#">Next</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- END LEFT SIDEBAR -->
+			</div>
+			<!-- END BEGIN BLOG -->
+		</div>
+		<!-- END CONTAINER -->
 
-						<!-- BEGIN COPYRIGHT -->
-						<div class="front-copyright">
-							<div class="container">
-								<div class="row-fluid">
-									<div class="span8">
-										<p>
-											<span class="margin-right-10">2013 © Akshar Design Solution. ALL Rights Reserved.</span>
-											<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-										</p>
-									</div>
-									<div class="span4">
-										<ul class="social-footer">
-											<li>
-												<a href="#"><i class="icon-facebook"></i></a>
-											</li>
-											<li>
-												<a href="#"><i class="icon-google-plus"></i></a>
-											</li>
-											<li>
-												<a href="#"><i class="icon-linkedin"></i></a>
-											</li>
-											<li>
-												<a href="#"><i class="icon-twitter"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+		<!-- BEGIN COPYRIGHT -->
+		<div class="front-copyright">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span8">
+						<p>
+							<span class="margin-right-10">2013 © Akshar Design Solution. ALL Rights Reserved.</span>
+							<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+						</p>
+					</div>
+					<div class="span4">
+						<ul class="social-footer">
+							<li>
+								<a href="#"><i class="icon-facebook"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="icon-google-plus"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="icon-linkedin"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="icon-twitter"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 
-						<!-- END COPYRIGHT -->
+		<!-- END COPYRIGHT -->
 
-						<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-						<!-- BEGIN CORE PLUGINS -->
-						<script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
-						<script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-						<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-						<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-						<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-						<script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>
-						<!--[if lt IE 9]>
-						<script src="assets/plugins/respond.min.js"></script>
-						<![endif]-->
-						<!-- END CORE PLUGINS -->
-						<script src="assets/scripts/index.js"></script>
-						<script src="assets/scripts/app.js"></script>
-						<script type="text/javascript">
-							jQuery(document).ready(function() {
-								App.init();
+		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+		<!-- BEGIN CORE PLUGINS -->
+		<script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
+		<script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+		<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>
+		<!--[if lt IE 9]>
+		<script src="assets/plugins/respond.min.js"></script>
+		<![endif]-->
+		<!-- END CORE PLUGINS -->
+		<script src="assets/scripts/index.js"></script>
+		<script src="assets/scripts/app.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				App.init();
 
-							});
-						</script>
-						<!-- END JAVASCRIPTS -->
-						<script type="text/javascript">
-							var _gaq = _gaq || [];
-							_gaq.push(['_setAccount', 'UA-37564768-1']);
-							_gaq.push(['_setDomainName', 'keenthemes.com']);
-							_gaq.push(['_setAllowLinker', true]);
-							_gaq.push(['_trackPageview']);
-							(function() {
-								var ga = document.createElement('script');
-								ga.type = 'text/javascript';
-								ga.async = true;
-								ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-								var s = document.getElementsByTagName('script')[0];
-								s.parentNode.insertBefore(ga, s);
-							})();
-						</script>
+			});
+		</script>
+		<!-- END JAVASCRIPTS -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-37564768-1']);
+			_gaq.push(['_setDomainName', 'keenthemes.com']);
+			_gaq.push(['_setAllowLinker', true]);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
 	</body>
 	<!-- END BODY -->
 
