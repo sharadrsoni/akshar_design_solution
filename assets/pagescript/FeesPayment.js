@@ -103,10 +103,16 @@ var StudentFees = function() {
 			// begin tblEvent table
 			$('#tblfeespyament').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				}, null, {
+				},{
 					"bSortable" : false
-				}, null, null],
+				},{
+					"bSortable" : false
+				},{
+					"bSortable" : false
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value

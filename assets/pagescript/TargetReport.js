@@ -8,11 +8,15 @@ var TargetReport = function() {
 			// begin tblTarget table
 			$('#tblTargetReport').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, {
+				}, {
 					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
 				}, {
 					"bSortable" : false
 				}],

@@ -8,8 +8,14 @@ var BookInventory = function() {
 			// begin tblstate table
 			$('#tblinventory').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				},null,null],
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : false
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
