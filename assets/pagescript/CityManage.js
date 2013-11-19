@@ -63,6 +63,9 @@ var City = function() {
 					},
 					city_name:{
 						required : true,
+						minlength:3,
+						maxlength:100,
+						lettersonly:true,
 					}
 				},
 

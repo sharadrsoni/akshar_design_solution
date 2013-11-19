@@ -25,10 +25,10 @@ class Ajax_manager extends CI_Controller {
 		}
 		$this -> data['weekdays'] = $weekdays;
 		$this -> data['timmings'] = $timmings;
-		
+
 		$this -> load -> model('course_model');
 		$available_data = $this -> course_model -> checkBooks($courseCode);
-		$this -> data['available_data'] = $available_data;		
+		$this -> data['available_data'] = $available_data;
 		echo json_encode($this -> data);
 	}
 
@@ -72,10 +72,10 @@ class Ajax_manager extends CI_Controller {
 		$this -> data['student_list'] = $student_data;
 		echo json_encode($this -> data);
 	}
-	
+
 	public function citylist($stateId) {
 		$this -> load -> model('city_model');
-		$this -> data['city_list'] =$this -> city_model -> getDetailsByState($stateId);
+		$this -> data['city_list'] = $this -> city_model -> getDetailsByState($stateId);
 		echo json_encode($this -> data);
 	}
 
@@ -97,15 +97,18 @@ class Ajax_manager extends CI_Controller {
 	}
 
 	//Batch List
-	public function branchDataList($branchCode) {
+	public function branchDataList() {
 		$this -> load -> model('batch_model');
 		$this -> load -> model('user_model');
-		$batch_data = $this -> batch_model -> getDetailsBranch($branchCode);
+		$batch_data = $this -> batch_model -> getDetailsBranch($_POST['batchId']);
+
 		$this -> data['batch_list'] = $batch_data;
-		$staff_data = $this -> user_model -> getDetailsByBranch($branchCode);
+		$staff_data = $this -> user_model -> getDetailsByBranch($_POST['batchId']);
+
 		$this -> data['staff_list'] = $staff_data;
 		echo json_encode($this -> data);
 	}
+
 }
 ?>
 

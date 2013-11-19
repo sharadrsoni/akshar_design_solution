@@ -23,7 +23,7 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Search <small>Search user details over here.	</small></h4>
+					<h4>Search <small>Search user details over here. </small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
@@ -46,8 +46,10 @@
 							<div class="row-fluid search-forms search-default">
 								<form class="form-search" action="#">
 									<div class="chat-form">
-										<div class="input-cont">
-											<input type="text" placeholder="Search..." class="span12" />
+										<div class="dataTables_filter" id="tblBranch_filter">
+											<label>Search:
+												<input type="text" aria-controls="tblBranch" onchange="">
+											</label>
 										</div>
 										<button type="button" class="btn green">
 											Search &nbsp; <i class="m-icon-swapright icon-circle-arrow-right"></i>
@@ -60,12 +62,12 @@
 									<thead>
 										<tr>
 											<th>Photo</th>
-											<th class="hidden-phone">Fullname</th>
+											<th class="hidden-phone">Name</th>
 											<th>Username</th>
 											<th class="hidden-phone">Joined</th>
-											<th class="hidden-phone">Points</th>
+											<th class="hidden-phone">Courses</th>
 											<th>Status</th>
-											<th></th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>

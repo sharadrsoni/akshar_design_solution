@@ -70,14 +70,13 @@
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="nav-collapse collapse"> 
           <ul class="nav">
-            <li> <a href="index.html"> 
-              Home </a> </li>
-            <li class="active"><a href="courses.html">Courses</a></li>
-            <li><a href="photo_gallery.html">Photo Gallery</a></li>
-            <li><a href="about_us.html">About Us</a></li>
-            <li><a href="contact_us.html">Contact Us</a></li>
-            <li> <span class="sep"></span> <a href="#">Login</a></li>
-          </ul>
+            <li> <a href="index.html"> Home </a> </li>
+            <li  class="active"><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
+            <li><a href="<?php echo base_url()."photo_gallery"; ?>">Photo Gallery</a></li>
+            <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
+            <li><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
+            <li> <span class="sep"></span> <a href="<?php echo base_url()."login"; ?>">Login</a></li>
+           </ul>
           <div class="search-box"> 
             <div class="input-append"> 
               <form>
@@ -98,7 +97,7 @@
     <div class="row-fluid breadcrumbs margin-bottom-40">
         <div class="container">
             <div class="span4">
-                <h1>Portfolio 4 Column</h1>
+                <h1>Courses</h1>
             </div>
             <div class="span8">
                 <ul class="pull-right breadcrumb">
@@ -111,92 +110,45 @@
     <!-- END BREADCRUMBS -->
 
     <!-- BEGIN CONTAINER -->   
+  <!-- BEGIN CONTAINER -->   
     <div class="container min-hight">
         <!-- BEGIN FILTER -->           
         <div class="filter-v1 margin-bottom-40">
             <ul class="filter-category">
-                <li class="filter" data-filter="all">All</li>
-                <li class="filter" data-filter="category_1">UI Design</li>
-                <li class="filter" data-filter="category_2">Web Development</li>
-                <li class="filter" data-filter="category_3">Photography</li>
-                <li class="filter" data-filter="category_3 category_1">Wordpress and Logo</li>
-            </ul>
+            	 <li class="filter" data-filter="all">All</li>
+            	<?php 
+            		foreach($course_category as $key)
+					{
+						echo "<li class=\"filter\" data-filter={$key->courseCategoryId}> {$key->courseCategoryName}</li>"; 
+					}
+            	?>
+               </ul>
             <ul class="grid-v1 thumbnails">
-                <li class="span3 mix category_1">
-                    <img src="assets/img/works/img1.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>sfdds</h2>
-                        <a class="hover-portfolio-lft" href="course_details"><i class="icon-link"></i></a>
+            		
+            	<?php
+            	
+            		foreach($course as $key)
+					{
+									
+            	
+                   echo "<li class='span3 mix {$key->courseCategoryId}'>
+                   	<img src='assets/img/works/img1.jpg' alt=''>
+                    <div class='hover-portfolio hover-portfolio-small'>
+                        <h2>{$key->courseName}</h2>
+                        <a class='hover-portfolio-lft' href='" . base_url() . "courses/course_details/{$key->courseCode}'><i class='icon-link'></i></a>
                     </div>                                        
-                </li>
-                <li class="span3 mix category_2">
-                    <img src="assets/img/works/img2.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_3">
-                    <img src="assets/img/works/img3.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                    
-                </li>
-                <li class="span3 mix category_1 category_2">
-                    <img src="assets/img/works/img4.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_2 category_1">
-                    <img src="assets/img/works/img5.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_1 category_2">
-                    <img src="assets/img/works/img6.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_2 category_3">
-                    <img src="assets/img/works/img1.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_1 category_2">
-                    <img src="assets/img/works/img2.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_3">
-                    <img src="assets/img/works/img4.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-                <li class="span3 mix category_1">
-                    <img src="assets/img/works/img3.jpg" alt="">
-                    <div class="hover-portfolio hover-portfolio-small">
-                        <h2>Cascusamus et iusto accusamus</h2>
-                        <a class="hover-portfolio-lft" href="course_details.html"><i class="icon-link"></i></a>
-                    </div>                                        
-                </li>
-            </ul>
+                </li>";
+					}
+            	?>
+            	
+                          </ul>
         </div>
         <!-- END FILTER -->           
     </div>
     <!-- END CONTAINER -->
+
+  
+      <!-- END CONTAINER -->
 
     <!-- BEGIN FOOTER -->
 

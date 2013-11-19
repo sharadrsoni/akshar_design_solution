@@ -69,6 +69,8 @@ var Target = function() {
 					},
 					target_name : {
 						required : true,
+						minlenght: 4,
+						maxlength:100,
 					},
 					target_type : {
 						required : true,
@@ -81,6 +83,8 @@ var Target = function() {
 					},
 					description : {
 						required : true,
+						minlength: 10,
+						maxlength:500,
 					}
 
 				},

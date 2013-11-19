@@ -64,41 +64,64 @@ var Staff = function() {
 						required : true
 					},
 					first_name : {
-						required : true
+						required : true,
+						minlength : 2,
+						maxlength:50,
+						lettersonly:true,
 					},
 					middle_name : {
-						required : true
+						required : true,
+						minlength : 2,
+						maxlength:50,
+						lettersonly:true,
 					},
 					last_name : {
-						required : true
+						required : true,
+						minlength : 2,
+						maxlength:50,
+						lettersonly:true,
 					},
 					contact_number : {
 						minlength : 10,
+						maxlength:10,
+						digits:true,
 						required : true
 					},
 					email : {
 						required : true,
+						email:true,
+						maxlength:50,
 					},
 					date_of_birth : {
 						required : true,
 					},
 					qualification : {
 						required : true,
+						maxlength:50,
 					},
 					street_1 : {
 						required : true,
+						minlength : 4,
+						maxlength:100,
 					},
 					street_2 : {
 						required : true,
+						minlength : 4,
+						maxlength:100,
 					},
 					city : {
 						required : true,
+						minlength : 3,
+						
 					},
 					state : {
 						required : true
 					},
 					pin_code : {
 						required : true,
+						minlength:6,
+						maxlength:6,
+						digits:true,
 					}
 				},
 

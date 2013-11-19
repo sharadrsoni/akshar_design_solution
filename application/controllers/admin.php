@@ -412,8 +412,31 @@ class Admin extends CI_Controller {
 						$staffData['userPassword'] = $this -> user_model -> randomPassword();
 						$staffData['userPhotograph'] = "profile.png";
 						$staffData['userJoiningDate'] = date("Y-m-d");
+						
+						
+						$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
+						$this -> load -> library('email', $config);
+						$this -> email -> set_newline("\r\n");
+						$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Sharad Soni');
+						$this -> email -> to($_POST['email']);
+						$this -> email -> subject('Email Test');
+
+	  $text = 'Hi '.$_POST['first_name'].' '.$_POST['middle_name'].' '.$_POST['last_name'].','
+      . "<br>"
+      . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.'
+      . "<br><br>"
+      . 'Your Login Credentials are:'
+      . "<br>"
+      . 'LoginId - ' . $staffData['userId']
+      . "<br>"
+      . 'LoginId - ' . $staffData['userPassword']
+      . "<br><br><br>"
+      . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';				
+						$this -> email -> message($text);
+
+
 					}
-					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData)) {
+					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData) && $this -> email -> send()) {
 						redirect(base_url() . "admin/staff");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
