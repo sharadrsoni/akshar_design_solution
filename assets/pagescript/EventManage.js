@@ -65,8 +65,10 @@ var Event = function() {
 			rules : {
 				event_name : {
 					required : true,
+					minlength:3,
+					maxlength:100,
 				},
-				event_type : {
+				event_type_id : {
 					required : true,
 				},
 				start_date : {
@@ -74,15 +76,22 @@ var Event = function() {
 				},
 				end_date : {
 					required : true,
+					greaterThan: "#start_date",
 				},
 				description : {
 					required : true,
+					minlength:10,
+					maxlength:200,
 				},
 				street_1 : {
 					required : true,
+						minlength : 4,
+						maxlength:100,
 				},
 				street_2 : {
 					required : true,
+						minlength : 4,
+						maxlength:100,
 				},
 				city : {
 					required : true,
@@ -91,12 +100,17 @@ var Event = function() {
 					required : true
 				},
 				pin_code : {
-					required : true,
+						required : true,
+						minlength:6,
+						maxlength:6,
+						digits:true,
 				},
 				organize_by : {
 					required : true,
+					minlength:3,
+					maxlength:100,
 				},
-				responsible_person : {
+				faculty_id : {
 					required : true,
 				}
 			},
