@@ -366,106 +366,44 @@
 	</div>
 	</form>
 	</div>
-	<div class="tab-pane" id="tabView">
-		<div class="tab-content">
-						<div class="tab-pane active" id="tab1">
-							<ul class="unstyled profile-nav span3">
-								<li><img alt="" /><a href="#" class="profile-edit">edit</a>
-								</li>
-								<li>
-									<viewUserID>User ID</viewUserID>
-								</li>
-								<li>
-									<viewBranchName>Branch Name</viewBranchName>
-								</li>				</ul>
-							<div class="span9">
-								<div class="row-fluid">
-									<div class="span8 profile-info">
-
-										
-										<div class="">
-											<viewUserName><h4>User Name</h4></viewUserName>
-											<h4>Address</h4>
-											<address>
-												User Street1
-												<br>
-												User Street2												
-												<br>
-												City ID - User Postal Code												
-												<br>
-												State ID												
-												<br>
-											    Contact Number
-												<abbr title="Phone">P:</abbr> 
-											</address>
-											<address>
-												<strong>Email</strong>
-												<br>
-												
-											</address>
-										</div>
-
-										<ul class="unstyled inline">
-											<li>
-												<i class="icon-map-marker"></i> <viewCityID>city ID</viewCityID>
-											</li>
-											<li>
-												<i class="icon-calendar"></i> <viewUserDOB>User DOB</viewuserDOB>
-											</li>
-										</ul>
-									</div>
-									<!--end span8-->
-									<div class="span4">
-										<div class="portlet sale-summary">
-											<div class="portlet-body">
-												<ul class="unstyled">
-													<li>
-														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
-														<span class="sale-num">84%</span>
-													</li>
-													<li>
-														<span class="sale-info"><i class="icon-img-down"></i></span>
-														<span class="sale-num"></span>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<!--end span4-->
+			<div class="tab-pane" id="tabView">
+				<div class="body-inner">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
+										<tr>
+											<td  style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewProfielImage" /></td>
+											<td>
+												<table class="table table-striped table-bordered table-hover dataTable">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">User Name</td>
+														<td id="viewUserName"></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Address</td>
+														<td id="viewUserAddress"></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Contact No</td>
+														<td id="viewUserContactNO"></td>
+												   </tr>
+												   <tr>
+														<td class="unstyled profile-nav span3">Email</td>
+														<td id="viewUserEmail"></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Birth Date</td>
+														<td id="viewUserDOB"></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Joining Date</td>
+														<td id="viewUserDOJ"></td>
+												   </tr>
+												 </table>
+											</td>
+										</tr>
+									</table>
 								</div>
-								<!--end row-fluid-->
-								<div class="tabbable tabbable-custom tabbable-custom-profile">
-									<ul class="nav nav-tabs">
-										<li class="active">
-											<a href="#tab_1_11" data-toggle="tab">Batches</a>
-										</li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane active" id="tab_1_11">
-											<div class="portlet-body" style="display: block;">
-												<table class="table table-striped table-bordered table-advance table-hover">
-													<thead>
-														<tr>
-															<th><i class="icon-star"></i>Batch</th>
-															<th class="hidden-phone"><i class="icon-question-sign"></i>Strength</th>
-															<th><i class="icon-bookmark"></i> Course</th>
-															<th><i class="icon-bookmark"></i> Performance</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td><a href="#">Pixel Ltd</a></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<!--tab-pane-->
-	</div>			
-	</div>
+							</div>
 	</div>
 	</div>
 	<!--/ End Tabs -->

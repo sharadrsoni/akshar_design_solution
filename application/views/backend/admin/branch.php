@@ -270,27 +270,22 @@
 							<div class="body-inner">
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
-										<?php
-											foreach ($branch as $key) {
-												echo "
-												<tr class=\"odd gradeX\">
-												<td style='background:#f0f6fa' class=\"unstyled profile-nav span3\"><a>Branch Code</a></td>
-												<td> {$key->branchCode}</td>
+											<tr class="odd gradeX">
+												<td style='background:#f0f6fa' class="unstyled profile-nav span3"><a>Branch Code</a></td>
+												<td id="viewBranchCode"> </td>
 												</tr>
-												<tr class=\"odd gradeX\">
-												 <td class=\"unstyled profile-nav span3\"><a>Branch Name</a></td>
-												  <td>{$key->branchName}</td>
+												<tr class="odd gradeX">
+												 <td class"unstyled profile-nav span3"><a>Branch Name</a></td>
+												  <td id="viewBranchName"></td>
 												</tr>
-												<tr class=\"odd gradeX\">
-												  <td style='background:#f0f6fa' class=\"unstyled profile-nav span3\"><a>Address</a></td>
-												<td class=\"hidden-480\">{$key->branchStreet1}<br/> {$key->branchStreet2}<br/> {$key->cityId} {$key->stateId} - {$key->branchPincode}</td>
+												<tr class="odd gradeX">
+												  <td style='background:#f0f6fa' class="unstyled profile-nav span3"><a>Address</a></td>
+												<td class="hidden-480" id="viewBranchAddress"></td>
 												</tr>
-												<tr class=\"odd gradeX\">
-												 <td class=\"unstyled profile-nav span3\"><a>Contact Number</a></td>
-												  <td>{$key->branchContactNumber}</td>
-											</tr>";
-											}
-											?>
+												<tr class="odd gradeX">
+												 <td class="unstyled profile-nav span3"><a>Contact Number</a></td>
+												  <td id="viewContactNo"></td>
+											</tr>
 										</tbody>
 									</table>
 								</div>

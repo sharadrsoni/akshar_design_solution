@@ -171,9 +171,6 @@ var Inquiry = function() {
 			
 			$("#doj_datepicker input").datepicker({
 				isRTL : App.isRTL(),
-				changeMonth : true,
-				changeYear : true,
-				yearRange : "c-60:c",
 				dateFormat: 'dd-mm-yy'
 			});
 
@@ -202,6 +199,22 @@ var Inquiry = function() {
 				});
 			});
 			
+			$("#coursecategory").change(function() {
+				$('#course').html('');
+				$("#course").append("<option>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/courseByCourseCategory/" + $("#coursecategory").val(),
+					dataType : 'json',
+					async : false,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#course").append("<option value='"+item.courseCode+"'>"+item.courseName+"</option>");
+							});
+						}
+					}
+				});
+			});
 	
 			$("#tablink2").click(function() {
 				$('#user_name').val("");

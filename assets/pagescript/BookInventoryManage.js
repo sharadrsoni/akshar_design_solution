@@ -108,6 +108,14 @@ var BookInventory = function() {
   				$(".error").removeClass("error");
   				$(".success").removeClass("success");
 			});
+			$("#inward_date_datepicker input").datepicker({
+				isRTL : App.isRTL(),
+				dateFormat : 'dd-mm-yy'
+			});
+	
+			$("#inward_date_datepicker.add-on").click(function() {
+				$("#inward_date_datepicker input").datepicker("show");
+			});
 		}
 	};
 }();

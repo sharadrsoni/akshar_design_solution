@@ -60,6 +60,8 @@ var EventType = function() {
 				rules : {
 					eventtype_name:{
 						required : true,
+						minlength:3,
+						maxlength:100,
 					}
 				},
 

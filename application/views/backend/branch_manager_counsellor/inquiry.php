@@ -67,8 +67,8 @@
 <td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
 <td class=\"hidden-480\">{$key->stateId}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
-<td></td>
-<td></td>
+<td class=\"hidden-480\">{$key->courseCode}</td>
+<td class=\"hidden-480\">{$key->inquiryExpectedJoiningDate}</td>
 <td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
@@ -345,11 +345,6 @@
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="course" id="course" value="<?php echo set_value("course"); ?>">
-													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
 												</select>
 												<span for="course" class="help-inline"><?php echo form_error('course'); ?></span>
 											</div>
@@ -389,7 +384,23 @@
 											<span for="name_of_institute" class="help-inline"><?php echo form_error('name_of_institute'); ?></span>
 										</div>
 									</div><!--/ Name of Institute/Industry -->
-									<!-- ccupation of Guardian\Self -->
+									<!-- Name of Guardian -->
+										<?php
+									$err=form_error('name_of_guardian');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
+										<label class="control-label">Guardian Name</label>
+										<div class="controls">
+											<input type="text" name="name_of_guardian" id="name_of_guardian" class="span8" value="<?php echo set_value("name_of_guardian"); ?>">
+											<span for="name_of_institute" class="help-inline"><?php echo form_error('name_of_guardian'); ?></span>
+										</div>
+									</div><!--/ Name of Guardian -->
+									<!-- Occupation of Guardian\Self -->
 										<?php
 									$err=form_error('occupation_of_guardian');
 									if ($err != '') {

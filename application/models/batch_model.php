@@ -35,8 +35,7 @@ class batch_model extends CI_Model {
 	}
 
 	public function getDetailsBranch($branchCode) {
-
-		$this -> db -> where("branchCode", $branchCode);
+		$this->db->where_in("branchCode", $branchCode,null);
 		$this -> db -> from('batch');
 		return $this -> db -> get() -> result();
 
