@@ -62,12 +62,14 @@ var Branch = function() {
 				rules : {
 					branchCode:{
 						required : true,
-						alphanumeric:true,
 						maxlength:100,
+						lettersonly:true,
 					},
 					branch_name : {
-						minlength : 5,
+						
 						required : true,
+						lettersonly:true,
+						minlength : 3,
 						maxlength:100,
 					},
 					conatct_no : {
@@ -97,7 +99,8 @@ var Branch = function() {
 						minlength:6,
 						maxlength:6,
 						digits:true,
-					}
+					},
+					
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit

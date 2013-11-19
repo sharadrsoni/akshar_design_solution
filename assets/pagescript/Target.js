@@ -69,8 +69,10 @@ var Target = function() {
 					},
 					target_name : {
 						required : true,
+						lettersonly:true,
 						minlenght: 4,
 						maxlength:100,
+						
 					},
 					target_type : {
 						required : true,
@@ -78,8 +80,11 @@ var Target = function() {
 					start_date : {
 						required : true,
 					},
-					end_date : {
-						required : true,
+										
+					end_date:
+					{
+						required:true,
+						greaterThan: "#start_date",  
 					},
 					description : {
 						required : true,

@@ -94,6 +94,7 @@ var Staff = function() {
 					},
 					date_of_birth : {
 						required : true,
+						maxDate:true,
 					},
 					qualification : {
 						required : true,
@@ -109,12 +110,12 @@ var Staff = function() {
 						minlength : 4,
 						maxlength:100,
 					},
-					city : {
+					cityid : {
 						required : true,
-						minlength : 3,
+						
 						
 					},
-					state : {
+					stateid : {
 						required : true
 					},
 					pin_code : {
@@ -123,6 +124,7 @@ var Staff = function() {
 						maxlength:6,
 						digits:true,
 					}
+					
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
