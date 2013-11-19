@@ -52,7 +52,6 @@ class course_model extends CI_Model {
 		if (isset($courseCode)) {
 			$this -> db -> where('courseCode', $courseCode);
 			return $this -> db -> delete('course');
-			;
 		}
 		return false;
 	}
