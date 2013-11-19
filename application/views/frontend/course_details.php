@@ -74,10 +74,10 @@
           <ul class="nav">
             <li> <a href="index.html"> 
               Home </a> </li>
-            <li><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
+            <li  class="active"><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
             <li><a href="<?php echo base_url()."photo_gallery"; ?>">Photo Gallery</a></li>
             <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
-            <li class="active"><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
+            <li><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
             <li> <span class="sep"></span> <a href="<?php echo base_url()."login"; ?>">Login</a></li>
            </ul>
           <div class="search-box"> 
@@ -147,7 +147,7 @@
                     <div class="span6">
                         <ul class="unstyled">
                             <li><i class="icon-star"></i>Course Code  : <font color="#0DA3E2"><?php echo $course_details[0]->courseCode ;?></font></li>
-                            <li><i class="icon-star"></i>Course Duration : <font color="#0DA3E2"><?php echo $course_details[0]->courseDuration ;?></font></li>
+                            <li><i class="icon-star"></i>Course Duration : <font color="#0DA3E2"><?php echo $course_details[0]->courseDuration ;?>-Months</font></li>
                                
                          </ul>
                     </div>

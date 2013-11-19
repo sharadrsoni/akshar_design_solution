@@ -74,6 +74,7 @@ class user_model extends CI_Model {
 	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
+		$this -> db -> join('city', 'city.cityId = user.cityId');
 		return $this -> db -> get('user') -> row();
 	}
 

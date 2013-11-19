@@ -171,9 +171,6 @@ var Inquiry = function() {
 			
 			$("#doj_datepicker input").datepicker({
 				isRTL : App.isRTL(),
-				changeMonth : true,
-				changeYear : true,
-				yearRange : "c-60:c",
 				dateFormat: 'dd-mm-yy'
 			});
 
