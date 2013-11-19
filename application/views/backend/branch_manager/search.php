@@ -48,7 +48,7 @@
 									<div class="chat-form">
 										<div class="dataTables_filter" id="tblBranch_filter">
 											<label>Search:
-												<input type="text" aria-controls="tblBranch">
+												<input type="text" aria-controls="tblBranch" onchange="">
 											</label>
 										</div>
 										<button type="button" class="btn green">

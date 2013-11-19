@@ -79,133 +79,132 @@
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_course');
 							echo form_open('admin/course', $attributes);
 							?>
-							
-								<div class="alert alert-error hide">
-									<button class="close" data-dismiss="alert"></button>
-									You have some form errors. Please check below.
-								</div>
-								<div class="alert alert-success hide">
-									<button class="close" data-dismiss="alert"></button>
-									Your form validation is successful!
-								</div>
 
-								<div class="body-inner">
-									<h3 class="form-section">Course Info.</h3>
-									<!-- Course Code -->
-											<?php
-									$err=form_error('courseCode');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-								
-										<label class="control-label">Course Code<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="courseCode" id="courseCode" class="span4" value="<?php echo set_value("courseCode"); ?>"/>
-											<span for="courseCode" class="help-inline"><?php echo form_error('courseCode');?></span>
-										</div>
-									</div><!--/ Course Code -->
-									<!-- CourseCategory ID -->
-											<?php
-									$err=form_error('courseCategory_id');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Course Category ID<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span4" name="courseCategory_id" id="courseCategory_id">
-												<option value="">Select...</option>
-												<?php
-												foreach ($course_category as $key) {
-													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
-												}
-												?>
-											</select>
-											<span for="courseCategory_id" class="help-inline"><?php echo form_error('courseCategory_id'); ?></span>
-										</div>
-									</div>
-									<!--/ CourseCategory ID -->
-									<!-- Course Name -->
-											<?php
-									$err=form_error('course_name');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Course Name<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="course_name" id="course_name" class="span8" value="<?php echo set_value("course_name"); ?>">
-											<span for="course_name" class="help-inline"><?php echo form_error('course_name'); ?></span>
-										</div>
-									</div><!--/ Course Name -->
-									<!-- Course Duration -->
-											<?php
-									$err=form_error('course_duration');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Course Duration<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="course_duration" id="course_duration" class="span8" value="<?php echo set_value("course_duration"); ?>"/>
-											<span for="course_duration" class="help-inline"><?php echo form_error('course_duration'); ?></span>
-										</div>
-									</div><!--/ Course Duration -->
-									<!-- Course Material Total Books -->
-											<?php
-									$err=form_error('total_books');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Material Total Books<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="total_books" id="total_books" class="span8" value="<?php echo set_value("total_books"); ?>"/>
-											<span for="total_books" class="help-inline"><?php echo form_error('total_books'); ?></span>
-										</div>
-									</div><!--/ Course Material Total Books -->
-									<!-- Course Description -->
-											<?php
-									$err=form_error('description');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-									
-										<label class="control-label">Description<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
-											<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
-										</div>
-									</div><!--/ Course Description -->
-									<!-- Form Action -->
-									<div class="form-actions">
-										<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">
-											Add Course
-										</button>
-									</div><!--/ Form Action -->
+							<div class="alert alert-error hide">
+								<button class="close" data-dismiss="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success hide">
+								<button class="close" data-dismiss="alert"></button>
+								Your form validation is successful!
+							</div>
+
+							<div class="body-inner">
+								<h3 class="form-section">Course Info.</h3>
+								<!-- Course Code -->
+								<?php
+								$err = form_error('courseCode');
+								if ($err != '') {
+									echo "<div class='control-group error'>";
+								} else {
+									echo "<div class='control-group'>";
+								}
+								?>
+
+								<label class="control-label">Course Code<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" name="courseCode" id="courseCode" class="span4" value="<?php echo set_value("courseCode"); ?>"/>
+									<span for="courseCode" class="help-inline"><?php echo form_error('courseCode'); ?></span>
 								</div>
-							</form>
+							</div><!--/ Course Code -->
+							<!-- CourseCategory ID -->
+							<?php
+							$err = form_error('courseCategory_id');
+							if ($err != '') {
+								echo "<div class='control-group error'>";
+							} else {
+								echo "<div class='control-group'>";
+							}
+							?>
+
+							<label class="control-label">Course Category ID<span class="required">*</span></label>
+							<div class="controls">
+								<select class="span4" name="courseCategory_id" id="courseCategory_id">
+									<option value="">Select...</option>
+									<?php
+									foreach ($course_category as $key) {
+										echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
+									}
+									?>
+								</select>
+								<span for="courseCategory_id" class="help-inline"><?php echo form_error('courseCategory_id'); ?></span>
+							</div>
 						</div>
-						<div class="tab-pane" id="tabView">
-							<div class="tab-pane active" id="tab1">
+						<!--/ CourseCategory ID -->
+						<!-- Course Name -->
+						<?php
+						$err = form_error('course_name');
+						if ($err != '') {
+							echo "<div class='control-group error'>";
+						} else {
+							echo "<div class='control-group'>";
+						}
+						?>
+
+						<label class="control-label">Course Name<span class="required">*</span></label>
+						<div class="controls">
+							<input type="text" name="course_name" id="course_name" class="span8" value="<?php echo set_value("course_name"); ?>">
+							<span for="course_name" class="help-inline"><?php echo form_error('course_name'); ?></span>
+						</div>
+					</div><!--/ Course Name -->
+					<!-- Course Duration -->
+					<?php
+					$err = form_error('course_duration');
+					if ($err != '') {
+						echo "<div class='control-group error'>";
+					} else {
+						echo "<div class='control-group'>";
+					}
+					?>
+
+					<label class="control-label">Course Duration<span class="required">*</span></label>
+					<div class="controls">
+						<input type="text" name="course_duration" id="course_duration" class="span8" value="<?php echo set_value("course_duration"); ?>"/>
+						<span for="course_duration" class="help-inline"><?php echo form_error('course_duration'); ?></span>
+					</div>
+				</div><!--/ Course Duration -->
+				<!-- Course Material Total Books -->
+				<?php
+				$err = form_error('total_books');
+				if ($err != '') {
+					echo "<div class='control-group error'>";
+				} else {
+					echo "<div class='control-group'>";
+				}
+				?>
+
+				<label class="control-label">Material Total Books<span class="required">*</span></label>
+				<div class="controls">
+					<input type="text" name="total_books" id="total_books" class="span8" value="<?php echo set_value("total_books"); ?>"/>
+					<span for="total_books" class="help-inline"><?php echo form_error('total_books'); ?></span>
+				</div>
+			</div><!--/ Course Material Total Books -->
+			<!-- Course Description -->
+			<?php
+			$err = form_error('description');
+			if ($err != '') {
+				echo "<div class='control-group error'>";
+			} else {
+				echo "<div class='control-group'>";
+			}
+			?>
+
+			<label class="control-label">Description<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
+				<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
+			</div>
+		</div><!--/ Course Description -->
+		<!-- Form Action -->
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">
+				Add Course
+			</button>
+		</div><!--/ Form Action -->
+	</div>
+	</form>
+	</div><!-- tab2 end -->
+	<div class="tab-pane" id="tabView">
 							<div class="body-inner">
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
@@ -238,20 +237,13 @@
 										</tr>
 									</table>
 								</div>
-							</div></div>
-							</div>
-								</div>
-								<!--end row-fluid-->
-										
-	</div>			
-
-					</div>
-				</div>
-				<!--/ End Tabs -->
-			</div>
-			<!--/ END Row -->
-		</div>
-		<!--Page Content End  -->
+							</div></div></div>
+	</div>
+	<!--/ End Tabs -->
+	</div>
+	<!--/ END Row -->
+	</div>
+	<!--Page Content End  -->
 	</div>
 	<!--/ END Content -->
 </section>
