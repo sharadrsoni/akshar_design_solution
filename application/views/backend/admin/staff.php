@@ -367,78 +367,43 @@
 	</form>
 	</div>
 			<div class="tab-pane" id="tabView">
-		<div class="tab-content profile">
-						<div class="tab-pane active" id="tab1">
-							<ul class="unstyled profile-nav span3">
-								<li><img id="ViewProfielImage" alt="" src="" />
-								</li>
-								<li id="viewUserID">
-								
-								</li>
-								<li id="viewBranchName">
-								</li>				
-							</ul>
-							<div class="span9">
-								<div class="row-fluid">
-									<div class="span8 profile-info">
-										<div >
-											<h4 id="viewUserName"></h4>
-											<h4>Address</h4>
-											<address >
-												<p id="viewUserAddress"></p>
-												<h5>Contact Number:</h5>
-												<abbr id="viewUserContactNO" title="Phone"></abbr>
-											</address>
-											<strong>Email:</strong>
-											<abbr id="viewUserEmail"></abbr>
-										</div>
-										<h4 id="viewUserName"></h4>						
-										<ul class="unstyled inline">
-											<li id="viewCityID">
-											</li>
-											<li id="viewUserDOB">
-											</li>
-											<li id="viewUserDOJ">
-											</li>
-										</ul>
-									</div>
-								</div>
-								<!--end row-fluid-->
-								<div style="display: none" class="tabbable tabbable-custom tabbable-custom-profile">
-									<ul class="nav nav-tabs">
-										<li class="active">
-											<a href="#tab_1_11" data-toggle="tab">Batches</a>
-										</li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane active" id="tab_1_11">
-											<div class="portlet-body" style="display: block;">
-												<table class="table table-striped table-bordered table-advance table-hover">
-													<thead>
-														<tr>
-															<th><i class="icon-star"></i>Batch</th>
-															<th class="hidden-phone"><i class="icon-question-sign"></i>Strength</th>
-															<th><i class="icon-bookmark"></i> Course</th>
-															<th><i class="icon-bookmark"></i> Performance</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td><a href="#">Pixel Ltd</a></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<!--tab-pane-->
-									</div>	
+				<div class="body-inner">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
+										<tr>
+											<td  style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewProfielImage" /></td>
+											<td>
+												<table class="table table-striped table-bordered table-hover dataTable">
+													<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">User Name</td>
+														<td id="viewUserName"></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Address</td>
+														<td id="viewUserAddress"></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Contact No</td>
+														<td id="viewUserContactNO"></td>
+												   </tr>
+												   <tr>
+														<td class="unstyled profile-nav span3">Email</td>
+														<td id="viewUserEmail"></td>
+												   </tr>
+												   	<tr>
+														<td class="unstyled profile-nav span3">Birth Date</td>
+														<td id="viewUserDOB"></td>
+												   </tr>
+												   	<tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Joining Date</td>
+														<td id="viewUserDOJ"></td>
+												   </tr>
+												 </table>
+											</td>
+										</tr>
+									</table>
 								</div>
 							</div>
-					</div>
-	</div>
 	</div>
 	</div>
 	<!--/ End Tabs -->

@@ -214,7 +214,7 @@ var Branch = function() {
 			});
 
 			$("#tablink2").click(function() {
-				$('#branchCode').val(0);
+				$('#branchCode').val("");
 				$('#branch_name').val("");
 				$('#conatct_no').val("");
 				$('#street_1').val("");

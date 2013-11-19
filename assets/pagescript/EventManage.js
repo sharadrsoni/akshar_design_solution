@@ -148,7 +148,7 @@ var Event = function() {
 					"bSortable" : false
 				}, {
 					"bSortable" : true
-				}, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value

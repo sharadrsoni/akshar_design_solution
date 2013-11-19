@@ -263,9 +263,9 @@ function viewstaff(userId) {
 				$('#viewUserContactNO').text(json.staff.userContactNumber);
 				$('#viewUserAddress').html(json.staff.userStreet1 + "<Br/>" + json.staff.userStreet2 + "<Br/>" + json.staff.cityId + ", " + json.staff.stateId + "<Br/>" + json.staff.userPostalCode);
 				$('#viewUserEmail').html(json.staff.userEmailAddress);
-				$('#viewCityID').html("<i class=\"icon-map-marker\"></i> " +json.staff.cityName);
-				$('#viewUserDOB').html("<i class=\"icon-calendar\"></i> " +json.staff.userDOB);
-				$('#viewUserDOJ').html("<i class=\"icon-calendar\"></i> " +json.staff.userJoiningDate);
+				$('#viewUserDOB').html(json.staff.userDOB);
+				$('#viewUserDOJ').html(json.staff.userJoiningDate);
+				alert(json.staff.userPhotograph);
 				$('#ViewProfielImage').attr("src",json.staff.userPhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
