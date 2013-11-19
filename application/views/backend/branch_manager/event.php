@@ -53,9 +53,6 @@
 									<table class="table table-striped table-bordered table-hover" id="tblEvent">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th>EventName</th>
 												<th class="hidden-480">Organize by</th>
 												<th class="hidden-480">Veue</th>
@@ -68,9 +65,7 @@
 											<?php
 											if (isset($event)) {
 												foreach ($event as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
+													echo "<tr class=\"odd gradeX\">
 <td onclick='viewevent(\"{$key->eventId}\");'>{$key->eventName}</td>
 <td class=\"hidden-480\">{$key->eventOrganizerName}</td>
 <td class=\"hidden-480\">{$key->eventState}</td>

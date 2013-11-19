@@ -8,8 +8,16 @@ var Staff = function() {
 			// begin tblStaff table
 			$('#tblStaff').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, 
+					"bSortable" : true
+				}, 
 					"bSortable" : false
-				}, null, null, null, null],
+				}, 
+					"bSortable" : false
+				}, 
+					"bSortable" : false
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
