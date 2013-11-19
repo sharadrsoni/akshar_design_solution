@@ -87,9 +87,9 @@ class user_model extends CI_Model {
 	//get details of Student with other data
 	public function getDetailsByStudent($studentId) {
 		$this -> db -> where("user.userId", $studentId);
-		$this -> db -> join('student_profile', $studentId);
+		$this -> db -> join('student_profile','student_profile.studentUserId=user.userId','left');
 		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
-		return $this -> db -> get('user') -> result();
+		return $this -> db -> get('user') -> row();
 	}
 
 	//getDetilsByStudentId

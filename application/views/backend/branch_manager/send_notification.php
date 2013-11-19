@@ -182,7 +182,7 @@ if($role==1)
 									</div>
 								</div><!--/ Branch/All -->
 								<!-- Individual/Batch -->
-								<div class="control-group" id="check_box_studnet">
+								<div class="control-group" id="check_box_studnetBatch">
 									<label class="control-label">Individual/Batch<span class="required">*</span></label>
 									<div class="controls">
 										<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Batch">

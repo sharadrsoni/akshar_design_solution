@@ -153,7 +153,6 @@ var SendNotification = function() {
 			});
 
 			$("#user_role").change(function() {
-//				$("#branch_name").val("");
 				if ($('#user_role').is(':checked') == true) {
 					if ($("#user_role").data("role_id") == 1) {
 						$("#lst_batch_div").attr("style", "display");
@@ -161,9 +160,12 @@ var SendNotification = function() {
 						$("#check_box_staff").attr("style", "display:none");
 						$("#lst_user_div").attr("style", "display:none");
 					} else {
+						$("#check_box_studnetBatch").attr("style", "display");
+						$("#check_box_studnetBatch").attr("style", "display");
 						if ($('#individual_Batch').is(':checked') == true)
 							$("#check_box_studnet").attr("style", "display");
 						else
+						$("#lst_batch_div").attr("style", "display");
 							$("#check_box_studnet").attr("style", "display:none");
 						$("#check_box_staff").attr("style", "display:none");
 						$("#lst_batch_div").attr("style", "display");
@@ -176,6 +178,7 @@ var SendNotification = function() {
 						$("#check_box_staff").attr("style", "display");
 						$("#lst_batch_div").attr("style", "display:none");
 					} else {
+						$("#check_box_studnetBatch").attr("style", "display:none");
 						$("#check_box_staff").attr("style", "display");
 						if ($('#individual_all').is(':checked') == true)
 							$("#lst_user_div").attr("style", "display");
