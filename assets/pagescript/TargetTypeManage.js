@@ -60,6 +60,8 @@ var TargetType = function() {
 				rules : {
 					targettype_name:{
 						required : true,
+						minlength: 4,
+						maxlength:100,
 					}
 				},
 

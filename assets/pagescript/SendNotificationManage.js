@@ -13,6 +13,11 @@ var SendNotification = function() {
 				rules : {
 					message : {
 						required : true,
+						maxlength:100,
+						minlength:5,
+					},
+					branch_Batch:{
+						required:true,
 					},
 					user_name : {
 						required : function() {

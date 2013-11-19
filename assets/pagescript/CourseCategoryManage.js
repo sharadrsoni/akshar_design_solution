@@ -60,6 +60,7 @@ var CourseCategory = function() {
 				rules : {
 					coursecategory_name: {
                         minlength: 5,
+                        maxlength:100,
                         required: true,
                     }
 				},
