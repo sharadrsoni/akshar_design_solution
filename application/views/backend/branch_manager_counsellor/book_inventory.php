@@ -50,8 +50,9 @@
 									<table class="table table-striped table-bordered table-hover dataTable" id="tblinventory">
 										<thead>
 											<tr>
-												<th>Inventory Inward Quantity</th>
 												<th>Course ID</th>
+												<th>Inventory Inward Quantity</th>
+												<th>Date</th>
 												<th >View</th>
 											</tr>
 										</thead>
@@ -60,9 +61,10 @@
 											if (isset($inventory)) {
 												foreach ($inventory as $key) {
 													echo "<tr class=\"odd gradeX\">
-<td class=\"hidden-480\">{$key->courseId} </td>
+<td class=\"hidden-480\">{$key->courseCode} </td>
 <td class=\"hidden-480\">{$key->inventoryInwardQuantity} </td>
-<td ><span class=\"label label-success\" onclick='updatebookinventory(\"{$key->inventoryInwardId}\")'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inventory/{$key->inventoryInwardId}'>Delete</span></td></tr>
+<td class=\"hidden-480\">{$key->inventoryInwardDate} </td>
+<td ><span class=\"label label-success\" onclick='updatebookinventory(\"{$key->inventoryInwardId}\")'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "Branch_manager_counsellor/delete_inventory/{$key->inventoryInwardId}'>Delete</span></td></tr>
 ";
 												}
 											}
@@ -106,7 +108,7 @@
 												<option value="">Select...</option>
 												<?php
 												foreach ($course as $key) {
-													echo "<option value='{$key->courseCode}'>{$key->courseName} - {$key->courseCode}</option>";
+													echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
 												}
 												?>
 											</select>
@@ -129,6 +131,16 @@
 										<span for="inventory_quantity" class="help-inline"><?php echo form_error('inventory_quantity'); ?></span>
 									</div>
 								</div><!--/ Inventory Quantity -->
+								<!-- Inward Date -->
+								<div class="control-group">
+									<label class="control-label">Inward Date<span class="required">*</span></label>
+									<div class="controls">
+										<div class="input-append span6" id="inward_date_datepicker">
+											<input type="text" readonly="" name="inward_date" id="inward_date" class="m-wrap span7">
+											<span class="add-on"><i class="icon-calendar"></i></span>
+										</div>
+									</div>
+								</div><!--/ Inward Date-->
 								<input type="hidden" name="inventoryInwardId" id="inventoryInwardId" value="" />
 								<!-- Form Action -->
 								<div class="form-actions">
