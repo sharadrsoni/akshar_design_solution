@@ -85,7 +85,7 @@
 						<div class="nav-collapse collapse">
 							<ul class="nav">
 								<li>
-									<a href="index.php">Home</a>
+									<a href="<?php echo base_url()?>">Home</a>
 								</li>
 								<li >
 									<a href="courses">Courses</a>
@@ -112,18 +112,18 @@
 		<!-- END HEADER -->
 		<!-- BEGIN BREADCRUMBS -->
 		<div class="row-fluid breadcrumbs margin-bottom-40">
-				<div class="span11">
-					<ul class="pull-right breadcrumb">
-						<li>
-							<a href="index.php">Home</a><span class="divider">/</span>
-						</li>
-						<li class="active">
-							Event
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+        <div class="container">
+            <div class="span4">
+                <h1>Events</h1>
+            </div>
+            <div class="span8">
+                <ul class="pull-right breadcrumb">
+                    <li><a href="<?php echo base_url()?>">Home</a> <span class="divider">/</span></li>
+                    <li class="active">Event</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 		<!-- END BREADCRUMBS -->
 
 		<!-- BEGIN CONTAINER -->
@@ -169,7 +169,6 @@
 <hr class='blog-post-sep'>";
 					}
 					?>
-					
 				</div>
 				<!-- END LEFT SIDEBAR -->
 			</div>

@@ -77,7 +77,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active">
-                                <a href="index.php">
+                                <a href="<?php echo base_url()?>">
                                     Home
                                     
                                 </a>
