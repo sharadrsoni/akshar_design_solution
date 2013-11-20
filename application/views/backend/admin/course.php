@@ -209,7 +209,7 @@
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
 										<tr>
-											<td><img alt="" id="ViewCourseImage" />Image</td>
+											<td style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewCourseImage" /></td>
 											<td>
 												<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
 													<tr>

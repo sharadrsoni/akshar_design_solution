@@ -8,11 +8,15 @@ var TargetReport = function() {
 			// begin tblTarget table
 			$('#tblTargetReport').dataTable({
 				"aoColumns" : [{
-					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
 				}, {
 					"bSortable" : false
 				}],
@@ -67,9 +71,13 @@ var TargetReport = function() {
 
 					report_description : {
 						required : true,
+						minlength:10,
+						maxlength:200,
+						
 					},
 					date : {
 						required : true,
+						maxDate:true,
 					}
 					
 

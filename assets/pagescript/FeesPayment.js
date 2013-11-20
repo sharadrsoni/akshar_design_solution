@@ -15,6 +15,9 @@ var StudentFees = function() {
 				payment_date : {
 					required : true
 				},
+				course_amount:{
+					required:true,
+				},
 				cheque_number : {
 					required : function() {
 						if ($("#paymemt_mode").is(':checked')) {
@@ -22,7 +25,9 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					digits:true,
+					
 				},
 				cheque_issue_date : {
 					required : function() {
@@ -31,7 +36,8 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					maxDate:true,
 				},
 				bankname : {
 					required : function() {
@@ -40,7 +46,10 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					minlength:3,
+					maxlength:100,
+					lettersonly:true,
 				},
 				branchname : {
 					required : function() {
@@ -49,7 +58,9 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					minlength:3,
+					maxlength:100,
 				},
 				ifrc_code : {
 					required : function() {
@@ -103,10 +114,16 @@ var StudentFees = function() {
 			// begin tblEvent table
 			$('#tblfeespyament').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				}, null, {
+				},{
 					"bSortable" : false
-				}, null, null],
+				},{
+					"bSortable" : false
+				},{
+					"bSortable" : false
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value

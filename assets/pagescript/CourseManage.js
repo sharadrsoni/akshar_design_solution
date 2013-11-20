@@ -8,10 +8,10 @@ var Course= function() {
 			// begin tblcity table
 			$('#tblCourse').dataTable({
 				"aoColumns" : [
-                  { "bSortable": false },
-                  { "bSortable": false },
-                  null,
-                  { "bSortable": false },
+                  { "bSortable": true },
+                  { "bSortable": true },
+                  { "bSortable": true },
+                  { "bSortable": true },
                   { "bSortable": false }
                 ],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
@@ -62,7 +62,7 @@ var Course= function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-                	coursecategory_id: {
+                	courseCategory_id: {
                         required: true,
                     },
                     course_name: {

@@ -107,10 +107,16 @@ var Test = function() {
 			// begin tblEvent table
 			$('#tbltest').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -179,6 +185,7 @@ var Test = function() {
 									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' class='marks span4' name='obtained_marks[]' id='obtained_marks" + i + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
 								else
 									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td><input type='text' class='marks span4' name='obtained_marks[]' id='obtained_marks" + i + "'value = '" + item.testResultObtainedMarks + "'/><input type='hidden' name='student_ids[]' id='student_ids" + i + "' value='" + item.studentbatchId + "'/></div></td></tr>");
+							$('#test_remarks').val(item.testRemarks);
 							});
 							$('.marks').each(function() {
 								$(this).rules('add', {

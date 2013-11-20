@@ -8,8 +8,10 @@ var TargetType = function() {
 			// begin tbltargettype table
 			$('#tbltargettype').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				},null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -60,6 +62,7 @@ var TargetType = function() {
 				rules : {
 					targettype_name:{
 						required : true,
+						lettersonly:true,
 						minlength: 4,
 						maxlength:100,
 					}

@@ -448,48 +448,60 @@
 								<div class="portlet-body">
 								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblinquiry">
 													<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Student Name</td>
-														<td><viewStudentName></viewStudentName></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Inquiry Date</td>
+														<td id="viewInquiryDate"></td>
+												   </tr>
+												   <tr>
+														<td  class="unstyled profile-nav span3">Course Code</td>
+														<td id="viewCourseCode"></td>
+												   </tr>
+												   <tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Expected Joining Date</td>
+														<td id="viewDOJ"></td>
+												   </tr>
+													<tr>
+														<td  class="unstyled profile-nav span3">Student Name</td>
+														<td id="viewStudentName"></td>
 												   </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3">Date of Birth</td>
-														<td><viewDOB></viewDOB></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Date of Birth</td>
+														<td id="viewDOB"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Contact Number</td>
-														<td><viewContactNumber></viewContactNumber></td>
+														<td class="unstyled profile-nav span3">Contact Number</td>
+														<td id="viewContactNumber"></td>
 												   </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3">Email</td>
-														<td><viewEmail></viewEmail></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Email</td>
+														<td id="viewEmail"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Qualification</td>
-														<td><viewQualification></viewQualification></td>
+														<td  class="unstyled profile-nav span3">Qualification</td>
+														<td id="viewQualification"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Address</td>
-														<td><viewAddress></viewAddress></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Address</td>
+														<td id="viewAddress"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Institute Name</td>
-														<td><viewInstituteName></viewInstituteName></td>
+														<td class="unstyled profile-nav span3">Institute Name</td>
+														<td id="viewInstituteName"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Student Occupation</td>
-														<td><viewOccupation></viewOccupation></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Student Occupation</td>
+														<td id="viewOccupation"></td>
 													</tr>
 											 		<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Guardian Name</td>
-														<td><viewGuardianName></viewGuardianName></td>
+														<td  class="unstyled profile-nav span3">Guardian Name</td>
+														<td id="viewGuardianName"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Guardian Occupation</td>
-														<td><viewGuradianOccupation></viewGuradianOccupation></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Guardian Occupation</td>
+														<td id="viewGuradianOccupation"></td>
 													</tr>
 													<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Reference Name</td>
-														<td><viewReference></viewReference></td>
+														<td  class="unstyled profile-nav span3">Reference Name</td>
+														<td id="viewReference"></td>
 												   </tr>
 												 </table>
 								</div></div>

@@ -69,21 +69,27 @@ class user_model extends CI_Model {
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
 		return $this -> db -> get('user') -> result();
 	}
+	
+	//get user data by user id
+	public function getUserDetails($userId) {
+		$this -> db -> where("userId", $userId);
+		return $this -> db -> get('user') -> row();
+	}
 
 	//get user data by user id
 	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
-		$this -> db -> join('city', 'city.cityId = user.cityId');
+	//	$this -> db -> join('city', 'city.cityId = user.cityId');
 		return $this -> db -> get('user') -> row();
 	}
 
 	//get details of Student with other data
 	public function getDetailsByStudent($studentId) {
 		$this -> db -> where("user.userId", $studentId);
-		$this -> db -> join('student_profile', $studentId);
+		$this -> db -> join('student_profile','student_profile.studentUserId=user.userId','left');
 		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
-		return $this -> db -> get('user') -> result();
+		return $this -> db -> get('user') -> row();
 	}
 
 	//getDetilsByStudentId

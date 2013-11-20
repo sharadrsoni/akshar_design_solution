@@ -52,8 +52,9 @@ class Ajax_manager extends CI_Controller {
 
 	//StudentList Event
 	public function studentlistEvent($batchId) {
+		
 		$this -> load -> model('event_attendance_model');
-		$student_data = $this -> event_attendance_model -> getDetailsByBatch($batchId, $this -> branchCode);
+		$student_data = $this -> event_attendance_model -> getDetailsByBatch($batchId);
 		$this -> data['student_list'] = $student_data;
 		echo json_encode($this -> data);
 	}
@@ -80,29 +81,12 @@ class Ajax_manager extends CI_Controller {
 	}
 
 	//Course List by Course Category
-	public function courseByCourseCategory($courseCategoryId) {
+	public function courseByCourseCategory($courseCategoryId,$studentId) {
 		$this -> load -> model('course_model');
-		$this -> data['city_list'] = $this -> course_model -> getDetailsByCategory($courseCategoryId);
+		$this -> data['city_list'] = $this -> course_model -> getDetailsByCategory($courseCategoryId,$studentId);
 		echo json_encode($this -> data);
 	}
 
-
-	//Course List
-	public function courseList($studentId) {
-		$this -> load -> model('course_model');
-		$this -> load -> model('student_batch_model');
-		$course_data = $this -> student_batch_model -> getDetailsByStudent($studentId);
-		$courseId = array();
-		$i = 0;
-		$courseId[$i++] = 0;
-
-		foreach ($course_data as $key) {
-			$courseId[$i++] = $key -> courseCode;
-		}
-		$course_data = $this -> course_model -> getDetailsNotCourse($courseId);
-		$this -> data['course_list'] = $course_data;
-		echo json_encode($this -> data);
-	}
 
 	//Batch List
 	public function branchDataList() {

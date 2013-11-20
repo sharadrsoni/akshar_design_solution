@@ -12,16 +12,29 @@ var StudentRegistration = function() {
 			ignore : "",
 			rules : {
 				firstname : {
-					required : true
+					required : true,
+					minlength : 2,
+					maxlength:50,
+					lettersonly:true,
 				},
 				lastname : {
-					required : true
+					required : true,
+					minlength : 2,
+					maxlength:50,
+					lettersonly:true,
 				},
 				email : {
-					required : true
+					required : true,
+					email:true,
+					maxlength:50,
 				},
+				
 				contact_number : {
+					minlength : 10,
+					maxlength:10,
+					digits:true,
 					required : true
+					
 				}
 			},
 
@@ -76,6 +89,11 @@ var StudentRegistration = function() {
 				},
 				batchid : {
 					required : true
+				},
+				course_fees:{
+					required:true,
+					number:true,
+					min:0,
 				}
 			},
 
@@ -127,7 +145,7 @@ var StudentRegistration = function() {
 					success : function(json) {
 						if (json) {
 							$.each(json.batch_list, function(i, item) {
-								$('#batchid').append("<option value=" + item.batchId + ">" + item.batchStartDate + "</option>");
+								$('#batchid').append("<option value=" + item.batchId + ">" + item.batchId + "</option>");
 							});
 							if (json.available_data.courseCode){//e
 								//enable
@@ -159,7 +177,7 @@ var StudentRegistration = function() {
 				$('#courseid').html('');
 				$("#courseid").append("<option>Select...</option>");
 				$.ajax({
-					url : "../ajax_manager/courseByCourseCategory/" + $("#coursecategory").val(),
+					url : "../ajax_manager/courseByCourseCategory/" + $("#coursecategory").val() + "/" + $("#studentid").val(),
 					dataType : 'json',
 					async : false,
 					success : function(json) {
@@ -182,18 +200,6 @@ var StudentRegistration = function() {
 							$('#lst_Courses').html("");
 							$.each(json.batch_list, function(i, item) {
 								$('#lst_Courses').append("<tr><td class='hidden-480'>" + item.courseName + "</td><td class='hidden-480'>" + item.batchId + "</td><td><a href='branch_manager/delete_course_register/" + item.studentBatchId + "' class='btn red icn-only'><i class='icon-remove icon-white'></i></a></td></tr>");
-							});
-						}
-					}
-				});
-				$.ajax({
-					url : "../ajax_manager/courseList/" + $("#studentid").val(),
-					dataType : 'json',
-					async : true,
-					success : function(json) {
-						if (json) {
-							$.each(json.course_list, function(i, item) {
-								$('#courseid').append("<option value=" + item.courseCode + ">" + item.courseName + "</option>");
 							});
 						}
 					}

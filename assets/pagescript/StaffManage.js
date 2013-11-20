@@ -8,8 +8,16 @@ var Staff = function() {
 			// begin tblStaff table
 			$('#tblStaff').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, null, null, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -94,6 +102,7 @@ var Staff = function() {
 					},
 					date_of_birth : {
 						required : true,
+						maxDate:true,
 					},
 					qualification : {
 						required : true,
@@ -109,12 +118,12 @@ var Staff = function() {
 						minlength : 4,
 						maxlength:100,
 					},
-					city : {
+					cityid : {
 						required : true,
-						minlength : 3,
+						
 						
 					},
-					state : {
+					stateid : {
 						required : true
 					},
 					pin_code : {
@@ -123,6 +132,7 @@ var Staff = function() {
 						maxlength:6,
 						digits:true,
 					}
+					
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
@@ -263,9 +273,8 @@ function viewstaff(userId) {
 				$('#viewUserContactNO').text(json.staff.userContactNumber);
 				$('#viewUserAddress').html(json.staff.userStreet1 + "<Br/>" + json.staff.userStreet2 + "<Br/>" + json.staff.cityId + ", " + json.staff.stateId + "<Br/>" + json.staff.userPostalCode);
 				$('#viewUserEmail').html(json.staff.userEmailAddress);
-				$('#viewCityID').html("<i class=\"icon-map-marker\"></i> " +json.staff.cityName);
-				$('#viewUserDOB').html("<i class=\"icon-calendar\"></i> " +json.staff.userDOB);
-				$('#viewUserDOJ').html("<i class=\"icon-calendar\"></i> " +json.staff.userJoiningDate);
+				$('#viewUserDOB').html(json.staff.userDOB);
+				$('#viewUserDOJ').html(json.staff.userJoiningDate);
 				$('#ViewProfielImage').attr("src",json.staff.userPhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
