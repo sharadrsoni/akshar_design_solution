@@ -28,44 +28,16 @@
 						<!-- START Dropdown Menu -->
 						<div class="dropdown-menu" role="menu">
 							<header>
-								Notifications <small>5 New</small>
+								Notifications
 							</header>
 							<ul class="body">
-								<li>
-									<span class="icon icone-hdd"></span>
-									<a href="#" class="text"> <strong>Hard Disk</strong> Lorem ipsum dolor sit
+								<?php foreach ($notification as $key): ?>
+									<li>
+									<a href="#" class="text"><?php echo $key->notificationDescription ?>
 									<br>
-									<small>A few second ago</small> </a>
-									<span class="action"><a class="close" href="#">&times;</a></span>
+									<small><?php echo $key->$userFirstName . " " . $key->userMiddleName . " " . $key->userLastName ?></small> </a>
 								</li>
-								<li>
-									<span class="icon"><img src="img/avatar/avatar7.jpg" alt=""></span>
-									<a href="#" class="text"> <strong>Amelia</strong> comment on your <strong>Photo</strong>
-									<br>
-									<small>43 minutes ago</small> </a>
-									<span class="action"><a class="close" href="#">&times;</a></span>
-								</li>
-								<li>
-									<span class="icon icone-signal"></span>
-									<a href="#" class="text"> <strong>Signal</strong> aeque mollis vocent eam ei
-									<br>
-									<small>Tuesday at 04:12PM</small> </a>
-									<span class="action"><a class="close" href="#">&times;</a></span>
-								</li>
-								<li>
-									<span class="icon icone-briefcase"></span>
-									<a href="#" class="text"> <strong>Briefcase</strong> omnis omnes indoctum cum
-									<br>
-									<small>24 Jan at 04:12PM</small> </a>
-									<span class="action"><a class="close" href="#">&times;</a></span>
-								</li>
-								<li>
-									<span class="icon"><img src="img/avatar/avatar6.jpg" alt=""></span>
-									<a href="#" class="text"> <strong>Albert</strong> comment on your <strong>Status</strong>
-									<br>
-									<small>1 minutes ago</small> </a>
-									<span class="action"><a class="close" href="#">&times;</a></span>
-								</li>
+								<?php endforeach ?>
 							</ul>
 							<footer>
 								<a href="#">Clear Notifications</a>
