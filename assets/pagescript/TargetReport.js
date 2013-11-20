@@ -148,9 +148,27 @@ function updatetarget(targetid) {
 	});
 }
 function viewtargetreports(targetid) {
-	$('#tablink1').parent().removeClass("active");
+	
+	alert("d");
+				
+		$.ajax({
+		url : "ajax_manager/targetReports/" + targetId,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				alert();
+						
+				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
-				$('#tab3').addClass("active");
+				$('#tabView2').addClass("active");
+				
+			}
+		}
+	});
+		
+		
+				
 }
 function viewtargetreport(targetId) {
 	$.ajax({
@@ -169,6 +187,13 @@ function viewtargetreport(targetId) {
 				// $('#viewstate').text();
 				//$('#viewcity').text();
 				//$('#viewpin_code').text();
+				$('#viewTargetName').text(json.target[0].targetSubject);
+				$('#viewTargetDescription').text(json.target[0].targetDescription);
+				$('#viewTargetStartDate').text(json.target[0].targetStartDate);
+				$('#viewTargetEndDate').text(json.target[0].targetEndDate);
+				$('#viewStatus').text(json.target[0].targetIsAchieved);
+				$('#viewTargetType').text(json.target[0].targetTypeName);
+				$('#viewBranchCode').text(json.target[0].branchCode);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");
