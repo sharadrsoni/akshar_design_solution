@@ -13,6 +13,11 @@ class test_result_model extends CI_Model {
 		return $this -> db -> get('test') -> result();
 	}
 
+	public function listMarksByStudent($studentId) {
+		return $this -> db -> query("select t.testId, testName,testDate, studentId , testResultObtainedMarks,t.testMaximumMarks, Max(testResultObtainedMarks) as testMax from test t,test_result rt,student_batch sb where studentId = '" . $studentId . "' and t.batchId = sb.batchId and sb.studentBatchId = rt.studentBatchId group by t.testId") -> result();
+	}
+
+
 	public function getCountByTestStudent($testId, $studentBatchId) {
 		$this -> db -> select('attendanceId');
 		$this -> db -> from('test_result');

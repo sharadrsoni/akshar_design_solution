@@ -52,6 +52,12 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
+	// Batch list getting the student id
+	public function getStudentBatchs($studentId) {
+		$this -> db -> where("studentId",$studentId);
+		return $this -> db -> get('student_batch') -> result();
+	}
+
 
 	public function getBranchStaff($branchCode) {
 		$this -> db -> where("branchCode", $branchCode);

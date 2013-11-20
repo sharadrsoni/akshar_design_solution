@@ -14,6 +14,14 @@ class attendance_model extends CI_Model {
 		return $this -> db -> get('attendance') -> result();
 	}
 
+	public function getDetails($studentId,$batchId) {
+		$this -> db -> where("batchId", $batchId);
+		$this -> db -> where("student_batch.studentId", $studentId);
+		$this -> db -> join('student_batch', 'attendance.studentBatchId = student_batch.studentBatchId');
+		return $this -> db -> get('attendance') -> result();
+	}
+
+
 	public function getCountByDate($batchId, $date) {
 		$this -> db -> select('attendanceId');
 		$this -> db -> from('attendance');

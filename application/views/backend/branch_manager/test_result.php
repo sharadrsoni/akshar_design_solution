@@ -48,23 +48,31 @@
 									<table class="table table-striped table-bordered table-hover" id="tbl_test_result">
 										<thead>
 											<tr>
-												<th class="hidden-480">Course</th>
+												<th class="hidden-480">Test Name</th>
 												<th class="hidden-480">Date</th>
 												<th class="hidden-480">Marks/Total</th>
 												<th class="hidden-480">Highest</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="hidden-480">Course</th> <td class="hidden-480">11/01/2013</th> <td class="hidden-480">
-												<input class="knobify" style="height:15px" data-fgcolor="#4b8df8" data-skin="tron" value="+89" data-max="100" data-min="0" />
-												<label style="margin-top: 50px;">84/100</label> </th> <td class="hidden-480">95</th>
-											</tr>
-											<tr>
-												<td class="hidden-480">Course</th> <td class="hidden-480">11/01/2013</th> <td class="hidden-480">
-												<input class="knobify" data-fgcolor="#852b99" data-skin="tron" value="20" data-max="100" data-min="0" />
-												<label style="margin-top: 50px;">20/100</label> </th> <td class="hidden-480">95</th>
-											</tr>
+
+											<!--tr>
+											<td class="hidden-480">Course</th> <td class="hidden-480">11/01/2013</th> <td class="hidden-480">
+											<input class="knobify" style="height:15px" data-fgcolor="#4b8df8" data-skin="tron" value="+20" data-max="100" data-min="0" />
+											<label style="margin-top: 50px;">84/100</label> </th> <td class="hidden-480">95</th>
+											</tr-->
+											<?php
+											if (isset($test_details)) {
+												foreach ($test_details as $key) {
+													echo "<tr class=\"odd gradeX\">
+<td class=\"hidden-480\">{$key->testName} </td>
+<td class=\"hidden-480\">{$key->testDate}</td>
+<td class=\"hidden-480\"><input class=\"knobify\" style=\"height:15px\" data-fgcolor=\"#4b8df8\" data-skin=\"tron\" value=" . $key -> testResultObtainedMarks . " data-max=" . $key -> testMaximumMarks . " data-min=\"0\" /><label style=\"margin-top: 50px;\">{$key->testResultObtainedMarks}/{$key->testMaximumMarks}</label> </th>
+<td class=\"hidden-480\">{$key->testMax}
+";
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>

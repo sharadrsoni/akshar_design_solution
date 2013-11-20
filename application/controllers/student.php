@@ -27,12 +27,15 @@ class Student extends CI_Controller {
 
 	//Show marks
 	public function test_result() {
+		$this -> data['title'] = "ADS | Test Result";
 		$this->data['menu'] = "test result";
-		$this -> data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/test_result_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/test_result');
+		$this -> load -> model("test_result_model");
+		$test_details = $this -> test_result_model -> listMarksByStudent($this -> userId);
+		$this -> data['test_details'] = $test_details;
+		$this -> load -> view('backend/branch_manager/test_result',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/test_result_js');
 		$this -> load -> view('backend/master_page/bottom');
@@ -45,7 +48,10 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/show_attendance');
+			$this -> load -> model("user_model");
+			$batch_data = $this -> user_model -> getStudentBatchs($this -> userId);
+			$this -> data['batch_list'] = $batch_data;
+		$this -> load -> view('backend/branch_manager/show_attendance',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/show_attendance_js');
 		$this -> load -> view('backend/master_page/bottom');
