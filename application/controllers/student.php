@@ -48,7 +48,10 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/show_attendance');
+			$this -> load -> model("user_model");
+			$batch_data = $this -> user_model -> getStudentBatchs($this -> userId);
+			$this -> data['batch_list'] = $batch_data;
+		$this -> load -> view('backend/branch_manager/show_attendance',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/show_attendance_js');
 		$this -> load -> view('backend/master_page/bottom');

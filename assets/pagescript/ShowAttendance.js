@@ -1,4 +1,4 @@
-var Role = function() {
+var ShowAttendance = function() {
 	return {
 		init_formvalidation : function() {
 			var form1 = $('#form_show_attendance');
@@ -47,12 +47,23 @@ var Role = function() {
 			});
 		},
 		init_uijquery : function() {
-			$("#tablink2").click(function() {
-				$('#batch_id').val("");
-				$('.alert-error', $('#form_role')).hide();
-				$("#form_show_attendance").validate().resetForm();
-  				$(".error").removeClass("error");
-  				$(".success").removeClass("success");
+			$("#batch_id").change(function() {
+				$('#lst_students').html('');
+				$.ajax({
+					url : "../ajax_manager/attendancelistfordisplay/" + $("#batch_id").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.student_list, function(i, item) {
+								if (item.attendanceIsPresent == 1)
+									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.attendanceDate +  "</td><td>Present</td></tr>");
+								else
+									$('#lst_students').append("<tr class='odd gradeX'><td>" + item.attendanceDate +  "</td><td>Absent</td></tr>");
+							});
+						}
+					}
+				});
 			});
 		}
 	};

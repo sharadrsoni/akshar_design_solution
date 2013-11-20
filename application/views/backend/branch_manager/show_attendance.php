@@ -24,7 +24,7 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Attendance <small>Show your attendaace details here.</small></h4>
+					<h4>Attendance <small>Show your Attendance details here.</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
@@ -84,7 +84,7 @@
 										<thead>
 											<tr>
 											<tr>
-												<th>Student Name</th>
+												<th>Date</th>
 												<th class="hidden-480">Present/Absent</th>
 											</tr>
 										</thead>
