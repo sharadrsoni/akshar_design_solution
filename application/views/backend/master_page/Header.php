@@ -58,7 +58,7 @@
 						<!-- START Dropdown Menu -->
 						<div class="dropdown-menu" role="menu">
 							<header>
-								<a href="#" style="color: white;">Your Profile</a>
+								<a href="<?php echo base_url() . 'staff/profile'; ?>" style="color: white;">Your Profile</a>
 							</header>
 							
 							<footer>
@@ -141,6 +141,10 @@
 
 <li class='accordion-group'>
 <a href='" . base_url() . $href . "/staff'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a>
+</li>
+
+<li class='accordion-group'>
+<a href='" . base_url() . $href . "/role'> <span class='icon icone-dashboard'></span> <span class='text'>role</span> </a>
 </li>
 
 <li class='accordion-group '>
