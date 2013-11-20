@@ -85,19 +85,19 @@
 						<div class="nav-collapse collapse">
 							<ul class="nav">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="index.php">Home</a>
 								</li>
 								<li >
-									<a href="courses.html">Courses</a>
+									<a href="courses">Courses</a>
 								</li>
 								<li class="active">
-									<a href="event.html">Event</a>
+									<a href="event">Event</a>
 								</li>
 								<li>
-									<a href="about_us.html">About Us</a>
+									<a href="about_us">About Us</a>
 								</li>
 								<li>
-									<a href="contact_us.html">Contact Us</a>
+									<a href="contact_us">Contact Us</a>
 								</li>
 								<li>
 									<span class="sep"></span><a href="#">Login</a>
@@ -115,10 +115,10 @@
 				<div class="span11">
 					<ul class="pull-right breadcrumb">
 						<li>
-							<a href="index.html">Home</a><span class="divider">/</span>
+							<a href="index.php">Home</a><span class="divider">/</span>
 						</li>
 						<li class="active">
-							Events
+							Event
 						</li>
 					</ul>
 				</div>
@@ -169,31 +169,7 @@
 <hr class='blog-post-sep'>";
 					}
 					?>
-					<div class="pagination pagination-centered">
-						<ul>
-							<li>
-								<a href="#">Prev</a>
-							</li>
-							<li>
-								<a href="#">1</a>
-							</li>
-							<li>
-								<a href="#">2</a>
-							</li>
-							<li class="active">
-								<a href="#">3</a>
-							</li>
-							<li>
-								<a href="#">4</a>
-							</li>
-							<li>
-								<a href="#">5</a>
-							</li>
-							<li>
-								<a href="#">Next</a>
-							</li>
-						</ul>
-					</div>
+					
 				</div>
 				<!-- END LEFT SIDEBAR -->
 			</div>
