@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
 
 	//Dashboard
 	public function index() {
+		$this->data['menu'] = "Dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
@@ -76,6 +77,7 @@ class Admin extends CI_Controller {
 
 	//Branch
 	public function branch($branchCode = '') {
+		$this->data['menu'] = "branch";
 		$this -> load -> model("branch_model");
 		if ($branchCode != '') {
 			$this -> data['branch'] = $this -> branch_model -> getDetailsByBranch($branchCode);
@@ -119,6 +121,7 @@ class Admin extends CI_Controller {
 
 	//Course Category
 	public function course_category($coursecategoryId = '') {
+		$this->data['menu'] = "course";
 		$this -> load -> model("course_category_model");
 		if ($coursecategoryId != '') {
 			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsByCourseCategory($coursecategoryId);
@@ -157,6 +160,7 @@ class Admin extends CI_Controller {
 
 	//Course
 	public function course($courseId = '') {
+		$this->data['menu'] = "course";
 		$this -> load -> model('course_model');
 		if ($courseId != '') {
 			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId);
@@ -207,6 +211,7 @@ class Admin extends CI_Controller {
 
 	//State
 	public function state($stateId = '') {
+		$this->data['menu'] = "state";
 		$this -> load -> model("state_model");
 		if ($stateId != '') {
 			$this -> data['state'] = $this -> state_model -> getDetailsByState($stateId);
@@ -246,6 +251,7 @@ class Admin extends CI_Controller {
 
 	//City
 	public function city($cityId = '') {
+		$this->data['menu'] = "city";
 		$this -> load -> model('city_model');
 		if ($cityId != '') {
 			$this -> data['city'] = $this -> city_model -> getDetailsByCity($cityId);
@@ -287,6 +293,7 @@ class Admin extends CI_Controller {
 
 	//Target Type
 	public function target_type($trgettypeId = '') {
+		$this->data['menu'] = "target type";
 		$this -> load -> model("target_type_model");
 		if ($trgettypeId != '') {
 			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
@@ -326,6 +333,7 @@ class Admin extends CI_Controller {
 
 	//Target
 	public function target($targetId = '') {
+		$this->data['menu'] = "target";
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
 			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
@@ -374,6 +382,7 @@ class Admin extends CI_Controller {
 
 	//Staff
 	public function staff($staffID = '') {
+		$this->data['menu'] = "staff";
 		$this -> load -> model("user_model");
 		if ($staffID != '') {
 			$this -> data['staff'] = $this -> user_model -> getDetailsbyUser($staffID);
@@ -393,8 +402,9 @@ class Admin extends CI_Controller {
 			$this -> load -> model('user_model');
 		    $data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
 			if (isset($_POST['submitStaff'])) {
-				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> load -> library("form_validation" );
+				$this ->form_validation -> set_rules(
+			'branchCode', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim|numeric|max_length[11]');
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|alpha|max_length[100]');
 				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim|numeric|max_length[100]');
@@ -460,6 +470,5 @@ class Admin extends CI_Controller {
 		$this -> user_model -> deleteUser($userId);
 		redirect(base_url() . "admin/staff");
 	}
-
 }
 ?>

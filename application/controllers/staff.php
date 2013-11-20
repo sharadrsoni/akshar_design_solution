@@ -14,6 +14,7 @@ class Staff extends CI_Controller {
 
 	//Search
 	public function search() {
+		$this->data['menu'] = "search";
 		$this -> data['title'] = "ADS | Search";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/search_css');
@@ -26,6 +27,7 @@ class Staff extends CI_Controller {
 
 	//Send Notification
 	public function send_notification() {
+		$this->data['menu'] = "send notification";
 		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('message', 'Message', 'required|trim');
@@ -99,6 +101,7 @@ class Staff extends CI_Controller {
 
 	//Send Notification Admin
 	public function send_notification_admin() {
+		$this->data['menu'] = "send notification";
 		if (isset($_POST['register'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('message', 'Message', 'required|trim');
@@ -176,7 +179,6 @@ class Staff extends CI_Controller {
 
 	//Profile
 	public function profile() {
-
 		$this -> data['title'] = "ADS | Profile";
 		$this -> load -> model('user_model');
 		$this -> load -> view('backend/master_page/top', $this -> data);

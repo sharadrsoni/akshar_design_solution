@@ -13,6 +13,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Inquiry
 	public function inquiry($inquiryID = '') {
+		$this->data['menu'] = "inquiry";
 		$this -> load -> model("inquiry_model");
 		$this -> load -> model("course_category_model");
 		$this -> load -> model("state_model");
@@ -77,6 +78,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Student Registration
 	public function studentregistration() {
+		$this->data['menu'] = "student registration";
 		$this -> load -> model('user_model');
 		if (isset($_POST['registerStudent'])) {
 			$this -> load -> library("form_validation");
@@ -159,6 +161,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Book_Inventory
 	public function book_inventory($bookinventoryId = '') {
+		$this->data['menu'] = "book inventory";
 		$this -> load -> model("book_inventory_model");
 		if ($bookinventoryId != '') {
 			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByInventory($this -> branchCode, $bookinventoryId);
@@ -200,7 +203,6 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Fees Payment
 	public function fees_payment() {
-
 		if (isset($_POST['submitPayment'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('payment_date', 'Payment Date', 'required|trim|callback__checkingDate');
