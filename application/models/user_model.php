@@ -69,7 +69,7 @@ class user_model extends CI_Model {
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
 		return $this -> db -> get('user') -> result();
 	}
-	
+
 	//get user data by user id
 	public function getUserDetails($userId) {
 		$this -> db -> where("userId", $userId);
@@ -80,14 +80,14 @@ class user_model extends CI_Model {
 	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
-	//	$this -> db -> join('city', 'city.cityId = user.cityId');
+		//	$this -> db -> join('city', 'city.cityId = user.cityId');
 		return $this -> db -> get('user') -> row();
 	}
 
 	//get details of Student with other data
 	public function getDetailsByStudent($studentId) {
 		$this -> db -> where("user.userId", $studentId);
-		$this -> db -> join('student_profile','student_profile.studentUserId=user.userId','left');
+		$this -> db -> join('student_profile', 'student_profile.studentUserId=user.userId', 'left');
 		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
 		return $this -> db -> get('user') -> row();
 	}
@@ -108,10 +108,21 @@ class user_model extends CI_Model {
 	}
 
 	//Method for dashbord Student Registred and faculty Count
-	public function getUserCount($roleId) {
+	public function getUserCount($roleId, $branchcode = '') {
 		$this -> db -> where('roleId', $roleId);
 		$this -> db -> from('user');
+		if ($branchcode != '') {
+			$this -> db -> where('branchCode', $branchcode);
+		}
 		return $this -> db -> count_all_results();
+	}
+
+	public function getstudentRegisterCountOfMonth($branchcode = '') {
+		if ($branchcode == '') {
+			return $this -> db -> query("SELECT Count(`userId`)as count,Day(userJoiningDate) as day FROM `user` WHERE `userJoiningDate`<now()-30 and roleId=5 group by `userJoiningDate` order by userJoiningDate") -> result();
+		} else {
+			return $this -> db -> query("SELECT Count(`userId`)as count,Day(userJoiningDate) as day FROM `user` WHERE `userJoiningDate`<now()-30 and roleId=5 and branchcode='" . $branchcode . "' group by `userJoiningDate` order by userJoiningDate") -> result();
+		}
 	}
 
 	//update Add user
@@ -151,14 +162,14 @@ class user_model extends CI_Model {
 	}
 
 	public function getSearchUserList($value) {
-		$this->db->distinct("U.*");
-		$this->db->from('user as U');
-		$this->db->join("(select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC", 'U.userId = SBC.studentId', 'left'); 
-		$this->db->like('courseName', $value)->or_like('userId', $value)->or_like('userFirstName', $value)->or_like('userMiddleName', $value)->or_like('userLastName', $value)->or_like('batchId', $value);
-		$queryData = $this->db->get()->result();
+		$this -> db -> distinct("U.*");
+		$this -> db -> from('user as U');
+		$this -> db -> join("(select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC", 'U.userId = SBC.studentId', 'left');
+		$this -> db -> like('courseName', $value) -> or_like('userId', $value) -> or_like('userFirstName', $value) -> or_like('userMiddleName', $value) -> or_like('userLastName', $value) -> or_like('batchId', $value);
+		$queryData = $this -> db -> get() -> result();
 		foreach ($queryData as $key) {
-			$this->load->model("student_batch_model");
-			$courseData = $this->student_batch_model->getDetailsByStudent($key->userId);
+			$this -> load -> model("student_batch_model");
+			$courseData = $this -> student_batch_model -> getDetailsByStudent($key -> userId);
 			die(print_r($courseData));
 		}
 	}

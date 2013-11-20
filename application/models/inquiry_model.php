@@ -15,11 +15,23 @@ class inquiry_model extends CI_Model {
 		return $this -> db -> get('inquiry') -> result();
 	}
 
-	public function getNewInquiryCount() {
+	public function getNewInquiryCount($branchcode = '') {
 		//$this -> db -> where('targetIsAchieved',);
 		$this -> db -> from('inquiry');
+		if ($branchcode != '') {
+			$this -> db -> where('inquirybranchCode', $branchcode);
+		}
 		$count = $this -> db -> count_all_results();
 		return $count;
+	}
+
+	//dashboard
+	public function getstudentinquiryCountOfMonth($branchcode = '') {
+		if ($branchcode == '') {
+			return $this -> db -> query("SELECT Count(`inquiryId`)as count,Day(inquiryDate) as day FROM `inquiry` WHERE `inquiryDate`<now()-30 group by `inquiryDate` order by inquiryDate") -> result();
+		} else {
+			return $this -> db -> query("SELECT Count(`inquiryId`)as count,Day(inquiryDate) as day FROM `inquiry` WHERE `inquiryDate`<now()-30 and inquirybranchCode='" . $branchcode . "' group by `inquiryDate` order by inquiryDate") -> result();
+		}
 	}
 
 	public function addinquiry($data) {

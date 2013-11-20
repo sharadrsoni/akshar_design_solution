@@ -16,6 +16,15 @@ class event_model extends CI_Model {
 		$this -> db -> where('eventId', $eventId);
 		return $this -> db -> get('event') -> result();
 	}
+	
+	//Calender
+	public function geteventForCalender($branchcode = '') {
+		if ($branchcode == '') {
+		return $this-> db -> query("SELECT eventName,year(eventStartDate)-year(now()) SY,month(eventStartDate)-month(now()) SM, day(eventStartDate)-day(now()) SD,year(eventEndDate)-year(now()) EY, month(eventEndDate)-month(now()) EM, day(eventEndDate)-day(now()) ED  FROM `event` where eventStartDate>now()")->result();
+		} else {
+			return $this-> db -> query("SELECT eventName,year(eventStartDate)-year(now()) SY,month(eventStartDate)-month(now()) SM, day(eventStartDate)-day(now()) SD,year(eventEndDate)-year(now()) EY, month(eventEndDate)-month(now()) EM, day(eventEndDate)-day(now()) ED  FROM `event` where eventStartDate>now() and branchCode='".$branchcode."'")->result();
+		}
+	}
 
 	public function addEvent($data) {
 		if (isset($data)) {

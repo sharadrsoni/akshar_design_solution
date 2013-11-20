@@ -126,49 +126,7 @@
 							</div>
 							<!--/ END nested Grid -->
 						</div>
-						<div class="footer" align="center">
-							<!-- START Circular -->
-							<figure class="stats borderless circular">
-								<div class="gauge gauge-teal" data-percent="20">
-									<span class="icon icone-lightbulb"></span>
-								</div>
-								<figcaption>
-									<h4>Server Load<small>20% CPU Usage</small></h4>
-								</figcaption>
-							</figure><!--/ END Circular -->
-
-							<!-- START Circular -->
-							<figure class="stats borderless circular">
-								<div class="gauge gauge-red" data-percent="70">
-									<span class="icon icone-exchange"></span>
-								</div>
-								<figcaption>
-									<h4>Bandwidth<small>70% Used</small></h4>
-								</figcaption>
-							</figure><!--/ END Circular -->
-
-							<!-- START Progress 1 -->
-							<figure class="stats prog borderless">
-								<figcaption>
-									<span class="text pull-left"><span class="icone-cloud-upload"></span> Upload Progress</span>
-									<span class="text pull-right">10%/100%</span>
-								</figcaption>
-								<div class="progress progress-striped active">
-									<div class="bar bar-danger" style="width: 20%;"></div>
-								</div>
-							</figure><!--/ END Progress 1 -->
-
-							<!-- START Progress 2 -->
-							<figure class="stats prog borderless">
-								<figcaption>
-									<span class="text pull-left"><span class="icone-cloud-download"></span> Download Progress</span>
-									<span class="text pull-right">99MB</span>
-								</figcaption>
-								<div class="progress progress-striped active">
-									<div class="bar bar-success" style="width: 99%;"></div>
-								</div>
-							</figure><!--/ END Progress 2 -->
-						</div>
+						
 					</section>
 				</div>
 				<!--/ END Line Chart - Filled -->
