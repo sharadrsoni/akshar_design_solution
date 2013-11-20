@@ -13,21 +13,12 @@ var SendNotification = function() {
 				rules : {
 					message : {
 						required : true,
-						maxlength:100,
-						minlength:5,
+						maxlength : 100,
+						minlength : 5,
 					},
-					branch_Batch:{
-						required:true,
+					branch_Batch : {
+						required : true,
 					},
-					user_name : {
-						required : function() {
-							if ($("#individual_Batch").is(':checked')) {
-								return true;
-							} else {
-								return false;
-							}
-						}
-					}
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
@@ -111,9 +102,6 @@ var SendNotification = function() {
 				}
 			});
 			$("#individual_Branch").change(function() {
-				//				$("#batch_name").children().remove();
-				//				$("#user_name").children().remove();
-				$("#branch_name").val("");
 				if ($('#individual_Branch').is(':checked') == true) {
 					$("#lst_user_div").attr("style", "display");
 				} else {
@@ -122,11 +110,25 @@ var SendNotification = function() {
 			});
 
 			$("#individual_all").change(function() {
-				$("#batch_name").children().remove();
 				$("#user_name").children().remove();
 				$("#branch_name").val("");
-				if ($('#individual_all').is(':checked') == true) {
+				if ($('#individual_all').is(':checked') == true && $("#user_role").data("role_id") != 1) {
 					$("#lst_user_div").attr("style", "display");
+					$("#user_name").children().remove();
+
+					$.ajax({
+						url : "../ajax_manager/branchStaffList",
+						dataType : 'json',
+						async : true,
+						success : function(json) {
+							if (json) {
+								$.each(json.staff_list, function(i, item) {
+									$('#user_name').append("<option value=" + item.userId + ">" + item.userFirstName + ' ' + item.userMiddleName + ' ' + item.userLastName + "</option>");
+								});
+							}
+						}
+					});
+
 				} else {
 					$("#lst_user_div").attr("style", "display:none");
 				}
@@ -165,10 +167,12 @@ var SendNotification = function() {
 						if ($('#individual_Batch').is(':checked') == true)
 							$("#check_box_studnet").attr("style", "display");
 						else
-						$("#lst_batch_div").attr("style", "display");
-							$("#check_box_studnet").attr("style", "display:none");
+							$("#lst_batch_div").attr("style", "display");
+						$("#check_box_studnet").attr("style", "display:none");
 						$("#check_box_staff").attr("style", "display:none");
 						$("#lst_batch_div").attr("style", "display");
+
+
 					}
 				} else {
 					if ($("#user_role").data("role_id") == 1) {
@@ -197,7 +201,6 @@ var SendNotification = function() {
 			$("#branch_name").change(function() {
 				$("#batch_name").children().remove();
 				$("#user_name").children().remove();
-								console.log($("#branch_name").val());
 				$.ajax({
 					url : "../ajax_manager/branchDataList",
 					dataType : 'json',
@@ -218,6 +221,28 @@ var SendNotification = function() {
 						}
 					}
 				});
+			});
+			$("#batch_name").change(function() {
+				if ($("#user_role").data("role_id") != 1) {
+					$("#user_name").children().remove();
+					$.ajax({
+						url : "../ajax_manager/branchStudentList",
+						dataType : 'json',
+						async : true,
+						type : 'POST',
+						data : {
+							csrf_test_name : $("input[name$='csrf_test_name']").val(),
+							batchCode : $("#batch_name").val()
+						},
+						success : function(json) {
+							if (json) {
+								$.each(json.staff_list, function(i, item) {
+									$('#user_name').append("<option value=" + item.userId + ">" + item.userFirstName + ' ' + item.userMiddleName + ' ' + item.userLastName + "</option>");
+								});
+							}
+						}
+					});
+				}
 			});
 
 		}

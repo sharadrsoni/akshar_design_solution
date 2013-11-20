@@ -73,10 +73,8 @@ var Target = function() {
 					},
 					target_name : {
 						required : true,
-						lettersonly:true,
-						minlenght: 4,
 						maxlength:100,
-						
+                        alphanumeric:true,
 					},
 					target_type : {
 						required : true,
@@ -91,8 +89,7 @@ var Target = function() {
 						greaterThan: "#start_date",  
 					},
 					description : {
-						required : true,
-						minlength: 10,
+						required : false,
 						maxlength:500,
 					}
 

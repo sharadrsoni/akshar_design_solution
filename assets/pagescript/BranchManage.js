@@ -64,33 +64,31 @@ var Branch = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					branchCode:{
+					branchCode : {
 						required : true,
-						maxlength:100,
-						lettersonly:true,
+						maxlength : 100,
+						lettersonly : true,
 					},
 					branch_name : {
-						
+
 						required : true,
-						lettersonly:true,
+						lettersonly : true,
 						minlength : 3,
-						maxlength:100,
+						maxlength : 100,
 					},
 					conatct_no : {
 						required : true,
-						minlength:10,
-						maxlength:10,
-						digits:true,
+						minlength : 10,
+						maxlength : 15,
+						digits : true,
 					},
 					street_1 : {
-						minlength : 4,
 						required : true,
-						maxlength:100,
+						maxlength : 100,
 					},
 					street_2 : {
-						minlength : 4,
-						maxlength:100,
-						required : true,
+						maxlength : 100,
+						required : false,
 					},
 					stateid : {
 						required : true
@@ -100,11 +98,11 @@ var Branch = function() {
 					},
 					pin_code : {
 						required : true,
-						minlength:6,
-						maxlength:6,
-						digits:true,
+						minlength : 6,
+						maxlength : 6,
+						digits : true,
 					},
-					
+
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
@@ -198,7 +196,7 @@ var Branch = function() {
 			$("#loadmap").click(function() {
 				Branch.init_google();
 			});
-			
+
 			$(".select2").select2({
 				allowClear : true,
 			});
@@ -213,7 +211,7 @@ var Branch = function() {
 					success : function(json) {
 						if (json) {
 							$.each(json.city_list, function(i, item) {
-								$("#cityid").append("<option value='"+item.cityId+"'>"+item.cityName+"</option>");
+								$("#cityid").append("<option value='" + item.cityId + "'>" + item.cityName + "</option>");
 							});
 						}
 					}
@@ -267,14 +265,14 @@ function updatebranch(branchCode) {
 		success : function(json) {
 			if (json) {
 				$('#branchCode').val(json.branch.branchCode);
-				$('#branchCode').attr("readonly","readonly");
+				$('#branchCode').attr("readonly", "readonly");
 				$('#branch_name').val(json.branch.branchName);
 				$('#conatct_no').val(json.branch.branchContactNumber);
 				$('#street_1').val(json.branch.branchStreet1);
 				$('#street_2').val(json.branch.branchStreet2);
-				$("#stateid").select2("val",json.branch.stateId);
+				$("#stateid").select2("val", json.branch.stateId);
 				$("#stateid").change();
-				$("#cityid").select2("val",json.branch.cityId);
+				$("#cityid").select2("val", json.branch.cityId);
 				$('#pin_code').val(json.branch.branchPincode);
 				$('#longitude').val(json.branch.branchLongitude);
 				$('#latitude').val(json.branch.branchLatitude);
