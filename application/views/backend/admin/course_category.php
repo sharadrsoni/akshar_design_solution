@@ -107,8 +107,9 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="submitCourseCategory" id="submitCourseCategory">
-											Register
+											Add Course Category
 										</button>
+										<a href="<?php echo base_url() . "admin/course_category"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 							</form>

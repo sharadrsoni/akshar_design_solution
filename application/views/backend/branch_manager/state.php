@@ -109,6 +109,7 @@
 									<button type="submit" class="btn btn-primary" name="submitState" id="submitState">
 										Add State
 									</button>
+									<a href="<?php echo base_url() . "admin/state"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 								</div><!--/ Form Action -->
 							</div>
 							</form>

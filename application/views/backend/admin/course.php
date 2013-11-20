@@ -200,6 +200,7 @@
 										<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">
 											Add Course
 										</button>
+											<a href="<?php echo base_url() . "admin/course"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 							</form>

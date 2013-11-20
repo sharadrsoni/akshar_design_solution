@@ -299,6 +299,7 @@
 										<button type="submit" class="btn btn-primary"  name="submitTarget" id="submitTarget">
 											Add Target
 										</button>
+										<a href="<?php echo base_url() . "admin/target"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 							</form>

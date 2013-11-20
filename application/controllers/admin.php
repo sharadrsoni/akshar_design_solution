@@ -82,7 +82,7 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
-			if (isset($_POST['submitBranch'])) {
+		    if (isset($_POST['submitBranch'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('branchCode', 'Branch Code', 'required|trim');
 				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim');

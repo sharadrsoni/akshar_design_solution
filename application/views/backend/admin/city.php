@@ -134,6 +134,7 @@
 										<button type="submit" class="btn btn-primary" name="submitCity" id="submitCity">
 											Add City
 										</button>
+										<a href="<?php echo base_url() . "admin/city"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 								</form>

@@ -141,6 +141,7 @@ if($role==1)
 							<button type="submit" class="btn btn-primary" name="register" id="register">
 							Register
 							</button>
+							<a href="<?php echo base_url() . "admin/send_notification"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 							</div><!--/ Form Action -->
 							</div>
 							</form>

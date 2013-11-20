@@ -110,6 +110,7 @@
 										<button type="submit" class="btn btn-primary" name="submitEventType" id="submitEventType">
 											Create Event Type
 										</button>
+										<a href="<?php echo base_url() . "admin_branch_manager/event_type"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 								</form>

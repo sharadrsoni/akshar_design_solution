@@ -362,6 +362,7 @@
 		<button type="submit" class="btn btn-primary"  name="submitStaff" id="submitStaff">
 			Add Staff User
 		</button>
+		<a href="<?php echo base_url() . "admin/staff"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 	</div><!--/ Form Action -->
 	</div>
 	</form>
