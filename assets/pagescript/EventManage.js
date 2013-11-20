@@ -65,8 +65,11 @@ var Event = function() {
 			rules : {
 				event_name : {
 					required : true,
+					minlength:3,
+					maxlength:100,
+					lettersonly:true,
 				},
-				event_type : {
+				event_type_id : {
 					required : true,
 				},
 				start_date : {
@@ -74,15 +77,20 @@ var Event = function() {
 				},
 				end_date : {
 					required : true,
+					greaterThan: "#start_date",
 				},
 				description : {
 					required : true,
+					maxlength:200,
+					lettersonly:true,
 				},
 				street_1 : {
 					required : true,
+						maxlength:100,
 				},
 				street_2 : {
-					required : true,
+					required : false,
+						maxlength:100,
 				},
 				city : {
 					required : true,
@@ -91,12 +99,17 @@ var Event = function() {
 					required : true
 				},
 				pin_code : {
-					required : true,
+						required : true,
+						minlength:6,
+						maxlength:6,
+						digits:true,
 				},
 				organize_by : {
 					required : true,
+					minlength:3,
+					maxlength:100,
 				},
-				responsible_person : {
+				faculty_id : {
 					required : true,
 				}
 			},
@@ -141,14 +154,18 @@ var Event = function() {
 			// begin tblEvent table
 			$('#tblEvent').dataTable({
 				"aoColumns" : [{
-					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
+					"bSortable" : true
 				}, {
 					"bSortable" : true
-				}, null],
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				},{
+					"bSortable" : true
+				}, {
+					"bSortable" : false
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -209,6 +226,28 @@ var Event = function() {
 			$("#end_date_datepicker .add-on").click(function() {
 				$("#end_date_datepicker input").datepicker("show");
 			});
+
+			$(".select2").select2({
+				allowClear : true,
+			});
+			$("#stateid").change(function() {
+				$('#cityid').html('');
+				$("#cityid").append("<option>Select...</option>");
+				$.ajax({
+					url : "../ajax_manager/citylist/" + $("#stateid").val(),
+					dataType : 'json',
+					async : false,
+					success : function(json) {
+						if (json) {
+							$.each(json.city_list, function(i, item) {
+								$("#cityid").append("<option value='"+item.cityId+"'>"+item.cityName+"</option>");
+							});
+						}
+					}
+				});
+			});
+			
+
 			$('.text-toggle-Attendance').toggleButtons({
 				width : 200,
 				label : {
@@ -321,16 +360,14 @@ function viewevent(eventId) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewEventName').text(json.event[0].eventName);
+				$('#viewEventTypeID').text(json.event[0].eventTypeId);
+				$('#viewEventStartDate').text(json.event[0].eventStartDate);
+				$('#viewEventEndDate').text(json.event[0].eventEndDate);
+				$('#viewEventDescription').text(json.event[0].eventDescription);
+				$('#viewAddress').html(json.event[0].eventStreet1+",<br/>"+json.event[0].eventStreet2+",<br/>"+json.event[0].eventCity+","+json.event[0].eventState+"-"+json.event[0].eventPincode);
+				$('#viewOrganizerName').text(json.event[0].eventOrganizerName);
+				$('#viewFacultyID').text(json.event[0].facultyId);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");

@@ -12,18 +12,20 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/reset.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style-metro.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">               
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="assets/plugins/bxslider/jquery.bxslider.css" />    
+    
+   
+    <link href="<?php echo base_url() ."assets/plugins/bootstrap/css/bootstrap.min.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/plugins/bootstrap/css/bootstrap-responsive.min.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/reset.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/style-metro.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/style.css";?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url()."assets/css/style-responsive.css";?>" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo base_url()."assets/plugins/fancybox/source/jquery.fancybox.css";?>">               
+    <link href="<?php echo base_url()."assets/plugins/font-awesome/css/font-awesome.min.css";?>" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo base_url()."assets/plugins/bxslider/jquery.bxslider.css" ;?>"/>    
     <!-- END GLOBAL MANDATORY STYLES -->
-    <link href="assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>    
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="<?php echo base_url()."assets/css/themes/blue.css";?>" rel="stylesheet" type="text/css" id="style_color"/>    
+    <link rel="shortcut icon" href="<?php echo base_url()."favicon.ico";?>" />
 </head>
 <!-- END HEAD -->
 
@@ -70,14 +72,14 @@
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="nav-collapse collapse"> 
           <ul class="nav">
-            <li> <a href="index.html"> 
+            <li> <a href="<?php echo base_url()?>"> 
               Home </a> </li>
-            <li class="active"><a href="#">Courses</a></li>
-            <li><a href="photo_gallery.html">Photo Gallery</a></li>
-            <li><a href="about_us.html">About Us</a></li>
-            <li><a href="contact_us.html">Contact Us</a></li>
-            <li> <span class="sep"></span> <a href="#">Login</a></li>
-          </ul>
+            <li  class="active"><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
+            <li><a href="<?php echo base_url()."event"; ?>">Event</a></li>
+            <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
+            <li><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
+            <li> <span class="sep"></span> <a href="<?php echo base_url()."login"; ?>">Login</a></li>
+           </ul>
           <div class="search-box"> 
             <div class="input-append"> 
               <form>
@@ -98,11 +100,11 @@
     <div class="row-fluid breadcrumbs margin-bottom-40">
         <div class="container">
             <div class="span4">
-                <h1>Portfolio Item</h1>
+                <h1>Course Detail</h1>
             </div>
             <div class="span8">
                 <ul class="pull-right breadcrumb">
-                    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                    <li><a href="<?php echo base_url()?>">Home</a> <span class="divider">/</span></li>
                     <li class="active">Courses</li>
                 </ul>
             </div>
@@ -120,58 +122,36 @@
                     <!-- Carousel items -->
                     
         <div class="carousel-inner"> 
-          <div class="active item"> <img src="assets/img/works/img1.jpg" alt=""> 
-            <div class="carousel-caption"> 
-              <p>Excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="item"> <img src="assets/img/works/img2.jpg" alt=""> 
-            <div class="carousel-caption"> 
-              <p>Ducimus qui blanditiis praesentium voluptatum</p>
-            </div>
-          </div>
-          <div class="item"> <img src="assets/img/works/img3.jpg" alt=""> 
-            <div class="carousel-caption"> 
-              <p>Ut non libero consectetur adipiscing elit magna</p>
-            </div>
-          </div>
+          <div class="active item"> <img src="<?php echo base_url()."assets/img/works/img1.jpg";?>" alt=""> 
+          </div>        
         </div>
                     <!-- Carousel nav -->
-                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                        <i class="icon-angle-left"></i>
-                    </a>
-                    <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                        <i class="icon-angle-right"></i>
-                    </a>
+                    
                 </div>                
             </div>
             <!-- END CAROUSEL -->                             
 
             <!-- BEGIN PORTFOLIO DESCRIPTION -->            
             <div class="span7">
-                <h2>Quis tempor incididunt</h2>
-                <p>Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa quis tempor incididunt ut et dolore et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</p>
-                <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde nostrudlaboris. Sed unde omnis iste natus error sit voluptatem.</p>
+                <h2><?php echo $course_details[0]->courseName ;?></h2>
+                <p>
+                	
+                	<?php echo $course_details[0]->courseDescription ;?>
+                </p>
                 <br>
                 <div class="row-fluid front-lists-v2 margin-bottom-15">
                     <div class="span6">
                         <ul class="unstyled">
-                            <li><i class="icon-html5"></i><?php echo $course_details[0]->courseName ;?></li>
-                            <li><i class="icon-bell"></i> Web Deisgn</li>
-                            <li><i class="icon-globe"></i> Web Development</li>
-                            <li><i class="icon-shopping-cart"></i> Shoping Cart</li>
-                        </ul>
+                            <li><i class="icon-star"></i>Course Code  : <font color="#0DA3E2"><?php echo $course_details[0]->courseCode ;?></font></li>
+                            <li><i class="icon-star"></i>Course Duration : <font color="#0DA3E2"><?php echo $course_details[0]->courseDuration ;?>-Months</font></li>
+                               
+                         </ul>
                     </div>
-                    <div class="span6">
-                        <ul class="unstyled">
-                            <li><i class="icon-dropbox"></i> Free Storage</li>
-                            <li><i class="icon-cloud"></i> Cloud Hosting</li>
-                            <li><i class="icon-comments"></i> Free Support</li>
-                            <li><i class="icon-star"></i> Awesome UI</li>
-                        </ul>
-                    </div>
+                    
                 </div>
-                <a href="#" onclick="location.href = 'contact_us'" class="btn theme-btn">Query</a>
+              <a href="<?php echo base_url()."contact_us/query/".$course_details[0]->courseCode;?>" class="btn theme-btn">Query</a>
+              
+              
 
             </div>
             <!-- END PORTFOLIO DESCRIPTION -->            
@@ -206,18 +186,18 @@
 
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- BEGIN CORE PLUGINS -->
-    <script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>    
-    <script type="text/javascript" src="assets/plugins/bxslider/jquery.bxslider.js"></script>
-    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-    <script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>                 
+    <script src="<?php base_url()."assets/plugins/jquery-1.10.1.min.js";?>" type="text/javascript"></script>
+    <script src="<?php base_url()."assets/plugins/jquery-migrate-1.2.1.min.js";?>" type="text/javascript"></script>
+    <script src="<?php base_url()."assets/plugins/bootstrap/js/bootstrap.min.js";?>" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php base_url()."assets/plugins/back-to-top.js";?>"></script>    
+    <script type="text/javascript" src="<?php base_url()."assets/plugins/bxslider/jquery.bxslider.js";?>"></script>
+    <script type="text/javascript" src="<?php base_url()."assets/plugins/fancybox/source/jquery.fancybox.pack.js";?>"></script>
+    <script type="text/javascript" src="<?php base_url()."assets/plugins/hover-dropdown.js";?>"></script>                 
     <!--[if lt IE 9]>
     <script src="assets/plugins/respond.min.js"></script>  
     <![endif]-->   
     <!-- END CORE PLUGINS -->
-    <script src="assets/scripts/app.js"></script>      
+    <script src="<?php base_url()."assets/scripts/app.js";?>"></script>      
     <script>
         jQuery(document).ready(function() {    
             App.init();                  

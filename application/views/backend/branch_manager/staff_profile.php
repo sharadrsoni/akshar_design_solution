@@ -258,37 +258,38 @@
 														<div class="controls">
 															<input type="text" name="street_2" id="street_2" class="span6"/ value="<?php echo $profile->userStreet2;?>">
 														</div>
-													</div><!--/ Street --><!-- City -->
+													</div><!--/ Street --><!--/ City -->
+													<!-- State -->
+													<div class="control-group">
+														<label class="control-label">State<span class="required"></span></label>
+														<div class="controls">
+															<select class="select2 span6" name="stateid" id="stateid" value="<?php echo $profile->stateId; ?>">
+											<option value="">Select...</option>
+												<?php
+												foreach ($State as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
+												}
+												?>
+											</select>
+											<div class="span6"></div>
+														</div>
+													</div><br/><br/>
+													<div class="control-group">
+														<label class="control-label">City<span class="required"></span></label>
+														<div class="controls">
+															<select class="select2 span6" name="cityid" id="cityid" value="<?php echo $profile->cityId; ?>">
+												<option value="">Select...</option>
+											</select>
+											<div class="span6"></div>
+														</div>
+													</div><br/><br/><!-- City -->
 													<div class="control-group">
 														<label class="control-label">Postal Code<span class="required">*</span></label>
 														<div class="controls">
 															<input type="text" name="pin_code" id="pin_code" class="span4"/ value="<?php echo $profile->userPostalCode;?>">
 														</div>
-													</div><!--/ City --><!-- State -->
-													<div class="control-group">
-														<label class="control-label">State<span class="required">*</span></label>
-														<div class="controls">
-															<select class="span4" name="state" id="state">
-																<option value="">Select...</option>
-																<option value="Category 1">Category 1</option>
-																<option value="Category 2">Category 2</option>
-																<option value="Category 3">Category 5</option>
-																<option value="Category 4">Category 4</option>
-															</select>
-														</div>
-													</div><!--/ StateState --><!-- City -->
-													<div class="control-group">
-														<label class="control-label">City<span class="required">*</span></label>
-														<div class="controls">
-															<select class="span4" name="city" id="city">
-																<option value="">Select...</option>
-																<option value="Category 1">Category 1</option>
-																<option value="Category 2">Category 2</option>
-																<option value="Category 3">Category 5</option>
-																<option value="Category 4">Category 4</option>
-															</select>
-														</div>
-													</div><!--/ City --><!-- Form Action -->
+													</div>
+													<!-- Form Action -->
 													<div class="form-actions">
 														<button type="submit" class="btn blue" id="edit_profile" name="edit_profile">
 															Edit Profile

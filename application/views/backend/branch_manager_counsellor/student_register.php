@@ -189,32 +189,52 @@
 									<span for="studentid" class="help-inline"><?php echo form_error('studentid'); ?></span>
 								</div>
 							</div><!-- /Student -->
-							<!-- Course -->
-									<?php
-									$err=form_error('courseid');
+										<!-- Course Category -->
+								<?php
+									$err=form_error('coursecategory');
 									if ($err != '') {
 										echo "<div class='control-group error'>";
 									} else {
 										echo "<div class='control-group'>";
 									}
 									 ?>
-							
-								<label class="control-label">Course<span class="required">*</span></label>
-								<div class="controls">
-									<select name="courseid" id="courseid" class="span6" value="<?php echo set_value("courseid"); ?>">
-<<<<<<< HEAD
-=======
-											<option value="">Select...</option>
-											<?php
-											foreach ($course as $key) {
-												echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
-											}
-											?>
->>>>>>> upstream/master
-									</select>
-									<span for="courseid" class="help-inline"><?php echo form_error('courseid'); ?></span>
-								</div>
-							</div><!-- /Course -->
+								
+										<label class="control-label">Course Category<span class="required">*</span></label>
+										<div class="controls">
+											<div class="span4">
+												<select class="span12" name="coursecategory" id="coursecategory" value="<?php echo set_value("coursecategory"); ?>">
+												<option value="">Select...</option>
+												<?php
+												foreach ($category as $key) {
+													echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
+												}
+												?>
+												</select>
+												<span for="coursecategory" class="help-inline"><?php echo form_error('coursecategory'); ?></span>
+											</div>
+										</div>
+									</div>
+												<!-- Course Category --> 
+									<!-- Course -->
+									<?php
+									$err=form_error('course');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+										<label class="control-label">Course Name<span class="required">*</span></label>
+										<div class="controls">
+											<div class="span4">
+												<select class="span12" name="courseid" id="courseid" value="<?php echo set_value("course"); ?>">
+												</select>
+												<span for="course" class="help-inline"><?php echo form_error('course'); ?></span>
+											</div>
+												</div>
+									</div>
+												<!-- Course-->
 							<!-- Batch -->
 									<?php
 									$err=form_error('batchid');

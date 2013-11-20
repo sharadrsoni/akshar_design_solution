@@ -46,8 +46,7 @@ $route['404_override'] = '';
 $route['admin/event_type'] = "admin_branch_manager/event_type";
 $route['admin/event_type/(:num)'] = "admin_branch_manager/event_type/$1";
 $route['admin/delete_event_type'] = "admin_branch_manager/delete_event_type";
-$route['admin/send_notification'] = "staff/send_notification";
-$route['admin/send_notification/(:num)'] = "staff/send_notification/$1";
+$route['admin/send_notification'] = "staff/send_notification_admin";
 $route['admin/search'] = "staff/search";
 $route['admin/profile'] = "staff/profile";
 $route['admin/profile/(:num)'] = "staff/profile/$1";
@@ -68,6 +67,7 @@ $route['branch_manager/delete_event_type'] = "admin_branch_manager/delete_event_
 $route['branch_manager/send_notification'] = "staff/send_notification";
 $route['branch_manager/send_notification/(:num)'] = "staff/send_notification/$1";
 $route['branch_manager/profile'] = "staff/profile";
+$route['branch_manager/search'] = "staff/search";
 
 //Faculty
 $route['faculty/send_notification'] = "staff/send_notification";

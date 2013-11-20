@@ -16,9 +16,12 @@ class target_model extends CI_Model {
 		return $this -> db -> get() -> result();
 	}
 
-	public function getPendingCount() {
+	public function getPendingCount($branchcode='') {
 		$this -> db -> where('targetIsAchieved', 1);
 		$this -> db -> from('target');
+		if($branchcode!=''){
+			$this -> db -> where('branchCode',$branchcode);
+		}
 		$count = $this -> db -> count_all_results();
 		return $count;
 	}

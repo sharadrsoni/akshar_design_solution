@@ -19,7 +19,7 @@
  *
  */
  header("Cache-Control: no-store, no-cache, must-revalidate");
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

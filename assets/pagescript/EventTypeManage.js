@@ -8,8 +8,10 @@ var EventType = function() {
 			// begin tbleventtype table
 			$('#tbleventtype').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				},null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -60,6 +62,9 @@ var EventType = function() {
 				rules : {
 					eventtype_name:{
 						required : true,
+						minlength:3,
+						maxlength:100,
+						lettersonly:true,
 					}
 				},
 

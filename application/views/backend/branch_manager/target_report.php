@@ -48,9 +48,6 @@
 									<table class="table table-striped table-bordered table-hover" id="tblTargetReport">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th class="hidden-480">Target Name</th>
 												<th class="hidden-480">Start Date</th>
 												<th class="hidden-480">End Date</th>
@@ -65,9 +62,7 @@
 											if (isset($target_report_list)) {
 												foreach ($target_report_list as $key) {
 													echo "<tr class=\"odd gradeX\">
-<td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" /></td>
-<td onclick='viewtargetreport(\"{$key->targetId}\");'>{$key->targetSubject}</td>
+<td onclick='viewtarget(\"{$key->targetId}\");'>{$key->targetSubject}</td>
 <td class=\"hidden-480\">{$key->targetStartDate}</td>
 <td class=\"hidden-480\">{$key->targetEndDate}</td>
 <td class=\"hidden-480\">{$key->targetTypeName}</td>
@@ -103,13 +98,13 @@
 
 							<div class="body-inner">
 								<h3 class="form-section">Target Report </h3>
-								
+
 								<!-- Description -->
 								<div class="control-group">
 									<label class="control-label">Description about target</label>
 									<div class="controls">
 										<lable class="control-label span8" style="text-align:left" id="description">
-								
+
 										</lable>
 									</div>
 								</div>
@@ -148,41 +143,66 @@
 						</div>
 						<div class="tab-pane" id="tabView">
 							<div class="tab-pane active" id="tab1">
-							<div class="body-inner">
-								<div class="portlet-body">
-								<table class="table table-striped table-bordered table-hover dataTable" id="viewtbltarget">
-													<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Target Name</td>
-														<td><viewTargetName></viewTargetName></td>
-												   </tr>
-												   	<tr>
-														<td class="unstyled profile-nav span3">Target Description</td>
-														<td><viewTargetDescription></viewTargetDescription></td>
-												   </tr>
-												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Target Start Date</td>
-														<td><viewTargetStartDate></viewTargetStartDate></td>
-												   </tr>
-												   	<tr>
-														<td class="unstyled profile-nav span3">Target End Date</td>
-														<td><viewTargetEndDate></viewTargetEndDate></td>
-												   </tr>
-												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Status</td>
-														<td><viewStatus></viewStatus></td>
-												   </tr>
-												    <tr>
-														<td class="unstyled profile-nav span3">Target Type</td>
-														<td><viewTargetType></viewTargetType></td>
-												   </tr>
-												   <tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Branch Code</td>
-														<td><viewBranchCode></viewBranchCode></td>
-												   </tr>
-												</table>
-								</div></div>
-					</div><!-- End tabView -->
+								<div class="body-inner">
+									<div class="portlet-body">
+										<table class="table table-striped table-bordered table-hover dataTable" id="viewtbltarget">
+											<tr>
+												<td style='background:#f0f6fa' class="unstyled profile-nav span3">Target Name</td>
+												<td id="viewTargetName"></td>
+											</tr>
+											<tr>
+												<td class="unstyled profile-nav span3">Target Description</td>
+												<td id="viewTargetDescription"></td>
+											</tr>
+											<tr>
+												<td style='background:#f0f6fa' class="unstyled profile-nav span3">Target Start Date</td>
+												<td id="viewTargetStartDate"></td>
+											</tr>
+											<tr>
+												<td class="unstyled profile-nav span3">Target End Date</td>
+												<td id="viewTargetEndDate"></td>
+											</tr>
+											<tr>
+												<td style='background:#f0f6fa' class="unstyled profile-nav span3">Status</td>
+												<td id="viewStatus"></td>
+											</tr>
+											<tr>
+												<td class="unstyled profile-nav span3">Target Type</td>
+												<td id="viewTargetType"></td>
+											</tr>
+											<tr>
+												<td style='background:#f0f6fa' class="unstyled profile-nav span3">Branch Code</td>
+												<td id="viewBranchCode"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div><!-- End tabView -->
+
 						</div>
+
+						<div class="tab-pane" id="tabView2">
+							<div class="tab-pane active" id="tab1">
+								<div class="body-inner">
+									<div class="portlet-body">
+										<table class="table table-striped table-bordered table-hover dataTable" >
+											<thead>
+												<tr>
+													<td class="unstyled profile-nav span3">Date</td>
+													<td class="unstyled profile-nav span10">Target Description</td>
+
+												</tr>
+											</thead>
+											<tbody id="viewtbltarget1">
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div><!-- End tabView -->
+
+						</div>
+
 					</div>
 				</div>
 				<!--/ End Tabs -->

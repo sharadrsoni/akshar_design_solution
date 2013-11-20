@@ -67,8 +67,8 @@
 <td class=\"hidden-480\">{$key->inquiryEmailAddress}</td>
 <td class=\"hidden-480\">{$key->stateId}
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
-<td></td>
-<td></td>
+<td class=\"hidden-480\">{$key->courseCode}</td>
+<td class=\"hidden-480\">{$key->inquiryExpectedJoiningDate}</td>
 <td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
@@ -249,25 +249,48 @@
 											<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
 										</div>
 									</div><!--/ Street -->
-									<!-- City -->
-										<?php
-									$err=form_error('city');
-									if ($err != '') {
-										echo "<div class='control-group error'>";
-									} else {
-										echo "<div class='control-group'>";
-									}
-									 ?>
-								
-										<label class="control-label">City<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="city" id="city" class="span8" value="<?php echo set_value("city"); ?>"/>
-											<span for="city" class="help-inline"><?php echo form_error('city'); ?></span>
-										</div>
-									</div><!--/ City -->
 									<!-- State -->
-										<?php
-									$err=form_error('state');
+								<?php
+									$err=form_error('stateid');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									<label class="control-label">State<span class="required">*</span></label>
+									<div class="controls">
+											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
+											<option value="">Select...</option>
+												<?php
+												foreach ($State as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
+												}
+												?>
+											</select>
+											<span for="state" class="help-inline"><?php echo form_error('stateid'); ?></span>
+									</div>
+								</div><!--/ State -->
+								<!-- City -->
+								<?php
+									$err=form_error('cityid');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									<label class="control-label">City<span class="required">*</span></label>
+									<div class="controls">
+											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
+												<option value="">Select...</option>
+											</select>
+											<span for="cityid" class="help-inline"><?php echo form_error('cityid'); ?></span>
+									</div>
+								</div><!--/ City -->
+								<!-- Postal Code -->
+								<?php
+									$err=form_error('pin_code');
 									if ($err != '') {
 										echo "<div class='control-group error'>";
 									} else {
@@ -275,24 +298,12 @@
 									}
 									 ?>
 								
-										<label class="control-label">State<span class="required">*</span></label>
-										<div class="controls">
-											<div class="span4">
-												<select class="span12" name="state" id="state" value="<?php echo set_value("state"); ?>">
-													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
-												</select>
-												<span for="state" class="help-inline"><?php echo form_error('state'); ?></span>
-											</div>
-											<div class="span4">
-												<input type="text" name="pin_code" id="pin_code" class="span12" value="<?php echo set_value("pin_code"); ?>"/>
-												<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
-											</div>
-										</div>
-									</div><!--/ StateState -->
+									<label class="control-label">Postal Code<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
+										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
+									</div>
+								</div><!--/ Postal Code -->
 									<h3 class="form-section">Other Info</h3>
 										<!-- Course Category -->
 								<?php
@@ -334,11 +345,6 @@
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="course" id="course" value="<?php echo set_value("course"); ?>">
-													<option value="">Select...</option>
-													<option value="Category 1">Category 1</option>
-													<option value="Category 2">Category 2</option>
-													<option value="Category 3">Category 5</option>
-													<option value="Category 4">Category 4</option>
 												</select>
 												<span for="course" class="help-inline"><?php echo form_error('course'); ?></span>
 											</div>
@@ -378,7 +384,23 @@
 											<span for="name_of_institute" class="help-inline"><?php echo form_error('name_of_institute'); ?></span>
 										</div>
 									</div><!--/ Name of Institute/Industry -->
-									<!-- ccupation of Guardian\Self -->
+									<!-- Name of Guardian -->
+										<?php
+									$err=form_error('name_of_guardian');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
+										<label class="control-label">Guardian Name</label>
+										<div class="controls">
+											<input type="text" name="name_of_guardian" id="name_of_guardian" class="span8" value="<?php echo set_value("name_of_guardian"); ?>">
+											<span for="name_of_institute" class="help-inline"><?php echo form_error('name_of_guardian'); ?></span>
+										</div>
+									</div><!--/ Name of Guardian -->
+									<!-- Occupation of Guardian\Self -->
 										<?php
 									$err=form_error('occupation_of_guardian');
 									if ($err != '') {
@@ -427,48 +449,60 @@
 								<div class="portlet-body">
 								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblinquiry">
 													<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Student Name</td>
-														<td><viewStudentName></viewStudentName></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Inquiry Date</td>
+														<td id="viewInquiryDate"></td>
+												   </tr>
+												   <tr>
+														<td  class="unstyled profile-nav span3">Course Code</td>
+														<td id="viewCourseCode"></td>
+												   </tr>
+												   <tr>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Expected Joining Date</td>
+														<td id="viewDOJ"></td>
+												   </tr>
+													<tr>
+														<td  class="unstyled profile-nav span3">Student Name</td>
+														<td id="viewStudentName"></td>
 												   </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3">Date of Birth</td>
-														<td><viewDOB></viewDOB></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Date of Birth</td>
+														<td id="viewDOB"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Contact Number</td>
-														<td><viewContactNumber></viewContactNumber></td>
+														<td class="unstyled profile-nav span3">Contact Number</td>
+														<td id="viewContactNumber"></td>
 												   </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3">Email</td>
-														<td><viewEmail></viewEmail></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Email</td>
+														<td id="viewEmail"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Qualification</td>
-														<td><viewQualification></viewQualification></td>
+														<td  class="unstyled profile-nav span3">Qualification</td>
+														<td id="viewQualification"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Address</td>
-														<td><viewAddress></viewAddress></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Address</td>
+														<td id="viewAddress"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Institute Name</td>
-														<td><viewInstituteName></viewInstituteName></td>
+														<td class="unstyled profile-nav span3">Institute Name</td>
+														<td id="viewInstituteName"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Student Occupation</td>
-														<td><viewOccupation></viewOccupation></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Student Occupation</td>
+														<td id="viewOccupation"></td>
 													</tr>
 											 		<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Guardian Name</td>
-														<td><viewGuardianName></viewGuardianName></td>
+														<td  class="unstyled profile-nav span3">Guardian Name</td>
+														<td id="viewGuardianName"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Guardian Occupation</td>
-														<td><viewGuradianOccupation></viewGuradianOccupation></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Guardian Occupation</td>
+														<td id="viewGuradianOccupation"></td>
 													</tr>
 													<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Reference Name</td>
-														<td><viewReference></viewReference></td>
+														<td  class="unstyled profile-nav span3">Reference Name</td>
+														<td id="viewReference"></td>
 												   </tr>
 												 </table>
 								</div></div>

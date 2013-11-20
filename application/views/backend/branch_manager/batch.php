@@ -297,31 +297,27 @@
 								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBatch">
 													<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Batch Name</td>
-														<td><viewBatchName></viewBatchName></td>
+														<td id="viewBatchName"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Course</td>
-														<td><viewCourseName></viewCourseName></td>
+														<td id="viewCourseName"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Week Days</td>
-														<td><viewWeek Days></viewWeek></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Faculty Name</td>
+														<td id="viewFacultyName"></td>
 												   </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3">Faculty Name</td>
-														<td><viewFacultyName></viewFacultyName></td>
-												   </tr>
-												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Start Date</td>
-														<td><viewStartDate></viewStartDate></td>
+														<td  class="unstyled profile-nav span3">Start Date</td>
+														<td id="viewStartDate"></td>
 												   </tr>
 												    <tr>
-														<td class="unstyled profile-nav span3">Duration</td>
-														<td><viewDuration></viewDuration></td>
+														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Duration</td>
+														<td id="viewDuration"></td>
 												   </tr>
 												   	<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Strength</td>
-														<td><viewStrength></viewStrength></td>
+														<td  class="unstyled profile-nav span3">Strength</td>
+														<td id="viewStrength"></td>
 												   </tr>
 											
 												 </table>
@@ -340,12 +336,12 @@
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Saturday</td>
 										 </tr>
 												   	<tr>
-														<td class="unstyled profile-nav span3"><viewMonday>5 to 6</viewMonday></td>
-														<td class="unstyled profile-nav span3"><viewTuesday>5 to 6</viewTuesday></td>
-														<td class="unstyled profile-nav span3"><viewWednesday>5 to 6</viewWednesday></td>
-														<td class="unstyled profile-nav span3"><viewThursday>5 to 6</viewThursday></td>
-														<td class="unstyled profile-nav span3"><viewFriday>5 to 6</viewFriday></td>
-														<td class="unstyled profile-nav span3"><viewSaturday>5 to 6</viewSaturday></td>
+														<td class="unstyled profile-nav span3" id="viewWeekday1" ></td>
+														<td class="unstyled profile-nav span3" id="viewWeekday2"></td>
+														<td class="unstyled profile-nav span3" id="viewWeekday3"></td>
+														<td class="unstyled profile-nav span3" id="viewWeekday4"></td>
+														<td class="unstyled profile-nav span3" id="viewWeekday5"></td>
+														<td class="unstyled profile-nav span3" id="viewWeekday6"></td>
 												   </tr>
 												 
 								</table>

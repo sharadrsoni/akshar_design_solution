@@ -86,23 +86,23 @@ if($role==1)
 							</div>
 							</div>
 							</div><!--/ Branch/Batch -->
-							<!-- Individual/Batch -->
+							<!-- Individual/Branch -->
 							<div class="control-group"  id="check_box_staff" style="display: none">
-							<label class="control-label">Individual/Batch<span class="required">*</span></label>
+							<label class="control-label">Individual/Branch<span class="required">*</span></label>
 							<div class="controls">
-							<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Branch">
-							<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
+							<div class="text-toggle-Individual_Branch" data-on="Individual" data-off="Branch">
+							<input type="checkbox" name="individual_Branch" id="individual_Branch"  class="toggle" />
 							</div>
 							</div>
-							</div><!--/ Individual/Batch -->
+							</div><!--/ Individual/Branch -->
 							<!-- Branch -->
 							<div class="control-group">
 							<label class="control-label">Branch<span class="required">*</span></label>
 							<div class="controls">
-							<select class="span4 select2" name="branch_name" multiple="" id="branch_name">
+							<select class="span4 select2" name="branch_name[]" multiple="" id="branch_name">
 							<option value="">Select...</option>
 							<?php
-							foreach ($branch as $key) {
+							foreach ($branchName as $key) {
 								echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
 							}
 							?>
@@ -115,7 +115,7 @@ if($role==1)
 							<div class="control-group" id="lst_batch_div">
 							<label class="control-label">Batch<span class="required">*</span></label>
 							<div class="controls">
-							<select class="span4" name="batch_name" id="batch_name">
+							<select class="span4 select2" name="batch_name" multiple="" id="batch_name">
 							</select>
 							</div>
 							</div><!--/ Batch -->
@@ -124,7 +124,7 @@ if($role==1)
 							<div class="control-group" style="display:none" id="lst_user_div">
 							<label class="control-label">Name<span class="required">*</span></label>
 							<div class="controls">
-							<select name="user_name" id="user_name" multiple="" class="span4 select2">
+							<select name="user_name[]" id="user_name" multiple="" class="span4 select2">
 							</select>
 							</div>
 							</div><!--/ Individual Name -->
@@ -183,7 +183,7 @@ if($role==1)
 									</div>
 								</div><!--/ Branch/All -->
 								<!-- Individual/Batch -->
-								<div class="control-group" id="check_box_studnet">
+								<div class="control-group" id="check_box_studnetBatch">
 									<label class="control-label">Individual/Batch<span class="required">*</span></label>
 									<div class="controls">
 										<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Batch">
@@ -195,11 +195,11 @@ if($role==1)
 								<div class="control-group" id="lst_batch_div">
 									<label class="control-label">Batch<span class="required">*</span></label>
 									<div class="controls">
-										<select class="span4" name="batch_name" id="batch_name">
+										<select class="span4 select2" name="batch_name[]" multiple="" id="batch_name">
 											<option value="">Select...</option>
 											<?php
-											foreach ($branch as $key) {
-												echo "<option value='{$key->branchCode}'>{$key->branchName}</option>";
+											foreach ($batch as $key) {
+												echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
 											}
 											?>
 										</select>
@@ -210,14 +210,14 @@ if($role==1)
 								<div class="control-group" style="display:none" id="lst_user_div">
 									<label class="control-label">Name<span class="required">*</span></label>
 									<div class="controls">
-										<select name="user_name" id="user_name" class="span4 select2"></select>
+										<select name="user_name[]" id="user_name" multiple="" class="span4 select2"></select>
 									</div>
 								</div><!--/ Individual Name -->
 								<!-- Faculty Name -->
 								<div class="control-group" style="display:none" id="lst_user_div">
 									<label class="control-label">Name<span class="required">*</span></label>
 									<div class="controls">
-										<select name="faculty_name" id="faculty_name" multiple="" class="span4 select2">
+										<select name="faculty_name[]" id="faculty_name" multiple="" class="span4 select2">
 											<option value="">Select...</option>
 											<?php
 											foreach ($branch as $key) {

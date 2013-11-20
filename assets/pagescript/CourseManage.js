@@ -8,10 +8,10 @@ var Course= function() {
 			// begin tblcity table
 			$('#tblCourse').dataTable({
 				"aoColumns" : [
-                  { "bSortable": false },
-                  { "bSortable": false },
-                  null,
-                  { "bSortable": false },
+                  { "bSortable": true },
+                  { "bSortable": true },
+                  { "bSortable": true },
+                  { "bSortable": true },
                   { "bSortable": false }
                 ],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
@@ -62,25 +62,40 @@ var Course= function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-                	coursecategory_id: {
+                	courseCategory_id: {
                         required: true,
                     },
                     course_name: {
-                        required: true
-                    },
-					course_code: {
                         required: true,
+                        alphanumeric:true,
+                        maxlength:100,
+                        minlength:2,
+                    },
+					courseCode: {
+                        required: true,
+                        alphanumeric:true,
+                        maxlength:10,
+                        minlength:2,
                     },
 					course_duration: {
                         required: true,
+                        number:true,
+                        min:0,	
                     },
 					material_id: {
                         required: true,
-                    },
+                     },
 					total_books: {
                         required: true,
+                        number:true,
+                        min:0,
+  
+                    },
+                    description:{
+                    	 required: true,
                     },
 					opening_stock: {
+						digits : true,
                         required: true,
                     }
                 },
@@ -162,16 +177,13 @@ function viewcourse(courseCode) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewCourseCode').text(json.course.courseCode);
+				$('#viewCourseName').text(json.course.courseName);
+				$('#viewCategory').html(json.course.courseCategoryName);
+				$('#viewCourseDuration').text(json.course.courseDuration);
+				$('#viewTotalBook').text(json.course.courseMaterialTotalBooks);
+				$('#viewDescription').text(json.course.courseDescription);
+				$('#ViewCourseImage').attr("src",json.course.coursePhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");

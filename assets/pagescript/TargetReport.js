@@ -8,11 +8,15 @@ var TargetReport = function() {
 			// begin tblTarget table
 			$('#tblTargetReport').dataTable({
 				"aoColumns" : [{
-					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
 				}, {
 					"bSortable" : false
 				}],
@@ -67,9 +71,13 @@ var TargetReport = function() {
 
 					report_description : {
 						required : true,
+						minlength:10,
+						maxlength:200,
+						
 					},
 					date : {
 						required : true,
+						//maxDate:true,
 					}
 					
 
@@ -140,27 +148,36 @@ function updatetarget(targetid) {
 	});
 }
 function viewtargetreports(targetid) {
-	$('#tablink1').parent().removeClass("active");
+	$.ajax({
+		url : "../ajax_manager/targetReports/" + targetid,
+		dataType : 'json',
+		async : true,
+		success : function(json) {
+			if (json) {
+				$.each(json.target_report, function(i, item) {
+					$('#viewtbltarget1').append("<tr><td class='unstyled profile-nav span3'>"+item.targetReportDate+"</td><td class='unstyled profile-nav span10'>"+item.targetReportDescription+"</td></tr>");
+				});
+				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
-				$('#tab3').addClass("active");
+				$('#tabView2').addClass("active");
+			}
+		}
+	});		
 }
-function viewtargetreport(targetId) {
+function viewtarget(targetId) {
 	$.ajax({
 		url : "target_report/" + targetId,
 		dataType : 'json',
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewTargetName').text(json.target[0].targetSubject);
+				$('#viewTargetDescription').text(json.target[0].targetDescription);
+				$('#viewTargetStartDate').text(json.target[0].targetStartDate);
+				$('#viewTargetEndDate').text(json.target[0].targetEndDate);
+				$('#viewStatus').text(json.target[0].targetIsAchieved);
+				$('#viewTargetType').text(json.target[0].targetTypeName);
+				$('#viewBranchCode').text(json.target[0].branchCode);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");

@@ -77,16 +77,15 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active">
-                                <a href="index.html">
+                                <a href="index.php">
                                     Home
                                     
                                 </a>
                             </li>
-                            <li><a href="courses.html">Courses</a></li>
-                            <li><a href="photo_gallery.html">Photo Gallery</a></li>
-                            <li><a href="page_testimonials.html">Testimonials</a></li>
-                            <li><a href="about_us.html">About Us</a></li>                        
-                            <li><a href="contact_us.html">Contact Us</a></li>
+                            <li><a href="courses">Courses</a></li>
+                            <li><a href="event">Event</a></li>
+                            <li><a href="about_us">About Us</a></li>                        
+                            <li><a href="contact_us">Contact Us</a></li>
                             <li>
                             <span class="sep"></span>
                             <a href="#">Login</a></li>

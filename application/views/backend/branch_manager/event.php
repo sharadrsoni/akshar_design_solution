@@ -53,9 +53,6 @@
 									<table class="table table-striped table-bordered table-hover" id="tblEvent">
 										<thead>
 											<tr>
-												<th style="width:8px;">
-												<input type="checkbox" class="group-checkable" data-set="#tblBranch .checkboxes" />
-												</th>
 												<th>EventName</th>
 												<th class="hidden-480">Organize by</th>
 												<th class="hidden-480">Veue</th>
@@ -68,12 +65,10 @@
 											<?php
 											if (isset($event)) {
 												foreach ($event as $key) {
-													echo "<tr class=\"odd gradeX\"><td>
-<input type=\"checkbox\" class=\"checkboxes\" value=\"1\" />
-</td>
+													echo "<tr class=\"odd gradeX\">
 <td onclick='viewevent(\"{$key->eventId}\");'>{$key->eventName}</td>
 <td class=\"hidden-480\">{$key->eventOrganizerName}</td>
-<td class=\"hidden-480\">{$key->eventState}</td>
+<td class=\"hidden-480\">{$key->eventStreet1}<br>{$key->eventStreet2}<br>{$key->cityName}<br>{$key->stateName}</td>
 <td class=\"hidden-480\">{$key->eventStartDate}</td>
 <td class=\"hidden-480\">{$key->eventEndDate}</td>
 <td ><span class=\"label label-success\" onclick='updateevent(\"{$key->eventId}\");'>Edit</span> <span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_event/{$key->eventId}'>Delete</span></td></tr>
@@ -226,40 +221,45 @@
 										<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
 									</div>
 								</div><!--/ Street -->
-								<!-- State -->
+									<!-- State -->
 								<?php
-									$err=form_error('state');
+									$err=form_error('stateid');
 									if ($err != '') {
 										echo "<div class='control-group error'>";
 									} else {
 										echo "<div class='control-group'>";
 									}
 									 ?>
-								
-									<label class="control-label">State/City<span class="required">*</span></label>
+									<label class="control-label">State<span class="required">*</span></label>
 									<div class="controls">
-										<div class="span4">
-											<select class="span12" name="state" id="state" value="<?php echo set_value("state"); ?>">
-												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
+											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
+											<option value="">Select...</option>
+												<?php
+												foreach ($State as $key) {
+													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
+												}
+												?>
 											</select>
-											<span for="state" class="help-inline"><?php echo form_error('state'); ?></span>
-										</div>
-										<div class="span4">
-											<select class="span12" name="city" id="city" value="<?php echo set_value("city"); ?>">
-												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
-											</select>
-											<span for="city" class="help-inline"><?php echo form_error('city'); ?></span>
-										</div>
+											<span for="state" class="help-inline"><?php echo form_error('stateid'); ?></span>
 									</div>
 								</div><!--/ State -->
+								<!-- City -->
+								<?php
+									$err=form_error('cityid');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									<label class="control-label">City<span class="required">*</span></label>
+									<div class="controls">
+											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
+												<option value="">Select...</option>
+											</select>
+											<span for="cityid" class="help-inline"><?php echo form_error('cityid'); ?></span>
+									</div>
+								</div><!--/ City -->
 								<!-- Postal Code -->
 								<?php
 									$err=form_error('pin_code');
@@ -408,40 +408,36 @@
 								<table class="table table-striped table-bordered table-hover dataTable" id="viewtblevent">
 													<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Event Name</td>
-														<td><viewEventName></viewEventName></td>
+														<td id="viewEventName"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Event Description</td>
-														<td><viewEventDescription></viewEventDescription></td>
+														<td id="viewEventDescription"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Event Start Date</td>
-														<td><viewEventStartDate></viewEventStartDate></td>
+														<td id="viewEventStartDate"></td>
 												   </tr>
 												   	<tr>
 														<td class="unstyled profile-nav span3">Event End Date</td>
-														<td><viewEventEndDate></viewEventEndDate></td>
+														<td id="viewEventEndDate"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Address</td>
-														<td><viewAddress></viewAddress></td>
+														<td id="viewAddress"></td>
 												   </tr>
 												    <tr>
 														<td class="unstyled profile-nav span3">Organizer Name</td>
-														<td><viewOrganizerName></viewOrganizerName></td>
+														<td id="viewOrganizerName"></td>
 												   </tr>
 												   	<tr>
 														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Faculty ID</td>
-														<td><viewFacultyID></viewFacultyID></td>
+														<td id="viewFacultyID"></td>
 												   </tr>
 												    <tr>
 														<td class="unstyled profile-nav span3">Event Type ID</td>
-														<td><viewEventTypeID></viewEventTypeID></td>
+														<td id="viewEventTypeID"></td>
 													</tr>
-											 		<tr>
-														<td style='background:#f0f6fa' class="unstyled profile-nav span3">Branch Code</td>
-														<td><viewBranchCode></viewBranchCode></td>
-												   </tr>
 												</table>
 								</div></div>
 					</div><!-- End tabView -->

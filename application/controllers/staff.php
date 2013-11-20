@@ -36,39 +36,36 @@ class Staff extends CI_Controller {
 				if (isset($_POST['user_role'])) {
 					$notificationData = array('notificationSendDate' => $date, 'notificationDescription' => $_POST['message'], 'userId' => $this -> userId, 'notificationStudentStaff' => 1);
 					if (isset($_POST['individual_Batch'])) {
-						$branchId = explode(",", $_POST['user_name']);
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
-						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 3, 'userId' => $branchId[$i]);
+						$size = sizeof($_POST["user_name"]);						
+						for ($i = 1; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 3, 'userId' => $_POST["user_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					} else {
-						$batchId = explode(",", $_POST['batch_name']);
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
-						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 2, 'userId' => $batchId[$i]);
+						$size = sizeof($_POST["batch_name"]);						
+						for ($i = 1; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 2, 'userId' => $_POST["batch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					}
 				} else {
 					$notificationData = array('notificationSendDate' => $date, 'notificationDescription' => $_POST['message'], 'userId' => $this -> userId, 'notificationStudentStaff' => 0);
 					if (isset($_POST['individual_all'])) {
-						$userId = explode(",", $_POST['faculty_name']);
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
+						$size = sizeof($_POST["faculty_name"]);						
 						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 3, 'userId' => $userId[$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 3, 'userId' => $_POST["faculty_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					} else {
@@ -76,8 +73,7 @@ class Staff extends CI_Controller {
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
-						$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $this -> branchCode);
+						$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $this -> branchCode);
 						$this -> notification_receiver_model -> addReceiver($receiverData);
 					}
 
@@ -87,9 +83,9 @@ class Staff extends CI_Controller {
 			}
 		} else {
 
-			$this -> load -> model("branch_model");
-			$branchName = $this -> branch_model -> getDetailsOfBranch();
-			$this -> data['branch'] = $branchName;
+			$this -> load -> model("batch_model");
+			$batchName = $this -> batch_model -> getDetailsBranch($this -> branchCode);
+			$this -> data['batch'] = $batchName;
 			$this -> data['title'] = "ADS | Send Notifications";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/sendnotification_css');
@@ -113,50 +109,46 @@ class Staff extends CI_Controller {
 				if (isset($_POST['user_role'])) {
 					$notificationData = array('notificationSendDate' => $date, 'notificationDescription' => $_POST['message'], 'userId' => $this -> userId, 'notificationStudentStaff' => 1);
 					if (isset($_POST['branch_Batch'])) {
-						$branchId = explode(",", $_POST['branch_name']);
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
-						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $branchId[$i]);
+						$size = sizeof($_POST["branch_name"]);						
+						for ($i = 1; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					} else {
-						$batchId = explode(",", $_POST['batch_name']);
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
+						$size = sizeof($_POST["batch_name"]);						
 						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $batchId[$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 2, 'userId' => $_POST["batch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					}
 				} else {
 					$notificationData = array('notificationSendDate' => $date, 'notificationDescription' => $_POST['message'], 'userId' => $this -> userId, 'notificationStudentStaff' => 0);
-					if (isset($_POST['individual_Batch'])) {
-						$userId = explode(",", $_POST['user_name']);
+					if (isset($_POST['individual_Branch'])) {
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
+						$size = sizeof($_POST["user_name"]);
 						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $userId[$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 3, 'userId' => $_POST["user_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					} else {
-						$branchId = explode(",", $_POST['branch_name']);
 						$this -> load -> model("notification_model");
 						$this -> load -> model("notification_receiver_model");
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
-						$size = sizeof($notificationId);
-						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $branchId[$i]);
+						$size = sizeof($_POST["branch_name"]);
+						for ($i = 1; $i < $size; $i++) {
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					}
@@ -169,7 +161,8 @@ class Staff extends CI_Controller {
 
 			$this -> load -> model("branch_model");
 			$branchName = $this -> branch_model -> getDetailsOfBranch();
-			$this -> data['branch'] = $branchName;
+			$this -> data['branchName'] = $branchName;
+	//		die($branchName);
 			$this -> data['title'] = "ADS | Send Notifications";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/sendnotification_css');
@@ -188,11 +181,13 @@ class Staff extends CI_Controller {
 		$this -> load -> model('user_model');
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
-		$data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
-		$this -> load -> view('backend/master_page/header', $data);
+		$this->data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
+		$this -> load -> view('backend/master_page/header', $this->data);
+		$this -> load -> model("state_model");
+		$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 
 		if (isset($_POST['edit_profile'])) {
-			$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' => $_POST['date_of_birth'], 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city']);
+			$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' => $_POST['date_of_birth'], 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid']);
 			$this -> user_model -> updateUser($staffData, $this -> userId);
 			redirect(base_url() . "staff/profile");
 		}
@@ -213,10 +208,10 @@ class Staff extends CI_Controller {
 
 		if (isset($_POST['change_password'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('current_password', 'Current Password', 'required|trim');
-			$this -> form_validation -> set_rules('new_password', 'New Password', 'required|trim');
-			$this -> form_validation -> set_rules('re_new_password', 'Confirm New Password', 'required|trim');
-			$this -> form_validation -> set_rules('new_password', 'Confirm New Password', 'required|matches[re_new_password]|trim');
+			$this -> form_validation -> set_rules('current_password', 'Current Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('new_password', 'New Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('re_new_password', 'Confirm New Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('new_password', 'Confirm New Password', 'required|matches[re_new_password]|trim|max_length[50]');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
@@ -233,7 +228,7 @@ class Staff extends CI_Controller {
 
 			}
 		}
-		$this -> load -> view('backend/branch_manager/staff_profile');
+		$this -> load -> view('backend/branch_manager/staff_profile',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');

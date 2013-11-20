@@ -8,10 +8,14 @@ var Branch = function() {
 			// begin tblBranch table
 			$('#tblBranch').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
 					"bSortable" : false
-				}, null, {
-					"bSortable" : false
-				}, null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -60,21 +64,31 @@ var Branch = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					branchcode:{
-						required : true
+					branchCode : {
+						required : true,
+						maxlength : 100,
+						lettersonly : true,
 					},
 					branch_name : {
-						minlength : 5,
-						required : true
+
+						required : true,
+						lettersonly : true,
+						minlength : 3,
+						maxlength : 100,
 					},
 					conatct_no : {
 						required : true,
+						minlength : 10,
+						maxlength : 15,
+						digits : true,
 					},
 					street_1 : {
 						required : true,
+						maxlength : 100,
 					},
 					street_2 : {
-						required : true,
+						maxlength : 100,
+						required : false,
 					},
 					stateid : {
 						required : true
@@ -84,7 +98,11 @@ var Branch = function() {
 					},
 					pin_code : {
 						required : true,
-					}
+						minlength : 6,
+						maxlength : 6,
+						digits : true,
+					},
+
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
@@ -178,7 +196,7 @@ var Branch = function() {
 			$("#loadmap").click(function() {
 				Branch.init_google();
 			});
-			
+
 			$(".select2").select2({
 				allowClear : true,
 			});
@@ -193,7 +211,7 @@ var Branch = function() {
 					success : function(json) {
 						if (json) {
 							$.each(json.city_list, function(i, item) {
-								$("#cityid").append("<option value='"+item.cityId+"'>"+item.cityName+"</option>");
+								$("#cityid").append("<option value='" + item.cityId + "'>" + item.cityName + "</option>");
 							});
 						}
 					}
@@ -201,7 +219,7 @@ var Branch = function() {
 			});
 
 			$("#tablink2").click(function() {
-				$('#branchCode').val(0);
+				$('#branchCode').val("");
 				$('#branch_name').val("");
 				$('#conatct_no').val("");
 				$('#street_1').val("");
@@ -227,16 +245,10 @@ function viewbranch(branchCode) {
 		async : true,
 		success : function(json) {
 			if (json) {
-				alert();
-				//$("#ViewBatch").attr("style", "display");
-				//App.scrollTo($('#ViewBatch'));
-				//$('#view_branch_name').text(json.branch[0].branchName);
-				//$('#view_conatct_no').text(json.branch[0].branchContactNumber);
-				//$('#view_address').html(json.branch[0].branchStreet1 + "<Br/>" + json.branch[0].branchStreet2 + "<Br/>" + json.branch[0].branchCity + ", " + json.branch[0].branchState + "<Br/>" + json.branch[0].branchPincode);
-				//$('#viewstreet_2').text();
-				// $('#viewstate').text();
-				//$('#viewcity').text();
-				//$('#viewpin_code').text();
+				$('#viewBranchCode').text(json.branch.branchCode);
+				$('#viewBranchName').text(json.branch.branchName);
+				$('#viewBranchAddress').html(json.branch.branchStreet1 + "<Br/>" + json.branch.branchStreet2 + "<Br/>" + json.branch.branchCity + ", " + json.branch.branchState + "<Br/>" + json.branch.branchPincode);
+				$('#viewContactNo').text(json.branch.branchContactNumber);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");
@@ -253,14 +265,14 @@ function updatebranch(branchCode) {
 		success : function(json) {
 			if (json) {
 				$('#branchCode').val(json.branch.branchCode);
-				$('#branchCode').attr("readonly","readonly");
+				$('#branchCode').attr("readonly", "readonly");
 				$('#branch_name').val(json.branch.branchName);
 				$('#conatct_no').val(json.branch.branchContactNumber);
 				$('#street_1').val(json.branch.branchStreet1);
 				$('#street_2').val(json.branch.branchStreet2);
-				$("#stateid").select2("val",json.branch.stateId);
+				$("#stateid").select2("val", json.branch.stateId);
 				$("#stateid").change();
-				$("#cityid").select2("val",json.branch.cityId);
+				$("#cityid").select2("val", json.branch.cityId);
 				$('#pin_code').val(json.branch.branchPincode);
 				$('#longitude').val(json.branch.branchLongitude);
 				$('#latitude').val(json.branch.branchLatitude);

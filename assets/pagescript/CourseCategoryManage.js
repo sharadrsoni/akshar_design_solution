@@ -8,8 +8,10 @@ var CourseCategory = function() {
 			// begin tblcity table
 			$('#tblCourseCategory').dataTable({
 				"aoColumns" : [{
+					"bSortable" : true
+				},{
 					"bSortable" : false
-				},null],
+				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
 				],
 				// set the initial value
@@ -59,8 +61,11 @@ var CourseCategory = function() {
 				ignore : "",
 				rules : {
 					coursecategory_name: {
-                        minlength: 5,
                         required: true,
+                        lettersonly:true,
+                        minlength: 5,
+                        maxlength:100,
+                        
                     }
 				},
 

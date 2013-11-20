@@ -116,8 +116,7 @@
 										}
 										?>
 									</select>
-									<span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?><
-										/span>
+									<span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?></span>
 								</div>
 							</div><!--/ Batch ID -->
 							<h3 class="form-section">Test Info</h3>
@@ -151,8 +150,7 @@
 						<label class="control-label">Test Marks</label>
 						<div class="controls">
 							<input type="text" name="test_marks" id="test_marks" class="span4" value="<?php echo set_value("test_marks"); ?>">
-							<span for="test_marks" class="help-inline"><?php echo form_error('test_marks'); ?><
-								/span>
+							<span for="test_marks" class="help-inline"><?php echo form_error('test_marks'); ?></span>
 						</div>
 					</div>
 					<div class="control-group">
@@ -204,6 +202,20 @@
 						</table>
 					</div><!--/ List-->
 					<!-- Form Action -->
+						<?php
+						$err = form_error('test_remarks');
+						if ($err != '') {
+							echo "<div class='control-group error'>";
+						} else {
+							echo "<div class='control-group'>";
+						}
+						?>
+						<label class="control-label">Test Remarks</label>
+						<div class="controls">
+							<input type="text" name="test_remarks" id="test_remarks" class="span8" value="<?php echo set_value("test_remarks"); ?>">
+							<span for="test_remarks" class="help-inline"><?php echo form_error('test_remarks'); ?></span>
+						</div>
+					</div>
 					<input type="hidden" name="testId" id="testId" value=""/>
 					<div class="form-actions">
 						<button type="submit" class="btn btn-primary" name="submitTestMarks" id="submitTestMarks">

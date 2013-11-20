@@ -47,13 +47,14 @@ class CI_Controller {
 				$this -> userId = $this -> session -> userdata("userId");
 				$this -> roleId = $this -> session -> userdata("roleId");
 				$this -> load -> model("user_model");
-				$userDetail = $this -> user_model -> getDetailsbyUser($this -> userId);
+				$userDetail = $this -> user_model -> getUserDetails($this -> userId);
 				$this -> branchCode = $userDetail -> branchCode;
 				$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
 				$this -> load -> model("role_model");
 				$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
 				$this -> data['roleId'] = $this -> roleId;
 				$isAuthenticated = true;
+				$this->data['notification'] = $this->notification();
 				break;
 			}
 		}
@@ -61,6 +62,10 @@ class CI_Controller {
 			redirect(base_url() . "login");
 		}
 
+	}
+
+	private function notification() {
+		return $this->db->query("select U.userFirstName, U.userMiddleName, U.userLastName, notificationDescription FROM user U, notification N, notification_receiver NR where U.userId = N.userId and N.notificationId=NR.notificationId and (NR.userId ='" . $this->userId . "' OR NR.userId ='" . $this->branchCode . "' OR NR.userId IN(SELECT batchId FROM student_batch where studentId = '" . $this->userId . "'))")->result();
 	}
 
 	public function __construct() {

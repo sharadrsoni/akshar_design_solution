@@ -8,11 +8,15 @@ var Target = function() {
 			// begin tblTarget table
 			$('#tblTarget').dataTable({
 				"aoColumns" : [{
-					"bSortable" : false
+					"bSortable" : true
 				}, {
-					"bSortable" : false
-				}, null, null, {
-					"bSortable" : false
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
+				}, {
+					"bSortable" : true
 				}, {
 					"bSortable" : false
 				}],
@@ -69,6 +73,8 @@ var Target = function() {
 					},
 					target_name : {
 						required : true,
+						maxlength:100,
+                        alphanumeric:true,
 					},
 					target_type : {
 						required : true,
@@ -76,11 +82,15 @@ var Target = function() {
 					start_date : {
 						required : true,
 					},
-					end_date : {
-						required : true,
+										
+					end_date:
+					{
+						required:true,
+						greaterThan: "#start_date",  
 					},
 					description : {
-						required : true,
+						required : false,
+						maxlength:500,
 					}
 
 				},

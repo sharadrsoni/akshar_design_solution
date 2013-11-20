@@ -52,15 +52,18 @@ class Student extends CI_Controller {
 	public function profile() {
 		$this -> data['title'] = "ADS | Profile";
 		$this -> load -> model('user_model');
+		$this -> load -> model('student_profile_model');
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
-		$data['profile'] = $this -> user_model -> getDetailsByStudent($this -> userId);
-		$this -> load -> view('backend/master_page/header', $data);
+		$this->data['profile'] = $this -> user_model -> getDetailsByStudent($this -> userId);
+		$this -> load -> model("state_model");
+		$this -> data['State'] = $this -> state_model -> getDetailsOfState();
+		$this -> load -> view('backend/master_page/header');
 		if (isset($_POST['edit_profile'])) {
-			$studentData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' => $_POST['date_of_birth'], 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'userState' => $_POST['state'], 'userCity' => $_POST['city']);
+			$studentData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' =>	date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid']);
 			$otherData = array('studentInstituteName' => $_POST['name_of_institute'], 'studentGuardianName' => $_POST['guardian_name'], 'studentGuardianOccupation' => $_POST['occupation_of_guardian'], 'studentReferenceName' => $_POST['reference']);
 			$this -> user_model -> updateUser($studentData, $this -> userId);
-			$this -> user_model -> updateStudetDetails($otherData, $this -> userId);
+			$this -> student_profile_model -> updateStudentDetails($otherData, $this -> userId);
 			redirect(base_url() . "student/profile");
 		}elseif (isset($_POST['change_avatar'])) {
 			$config['upload_path'] = './images/avatar';
@@ -88,9 +91,9 @@ class Student extends CI_Controller {
 			redirect(base_url() . "student/profile");
 		} elseif (isset($_POST['change_password'])) {
 			$this -> load -> library("form_validation");
-			$this -> form_validation -> set_rules('current_password', 'Current Password', 'required|trim');
-			$this -> form_validation -> set_rules('new_password', 'New Password', 'required|trim');
-			$this -> form_validation -> set_rules('re_new_password', 'Enter Same Password', 'required|trim|matches[new_password]');
+			$this -> form_validation -> set_rules('current_password', 'Current Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('new_password', 'New Password', 'required|trim|alpha_numeric|max_length[50]');
+			$this -> form_validation -> set_rules('re_new_password', 'Enter Same Password', 'required|trim|alpha_numeric|matches[new_password]|max_length[50]');
 			if ($this -> form_validation -> run() == FALSE) {
 				$this -> data['validate'] = true;
 			} else {
@@ -103,7 +106,7 @@ class Student extends CI_Controller {
 				}
 			}
 		}
-		$this -> load -> view('backend/branch_manager/student_profile');
+		$this -> load -> view('backend/branch_manager/student_profile',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/student_profile_js');
 		$this -> load -> view('backend/master_page/bottom');
