@@ -135,6 +135,7 @@
 									<button type="submit" class="btn btn-primary" name="submitInventory" id="submitInventory">
 										Add Inventory
 									</button>
+									<a href="<?php echo base_url() . "branch_manager/book_inventory"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 								</div><!--/ Form Action -->
 							</div>
 							</form>
