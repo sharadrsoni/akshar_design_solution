@@ -14,6 +14,7 @@ class Student extends CI_Controller {
 
 	//Dashboard
 	public function index() {
+		$this->data['menu'] = "Dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
@@ -26,6 +27,7 @@ class Student extends CI_Controller {
 
 	//Show marks
 	public function test_result() {
+		$this->data['menu'] = "test result";
 		$this -> data['title'] = "ADS | Target Type";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/test_result_css');
@@ -38,6 +40,7 @@ class Student extends CI_Controller {
 
 	//Show Attendance
 	public function show_attendance() {
+		$this->data['menu'] = "show attendance";
 		$this -> data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
