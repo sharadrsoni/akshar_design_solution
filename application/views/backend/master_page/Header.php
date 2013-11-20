@@ -35,7 +35,7 @@
 									<li>
 									<a href="#" class="text"><?php echo $key->notificationDescription ?>
 									<br>
-									<small><?php echo $key->$userFirstName . " " . $key->userMiddleName . " " . $key->userLastName ?></small> </a>
+									<small><?php echo $key->userFirstName . " " . $key->userMiddleName . " " . $key->userLastName ?></small> </a>
 								</li>
 								<?php endforeach ?>
 							</ul>

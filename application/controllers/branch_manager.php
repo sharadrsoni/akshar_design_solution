@@ -18,18 +18,18 @@ class Branch_manager extends CI_Controller {
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("target_model");
-		$this -> data['TargetPendingCount'] = $this -> target_model -> getPendingCount($this->branchCode);
+		$this -> data['TargetPendingCount'] = $this -> target_model -> getPendingCount($this -> branchCode);
 		$this -> load -> model("inquiry_model");
-		$this -> data['NewInquiryCount'] = $this -> inquiry_model -> getNewInquiryCount($this->branchCode);
+		$this -> data['NewInquiryCount'] = $this -> inquiry_model -> getNewInquiryCount($this -> branchCode);
 		$this -> load -> model("user_model");
-		$this -> data['StudentResigsterCount'] = $this -> user_model -> getUserCount(5,$this->branchCode);
-		$this -> data['FacultyCount'] = $this -> user_model -> getUserCount(3,$this->branchCode);
-		$this->data['chart1']=$this -> user_model -> getstudentRegisterCountOfMonth($this->branchCode);
-		$this -> data['chart2'] = $this -> inquiry_model -> getstudentinquiryCountOfMonth($this->branchCode);
+		$this -> data['StudentResigsterCount'] = $this -> user_model -> getUserCount(5, $this -> branchCode);
+		$this -> data['FacultyCount'] = $this -> user_model -> getUserCount(3, $this -> branchCode);
+		$this -> data['chart1'] = $this -> user_model -> getstudentRegisterCountOfMonth($this -> branchCode);
+		$this -> data['chart2'] = $this -> inquiry_model -> getstudentinquiryCountOfMonth($this -> branchCode);
 		$this -> load -> model("fee_model");
-		$this -> data['chart3'] = $this -> fee_model -> getpaymentOfMonth($this->branchCode);
+		$this -> data['chart3'] = $this -> fee_model -> getpaymentOfMonth($this -> branchCode);
 		$this -> load -> model("event_model");
-		$this -> data['events'] = $this -> event_model -> geteventForCalender($this->branchCode);
+		$this -> data['events'] = $this -> event_model -> geteventForCalender($this -> branchCode);
 		$this -> load -> view('backend/admin/dashboard', $this -> data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/dashboard_js');
@@ -70,42 +70,38 @@ class Branch_manager extends CI_Controller {
 				if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
 				} else {
-					$this -> load -> model('batch_model');
 					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchCode' => $this -> branchCode, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 					$update = false;
-					$this -> load -> model('batch_timing_model');
 					if ($_POST['batchId'] == '') {
 						$year = date('Y');
 						$getMaximumBatchId = $this -> batch_model -> getMaxId($year, $this -> branchCode);
 						if ($getMaximumBatchId > 0) {
 							$batchId = $year . $this -> branchCode . $getMaximumBatchId;
-							$branchData['batchId'] = $batchId;
 						} else {
 							$this -> data['validate'] = true;
 						}
 					} else {
 						$batchId = $_POST['batchId'];
-						$this -> batch_timining_model -> deleteDetailsByBatch($batchId);
+						$this -> batch_timing_model -> deleteDetailsByBatch($batchId);
 						$update = true;
 					}
-					if (!isset($this -> data['validate'])) {
-						$batch_timings = array();
-						$size = sizeof($_POST["batch_timing"]);
-						if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
-							for ($i = 0; $i < $size; ) {
-								$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
-								if ($this -> batch_timing_model -> addBatchTime($dummy)) {
-									$this -> data['error'] = "An Error Occured.";
-									break;
-								}
-								$i++;
+					$branchData['batchId'] = $batchId;
+					$batch_timings = array();
+					$size = sizeof($_POST["batch_timing"]);
+					if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
+						for ($i = 0; $i < $size; ) {
+							$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
+							if (!$this -> batch_timing_model -> addBatchTime($dummy)) {
+								$this -> data['error'] = "An Error Occured.";
+								break;
 							}
-							if ($this -> data['error'] == null) {
-								redirect(base_url() . "branch_manager/batch");
-							}
-						} else {
-							$this -> data['error'] = "An Error Occured.";
+							$i++;
 						}
+						if ($this -> data['error'] == null) {
+							redirect(base_url() . "branch_manager/batch");
+						}
+					} else {
+						$this -> data['error'] = "An Error Occured.";
 					}
 				}
 			}

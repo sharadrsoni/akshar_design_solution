@@ -65,7 +65,7 @@ class CI_Controller {
 	}
 
 	private function notification() {
-		return $this->db->query("SELECT user.userFirstName, user.userMiddleName, user.userLastName, notificationDescription FROM user, notification, notification_receiver WHERE notification.notificationId = notification_receiver.notificationId AND user.userId = notification.userId AND (notification_receiver.userId ='" . $this->userId . "' OR notification_receiver.userId ='" . $this->branchCode . "' OR notification_receiver.userId IN (SELECT batchId FROM student_batch where studentId = '" . $this->userId . "'))")->result();
+		return $this->db->query("select U.userFirstName, U.userMiddleName, U.userLastName, notificationDescription FROM user U, notification N, notification_receiver NR where U.userId = N.userId and N.notificationId=NR.notificationId and (NR.userId ='" . $this->userId . "' OR NR.userId ='" . $this->branchCode . "' OR NR.userId IN(SELECT batchId FROM student_batch where studentId = '" . $this->userId . "'))")->result();
 	}
 
 	public function __construct() {

@@ -79,15 +79,7 @@ var Batch = function() {
 						required : true,
 						digits : true,
 					},
-					weekday : {
-						required : true,
-					},
-					duration : {
-						required : true,
-						number : true,
-						min : 0,
-
-					},
+					
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit

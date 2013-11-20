@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
 
 class batch_model extends CI_Model {
 
-	public function getMaxId() {
+	public function getMaxId($year,$branchCode) {
 		//die("yes");
 		$dataResponse = $this -> db -> like('batchId', $year . $branchCode, "after") -> get('batch') -> result();
 		//die(print_r($dataResponse));

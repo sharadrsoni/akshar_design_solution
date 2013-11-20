@@ -123,7 +123,7 @@ class batch_timing_model extends CI_Model {
 	public function deleteDetailsByBatch($batchId) {
 		if (isset($batchId)) {
 			if (isset($batchId)) {
-				$this -> where("batchId", $batchId);
+				$this -> db -> where("batchId", $batchId);
 				$this -> db -> delete("batch_timing");
 				return true;
 			}
