@@ -24,7 +24,7 @@
 
 					<!-- START Notification -->
 					<li class="notification">
-						<a href="#" data-toggle="dropdown"> <span class="badge">2</span> <span class="icon iconm-bell-2"></span> </a>
+						<a href="#" data-toggle="dropdown"> <span class="badge"></span> <span class="icon iconm-bell-2"></span> </a>
 						<!-- START Dropdown Menu -->
 						<div class="dropdown-menu" role="menu">
 							<header>
