@@ -103,7 +103,7 @@
 										<thead>
 											<tr>
 											<tr>
-												<th>Student ID</th>
+												<th>Student Name</th>
 												<th class="hidden-480">Present/Absent </th>
 											</tr>
 										</thead>

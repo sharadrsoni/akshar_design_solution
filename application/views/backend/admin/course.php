@@ -125,7 +125,6 @@
 									foreach ($course_category as $key) {
 										echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
 									}
-<<<<<<< HEAD
 									 ?>
 									
 										<label class="control-label">Material Total Books<span class="required">*</span></label>
@@ -159,12 +158,12 @@
 									</div><!--/ Form Action -->
 								</div>
 							</form>
-=======
+
 									?>
 								</select>
 								<span for="courseCategory_id" class="help-inline"><?php echo form_error('courseCategory_id'); ?></span>
 							</div>
->>>>>>> upstream1/master
+
 						</div>
 						<!--/ CourseCategory ID -->
 						<!-- Course Name -->

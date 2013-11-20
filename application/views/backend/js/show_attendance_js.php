@@ -14,7 +14,8 @@
 jQuery(document).ready(function(){
 		
 		App.init();
-		ShowAttendance.initCalendar();
+		ShowAttendance.init_formvalidation(); 
+		ShowAttendance.init_uijquery();
 	});
 	
 </script>
