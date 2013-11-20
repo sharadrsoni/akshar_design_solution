@@ -104,7 +104,7 @@ class Ajax_manager extends CI_Controller {
 			echo null;
 		} else {
 			$this -> load -> model("user_model");
-			echo json_encode($this -> user_model -> getSearchUserList($value));
+			echo json_encode($this -> user_model -> getSearchUserList($value, $this->roleId));
 		}
 	}
 

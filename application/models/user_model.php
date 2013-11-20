@@ -150,13 +150,13 @@ class user_model extends CI_Model {
 		return false;
 	}
 
-	public function getSearchUserList($value) {
+	public function getSearchUserList($value, $branchCode) {
 		$this->db->distinct("U.*");
 		$this->db->from('user as U');
 		$this->db->join("(select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC", 'U.userId = SBC.studentId', 'left'); 
 		$this->db->like('courseName', $value)->or_like('userId', $value)->or_like('userFirstName', $value)->or_like('userMiddleName', $value)->or_like('userLastName', $value)->or_like('batchId', $value);
+		$this->db->where('user.branchCode', $branchCode);
 		$queryData = $this->db->get()->result();
-		
 		$k = 0;
 		foreach ($queryData as $key) {
 			$this->load->model("student_batch_model");
