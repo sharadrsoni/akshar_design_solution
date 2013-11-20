@@ -70,12 +70,12 @@
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="nav-collapse collapse"> 
           <ul class="nav">
-            <li> <a href="index.html"> 
+            <li> <a href="index.php"> 
               Home </a> </li>
            <li><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
-            <li><a href="<?php echo base_url()."photo_gallery"; ?>">Photo Gallery</a></li>
-            <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
-            <li class="active"><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
+            <li><a href="<?php echo base_url()."event"; ?>">Event</a></li>
+            <li class="active"><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
+            <li><a href="<?php echo base_url()."contact_us"; ?>">Contact Us</a></li>
             <li> <span class="sep"></span> <a href="<?php echo base_url()."login"; ?>">Login</a></li>
           </ul>
         </div>
@@ -94,7 +94,7 @@
             </div>
             <div class="span8">
                 <ul class="pull-right breadcrumb">
-                    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                    <li><a href="index.php">Home</a> <span class="divider">/</span></li>
                     <li class="active">About Us</li>
                 </ul>
             </div>
