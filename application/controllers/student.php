@@ -26,11 +26,15 @@ class Student extends CI_Controller {
 
 	//Show marks
 	public function test_result() {
-		$this -> data['title'] = "ADS | Target Type";
+		$this -> data['title'] = "ADS | Test Result";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/test_result_css');
 		$this -> load -> view('backend/master_page/header');
-		$this -> load -> view('backend/branch_manager/test_result');
+		$this -> load -> model("test_result_model");
+		$test_details = $this -> test_result_model -> listMarksByStudent($this -> userId);
+		$this -> data['test_details'] = $test_details;
+//		$this -> data['test_max'] = $this -> test_result -> getMaximumMarks($test_details['testId']);
+		$this -> load -> view('backend/branch_manager/test_result',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/test_result_js');
 		$this -> load -> view('backend/master_page/bottom');
