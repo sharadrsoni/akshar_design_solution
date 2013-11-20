@@ -83,7 +83,7 @@
                                 </a>
                             </li>
                             <li><a href="courses.html">Courses</a></li>
-                            <li><a href="photo_gallery.html">Photo Gallery</a></li>
+                            <li><a href="event.html">Event</a></li>
                             <li><a href="page_testimonials.html">Testimonials</a></li>
                             <li><a href="about_us.html">About Us</a></li>                        
                             <li><a href="contact_us.html">Contact Us</a></li>
