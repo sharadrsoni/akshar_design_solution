@@ -13,15 +13,20 @@ class Branch_manager extends CI_Controller {
 
 	//Dashboard
 	public function index() {
+		$this->data['menu'] = "Dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
+		
 		$this -> load -> view('backend/css/dashboard_css');
+		
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("target_model");
+		
 		$this -> data['TargetPendingCount'] = $this -> target_model -> getPendingCount($this -> branchCode);
 		$this -> load -> model("inquiry_model");
 		$this -> data['NewInquiryCount'] = $this -> inquiry_model -> getNewInquiryCount($this -> branchCode);
 		$this -> load -> model("user_model");
+		
 		$this -> data['StudentResigsterCount'] = $this -> user_model -> getUserCount(5, $this -> branchCode);
 		$this -> data['FacultyCount'] = $this -> user_model -> getUserCount(3, $this -> branchCode);
 		$this -> data['chart1'] = $this -> user_model -> getstudentRegisterCountOfMonth($this -> branchCode);
@@ -38,6 +43,7 @@ class Branch_manager extends CI_Controller {
 
 	//Batch
 	public function batch($batchId = '') {
+		$this->data['menu'] = "Batch";
 		$this -> load -> model('batch_model');
 		$this -> load -> model("batch_timing_model");
 		$weekdays = array();
@@ -144,6 +150,7 @@ class Branch_manager extends CI_Controller {
 
 	//Event
 	public function event($eventId = '') {
+		$this->data['menu'] = "Event";
 		$this -> load -> model('event_model');
 		$branchCode = $this -> branchCode;
 		if ($eventId != '') {
@@ -221,6 +228,7 @@ class Branch_manager extends CI_Controller {
 
 	//target Report
 	public function target_report($targetId = '') {
+		$this->data['menu'] = "Target Report";
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
 			$this -> data['target'] = $this -> target_model -> getDetailsOfTarget($targetId);
