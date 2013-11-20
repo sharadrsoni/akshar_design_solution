@@ -150,11 +150,33 @@ class user_model extends CI_Model {
 		$this->db->join("(select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC", 'U.userId = SBC.studentId', 'left'); 
 		$this->db->like('courseName', $value)->or_like('userId', $value)->or_like('userFirstName', $value)->or_like('userMiddleName', $value)->or_like('userLastName', $value)->or_like('batchId', $value);
 		$queryData = $this->db->get()->result();
+		
+		$k = 0;
 		foreach ($queryData as $key) {
 			$this->load->model("student_batch_model");
 			$courseData = $this->student_batch_model->getDetailsByStudent($key->userId);
-			die(print_r($courseData));
+			$batchName = "";
+			$courseName = "";
+			$i = 1;
+			$j = 1;
+			foreach ($courseData as $key2) {
+				if($i == 1) {
+					$batchName .= $key->batchId; 
+				} else {
+					$batchName .= "," . $key->batchId; 
+				}
+				$i++;
+				if($j == 1) {
+					$courseName .= $key->courseName; 
+				} else {
+					$courseName .= "," . $key->courseName; 
+				}
+				$j++;
+			}
+			$data[$k++] = array("Name" => $key->userFirstName . " " . $key->userMiddleName . " " . $key->userLastName, "Username" => $key->userId, "Joined" => $key->userJoiningDate, "Courses" => $courseName, "Batch" => $batchName);
 		}
+		//die(print_r($data));
+		return $data;
 	}
 
 }

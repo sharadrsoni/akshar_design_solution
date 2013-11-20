@@ -14,7 +14,7 @@ var SearchManage = function() {
 								if (json.length > 0) {
 									$("#tblSearch").attr("style", "display");
 									$.each(json, function(i, item) {
-										$('#searchData').append("<tr><td><img src='assets/img/avatar1.jpg' /></td><td class='hidden-phone'>" + item.userId + "</td><td>" + item.userFirstName + " " + item.userMiddleName + " " + item.userLastName + "</td><td class='hidden-phone'>" + item.userJoiningDate + "</td><td class='hidden-phone'>" + item.userId + "</td><td><span class='label label-success'>Approved</span></td><td><a class='btn mini red-stripe' href=''>View</a></td></tr>");
+										$('#searchData').append("<tr><td><img src='assets/img/avatar1.jpg' /></td><td class='hidden-phone'>" + item.Username + "</td><td>" + item.Name + "</td><td class='hidden-phone'>" + item.Joined + "</td><td class='hidden-phone'>" + item.Batch + "</td><td><span class='label label-success'>Approved</span></td><td><a class='btn mini red-stripe' href=''>View</a></td></tr>");
 									});
 								}
 							}
