@@ -115,7 +115,7 @@ class Staff extends CI_Controller {
 						$notificationId = $this -> notification_model -> getId($notificationData);
 						$size = sizeof($_POST["branch_name"]);						
 						for ($i = 1; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					} else {
@@ -125,7 +125,7 @@ class Staff extends CI_Controller {
 						$notificationId = $this -> notification_model -> getId($notificationData);
 						$size = sizeof($_POST["batch_name"]);						
 						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 2, 'userId' => $_POST["batch_name"][$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 2, 'userId' => $_POST["batch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					}
@@ -138,7 +138,7 @@ class Staff extends CI_Controller {
 						$notificationId = $this -> notification_model -> getId($notificationData);
 						$size = sizeof($_POST["user_name"]);
 						for ($i = 0; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 3, 'userId' => $_POST["user_name"][$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 3, 'userId' => $_POST["user_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					} else {
@@ -148,7 +148,7 @@ class Staff extends CI_Controller {
 						$notificationId = $this -> notification_model -> getId($notificationData);
 						$size = sizeof($_POST["branch_name"]);
 						for ($i = 1; $i < $size; $i++) {
-							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReciverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
+							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
 					}

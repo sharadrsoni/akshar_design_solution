@@ -176,9 +176,8 @@ class Branch_manager extends CI_Controller {
 				$this -> form_validation -> set_rules('start_date', 'Start Date', 'required|trim|callback__checkingDate');
 				$this -> form_validation -> set_rules('end_date', 'End Date', 'required|trim|callback__checkingDate');
 				$this -> form_validation -> set_rules('event_name', 'Event Name', 'required|trim|alpha_numeric|max_length[100]');
-				$this -> form_validation -> set_rules('description', 'Description', 'required|trim|max_length[500]');
+				$this -> form_validation -> set_rules('description', 'Description', 'trim|max_length[500]');
 				$this -> form_validation -> set_rules('street_1', 'Address 1', 'required|trim|alpha_numeric|max_length[100]');
-				$this -> form_validation -> set_rules('street_2', 'Address 2', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('organize_by', 'Organize By', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim|alpha_numeric|max_length[50]');
 				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim|alpha_numeric|max_length[50]');
