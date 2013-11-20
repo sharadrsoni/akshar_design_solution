@@ -104,9 +104,18 @@ class Ajax_manager extends CI_Controller {
 			echo null;
 		} else {
 			$this -> load -> model("user_model");
-			echo json_encode($this -> user_model -> getSearchUserList($value));
+			echo json_encode($this -> user_model -> getSearchUserList($value, $this->branchCode, $this->roleId));
 		}
 	}
+
+	// targer reports
+	
+	public function targetReports($targetId)
+	{
+		$this->load->model('target_report_model');
+		$this->data['target_report']=$this->target_report_model->getTargetReports($targetId);
+		echo json_encode($this -> data);
+	}
+
 }
 ?>
-

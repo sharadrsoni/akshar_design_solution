@@ -10,12 +10,20 @@ class target_report_model extends CI_Model {
 		return $this -> db -> get() -> result();
 	}
 
+	
 	public function addReport($data) {
 		if (isset($data)) {
 			$this -> db -> insert('target_report', $data);
 		}
 		return false;
 	}
-
+	
+	public function getTargetReports($targetId)
+	{
+		$this -> db -> from('target');
+		$this -> db -> join('target_report',$targetId);
+		return $this -> db -> get() -> result();
+			
+	}
 }
 ?>

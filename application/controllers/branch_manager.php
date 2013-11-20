@@ -73,25 +73,19 @@ class Branch_manager extends CI_Controller {
 					$this -> load -> model('batch_model');
 					$branchData = array('batchStrength' => $_POST['strength'], 'batchDuration' => $_POST['duration'], 'branchCode' => $this -> branchCode, 'facultyId' => $_POST['faculty_id'], 'courseCode' => $_POST['course_id'], 'batchStartDate' => date("Y-m-d", strtotime($_POST['start_date'])));
 					$update = false;
-					$time_update = false;
 					$this -> load -> model('batch_timing_model');
 					if ($_POST['batchId'] == '') {
 						$year = date('Y');
 						$getMaximumBatchId = $this -> batch_model -> getMaxId($year, $this -> branchCode);
 						if ($getMaximumBatchId > 0) {
 							$batchId = $year . $this -> branchCode . $getMaximumBatchId;
-							//die($getMaximumBatchId . "----" . $batchId);
 							$branchData['batchId'] = $batchId;
-							//die($branchData['batchId']);
 						} else {
 							$this -> data['validate'] = true;
 						}
 					} else {
 						$batchId = $_POST['batchId'];
-						if ($_POST['flagbtalter'] != "") {
-							$this -> batch_timining_model -> deleteDetailsByBatch($batchId);
-							$time_update = true;
-						}
+						$this -> batch_timining_model -> deleteDetailsByBatch($batchId);
 						$update = true;
 					}
 					if (!isset($this -> data['validate'])) {
@@ -100,7 +94,7 @@ class Branch_manager extends CI_Controller {
 						if ($update ? $this -> batch_model -> updateBatch($branchData) : $this -> batch_model -> addBatch($branchData)) {
 							for ($i = 0; $i < $size; ) {
 								$dummy = array("batchTimingWeekday" => $_POST["batch_timing"][$i], "batchTimingStartTime" => $_POST["batch_timing"][++$i], "batchTimingEndTime" => $_POST["batch_timing"][++$i], "batchId" => $batchId);
-								if ($time_update ? !$this -> batch_timing_model -> updateBatchTime($dummy) : !$this -> batch_timing_model -> addBatchTime($dummy)) {
+								if ($this -> batch_timing_model -> addBatchTime($dummy)) {
 									$this -> data['error'] = "An Error Occured.";
 									break;
 								}
@@ -234,7 +228,7 @@ class Branch_manager extends CI_Controller {
 	public function target_report($targetId = '') {
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
-			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
+			$this -> data['target'] = $this -> target_model -> getDetailsOfTarget($targetId);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Target Report";

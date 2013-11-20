@@ -143,7 +143,6 @@ class Admin extends CI_Controller {
 					}
 				}
 			}
-			$this -> load -> view('backend/admin/course_category', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/coursecategory_js');
 			$this -> load -> view('backend/master_page/bottom');
