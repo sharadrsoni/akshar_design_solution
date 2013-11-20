@@ -78,8 +78,7 @@ var Inquiry = function() {
 						lettersonly:true,
 					},
 					middle_name : {
-						required : true,
-						minlength : 2,
+						required : false,
 						maxlength:50,
 						lettersonly:true,
 					},
@@ -97,8 +96,7 @@ var Inquiry = function() {
 						digits:true,
 						required : true,
 						minlength : 10,
-						maxlength:10,
-						
+						maxlength:15,				
 					},
 					email : {
 						email : true,
@@ -119,14 +117,15 @@ var Inquiry = function() {
 						minlength : 4,
 						maxlength:100,
 					},
-					city : {
+					cityid : {
 						required : true,
 					},
-					state : {
+					stateid : {
 						required : true,
 					},
 					pin_code : {
 						required : true,
+						digits:true,
 					},
 					coursecategory : {
 						required : true,
@@ -233,7 +232,7 @@ var Inquiry = function() {
 				$('#course').html('');
 				$("#course").append("<option>Select...</option>");
 				$.ajax({
-					url : "../ajax_manager/courseByCourseCategory/" + $("#coursecategory").val(),
+					url : "../ajax_manager/courseByCategory/" + $("#coursecategory").val(),
 					dataType : 'json',
 					async : false,
 					success : function(json) {

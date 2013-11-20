@@ -46,6 +46,19 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
+	public function getBatchStudents($batchCode) {
+		$this -> db -> where_in("student_batch.batchId",$batchCode, null);
+		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');
+		return $this -> db -> get('user') -> result();
+	}
+
+
+	public function getBranchStaff($branchCode) {
+		$this -> db -> where("branchCode", $branchCode);
+		$this -> db -> where("roleId !=", 5);
+		return $this -> db -> get('user') -> result();
+	}
+
 	//get max id for next id
 	public function getMaxId($year, $branch, $role) {
 		$userId = $this -> db -> query("select max(RIGHT(userId,3))+1 as userid from user where userId like '" . $year . $branch . $role . "%'") -> row();

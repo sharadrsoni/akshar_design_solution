@@ -88,6 +88,14 @@ class Ajax_manager extends CI_Controller {
 	}
 
 
+	//Course List by Course Category
+	public function courseByCategory($courseCategoryId) {
+		$this -> load -> model('course_model');
+		$this -> data['city_list'] = $this -> course_model -> getDetailsCourseCategory($courseCategoryId);
+		echo json_encode($this -> data);
+	}
+
+
 	//Batch List
 	public function branchDataList() {
 		$this -> load -> model('batch_model');
@@ -98,6 +106,33 @@ class Ajax_manager extends CI_Controller {
 		$this -> data['staff_list'] = $staff_data;
 		echo json_encode($this -> data);
 	}
+
+	//Batch faculty List
+	public function branchStaffList() {
+		$this -> load -> model('user_model');
+		$staff_data = $this -> user_model -> getBranchStaff($this -> branchCode);
+		$this -> data['staff_list'] = $staff_data;
+		echo json_encode($this -> data);
+	}
+
+	//Branch Batch List
+	public function branchBatchList() {
+		$this -> load -> model('batch_model');
+		$student_data = $this -> batch_model -> getDetailsBranch($this -> branchCode);
+		$this -> data['student_list'] = $student_data;
+		echo json_encode($this -> data);
+	}
+
+
+	//Batch Student List
+	public function branchStudentList() {
+		$this -> load -> model('user_model');
+		$staff_data = $this -> user_model -> getBatchStudents($_POST['batchCode']);
+		$this -> data['staff_list'] = $staff_data;
+		echo json_encode($this -> data);
+	}
+
+
 
 	public function search($value = '') {
 		if ($value == '') {

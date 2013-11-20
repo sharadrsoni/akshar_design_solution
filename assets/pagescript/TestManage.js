@@ -17,7 +17,11 @@ var Test = function() {
 				},
 				test_marks : {
 					required : true,
-				}
+					digits:true,
+				},
+				test_remarks : {
+					required : true,
+				},
 			},
 
 			invalidHandler : function(event, validator) {//display error alert on form submit

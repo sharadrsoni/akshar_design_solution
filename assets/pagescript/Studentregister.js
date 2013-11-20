@@ -17,6 +17,11 @@ var StudentRegistration = function() {
 					maxlength:50,
 					lettersonly:true,
 				},
+				middlename : {
+					required : false,
+					maxlength:50,
+					lettersonly:true,
+				},
 				lastname : {
 					required : true,
 					minlength : 2,
@@ -31,7 +36,7 @@ var StudentRegistration = function() {
 				
 				contact_number : {
 					minlength : 10,
-					maxlength:10,
+					maxlength:15,
 					digits:true,
 					required : true
 					

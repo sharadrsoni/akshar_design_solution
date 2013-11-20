@@ -22,6 +22,12 @@ class course_model extends CI_Model {
 		return $this -> db -> query("select course.* from course where courseCategoryId = " . $courseCategoryId . " and courseCode Not In(Select courseCode from student_batch s,batch b where s.batchId = b.batchId and s.studentId = '" . $studentId . "')")->result();
 	}
 
+	public function getDetailsCourseCategory($courseCategoryId) {
+		$this -> db -> where('course.courseCategoryId', $courseCategoryId);
+		return $this -> db -> get('course') -> result();
+	}
+
+
 	public function getCourseCategory() {
 		return $this -> db -> get('course_category') -> result();
 	}

@@ -74,7 +74,7 @@ var Course= function() {
 					courseCode: {
                         required: true,
                         alphanumeric:true,
-                        maxlength:8,
+                        maxlength:10,
                         minlength:2,
                     },
 					course_duration: {
@@ -93,9 +93,9 @@ var Course= function() {
                     },
                     description:{
                     	 required: true,
-                    	 minlength:5,
                     },
 					opening_stock: {
+						digits : true,
                         required: true,
                     }
                 },

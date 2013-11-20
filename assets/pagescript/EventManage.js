@@ -67,6 +67,7 @@ var Event = function() {
 					required : true,
 					minlength:3,
 					maxlength:100,
+					lettersonly:true,
 				},
 				event_type_id : {
 					required : true,
@@ -80,17 +81,15 @@ var Event = function() {
 				},
 				description : {
 					required : true,
-					minlength:10,
 					maxlength:200,
+					lettersonly:true,
 				},
 				street_1 : {
 					required : true,
-						minlength : 4,
 						maxlength:100,
 				},
 				street_2 : {
-					required : true,
-						minlength : 4,
+					required : false,
 						maxlength:100,
 				},
 				city : {
