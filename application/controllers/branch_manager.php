@@ -215,7 +215,7 @@ class Branch_manager extends CI_Controller {
 	public function target_report($targetId = '') {
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
-			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
+			$this -> data['target'] = $this -> target_model -> getDetailsOfTarget($targetId);
 			echo json_encode($this -> data);
 		} else {
 			$this -> data['title'] = "ADS | Target Report";
