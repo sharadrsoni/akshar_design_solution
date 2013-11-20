@@ -159,6 +159,7 @@ var Batch = function() {
 				$('#lst_batch_timing').html("");
 				$("#batchId").val("");
 				$("#flagbtalter").val("");
+				$("#register").text("Add Batch");
 			});
 		}
 	};
@@ -202,6 +203,7 @@ function updatebatch(batchid) {
 				$("#tablink1").parent().removeClass("active");
 				$("#tab1").removeClass("active");
 				$("#tab2").addClass("active");
+				$("#register").text("Update Batch");
 				$("#batchId").val(batchid);
 			}
 		}

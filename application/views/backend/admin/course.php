@@ -125,10 +125,45 @@
 									foreach ($course_category as $key) {
 										echo "<option value='{$key->courseCategoryId}'>{$key->courseCategoryName}</option>";
 									}
+									 ?>
+									
+										<label class="control-label">Material Total Books<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="total_books" id="total_books" class="span8" value="<?php echo set_value("total_books"); ?>"/>
+											<span for="total_books" class="help-inline"><?php echo form_error('total_books'); ?></span>
+										</div>
+									</div><!--/ Course Material Total Books -->
+									<!-- Course Description -->
+											<?php
+									$err=form_error('description');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+									
+										<label class="control-label">Description<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
+											<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
+										</div>
+									</div><!--/ Course Description -->
+									<!-- Form Action -->
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">
+											Add Course
+										</button>
+											<a href="<?php echo base_url() . "admin/course"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
+									</div><!--/ Form Action -->
+								</div>
+							</form>
+
 									?>
 								</select>
 								<span for="courseCategory_id" class="help-inline"><?php echo form_error('courseCategory_id'); ?></span>
 							</div>
+
 						</div>
 						<!--/ CourseCategory ID -->
 						<!-- Course Name -->

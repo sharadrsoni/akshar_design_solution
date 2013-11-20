@@ -281,8 +281,9 @@
 									<!-- Form Action -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary" name="register" id="register">
-											Register
+											Add Batch
 										</button>
+											<a href="<?php echo base_url() . "branch_manager/batch"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 							</form>

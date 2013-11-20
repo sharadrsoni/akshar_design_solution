@@ -438,6 +438,7 @@
 										<button type="submit" class="btn btn-primary" name="submitInquiry" id="submitInquiry">
 											Add Inquiry
 										</button>
+											<a href="<?php echo base_url() . "branch_manager/inquiry"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 							</form>

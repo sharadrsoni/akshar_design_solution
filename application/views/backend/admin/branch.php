@@ -261,6 +261,8 @@
 									<button type="submit" name="submitBranch" id="submitBranch" class="btn btn-primary">
 										Add Branch
 									</button>
+									<a href="<?php echo base_url() . "admin/branch"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
+								
 								</div><!--/ Form Action -->
 							</div>
 							</form>

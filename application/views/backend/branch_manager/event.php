@@ -312,8 +312,9 @@
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" class="btn btn-primary" name="submitEvent" id="submitEvent">
-										Create
+										Create Event
 									</button>
+									<a href="<?php echo base_url() . "branch_manager/event"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 								</div><!--/ Form Action -->
 							</div>
 							</form>
@@ -393,8 +394,9 @@
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" id="submitEventAttendance" name="submitEventAttendance" class="btn btn-primary">
-										Save
+										Save Attendance
 									</button>
+									<a href="<?php echo base_url() . "branch_manager/event"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 								</div><!--/ Form Action -->
 							</div>
 							</form>
