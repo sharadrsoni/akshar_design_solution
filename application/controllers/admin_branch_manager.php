@@ -14,6 +14,7 @@ class Admin_branch_manager extends CI_Controller {
 
 	//Event Type
 	public function event_type($eventtypeId = '') {
+		$this->data['menu'] = "event type";
 		$this -> load -> model("event_type_model");
 		if ($eventtypeId != '') {
 			$this -> data['eventtype'] = $this -> event_type_model -> getDetailsByEventType($eventtypeId);

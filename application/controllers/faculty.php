@@ -14,6 +14,7 @@ class Faculty extends CI_Controller {
 
 	//Dashboard
 	public function index() {
+		$this->data['menu'] = "dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
@@ -39,6 +40,7 @@ class Faculty extends CI_Controller {
 
 	//Student attendance
 	public function student_attendance() {
+		$this->data['menu'] = "student attendance";
 		if (isset($_POST['saveAttendance'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('Attendance_date', 'Attendence Date', 'required|trim|callback__checkingDate');
@@ -91,7 +93,7 @@ class Faculty extends CI_Controller {
 
 	//Test & Marks
 	public function test() {
-
+$this->data['menu'] = "test";
 		if (isset($_POST['submitTest'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('test_date', 'Test Date', 'required|trim|callback__checkingDate');

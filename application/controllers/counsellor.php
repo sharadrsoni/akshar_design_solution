@@ -5,8 +5,6 @@ if (!defined('BASEPATH'))
  *
  */
 class Counsellor extends CI_Controller {
-		
-		
 		function __construct() {
 		parent::__construct();
 		$users = array(4);
@@ -16,6 +14,7 @@ class Counsellor extends CI_Controller {
 		
 	//Dashboard
 	public function index() {
+		$this->data['menu'] = "dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');

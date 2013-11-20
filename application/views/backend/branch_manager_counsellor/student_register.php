@@ -148,6 +148,7 @@
 								<button type="submit" class="btn purple-stripe" name="registerStudent" id="registerStudent">
 									Register
 								</button>
+								<a href="<?php echo base_url() . "branch_manager/studentregistration"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 							</div>
 						</form>
 					</div>
@@ -274,6 +275,7 @@
 								<button type="submit" class="btn purple-stripe" name="registerCourse" id="registerCourse">
 									Course Register
 								</button>
+								<a href="<?php echo base_url() . "branch_manager/studentregistration"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 							</div><!-- Add -->
 						</form>
 						<!-- LIst -->

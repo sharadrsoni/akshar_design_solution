@@ -109,6 +109,7 @@
 										<button type="submit" class="btn btn-primary" name="submitTargetType" id="submitTargetType">
 											Add Target Type
 										</button>
+										<a href="<?php echo base_url() . "admin/target_type"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 								</form>

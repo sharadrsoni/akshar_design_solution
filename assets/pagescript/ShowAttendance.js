@@ -1,89 +1,58 @@
-var ShowAttendance = function() {
+var Role = function() {
 	return {
-		initCalendar : function() {
-			if (!jQuery().fullCalendar) {
-				return;
-			}
+		init_formvalidation : function() {
+			var form1 = $('#form_show_attendance');
+			var error1 = $('.alert-error', form1);
+			var success1 = $('.alert-success', form1);
+			form1.validate({
+				errorElement : 'span', //default input error message container
+				errorClass : 'help-inline', // default input error message class
+				focusInvalid : false, // do not focus the last invalid input
+				ignore : "",
+				rules : {
+					batch_id:{
+						required : true,
+					}
+				},
 
-			var date = new Date();
-			var d = date.getDate();
-			var m = date.getMonth();
-			var y = date.getFullYear();
+				invalidHandler : function(event, validator) {//display error alert on form submit
+					success1.hide();
+					error1.show();
+					App.scrollTo(error1, -200);
+				},
 
-			var h = {};
+				highlight : function(element) {// hightlight error inputs
+					$(element).closest('.help-inline').removeClass('ok');
+					// display OK icon
+					$(element).closest('.control-group').removeClass('success').addClass('error');
+					// set error class to the control group
+				},
 
-			if ($('#calendar').width() <= 400) {
-				$('#calendar').addClass("mobile");
-				h = {
-					left : 'title, prev, next',
-					center : '',
-					right : 'today,month,agendaWeek,agendaDay'
-				};
-			} else {
-				$('#calendar').removeClass("mobile");
-				if (App.isRTL()) {
-					h = {
-						right : 'title',
-						center : '',
-						left : 'prev,next,today,month,agendaWeek,agendaDay'
-					};
-				} else {
-					h = {
-						left : 'title',
-						center : '',
-						right : 'prev,next,today,month,agendaWeek,agendaDay'
-					};
+				unhighlight : function(element) {// revert the change done by hightlight
+					$(element).closest('.control-group').removeClass('error');
+					// set error class to the control group
+				},
+
+				success : function(label) {
+					label.addClass('valid').addClass('help-inline ok')// mark the current input as valid and display OK icon
+					.closest('.control-group').removeClass('error').addClass('success');
+					// set success class to the control group
+				},
+
+				submitHandler : function(form) {
+					success1.show();
+					form.submit();
+					error1.hide();
 				}
-			}
-
-			$('#calendar').fullCalendar('destroy');
-			// destroy the calendar
-			$('#calendar').fullCalendar({//re-initialize the calendar
-				disableDragging : false,
-				header : h,
-				editable : true,
-				events : [{
-					title : 'All Day Event',
-					start : new Date(y, m, 1),
-					backgroundColor : App.getLayoutColorCode('yellow')
-				}, {
-					title : 'Long Event',
-					start : new Date(y, m, d - 5),
-					end : new Date(y, m, d - 2),
-					backgroundColor : App.getLayoutColorCode('green')
-				}, {
-					title : 'Repeating Event',
-					start : new Date(y, m, d - 3, 16, 0),
-					allDay : false,
-					backgroundColor : App.getLayoutColorCode('red')
-				}, {
-					title : 'Repeating Event',
-					start : new Date(y, m, d + 4, 16, 0),
-					allDay : false,
-					backgroundColor : App.getLayoutColorCode('green')
-				}, {
-					title : 'Meeting',
-					start : new Date(y, m, d, 10, 30),
-					allDay : false,
-				}, {
-					title : 'Lunch',
-					start : new Date(y, m, d, 12, 0),
-					end : new Date(y, m, d, 14, 0),
-					backgroundColor : App.getLayoutColorCode('grey'),
-					allDay : false,
-				}, {
-					title : 'Birthday Party',
-					start : new Date(y, m, d + 1, 19, 0),
-					end : new Date(y, m, d + 1, 22, 30),
-					backgroundColor : App.getLayoutColorCode('purple'),
-					allDay : false,
-				}, {
-					title : 'Click for Google',
-					start : new Date(y, m, 28),
-					end : new Date(y, m, 29),
-					backgroundColor : App.getLayoutColorCode('yellow'),
-					url : 'http://google.com/',
-				}]
+			});
+		},
+		init_uijquery : function() {
+			$("#tablink2").click(function() {
+				$('#batch_id').val("");
+				$('.alert-error', $('#form_role')).hide();
+				$("#form_show_attendance").validate().resetForm();
+  				$(".error").removeClass("error");
+  				$(".success").removeClass("success");
 			});
 		}
 	};

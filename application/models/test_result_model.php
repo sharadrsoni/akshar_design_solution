@@ -14,11 +14,6 @@ class test_result_model extends CI_Model {
 	}
 
 	public function listMarksByStudent($studentId) {
-/*		$this -> db -> where("student_batch.studentId", $studentId);
-		$this -> db -> join('student_batch', 'test.batchId = student_batch.batchId');
-		$this -> db -> join('test_result', 'student_batch.studentBatchId = test_result.studentBatchId');
-		return $this -> db -> get('test') -> result();
-*/
 		return $this -> db -> query("select t.testId, testName,testDate, studentId , testResultObtainedMarks,t.testMaximumMarks, Max(testResultObtainedMarks) as testMax from test t,test_result rt,student_batch sb where studentId = '" . $studentId . "' and t.batchId = sb.batchId and sb.studentBatchId = rt.studentBatchId group by t.testId") -> result();
 	}
 

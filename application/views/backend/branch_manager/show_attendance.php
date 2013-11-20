@@ -30,29 +30,79 @@
 			<!--/ END Page/Section header -->
 		</div>
 		<!--/ END Row -->
-
-		<!-- START Row -->
-		<div class="row-fluid">
-			<!-- START Default Calendar -->
-			<div class="span12">
-				<div id="calendar" style="margin-bottom:20px;"></div>
-			</div>
-			<!--/ END Default Calendar -->
-		</div>
-		<!--/ END Row -->
-		<!--Page Content Here  -->
-		<div id="Show_Attendance">
+<div id="Attendance">
 			<!-- START Row -->
 			<div class="row-fluid">
-				<!-- START Default Calendar -->
-				<div class="span12">
-					<div id="calendar" style="margin-bottom:20px;"></div>
-				</div>
-				<!--/ END Default Calendar -->
-			</div>
-			<!--/ END Row -->
-		</div><!--/Page Content Here  -->
+				<!-- Start Tabs -->
+				<div class="tabbable" style="margin-bottom: 25px;">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#tab1" data-toggle="tab"><span class="icon icone-pencil"></span> Attendance</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab1">
+							<?php
+							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_show_attendance');
+							echo form_open('student/show_attendance', $attributes);
+							?>
+								<div class="alert alert-error hide">
+									<button class="close" data-dismiss="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success hide">
+									<button class="close" data-dismiss="alert"></button>
+									Your form validation is successful!
+								</div>
 
+								<div class="body-inner">
+									<!-- Batch ID -->
+										<?php
+									$err=form_error('batch_id');
+									if ($err != '') {
+										echo "<div class='control-group error'>";
+									} else {
+										echo "<div class='control-group'>";
+									}
+									 ?>
+								
+										<label class="control-label">Batch ID<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
+												<option value="">Select...</option>
+												<?php
+												foreach ($batch_list as $key) {
+													echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
+												}
+												?>
+											</select>
+											<span for="batch_id" class="help-inline"><?php echo form_error('batch_id'); ?></span>
+										</div>
+									</div><!--/ Batch ID -->
+								
+									<table class="table table-striped table-bordered table-hover" id="attendance">
+										<thead>
+											<tr>
+											<tr>
+												<th>Student Name</th>
+												<th class="hidden-480">Present/Absent</th>
+											</tr>
+										</thead>
+										<tbody id="lst_students">
+											
+											
+										</tbody>
+									</table>
+									
+									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!--/ End Tabs -->
+			</div>
+			<!--/ END Row -->s
 	</div>
 	<!--/ END Content -->
 

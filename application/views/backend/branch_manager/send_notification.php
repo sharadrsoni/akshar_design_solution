@@ -139,8 +139,9 @@ if($role==1)
 							<!-- Form Action -->
 							<div class="form-actions">
 							<button type="submit" class="btn btn-primary" name="register" id="register">
-							Register
+							Send Notification
 							</button>
+									<a href="<?php echo base_url() . "admin/send_notification"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 							</div><!--/ Form Action -->
 							</div>
 							</form>
@@ -237,8 +238,9 @@ if($role==1)
 								<!-- Form Action -->
 								<div class="form-actions">
 									<button type="submit" class="btn btn-primary" name="register" id="register">
-										Register
+										Send Notification
 									</button>
+									<a href="<?php echo base_url() . "branch_manager/send_notification"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 								</div><!--/ Form Action -->
 							</div>
 							</form>

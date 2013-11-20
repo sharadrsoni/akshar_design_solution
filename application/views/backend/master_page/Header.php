@@ -103,7 +103,11 @@
 									<!--/ END Menu Divider -->
 
 									<!-- START Menu -->
-									<li class="accordion-group">
+									<?php if(strtolower($menu) == "dashboard"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
 										<a href="<?php
 										$href;
 										switch ($roleId) {
@@ -133,136 +137,195 @@
 									<!--/ END Menu -->
 
 									<!-- START Menu -->
-									<?php
-									if ($roleId == 1) {
-										echo "<li class='accordion-group'>
-<a href='" . base_url() . $href . "/branch'> <span class='icon icone-th-list'></span> <span class='text'>Branch</span> </a>
-</li>
+									<?php if ($roleId == 1): ?>
+										<?php if(strtolower($menu) == "branch"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/branch" ?>'> <span class='icon icone-th-list'></span> <span class='text'>Branch</span> </a></li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/staff'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a>
-</li>
+										<?php if(strtolower($menu) == "staff"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/staff" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a></li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/role'> <span class='icon icone-dashboard'></span> <span class='text'>role</span> </a>
-</li>
+										<?php if(strtolower($menu) == "role"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/role" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>role</span> </a></li>
 
-<li class='accordion-group '>
-<a data-toggle='collapse' data-parent='#navigation' href='#submenuCourse'> <span class='icon icone-beaker'></span> <span class='text'>Course</span> <span class='arrow icone-caret-down'></span> </a>
-<!-- START Submenu Menu -->
-<ul id='submenuCourse' class='collapse '>
-<li class=''>
-<a href='" . base_url() . $href . "/course_category'><span class='icon icone-angle-right'></span>Course Category</a>
-</li>
-<li class=''>
-<a href='" . base_url() . $href . "/course'><span class='icon icone-angle-right'></span>Course</a>
-</li>
-</ul>
-<!--/ END Submenu Menu -->
-</li>
+										<?php if(strtolower($menu) == "course"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a data-toggle='collapse' data-parent='#navigation' href='#submenuCourse'> <span class='icon icone-beaker'></span> <span class='text'>Course</span> <span class='arrow icone-caret-down'></span> </a>
+										<!-- START Submenu Menu -->
+										<ul id='submenuCourse' class='collapse'>
+											<li class=''>
+												<a href='<?php echo base_url() . $href . "/course_category" ?>'><span class='icon icone-angle-right'></span>Course Category</a>
+											</li>
+											<li class=''>
+												<a href='<?php echo base_url() . $href . "/course" ?>'><span class='icon icone-angle-right'></span>Course</a>
+											</li>
+										</ul>
+										<!--/ END Submenu Menu -->
+										</li>
 
-<li class='accordion-group active'>
-<a data-toggle='collapse' data-parent='#navigation' href='#submenuTarget'> <span class='icon icone-beaker'></span> <span class='text'>Target</span> <span class='arrow icone-caret-down'></span> </a>
-<!-- START Submenu Menu -->
-<ul id='submenuTarget' class='collapse in'>
-<li class='active'>
-<a href='" . base_url() . $href . "/target_type'><span class='icon icone-angle-right'></span>Target Type</a>
-</li>
-<li class=''>
-<a href='" . base_url() . $href . "/target'><span class='icon icone-angle-right'></span>Target</a>
-</li>
-</ul>
-<!--/ END Submenu Menu -->
-</li>
+										<?php if(strtolower($menu) == "target"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a data-toggle='collapse' data-parent='#navigation' href='#submenuTarget'> <span class='icon icone-beaker'></span> <span class='text'>Target</span> <span class='arrow icone-caret-down'></span> </a>
+										<!-- START Submenu Menu -->
+										<ul id='submenuTarget' class='collapse in'>
+										<li class='active'>
+										<a href='<?php echo base_url() . $href . "/target_type" ?>'><span class='icon icone-angle-right'></span>Target Type</a>
+										</li>
+										<li class=''>
+										<a href='<?php echo base_url() . $href . "/target" ?>'><span class='icon icone-angle-right'></span>Target</a>
+										</li>
+										</ul>
+										<!--/ END Submenu Menu -->
+										</li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/event_type'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a>
-</li>
+										<?php if(strtolower($menu) == "event type"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/event_type" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a></li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/state'> <span class='icon icone-dashboard'></span> <span class='text'>State</span> </a>
-</li>
+										<?php if(strtolower($menu) == "state"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/state" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>State</span> </a></li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/city'> <span class='icon icone-dashboard'></span> <span class='text'>City</span> </a>
-</li>";
-									}
+										<?php if(strtolower($menu) == "city"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/city" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>City</span></a></li>							
+									<?php endif; ?>
+									
+									<?php if ($roleId == 2): ?>						
+										<?php if(strtolower($menu) == "batch"): ?>
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/batch" ?>'><span class='icon icone-dashboard'></span> <span class='text'>Batch</span> </a></li>
+									<?php endif; ?>
 
-									if ($roleId == 2) {
-										echo "
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/batch'><span class='icon icone-dashboard'></span> <span class='text'>Batch</span> </a>
-</li>";
-									}
+									<?php if ($roleId == 2 || $roleId == 4): ?>
+										<?php if(strtolower($menu) == "student inquiry"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/inquiry" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Student Inquiry</span></a></li>
 
-									if ($roleId == 2 || $roleId == 4) {
-										echo "
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/inquiry'> <span class='icon icone-dashboard'></span> <span class='text'>Student Inquiry</span> </a>
-</li>
+										<?php if(strtolower($menu) == "student registration"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a data-toggle='collapse' data-parent='#navigation' href='#submenu2'> <span class='icon icone-beaker'></span> <span class='text'>Student Registration</span> <span class='arrow icone-caret-down'></span> </a>
+										<!-- START Submenu Menu -->
+										<ul id='submenu2' class='collapse '>
+										<li class=''>
+										<a href='<?php echo base_url() . $href . "/studentregistration" ?>'><span class='icon icone-angle-right'></span>Registration</a>
+										</li>
+										<li class=''>
+										<a href='<?php echo base_url() . $href . "/fees_payment" ?>'><span class='icon icone-angle-right'></span>Fees Receipt</a>
+										</li>
+										</ul>
+										<!--/ END Submenu Menu -->
+										</li>
 
-<li class='accordion-group '>
-<a data-toggle='collapse' data-parent='#navigation' href='#submenu2'> <span class='icon icone-beaker'></span> <span class='text'>Student Registration</span> <span class='arrow icone-caret-down'></span> </a>
-<!-- START Submenu Menu -->
-<ul id='submenu2' class='collapse '>
-<li class=''>
-<a href='" . base_url() . $href . "/studentregistration'><span class='icon icone-angle-right'></span>Registration</a>
-</li>
-<li class=''>
-<a href='" . base_url() . $href . "/fees_payment'><span class='icon icone-angle-right'></span>Fees Receipt</a>
-</li>
-</ul>
-<!--/ END Submenu Menu -->
-</li>
+										<?php if(strtolower($menu) == "book inventory"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+											<a href='<?php echo base_url() . $href . "/book_inventory" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Book Inventory</span> </a></li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/book_inventory'> <span class='icon icone-dashboard'></span> <span class='text'>Book Inventory</span> </a>
-</li>
+										<?php if(strtolower($menu) == "event"): ?>
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/event" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Event</span> </a></li>
+									
+									<?php endif; ?>
+									
+									<?php if ($roleId == 2): ?>
+										<?php if(strtolower($menu) == "target report"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/target_report" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Target Report</span> </a></li>
+									<?php endif; ?>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/event'> <span class='icon icone-dashboard'></span> <span class='text'>Event</span> </a>
-</li>";
-									}
+									<?php if ($roleId == 3): ?>	
+										<?php if(strtolower($menu) == "student attendance"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/student_attendance" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Student Attendance</span></a></li>
 
-									if ($roleId == 2) {
-										echo "
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/target_report'> <span class='icon icone-dashboard'></span> <span class='text'>Target Report</span> </a>
-</li>";
-									}
+										<?php if(strtolower($menu) == "test"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/test" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Test</span> </a></li>
 
-									if ($roleId == 3) {
-										echo "
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/student_attendance'> <span class='icon icone-dashboard'></span> <span class='text'>Student Attendance</span> </a>
-</li>
+									<?php endif; ?>
+									
+									<?php if ($roleId == 5): ?>
+										<?php if(strtolower($menu) == "attndance"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/show_attendance" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Attendance</span> </a></li>
 
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/test'> <span class='icon icone-dashboard'></span> <span class='text'>Test</span> </a>
-</li>";
+										<?php if(strtolower($menu) == "test result"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/test_result" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Test Result</span></a></li>
+										
+									<?php endif; ?>
 
-									}
-									if ($roleId == 5) {echo "
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/show_attendance'> <span class='icon icone-dashboard'></span> <span class='text'>Attendance</span> </a>
-</li>
-
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/test_result'> <span class='icon icone-dashboard'></span> <span class='text'>Test Result</span> </a>
-</li>";
-									}
-
-									if ($roleId != 5) {
-										echo "<li class='accordion-group'>
-<a href='" . base_url() . $href . "/search'> <span class='icon icone-dashboard'></span> <span class='text'>Search</span> </a>
-</li>
-
-<li class='accordion-group'>
-<a href='" . base_url() . $href . "/send_notification'> <span class='icon icone-dashboard'></span> <span class='text'>Send Notification</span> </a>
-</li>
-";
-									}
-	?>
+									<?php if ($roleId != 5): ?>
+										<?php if(strtolower($menu) == "search"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+											<a href='<?php echo base_url() . $href . "/search" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Search</span> </a></li>
+									
+										<?php if(strtolower($menu) == "send notification"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/send_notification" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Send Notification</span> </a></li>
+									<?php endif; ?>
 								</ul>
 							</nav>
 							<!--/ END Sidebar Menu -->

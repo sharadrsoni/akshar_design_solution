@@ -7,6 +7,7 @@ if (!defined('BASEPATH'))
 class Login extends CI_Controller {
 
 	public function index() {
+		$this->data['menu'] = "dashboard";
 		$this -> session -> sess_destroy();
 		$this->data = array('error' => '');
 		if (isset($_POST['login'])) {

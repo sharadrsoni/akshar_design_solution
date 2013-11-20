@@ -14,6 +14,7 @@ class Student extends CI_Controller {
 
 	//Dashboard
 	public function index() {
+		$this->data['menu'] = "Dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
@@ -27,13 +28,13 @@ class Student extends CI_Controller {
 	//Show marks
 	public function test_result() {
 		$this -> data['title'] = "ADS | Test Result";
+		$this->data['menu'] = "test result";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/test_result_css');
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> model("test_result_model");
 		$test_details = $this -> test_result_model -> listMarksByStudent($this -> userId);
 		$this -> data['test_details'] = $test_details;
-//		$this -> data['test_max'] = $this -> test_result -> getMaximumMarks($test_details['testId']);
 		$this -> load -> view('backend/branch_manager/test_result',$this->data);
 		$this -> load -> view('backend/master_page/footer');
 		$this -> load -> view('backend/js/test_result_js');
@@ -42,6 +43,7 @@ class Student extends CI_Controller {
 
 	//Show Attendance
 	public function show_attendance() {
+		$this->data['menu'] = "show attendance";
 		$this -> data['title'] = "ADS | Time Table";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
