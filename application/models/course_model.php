@@ -15,7 +15,7 @@ class course_model extends CI_Model {
 	public function getDetailsByCourse($courseCode) {
 		$this -> db -> where('course.courseCode', $courseCode);
 		$this -> db -> join('course_category', 'course_category.courseCategoryId = course.courseCategoryId');
-		return $this -> db -> get('course') -> row();
+		return $this -> db -> get('course') -> result();
 	}
 
 	public function getDetailsByCategory($courseCategoryId,$studentId) {

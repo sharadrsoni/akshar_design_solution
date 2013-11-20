@@ -71,7 +71,7 @@
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="nav-collapse collapse"> 
           <ul class="nav">
-            <li> <a href="index.php"> Home </a> </li>
+            <li> <a href="<?php echo base_url()?>"> Home </a> </li>
             <li><a href="<?php echo base_url()."courses"; ?>">Courses</a></li>
             <li><a href="<?php echo base_url()."event"; ?>">Event</a></li>
             <li><a href="<?php echo base_url()."about_us"; ?>">About Us</a></li>
@@ -94,7 +94,7 @@
             </div>
             <div class="span8">
                 <ul class="pull-right breadcrumb">
-                    <li><a href="index.php">Home</a> <span class="divider">/</span></li>
+                    <li><a href="<?php echo base_url()?>">Home</a> <span class="divider">/</span></li>
                     
                     <li class="active">Contact Us</li>
                 </ul>
@@ -186,15 +186,14 @@
             <div class="span3">
                 <h2>Our Contacts</h2>
                 <address>
-                    <strong>Loop, Inc.</strong><br>
-                    795 Park Ave, Suite 120<br>
-                    San Francisco, CA 94107<br>
-                    <abbr title="Phone">P:</abbr> (234) 145-1810
+                    <strong>Akshar Design Solutions</strong><br>
+                    Wadhavan City<br>
+                    Surendranagar, Gujarat<br>
+                    <abbr title="Phone">Ph:</abbr> 8128680626
                 </address>
                 <address>
                     <strong>Email</strong><br>
-                    <a href="mailto:#">info@email.com</a><br>
-                    <a href="mailto:#">support@example.com</a>
+                    <a href="mailto:#">info@akshardesignsolution.com</a>
                 </address>
                 <ul class="social-icons margin-bottom-10">
                     <li><a href="#" data-original-title="facebook" class="social_facebook"></a></li>
@@ -207,12 +206,8 @@
                 <div class="clearfix margin-bottom-30"></div>
 
                 <h2>About Us</h2>
-                <p>Sediam nonummy nibh euismod tation ullamcorper suscipit</p>
-                <ul class="unstyled">
-                    <li><i class="icon-ok"></i> Officia deserunt molliti</li>
-                    <li><i class="icon-ok"></i> Consectetur adipiscing </li>
-                    <li><i class="icon-ok"></i> Deserunt fpicia</li>
-                </ul>                                
+                <p>Akshar Design Solution is a design academy and a school for creative studies.<br>
+                	It offers world-class design education to promote design awareness and its application.</p>                             
             </div>            
         </div>
     </div>
