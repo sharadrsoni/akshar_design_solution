@@ -20,10 +20,8 @@ class target_report_model extends CI_Model {
 	
 	public function getTargetReports($targetId)
 	{
-		$this -> db -> from('target');
-		$this -> db -> join('target_report',$targetId);
-		return $this -> db -> get() -> result();
-			
+		$this -> db -> where('target_report.targetId',$targetId);
+		return $this -> db -> get('target_report') -> result();
 	}
 }
 ?>
