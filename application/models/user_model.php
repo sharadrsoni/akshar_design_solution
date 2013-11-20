@@ -69,7 +69,7 @@ class user_model extends CI_Model {
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
 		return $this -> db -> get('user') -> result();
 	}
-	
+
 	//get user data by user id
 	public function getUserDetails($userId) {
 		$this -> db -> where("userId", $userId);
@@ -80,14 +80,14 @@ class user_model extends CI_Model {
 	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
-	//	$this -> db -> join('city', 'city.cityId = user.cityId');
+		//	$this -> db -> join('city', 'city.cityId = user.cityId');
 		return $this -> db -> get('user') -> row();
 	}
 
 	//get details of Student with other data
 	public function getDetailsByStudent($studentId) {
 		$this -> db -> where("user.userId", $studentId);
-		$this -> db -> join('student_profile','student_profile.studentUserId=user.userId','left');
+		$this -> db -> join('student_profile', 'student_profile.studentUserId=user.userId', 'left');
 		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
 		return $this -> db -> get('user') -> row();
 	}
@@ -150,36 +150,37 @@ class user_model extends CI_Model {
 		return false;
 	}
 
-	public function getSearchUserList($value, $branchCode) {
-		$this->db->distinct("U.*");
-		$this->db->from('user as U');
-		$this->db->join("(select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC", 'U.userId = SBC.studentId', 'left'); 
-		$this->db->like('courseName', $value)->or_like('userId', $value)->or_like('userFirstName', $value)->or_like('userMiddleName', $value)->or_like('userLastName', $value)->or_like('batchId', $value);
-		$this->db->where('user.branchCode', $branchCode);
-		$queryData = $this->db->get()->result();
+	public function getSearchUserList($value, $branchCode, $roleId) {
+
+		$query = "SELECT distinct U.* FROM `user` U left join (select SB.*, C.* from student_batch as SB,batch B ,course as C where B.batchId=SB.batchId and B.coursecode=C.courseCode) as SBC on U.userId = SBC.studentId where (courseName like '%" . $value . "%' or userId like '%" . $value . "%' or userFirstName like '%" . $value . "%' or userMiddleName like '%" . $value . "%' or userLastName like '%" . $value . "%' or batchId like '%" . $value . "%' or userJoiningDate like '%" . $value . "%')";
+		if ($roleId != 1) {
+			$query .= "and U.branchcode='" . $branchCode . "'";
+		}
+		$data = array();
+		$queryData = $this -> db -> query($query) -> result();
 		$k = 0;
 		foreach ($queryData as $key) {
-			$this->load->model("student_batch_model");
-			$courseData = $this->student_batch_model->getDetailsByStudent($key->userId);
+			$this -> load -> model("student_batch_model");
+			$courseData = $this -> student_batch_model -> getDetailsByStudent($key -> userId);
 			$batchName = "";
 			$courseName = "";
 			$i = 1;
 			$j = 1;
 			foreach ($courseData as $key2) {
-				if($i == 1) {
-					$batchName .= $key->batchId; 
+				if ($i == 1) {
+					$batchName .= $key2 -> batchId;
 				} else {
-					$batchName .= "," . $key->batchId; 
+					$batchName .= "," . $key2 -> batchId;
 				}
 				$i++;
-				if($j == 1) {
-					$courseName .= $key->courseName; 
+				if ($j == 1) {
+					$courseName .= $key -> courseName;
 				} else {
-					$courseName .= "," . $key->courseName; 
+					$courseName .= "," . $key -> courseName;
 				}
 				$j++;
 			}
-			$data[$k++] = array("Name" => $key->userFirstName . " " . $key->userMiddleName . " " . $key->userLastName, "Username" => $key->userId, "Joined" => $key->userJoiningDate, "Courses" => $courseName, "Batch" => $batchName);
+			$data[$k++] = array("Name" => $key -> userFirstName . " " . $key -> userMiddleName . " " . $key -> userLastName, "Username" => $key -> userId, "Joined" => $key -> userJoiningDate, "Courses" => $courseName, "Batch" => $batchName);
 		}
 		//die(print_r($data));
 		return $data;

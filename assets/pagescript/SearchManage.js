@@ -1,6 +1,10 @@
 var SearchManage = function() {
 	return {
 		init_uijquery : function() {
+			$("#userSearch").click(function(){
+				$("#searchUser").keyup();
+			});
+			
 			$("#searchUser").keyup(function() {
 				$("#searchData").html("");
 				$("#tblSearch").attr("style", "display:none");
