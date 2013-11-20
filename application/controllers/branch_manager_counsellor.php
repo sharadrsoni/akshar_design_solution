@@ -109,8 +109,12 @@ class Branch_manager_counsellor extends CI_Controller {
 
 				$text = 'Hi ' . $_POST['firstname'] . ' ' . $_POST['middlename'] . ' ' . $_POST['lastname'] . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.' . "<br><br>" . 'Your Login Credentials are:' . "<br>" . 'LoginId - ' . $userData['userId'] . "<br>" . 'LoginId - ' . $userData['userPassword'] . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 				$this -> email -> message($text);
-				//echo $this -> email -> print_debugger();
-				if ($this -> user_model -> addUser($userData) && $this -> email -> send()) {
+				if ($this -> user_model -> addUser($userData) && $this -> email -> send())
+				{
+					$profile = array();
+					$profile['studentUserId'] = $userData['userId'];
+					$this -> load -> model('student_profile_model');
+					$this -> student_profile_model -> addUserProfile($profile);
 					redirect(base_url() . "counsellor/studentregistration");
 				} else {
 					$this -> data['error'] = "An Error Occured.";

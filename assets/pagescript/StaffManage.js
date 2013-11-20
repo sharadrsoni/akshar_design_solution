@@ -170,7 +170,10 @@ var Staff = function() {
 
 			$("#dob_datepicker input").datepicker({
 				isRTL : App.isRTL(),
-				dateFormat : 'dd-mm-yy'
+				changeMonth : true,
+				changeYear : true,
+				yearRange : "c-60:c",
+				dateFormat: 'dd-mm-yy'
 			});
 
 			$("#dob_datepicker .add-on").click(function() {
