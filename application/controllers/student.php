@@ -61,6 +61,9 @@ class Student extends CI_Controller {
 		$this->data['profile'] = $this -> user_model -> getDetailsByStudent($this -> userId);
 		$this -> load -> model("state_model");
 		$this -> data['State'] = $this -> state_model -> getDetailsOfState();
+		$this->load->model("test_result_model");
+		$this->data['testresult']=$this->test_result_model->testMarks($this->userId);
+		
 		$this -> load -> view('backend/master_page/header');
 		if (isset($_POST['edit_profile'])) {
 			$studentData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' =>	date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid']);

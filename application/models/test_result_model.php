@@ -13,6 +13,18 @@ class test_result_model extends CI_Model {
 		return $this -> db -> get('test') -> result();
 	}
 
+
+	public function testMarks($studentId) {
+		$this -> db -> where("student_batch.studentId", $studentId);
+		$this -> db -> join('student_batch', 'test.batchId = student_batch.batchId');
+		$this -> db -> join('user', 'user.userId = student_batch.studentId');
+		$this -> db -> join('test_result', 'student_batch.studentBatchId = test_result.studentBatchId');
+		$this -> db -> join('batch', 'batch.batchId = student_batch.batchId');
+		$this -> db -> join('course','course.courseCode = batch.courseCode');
+		
+		$this -> db -> select('student_batch.studentbatchId, test.testName,test.testDate,course.courseName,test.testRemarks , test.testId, userFirstName , userMiddleName , userLastName , studentId , testResultObtainedMarks');
+		return $this -> db -> get('test') -> result();
+	}
 	public function getCountByTestStudent($testId, $studentBatchId) {
 		$this -> db -> select('attendanceId');
 		$this -> db -> from('test_result');

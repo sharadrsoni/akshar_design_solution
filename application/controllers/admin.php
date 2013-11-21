@@ -175,21 +175,40 @@ class Admin extends CI_Controller {
 			$this -> data['course'] = $this -> course_model -> getDetailsOfCourse();
 			if (isset($_POST['submitCourse'])) {
 				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim|alpha_numeric|max_length[100]');
-				$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim|numeric|max_length[11]');
+				//$this -> form_validation -> set_rules('course_name', 'Course Name', 'required|trim|alpha_numeric|max_length[100]');
+				//$this -> form_validation -> set_rules('courseCategory_id', 'Course Category', 'required|trim|numeric|max_length[11]');
 				//$this -> form_validation -> set_rules('courseCode', 'Course Code', 'required|trim|is_unique[course.courseCode]');
-				$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim|numeric');
-				$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim|numeric');
-				$this -> form_validation -> set_rules('description', 'Course description', 'required|trim');
-				if ($this -> form_validation -> run() == FALSE) {
+				//$this -> form_validation -> set_rules('course_duration', 'Course Duration', 'required|trim|numeric');
+				//$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim|numeric');
+				//$this -> form_validation -> set_rules('description', 'Course description', 'required|trim');
+				/*if ($this -> form_validation -> run() == FALSE) {
 					$this -> data['validate'] = true;
+					die("in validate");
 				} else {
-					$this -> load -> model('book_inventory_model');
-					$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description']);
+				 * */
+				 
+				$this -> load -> model('book_inventory_model');
+				$config['upload_path'] = './images/avatar';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '10000';
+				$config['file_name'] =$_POST['courseCode'];
+				$this -> load -> library('upload', $config);
+				$filed_name = "course_avtar";
+				if(!$this -> upload -> do_upload($filed_name))
+				{
+					die($this->upload->display_errors());
+					die("problem in upload");
+				}
+				$fileData = $this -> upload -> data();
+				
+				//$studentData = array('avtar' => $fileData['file_name']);
+				$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description'],'coursePhotograph'=>$fileData['file_name']);
 					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])<=0) {
+						
 						$courseValue['courseCode'] = $_POST['courseCode'];
 					}
 					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])>0 ? $this -> course_model -> updateCourse($courseValue, $_POST['courseCode']): $this -> course_model -> addCourse($courseValue)) {
+						die("in if");
 						redirect(base_url() . "admin/course");
 					} else {
 						$this -> data['error'] = "An Error Occured.";
@@ -201,7 +220,7 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/js/course_js');
 			$this -> load -> view('backend/master_page/bottom');
 		}
-	}
+	
 
 	public function delete_course($courseCode) {
 		$this -> load -> model('course_model');
