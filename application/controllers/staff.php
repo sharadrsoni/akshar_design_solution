@@ -165,7 +165,6 @@ class Staff extends CI_Controller {
 			$this -> load -> model("branch_model");
 			$branchName = $this -> branch_model -> getDetailsOfBranch();
 			$this -> data['branchName'] = $branchName;
-	//		die($branchName);
 			$this -> data['title'] = "ADS | Send Notifications";
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/sendnotification_css');
@@ -180,6 +179,7 @@ class Staff extends CI_Controller {
 	//Profile
 	public function profile() {
 		$this -> data['title'] = "ADS | Profile";
+		$this->data['menu'] = "profile";
 		$this -> load -> model('user_model');
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/student_profile_css');
@@ -187,6 +187,8 @@ class Staff extends CI_Controller {
 		$this -> load -> view('backend/master_page/header', $this->data);
 		$this -> load -> model("state_model");
 		$this -> data['State'] = $this -> state_model -> getDetailsOfState();
+		$this -> load -> model("batch_model");
+		$this -> data['event'] = $this -> batch_model -> facultyBatchList($this -> userId);
 
 		if (isset($_POST['edit_profile'])) {
 			$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' => $_POST['date_of_birth'], 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid']);
@@ -203,7 +205,7 @@ class Staff extends CI_Controller {
 			$filed_name = "staff_avatar";
 			$this -> upload -> do_upload($filed_name);
 			$fileData = $this -> upload -> data();
-			$staffData = array('avtar' => $fileData['file_name']);
+			$staffData = array('userPhotograph' => $fileData['file_name']);
 			$this -> user_model -> updateUser($staffData, $this -> userId);
 			redirect(base_url() . "staff/profile");
 		}

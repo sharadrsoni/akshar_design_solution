@@ -69,7 +69,7 @@
 <td class=\"hidden-480\">{$key->inquiryContactNumber}</td>
 <td class=\"hidden-480\">{$key->courseCode}</td>
 <td class=\"hidden-480\">{$key->inquiryExpectedJoiningDate}</td>
-<td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
+<td ><span class=\"label label-success\" onclick='updateinquiry(\"{$key->inquiryId}\");'>Edit</span> </span class=\"label label-success\"><a href='" . base_url() . "branch_manager_counsellor/delete_inquiry/{$key->inquiryId}'>Delete</span></td></tr>
 ";
 												}
 											}

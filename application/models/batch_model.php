@@ -34,6 +34,11 @@ class batch_model extends CI_Model {
 		return $this -> db -> get('batch') -> result();
 	}
 
+
+	public function facultyBatchList($userId) {
+		return $this -> db -> query("select b.batchId, c.courseName, b.batchStrength,(select count(*) from student_batch b1 where b1.batchId = b.batchId) as presentStrength from batch b,course c where b.facultyId = '" . $userId . "' and b.courseCode = c.courseCode") -> result();
+	}
+
 	public function getDetailsBranch($branchCode) {
 		$this->db->where_in("branchCode", $branchCode,null);
 		$this -> db -> from('batch');

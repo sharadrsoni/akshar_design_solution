@@ -268,8 +268,9 @@ var Event = function() {
 				$('#description').val("");
 				$('#street_1').val("");
 				$('#street_2').val("");
-				$('#state option:nth(0)').attr("selected", "selected");
-				$('#city option:nth(0)').attr("selected", "selected");
+				$("#stateid").select2("val", 0);
+				$("#stateid").change();
+				$("#cityid").select2("val", 0);
 				$('#pin_code').val("");
 				$('#organize_by').val("");
 				$('#faculty_id option:nth(0)').attr("selected", "selected");
@@ -340,8 +341,9 @@ function updateevent(eventid) {
 				$('#description').val(json.event[0].eventDescription);
 				$('#street_1').val(json.event[0].eventStreet1);
 				$('#street_2').val(json.event[0].eventStreet2);
-				$('#state').val(json.event[0].eventState);
-				$('#city').val(json.event[0].eventCity);
+				$("#stateid").select2("val", json.event[0].stateId);
+				$("#stateid").change();
+				$("#cityid").select2("val", json.event[0].cityId);
 				$('#pin_code').val(json.event[0].eventPincode);
 				$('#organize_by').val(json.event[0].eventOrganizerName);
 				$('#faculty_id').val(json.event[0].facultyId);
@@ -365,7 +367,7 @@ function viewevent(eventId) {
 				$('#viewEventStartDate').text(json.event[0].eventStartDate);
 				$('#viewEventEndDate').text(json.event[0].eventEndDate);
 				$('#viewEventDescription').text(json.event[0].eventDescription);
-				$('#viewAddress').html(json.event[0].eventStreet1+",<br/>"+json.event[0].eventStreet2+",<br/>"+json.event[0].eventCity+","+json.event[0].eventState+"-"+json.event[0].eventPincode);
+				$('#viewAddress').html(json.event[0].eventStreet1+",<br/>"+json.event[0].eventStreet2+",<br/>"+json.event[0].cityName+","+json.event[0].stateName+"-"+json.event[0].eventPincode);
 				$('#viewOrganizerName').text(json.event[0].eventOrganizerName);
 				$('#viewFacultyID').text(json.event[0].userFirstName + " " + json.event[0].userMiddleName + " " +  json.event[0].userLastName);
 				$('#tablink1').parent().removeClass("active");

@@ -16,6 +16,8 @@ class event_model extends CI_Model {
 		$this -> db -> where('eventId', $eventId);
 		$this -> db -> join('event_type', 'event.eventTypeId = event_type.eventTypeId');
 		$this -> db -> join('user', 'user.userId = event.facultyId');
+		$this -> db -> join('city', 'city.cityId = event.cityId');
+		$this -> db -> join('state', 'state.stateId = event.stateId');
 		return $this -> db -> get('event') -> result();
 	}
 	

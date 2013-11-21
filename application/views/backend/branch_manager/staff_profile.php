@@ -68,12 +68,12 @@
 												<br>
 												<?php echo $profile->userStreet2;?>												
 												<br>
-												<?php echo $profile->cityId;?>-<?php echo $profile->userPostalCode;?>												
+												<?php echo $profile->cityName;?> - <?php echo $profile->userPostalCode;?>												
 												<br>
-												<?php echo $profile->stateId;?>												
+												<?php echo $profile->stateName;?>												
 												<br>
 											
-												<abbr title="Phone">P:</abbr> <?php echo $profile->userContactNumber;?>
+												<abbr title="Phone">Contact No:</abbr> <?php echo $profile->userContactNumber;?>
 											</address>
 											<address>
 												<strong>Email</strong>
@@ -84,15 +84,15 @@
 
 										<ul class="unstyled inline">
 											<li>
-												<i class="icon-map-marker"></i> <?php echo $profile->cityId;?>
+												<i class="icon-map-marker"></i> <?php echo $profile->cityName;?>
 											</li>
 											<li>
-												<i class="icon-calendar"></i><?php echo $profile->userDOB;?>
+												<i class="icon-calendar"></i><?php echo date("d-m-Y", strtotime($profile -> userDOB)); ?>
 											</li>
 										</ul>
 									</div>
 									<!--end span8-->
-									<div class="span4">
+									<!--div class="span4">
 										<div class="portlet sale-summary">
 											<div class="portlet-body">
 												<ul class="unstyled">
@@ -107,10 +107,16 @@
 												</ul>
 											</div>
 										</div>
-									</div>
+									</div-->
 									<!--end span4-->
 								</div>
 								<!--end row-fluid-->
+							<?php
+$role=$this->session->userdata('roleId');
+if($role==3)
+{
+							?>
+
 								<div class="tabbable tabbable-custom tabbable-custom-profile">
 									<ul class="nav nav-tabs">
 										<li class="active">
@@ -124,18 +130,25 @@
 													<thead>
 														<tr>
 															<th><i class="icon-star"></i>Batch</th>
-															<th class="hidden-phone"><i class="icon-question-sign"></i>Strength</th>
 															<th><i class="icon-bookmark"></i> Course</th>
-															<th><i class="icon-bookmark"></i> Performance</th>
+															<th class="hidden-phone"><i class="icon-question-sign"></i>Present Strength</th>
+															<th><i class="icon-bookmark"></i> Max Strength</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td><a href="#">Pixel Ltd</a></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-														</tr>
+														<?php
+														
+														foreach($event as $key)
+														{
+															echo "<tr>
+															<td><a href=\"#\">{$key->batchId}</a></td>
+															<td><a href=\"#\">{$key->courseName}</a></td>
+															<td><a href=\"#\">{$key->presentStrength}</a></td>
+															<td><a href=\"#\">{$key->batchStrength}</a></td>
+															</tr>";
+														}
+														
+														?>
 													</tbody>
 												</table>
 											</div>
@@ -162,6 +175,8 @@
 										<!--tab-pane-->
 									</div>
 								</div>
+							<?php }
+							?>
 
 								<div class="row-fluid" style="height:20px;"></div>
 							</div>

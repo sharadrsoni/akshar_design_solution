@@ -100,7 +100,8 @@ class user_model extends CI_Model {
 	public function getDetailsbyUser($userId, $fieldlist = '') {
 		$this -> db -> where("userId", $userId);
 		$this -> db -> join('branch', 'user.branchCode = branch.branchCode');
-		//	$this -> db -> join('city', 'city.cityId = user.cityId');
+		$this -> db -> join('city', 'city.cityId = user.cityId');
+		$this -> db -> join('state', 'state.stateId = user.stateId');
 		return $this -> db -> get('user') -> row();
 	}
 
@@ -109,6 +110,8 @@ class user_model extends CI_Model {
 		$this -> db -> where("user.userId", $studentId);
 		$this -> db -> join('student_profile', 'student_profile.studentUserId=user.userId', 'left');
 		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
+		$this -> db -> join('city', 'city.cityId = user.cityId');
+		$this -> db -> join('state', 'state.stateId = user.stateId');
 		return $this -> db -> get('user') -> row();
 	}
 

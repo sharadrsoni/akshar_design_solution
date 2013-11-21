@@ -69,9 +69,9 @@
 												<br>
 												<?php echo $profile -> userStreet2; ?>												
 												<br>
-												<?php echo $profile -> cityId; ?>-<?php echo $profile -> userPostalCode; ?>												
+												<?php echo $profile -> cityName; ?> - <?php echo $profile -> userPostalCode; ?>												
 												<br>
-												<?php echo $profile -> stateId; ?>												
+												<?php echo $profile -> stateName; ?>												
 												<br>
 											
 												<abbr title="Phone">P:</abbr> <?php echo $profile -> userContactNumber; ?>
@@ -85,10 +85,10 @@
 
 										<ul class="unstyled inline">
 											<li>
-												<i class="icon-map-marker"></i> <?php echo $profile -> cityId; ?>
+												<i class="icon-map-marker"></i> <?php echo $profile -> cityName; ?>
 											</li>
 											<li>
-												<i class="icon-calendar"></i><?php echo $profile -> userDOB; ?>
+												<i class="icon-calendar"></i><?php echo date("d-m-Y", strtotime($profile -> userDOB)); ?>
 											</li>
 										</ul>
 									</div>

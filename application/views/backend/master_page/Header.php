@@ -59,7 +59,7 @@
 						<div class="dropdown-menu" role="menu">
 							<header>
 								<a href="<?php $role=$this->session->userdata('roleId');
-if($role==1)
+if($role!=5)
 {
 	echo base_url() . 'staff/profile';
 }
