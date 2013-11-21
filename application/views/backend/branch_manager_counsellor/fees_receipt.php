@@ -9,7 +9,7 @@
 					<a href="#">Dashboard</a><span class="divider"></span>
 				</li>
 				<li class="active">
-					Batch
+					Fee Recipt
 				</li>
 			</ul>
 			<!--/ Breadcrumb -->

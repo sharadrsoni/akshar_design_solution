@@ -19,8 +19,5 @@
 		Target.init_formvalidation();
 		Target.init_uijquery();
 		//jQuery(".target_view").hide();
-		
-		
-
 	});
 </script>

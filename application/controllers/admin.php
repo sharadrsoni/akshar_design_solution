@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
 
 	//Role
 	public function role($roleId = '') {
-			$this -> data['menu'] = "role";
+		$this->data['menu'] = "role";
 		$this -> load -> model("role_model");
 		if ($roleId != '') {
 			$this -> data['role'] = $this -> role_model -> getDetailsByRole1($roleId);

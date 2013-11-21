@@ -25,7 +25,7 @@ class test_result_model extends CI_Model {
 		$this -> db -> join('batch', 'batch.batchId = student_batch.batchId');
 		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
 
-		$this -> db -> select('student_batch.studentbatchId, test.testName,test.testDate,course.courseName,test.testRemarks , test.testId, userFirstName , userMiddleName , userLastName , studentId , testResultObtainedMarks');
+		$this -> db -> select('student_batch.studentbatchId, test.testName,test.testDate,course.courseName,test.testRemarks , test.testId, userFirstName , userMiddleName , userLastName , studentId , testResultObtainedMarks,testResultObtainedMarks / testMaximumMarks * 100 as testPercent');
 		return $this -> db -> get('test') -> result();
 	}
 

@@ -14,5 +14,8 @@
 		App.init();
 		StudentProfile.init_formvalidation();
 		StudentProfile.init_uijquery();
+		$("#stateid").select2("val",<?php echo $profile->stateId; ?>);
+		$("#stateid").change();
+		$("#cityid").select2("val",<?php echo $profile->cityId; ?>);
 	}); 
 </script>
