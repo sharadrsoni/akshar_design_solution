@@ -7,8 +7,7 @@
 			<header id="header">
 				<!-- START Logo -->
 				<div class="logo hidden-phone hidden-tablet">
-					<a href="#"><img src="img/logo-white.png" alt=""></a>
-					<small class="version"></small>
+					<a href="#">Akshar Design Solution</a>
 				</div>
 				<!--/ END Logo -->
 
