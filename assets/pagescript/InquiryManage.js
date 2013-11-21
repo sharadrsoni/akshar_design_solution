@@ -313,7 +313,7 @@ function viewinquiry(inquiryId) {
 		success : function(json) {
 			if (json) {
 				$('#viewInquiryDate').text(json.inquiry[0].inquiryDate);
-				$('#viewCourseCode').text(json.inquiry[0].courseCode);
+				$('#viewCourseCode').text(json.inquiry[0].courseName);
 				$('#viewDOJ').text(json.inquiry[0].inquiryDate);
 				$('#viewStudentName').text(json.inquiry[0].inquiryStudentFirstName+" "+json.inquiry[0].inquiryStudentMiddleName+" "+json.inquiry[0].inquiryStudentLastName);
 				$('#viewDOB').text(json.inquiry[0].inquiryDOB);

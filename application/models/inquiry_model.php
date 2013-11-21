@@ -12,6 +12,7 @@ class inquiry_model extends CI_Model {
 	public function getDetailsByInquiry($branchCode, $inquiryId) {
 		$this -> db -> where('inquiryId', $inquiryId);
 		$this -> db -> where("inquiry.inquirybranchCode", $branchCode);
+		$this -> db -> join('course', 'course.courseCode = inquiry.courseCode');
 		return $this -> db -> get('inquiry') -> result();
 	}
 

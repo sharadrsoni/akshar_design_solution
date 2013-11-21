@@ -218,8 +218,8 @@ function viewbatch(batchid) {
 		success : function(json) {
 			if (json) {
 				$("#viewBatchName").text(json.batch_list[0].batchId);
-				$("#viewCourseName").text(json.batch_list[0].courseCode);
-				$("#viewFacultyName").text(json.batch_list[0].facultyId);
+				$("#viewCourseName").text(json.batch_list[0].courseName);
+				$("#viewFacultyName").text(json.batch_list[0].userFirstName + " " + json.batch_list[0].userMiddleName + " " +  json.batch_list[0].userLastName);
 				$("#viewStartDate").text(json.batch_list[0].batchStartDate);
 				$("#viewDuration").text(json.batch_list[0].batchDuration);
 				$("#viewStrength").text(json.batch_list[0].batchStrength);

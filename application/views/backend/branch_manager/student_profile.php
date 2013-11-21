@@ -99,11 +99,11 @@
 												<ul class="unstyled">
 													<li>
 														<span class="sale-info">Attendence<i class="icon-img-up"></i></span>
-														<span class="sale-num">23%</span>
+														<span class="sale-num"><?php echo $attendancePercentage; ?>%</span>
 													</li>
 													<li>
 														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
-														<span class="sale-num">0%</span>
+														<span class="sale-num"><?php echo $testPercentage; ?>%</span>
 													</li>
 													<li>
 														<span class="sale-info"><i class="icon-img-down"></i></span>
@@ -135,6 +135,7 @@
 															<th><i class="icon-star"></i> Test Date</th>
 															<th class="hidden-phone"><i class="icon-question-sign"></i> Course</th>
 															<th><i class="icon-bookmark"></i> Marks</th>
+															<th><i class="icon-bookmark"></i> Percentage</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -148,6 +149,7 @@
 															<td><a href=\"#\">{$key->testDate}</a></td>
 															<td><a href=\"#\">{$key->courseName}</a></td>
 															<td><a href=\"#\">{$key->testResultObtainedMarks}</a></td>
+															<td><a href=\"#\">{$key->testPercent}%</a></td>
 															</tr>";
 														}
 														
@@ -170,13 +172,21 @@
 														<tr>
 															<th><i class="icon-star"></i> Course</th>
 															<th class="hidden-phone"><i class="icon-question-sign"></i> Attendence</th>
+															<th class="hidden-phone"><i class="icon-question-sign"></i> Attendence Percentage</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td><a href="#">Pixel Ltd</a></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-														</tr>
+														<?php
+														foreach($attendanceList as $key)
+														{
+															echo "<tr>
+															<td><a href=\"#\">{$key->courseName}</a></td>
+															<td><a href=\"#\">{$key->attendanceCount}</a></td>
+															<td><a href=\"#\">{$key->attendancePercent}</a></td>
+															</tr>";
+														}
+														
+														?>
 													</tbody>
 												</table>
 											</div>

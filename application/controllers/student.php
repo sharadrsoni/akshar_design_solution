@@ -44,7 +44,7 @@ class Student extends CI_Controller {
 	//Show Attendance
 	public function show_attendance() {
 		$this->data['menu'] = "show attendance";
-		$this -> data['title'] = "ADS | Time Table";
+		$this -> data['title'] = "ADS | Attendance Display";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');
@@ -60,6 +60,7 @@ class Student extends CI_Controller {
 	//Profile
 	public function profile() {
 		$this -> data['title'] = "ADS | Profile";
+		$this->data['menu'] = "profile";
 		$this -> load -> model('user_model');
 		$this -> load -> model('student_profile_model');
 		$this -> load -> view('backend/master_page/top', $this -> data);
@@ -68,8 +69,27 @@ class Student extends CI_Controller {
 		$this -> load -> model("state_model");
 		$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 		$this->load->model("test_result_model");
-		$this->data['testresult']=$this->test_result_model->testMarks($this->userId);
-		
+		$testResult = $this->test_result_model->testMarks($this->userId);
+		$this->data['testresult']= $testResult;
+		$this->load->model("attendance_model");
+		$attendanceList = $this->attendance_model->studentAttendanceList($this->userId);
+		$this->data['attendanceList']=$attendanceList;
+		$count = 0;
+		$sum = 0;
+		foreach($testResult as $key)
+		{
+			$sum = $sum + $key -> testPercent;
+			$count++;
+		}
+		$this -> data['testPercentage'] = $sum / $count;		
+		$count = 0;
+		$sum = 0;
+		foreach($attendanceList as $key)
+		{
+			$sum = $sum + $key -> attendancePercent;
+			$count++;
+		}
+		$this -> data['attendancePercentage'] = $sum / $count;
 		$this -> load -> view('backend/master_page/header');
 		if (isset($_POST['edit_profile'])) {
 			$studentData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' =>	date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid']);

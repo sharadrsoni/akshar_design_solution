@@ -58,7 +58,14 @@
 						<!-- START Dropdown Menu -->
 						<div class="dropdown-menu" role="menu">
 							<header>
-								<a href="<?php echo base_url() . 'staff/profile'; ?>" style="color: white;">Your Profile</a>
+								<a href="<?php $role=$this->session->userdata('roleId');
+if($role==1)
+{
+	echo base_url() . 'staff/profile';
+}
+else {
+	echo base_url() . 'student/profile';	
+} ?>" style="color: white;">Your Profile</a>
 							</header>
 							
 							<footer>

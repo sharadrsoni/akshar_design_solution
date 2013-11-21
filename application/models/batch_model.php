@@ -44,6 +44,8 @@ class batch_model extends CI_Model {
 	public function getDetailsByBranchAndBatch($branchCode, $batchId) {
 		$this -> db -> where("batch.branchCode", $branchCode);
 		$this -> db -> where("batch.batchId", $batchId);
+		$this -> db -> join('course', 'course.courseCode = batch.courseCode');
+		$this -> db -> join('user', 'user.userId = batch.facultyId');
 		return $this -> db -> get('batch') -> result();
 	}
 

@@ -14,6 +14,8 @@ class event_model extends CI_Model {
 	public function getDetailsByEventBranch($branchCode,$eventId) {
 		$this -> db -> where("event.branchCode", $branchCode);
 		$this -> db -> where('eventId', $eventId);
+		$this -> db -> join('event_type', 'event.eventTypeId = event_type.eventTypeId');
+		$this -> db -> join('user', 'user.userId = event.facultyId');
 		return $this -> db -> get('event') -> result();
 	}
 	
