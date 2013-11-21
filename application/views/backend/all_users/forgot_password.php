@@ -8,7 +8,7 @@
 
 	<head>
 		<!-- START META SECTION -->
-		<title>Login</title>
+		<title>Forgot Password</title>
 		<!--/ END META SECTION -->
 
 		<!-- START STYLESHEET SECTION -->
@@ -43,7 +43,7 @@
 						</p>
 						<?php
 							$attributes = array('class' => 'widget stacked teal widget-login', 'id' => 'form_forgot_password');
-							echo form_open('login', $attributes);
+							echo form_open('login/forgot_password', $attributes);
  ?>
 							<section class="body">
 								<div class="body-inner">

@@ -65,18 +65,18 @@ class Login extends CI_Controller {
 	}
 
 	//forgot password
-	public function forgot_password($auth_id = '') {
-		if ($auth_id == '') {
-			$this -> data['title'] = "ADS | Forgot Password";
-			if (isset($_POST['submit'])) {
-				$this -> load -> library("form_validation");
-				$this -> form_validation -> set_rules('email', 'Email ID', 'required|trim');
-				if ($this -> form_validation -> run() == FALSE) {
-					$this -> data['validate'] = true;
-				} else {
-					$this -> load -> model("user_model");
-					$randomPassword = $this -> user_model -> randomPassword();
-					$userDetail = $this -> user_model -> getUserDetailsbyEmail($_POST['email']);
+	public function forgot_password() {
+		$this -> data['title'] = "ADS | Forgot Password";
+		if (isset($_POST['sendpassword'])) {
+			$this -> load -> library("form_validation");
+			$this -> form_validation -> set_rules('email', 'Email ID', 'required|trim');
+			if ($this -> form_validation -> run() == FALSE) {
+				$this -> data['validate'] = true;
+			} else {
+				$this -> load -> model("user_model");
+				$randomPassword = $this -> user_model -> randomPassword();
+				$userDetail = $this -> user_model -> getUserDetailsbyEmail($_POST['email']);
+				if ($userDetail != null) {
 					$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
 					$this -> load -> library('email', $config);
 					$this -> email -> set_newline("\r\n");
@@ -86,19 +86,17 @@ class Login extends CI_Controller {
 					$text = 'Hello ' . $userDetail -> userFirstName . ' ' . $userDetail -> userMiddleName . ' ' . $userDetail -> userLastName . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution</b> for reseting your password.' . "<br><br>" . 'Your Temporary Password is:' . "<br>" . 'password - ' . $randomPassword . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 					$this -> email -> message($text);
 					$forgot_key = sha1(uniqid());
-					$insertData = array("forgot_key" => $forgot_key, "forgot_time" => now(), "userPassword" => $randomPassword);
-					if($this -> email -> send() && $this->user_model->forgot_passord($insertData, $_POST['email'])) {
+					$insertData = array("userPassword" => $randomPassword);
+					if ($this -> email -> send() && $this -> user_model -> forgot_password($insertData, $_POST['email'])) {
 						redirect(base_url() . "login");
 					}
+				} else {
+					redirect(base_url() . "login");
 				}
 			}
-
-			$this -> load -> view('backend/master_page/top', $this -> data);
-			$this -> load -> view('backend/all_users/forgot_password');
-
-		} else {
-			
 		}
+		$this -> load -> view('backend/master_page/top', $this -> data);
+		$this -> load -> view('backend/all_users/forgot_password');
 	}
 
 }

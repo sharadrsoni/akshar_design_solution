@@ -96,12 +96,12 @@ class user_model extends CI_Model {
 
 	public function getUserDetailsbyEmail($emailId) {
 		$this -> db -> where("userEmailAddress", $emailId);
-		return $this -> db -> get('user') -> row();
+		return $queryData = $this -> db -> get('user') -> row();
 	}
 
-	public function forgot_passord($data, $emailId) {
-		$this->db->where("userEmailAddress", $emailId);
-		return $this->db->update("user", $data);
+	public function forgot_password($data, $emailId) {
+		$this -> db -> where("userEmailAddress", $emailId);
+		return $this -> db -> update("user", $data);
 	}
 
 	//get user data by user id
