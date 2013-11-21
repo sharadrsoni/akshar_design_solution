@@ -131,17 +131,33 @@
 												<table class="table table-striped table-bordered table-advance table-hover">
 													<thead>
 														<tr>
+															<th><i class="icon-star"></i> Test Name</th>
 															<th><i class="icon-star"></i> Test Date</th>
 															<th class="hidden-phone"><i class="icon-question-sign"></i> Course</th>
 															<th><i class="icon-bookmark"></i> Marks</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td><a href="#">Pixel Ltd</a></td>
-															<td class="hidden-phone">Server hardware purchase</td>
-															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
-														</tr>
+														
+														<?php
+														
+														foreach($testresult as $key)
+														{
+															echo "<tr>
+															<td><a href=\"#\">{$key->testName}</a></td>
+															<td><a href=\"#\">{$key->testDate}</a></td>
+															<td><a href=\"#\">{$key->courseName}</a></td>
+															<td><a href=\"#\">{$key->testResultObtainedMarks}</a></td>
+															</tr>";
+														}
+														
+														?>
+														
+														
+															
+															
+															
+															
 													</tbody>
 												</table>
 											</div>
