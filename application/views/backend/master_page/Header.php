@@ -159,36 +159,36 @@
 										<?php endif; ?>
 										<a href='<?php echo base_url() . $href . "/role" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>role</span> </a></li>
 
-										<?php if(strtolower($menu) == "course"): ?> 
+										<?php if(strtolower($menu) == "course" || strtolower($menu) == "course category"): ?> 
 											<li class='accordion-group active'>
 										<?php else: ?>
 											<li class='accordion-group'>
 										<?php endif; ?>
 										<a data-toggle='collapse' data-parent='#navigation' href='#submenuCourse'> <span class='icon icone-beaker'></span> <span class='text'>Course</span> <span class='arrow icone-caret-down'></span> </a>
 										<!-- START Submenu Menu -->
-										<ul id='submenuCourse' class='collapse'>
-											<li class=''>
+										<ul id='submenuCourse' class='collapse <?php if(strtolower($menu) == "course" || strtolower($menu) == "course category"): echo "in"; endif; ?> '>
+											<li class='<?php if(strtolower($menu) == "course category"): echo "active"; endif; ?>'>
 												<a href='<?php echo base_url() . $href . "/course_category" ?>'><span class='icon icone-angle-right'></span>Course Category</a>
 											</li>
-											<li class=''>
+											<li class='<?php if(strtolower($menu) == "course"): echo "active"; endif; ?>'>
 												<a href='<?php echo base_url() . $href . "/course" ?>'><span class='icon icone-angle-right'></span>Course</a>
 											</li>
 										</ul>
 										<!--/ END Submenu Menu -->
 										</li>
 
-										<?php if(strtolower($menu) == "target"): ?> 
+										<?php if(strtolower($menu) == "target" ||strtolower($menu) == "target type" ): ?> 
 											<li class='accordion-group active'>
 										<?php else: ?>
 											<li class='accordion-group'>
 										<?php endif; ?>
 										<a data-toggle='collapse' data-parent='#navigation' href='#submenuTarget'> <span class='icon icone-beaker'></span> <span class='text'>Target</span> <span class='arrow icone-caret-down'></span> </a>
 										<!-- START Submenu Menu -->
-										<ul id='submenuTarget' class='collapse in'>
-										<li class='active'>
+										<ul id='submenuTarget' class='collapse <?php if(strtolower($menu) == "target" ||strtolower($menu) == "target type" ): echo "in"; endif; ?>'>
+										<li class="<?php if(strtolower($menu) == "target type"): echo "active"; endif; ?>">
 										<a href='<?php echo base_url() . $href . "/target_type" ?>'><span class='icon icone-angle-right'></span>Target Type</a>
 										</li>
-										<li class=''>
+										<li class='<?php if(strtolower($menu) == "target"): echo "active"; endif; ?>'>
 										<a href='<?php echo base_url() . $href . "/target" ?>'><span class='icon icone-angle-right'></span>Target</a>
 										</li>
 										</ul>
