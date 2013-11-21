@@ -24,14 +24,14 @@
 			<!-- START Page/Section header -->
 			<div class="span12">
 				<div class="page-header line1">
-					<h4>Batch <small>Maintain batch details over here.</small></h4>
+					<h4>Dashboard <small>Batch details and timing.</small></h4>
 				</div>
 			</div>
 			<!--/ END Page/Section header -->
 		</div>
 		<!--/ END Row -->
 		<!--Page Content Here  -->
-		<div id="Batch">
+		<div id="Dashboard">
 
 			<!-- START Row -->
 			<div class="row-fluid">
@@ -39,7 +39,7 @@
 				<div class="tabbable" style="margin-bottom: 25px;">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>Batches</a>
+							<a href="#tab1" id="tablink1" data-toggle="tab"><span class="icon icone-eraser"></span>View Batch</a>
 						</li>
 					</ul>
 					<div class="tab-content">
@@ -48,7 +48,7 @@
 							<div class="control-group" id="lst_batch_div">
 								<label class="control-label">Batch<span class="required">*</span></label>
 								<div class="controls">
-									<select class="span4 select2" name="batch_name[]" multiple="" id="batch_name">
+									<select class="span4" name="batch_name" id="batch_name">
 										<option value="">Select...</option>
 										<?php
 										foreach ($batch as $key) {
@@ -82,11 +82,6 @@
 												<td style='background:#f0f6fa' class="unstyled profile-nav span3">Duration</td>
 												<td id="viewDuration"></td>
 											</tr>
-											<tr>
-												<td  class="unstyled profile-nav span3">Strength</td>
-												<td id="viewStrength"></td>
-											</tr>
-
 										</table>
 									</div>
 								</div>
