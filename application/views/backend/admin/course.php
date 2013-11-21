@@ -77,7 +77,7 @@
 						<div class="tab-pane" id="tab2">
 							<?php
 							$attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_course');
-							echo form_open('admin/course', $attributes);
+							echo form_open_multipart('admin/course', $attributes);
 							?>
 
 							<div class="alert alert-error hide">
@@ -230,6 +230,34 @@
 				<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
 			</div>
 		</div><!--/ Course Description -->
+		<!-- course image -->
+		
+		 <label class="control-label">Select Avtar</label>
+														<div class="controls">
+															<div class="fileupload fileupload-new" data-provides="fileupload">
+																<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+																	<img src="" alt="" />
+																</div>
+																<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+																	<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+																	
+																</div>
+																<div>
+																	<span class="btn btn-file"><span class="fileupload-new">Select image</span> <span class="fileupload-exists">Change</span>
+																		<input type="file" id="course_avtar" name="course_avtar" class="default" />
+																	</span>
+																	<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+																</div>
+															</div>
+															<span class="label label-important">NOTE!</span>
+															<span> Attach file should be less than 2MB and jpg, jpeg and png format. </span>
+														</div>	
+														</div>									
+											
+											
+		<!-- / course image-->
+		
+		
 		<!-- Form Action -->
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary" name="submitCourse" id="submitCourse">

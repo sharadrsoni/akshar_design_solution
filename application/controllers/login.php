@@ -64,4 +64,11 @@ class Login extends CI_Controller {
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
+	//forgot password
+	public function forgotpassword() {
+		$this->data['title'] = "ADS | Forgot Password";
+		$this -> load -> view('backend/master_page/top', $this->data);
+	    $this -> load -> view('backend/all_users/forgot_password');
+	}
+	
 }
