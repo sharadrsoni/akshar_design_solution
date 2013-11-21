@@ -26,6 +26,20 @@ class attendance_model extends CI_Model {
 		}
 		return NULL;
 	}
+	
+	
+	public function getAttendanceCount($studentId) {
+		$this -> db -> select('attendanceId');
+		$this -> db -> from('attendance');
+		$this -> db -> join('student_batch', 'attendance.studentBatchId = student_batch.studentBatchId');
+		$this -> db -> where("batchId", $batchId);
+		$this -> db -> where("attendanceDate", $date);
+		$count = $this -> db -> count_all_results();
+		if ($count > 0) {
+			return $count;
+		}
+		return NULL;
+	}
 
 	public function addAttendance($data) {
 		if (isset($data)) {
