@@ -443,7 +443,7 @@ class Admin extends CI_Controller {
 					$staffData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userContactNumber' => $_POST['contact_number'], 'userEmailAddress' => $_POST['email'], 'userDOB' => date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid'], 'branchCode' => $_POST['branchCode'], 'roleId' => $_POST['userroleId']);
 					if ($_POST['staffId'] == "") {
 						$staffData['userId'] = $this -> user_model -> getMaxId(date('Y'), $_POST['branchCode'], $_POST['userroleId']);
-						$staffData['userPassword'] = $this -> user_model -> randomPassword();
+						$staffData['userPassword'] = md5($this -> user_model -> randomPassword());
 						$staffData['userPhotograph'] = "profile.png";
 						$staffData['userJoiningDate'] = date("Y-m-d");
 
