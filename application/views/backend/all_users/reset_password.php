@@ -8,7 +8,7 @@
 
 	<head>
 		<!-- START META SECTION -->
-		<title>Forgot Password</title>
+		<title>Reset Password</title>
 		<!--/ END META SECTION -->
 
 		<!-- START STYLESHEET SECTION -->
@@ -56,7 +56,7 @@
 									<!--/ END Logo -->
 								<div class="span12">
 									<div class="page-header line1">
-									<center><h4>Forgot Password</h4></center>
+									<center><h4>Reset Password</h4></center>
 								</div>
 								</div>
 
@@ -68,21 +68,28 @@
 									</div><!--/ Avatar -->
 									
 					
-
-									<!-- Email -->
+									<!-- Password -->
 									<div class="control-group">
 										<div class="controls">
-											<input type="text" placeholder="Email ID" id="email" name="email" class="span12" />
-											<i class="icon-user input-icon"></i>
+											<input type="password" placeholder="Password" id="password" name="password" class="span12">
+											<i class="icon-lock input-icon"></i>
 										</div>
-									</div><!--/ Email -->
+									</div><!--/ Password -->
+									
+									<!--  Repeat Password -->
+									<div class="control-group">
+										<div class="controls">
+											<input type="password" placeholder="Conform Password" id="cpassword" name="cpassword" class="span12">
+											<i class="icon-lock input-icon"></i>
+										</div>
+									</div><!--/ Password -->
 
 								</div>
 								<!-- Form Action -->
 								<!-- Place out form `.body-inner` -->
 								<div class="form-actions">
 									<button type="submit" class="btn btn-primary" name="sendpassword">
-										Send Password
+										Reset Password
 									</button>
 								</div>
 								<!--/ Form Action -->
