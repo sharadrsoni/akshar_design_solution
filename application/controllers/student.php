@@ -44,7 +44,7 @@ class Student extends CI_Controller {
 	//Show Attendance
 	public function show_attendance() {
 		$this->data['menu'] = "show attendance";
-		$this -> data['title'] = "ADS | Time Table";
+		$this -> data['title'] = "ADS | Attendance Display";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/show_attendance_css');
 		$this -> load -> view('backend/master_page/header');

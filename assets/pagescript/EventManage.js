@@ -334,7 +334,7 @@ function updateevent(eventid) {
 		success : function(json) {
 			if (json) {
 				$('#event_name').val(json.event[0].eventName);
-				$('#event_type_id').val(json.event[0].eventTypeId);
+				$('#event_type_id').val(json.event[0].eventType);
 				$('#start_date').val(json.event[0].eventStartDate);
 				$('#end_date').val(json.event[0].eventEndDate);
 				$('#description').val(json.event[0].eventDescription);
@@ -361,13 +361,13 @@ function viewevent(eventId) {
 		success : function(json) {
 			if (json) {
 				$('#viewEventName').text(json.event[0].eventName);
-				$('#viewEventTypeID').text(json.event[0].eventTypeId);
+				$('#viewEventTypeID').text(json.event[0].eventTypeName);
 				$('#viewEventStartDate').text(json.event[0].eventStartDate);
 				$('#viewEventEndDate').text(json.event[0].eventEndDate);
 				$('#viewEventDescription').text(json.event[0].eventDescription);
 				$('#viewAddress').html(json.event[0].eventStreet1+",<br/>"+json.event[0].eventStreet2+",<br/>"+json.event[0].eventCity+","+json.event[0].eventState+"-"+json.event[0].eventPincode);
 				$('#viewOrganizerName').text(json.event[0].eventOrganizerName);
-				$('#viewFacultyID').text(json.event[0].facultyId);
+				$('#viewFacultyID').text(json.event[0].userFirstName + " " + json.event[0].userMiddleName + " " +  json.event[0].userLastName);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");
