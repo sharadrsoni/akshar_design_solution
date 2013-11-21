@@ -97,7 +97,10 @@ var Course= function() {
 					opening_stock: {
 						digits : true,
                         required: true,
-                    }
+                   },
+                   course_avatar:{
+                   	required:true,
+                   }
                 },
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
@@ -184,7 +187,7 @@ function viewcourse(courseCode) {
 				$('#viewCourseDuration').text(json.course.courseDuration);
 				$('#viewTotalBook').text(json.course.courseMaterialTotalBooks);
 				$('#viewDescription').text(json.course.courseDescription);
-				$('#ViewCourseImage').attr("src",json.course.coursePhotograph);
+				$('#ViewCourseImage').attr("src","/akshar_design_solution/images/avatar/"+json.course.coursePhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tabView').addClass("active");
