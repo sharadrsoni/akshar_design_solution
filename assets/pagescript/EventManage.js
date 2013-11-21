@@ -67,7 +67,7 @@ var Event = function() {
 					required : true,
 					minlength:3,
 					maxlength:100,
-					lettersonly:true,
+					letterswithbasicpunc:true,
 				},
 				event_type_id : {
 					required : true,

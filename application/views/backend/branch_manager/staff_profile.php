@@ -84,7 +84,7 @@
 
 										<ul class="unstyled inline">
 											<li>
-												<i class="icon-map-marker"></i> <?php echo $profile->cityId;?>
+												<i class="icon-map-marker"></i> <?php echo $profile >cityId;?>
 											</li>
 											<li>
 												<i class="icon-calendar"></i><?php echo $profile->userDOB;?>

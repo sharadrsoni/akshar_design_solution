@@ -77,7 +77,7 @@
                                                 <div class="tab-pane" id="tab2">
                                                         <?php
                                                         $attributes = array('class' => 'form-horizontal span12 widget shadowed yellow', 'id' => 'form_course');
-                                                        echo form_open('admin/course', $attributes);
+                                                        echo form_open_multipart('admin/course', $attributes);
                                                         ?>
 
                                                         <div class="alert alert-error hide">
@@ -231,7 +231,7 @@
 								<div class="portlet-body">
 									<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
 										<tr>
-											<td style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewCourseImage" /></td>
+											<td style="text-align:center;"><img alt="" width="200px" height="200px" id="ViewCourseImage"/></td>
 											<td>
 												<table class="table table-striped table-bordered table-hover dataTable" id="viewtblBranch">
 													<tr>
