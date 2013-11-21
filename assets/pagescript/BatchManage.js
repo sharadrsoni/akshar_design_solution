@@ -193,7 +193,8 @@ function updatebatch(batchid) {
 			if (json) {
 				$("#course_id").val(json.batch_list[0].courseCode);
 				$("#faculty_id").val(json.batch_list[0].facultyId);
-				$("#start_date").val(json.batch_list[0].batchStartDate);
+				arr_date = json.batch_list[0].batchStartDate.split('-');
+				$("#start_date").val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$("#duration").val(json.batch_list[0].batchDuration);
 				$("#strength").val(json.batch_list[0].batchStrength);
 				$('#lst_batch_timing').html("");
@@ -220,7 +221,8 @@ function viewbatch(batchid) {
 				$("#viewBatchName").text(json.batch_list[0].batchId);
 				$("#viewCourseName").text(json.batch_list[0].courseName);
 				$("#viewFacultyName").text(json.batch_list[0].userFirstName + " " + json.batch_list[0].userMiddleName + " " +  json.batch_list[0].userLastName);
-				$("#viewStartDate").text(json.batch_list[0].batchStartDate);
+				arr_date = json.batch_list[0].batchStartDate.split('-');
+				$("#viewStartDate").text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$("#viewDuration").text(json.batch_list[0].batchDuration);
 				$("#viewStrength").text(json.batch_list[0].batchStrength);
 				$('#viewWeekday1').text("");

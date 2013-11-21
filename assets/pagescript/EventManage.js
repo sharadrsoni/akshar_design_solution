@@ -67,7 +67,7 @@ var Event = function() {
 					required : true,
 					minlength:3,
 					maxlength:100,
-					lettersonly:true,
+					letterswithbasicpunc:true,
 				},
 				event_type_id : {
 					required : true,
@@ -335,9 +335,11 @@ function updateevent(eventid) {
 		success : function(json) {
 			if (json) {
 				$('#event_name').val(json.event[0].eventName);
-				$('#event_type_id').val(json.event[0].eventType);
-				$('#start_date').val(json.event[0].eventStartDate);
-				$('#end_date').val(json.event[0].eventEndDate);
+				$('#event_type_id').val(json.event[0].eventTypeId);
+				arr_date = json.event[0].eventStartDate.split('-');
+				$('#start_date').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
+				arr_date = json.event[0].eventEndDate.split('-');
+				$('#end_date').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#description').val(json.event[0].eventDescription);
 				$('#street_1').val(json.event[0].eventStreet1);
 				$('#street_2').val(json.event[0].eventStreet2);
@@ -364,8 +366,10 @@ function viewevent(eventId) {
 			if (json) {
 				$('#viewEventName').text(json.event[0].eventName);
 				$('#viewEventTypeID').text(json.event[0].eventTypeName);
-				$('#viewEventStartDate').text(json.event[0].eventStartDate);
-				$('#viewEventEndDate').text(json.event[0].eventEndDate);
+				arr_date = json.event[0].eventStartDate.split('-');
+				$('#viewEventStartDate').text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
+				arr_date = json.event[0].eventEndDate.split('-');
+				$('#viewEventEndDate').text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#viewEventDescription').text(json.event[0].eventDescription);
 				$('#viewAddress').html(json.event[0].eventStreet1+",<br/>"+json.event[0].eventStreet2+",<br/>"+json.event[0].cityName+","+json.event[0].stateName+"-"+json.event[0].eventPincode);
 				$('#viewOrganizerName').text(json.event[0].eventOrganizerName);

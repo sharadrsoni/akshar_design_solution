@@ -245,7 +245,8 @@ function updatestaff(staffid) {
 				$('#last_name').val(json.staff.userLastName);
 				$('#contact_number').val(json.staff.userContactNumber);
 				$('#email').val(json.staff.userEmailAddress);
-				$('#date_of_birth').val(json.staff.userDOB);
+			    arr_date = json.staff.userDOB.split('-');
+				$('#date_of_birth').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#qualification').val(json.staff.userQualification);
 				$('#street_1').val(json.staff.userStreet1);
 				$('#street_2').val(json.staff.userStreet2);
@@ -277,8 +278,10 @@ function viewstaff(userId) {
 				$('#viewUserContactNO').text(json.staff.userContactNumber);
 				$('#viewUserAddress').html(json.staff.userStreet1 + "<Br/>" + json.staff.userStreet2 + "<Br/>" + json.staff.cityId + ", " + json.staff.stateId + "<Br/>" + json.staff.userPostalCode);
 				$('#viewUserEmail').html(json.staff.userEmailAddress);
-				$('#viewUserDOB').html(json.staff.userDOB);
-				$('#viewUserDOJ').html(json.staff.userJoiningDate);
+				arr_date = json.staff.userDOB.split('-');
+				$('#viewUserDOB').html(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
+				arr_date = json.staff.userJoiningDate.split('-');
+				$('#viewUserDOJ').html(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#ViewProfielImage').attr("src",json.staff.userPhotograph);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");

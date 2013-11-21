@@ -39,7 +39,6 @@ class user_model extends CI_Model {
 		return $this -> db -> get('user') -> result();
 	}
 
-
 	public function getDetailsByBranch($branchCode) {
 		$this -> db -> where_in("branchCode", $branchCode, null);
 		$this -> db -> where("roleId !=", 5);
@@ -47,17 +46,16 @@ class user_model extends CI_Model {
 	}
 
 	public function getBatchStudents($batchCode) {
-		$this -> db -> where_in("student_batch.batchId",$batchCode, null);
+		$this -> db -> where_in("student_batch.batchId", $batchCode, null);
 		$this -> db -> join('student_batch', 'user.userId = student_batch.studentId');
 		return $this -> db -> get('user') -> result();
 	}
 
 	// Batch list getting the student id
 	public function getStudentBatchs($studentId) {
-		$this -> db -> where("studentId",$studentId);
+		$this -> db -> where("studentId", $studentId);
 		return $this -> db -> get('student_batch') -> result();
 	}
-
 
 	public function getBranchStaff($branchCode) {
 		$this -> db -> where("branchCode", $branchCode);
@@ -94,6 +92,16 @@ class user_model extends CI_Model {
 	public function getUserDetails($userId) {
 		$this -> db -> where("userId", $userId);
 		return $this -> db -> get('user') -> row();
+	}
+
+	public function getUserDetailsbyEmail($emailId) {
+		$this -> db -> where("userEmailAddress", $emailId);
+		return $queryData = $this -> db -> get('user') -> row();
+	}
+
+	public function forgot_password($data, $emailId) {
+		$this -> db -> where("userEmailAddress", $emailId);
+		return $this -> db -> update("user", $data);
 	}
 
 	//get user data by user id
@@ -165,7 +173,6 @@ class user_model extends CI_Model {
 		}
 		return false;
 	}
-
 
 	public function deleteUser($userId) {
 		if (isset($userId)) {

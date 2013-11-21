@@ -43,7 +43,7 @@
 						</p>
 						<?php
 							$attributes = array('class' => 'widget stacked teal widget-login', 'id' => 'form_forgot_password');
-							echo form_open('login', $attributes);
+							echo form_open('login/forgot_password', $attributes);
  ?>
 							<section class="body">
 								<div class="body-inner">

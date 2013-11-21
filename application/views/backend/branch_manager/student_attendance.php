@@ -117,9 +117,7 @@
 										<button type="submit" class="btn btn-primary" name="saveAttendance" id="saveAttendance">
 											Save
 										</button>
-										<button type="button" class="btn">
-											Cancel
-										</button>
+										<a href="<?php echo base_url() . "faculty/student_attendance"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 									</div><!--/ Form Action -->
 								</div>
 							</form>
