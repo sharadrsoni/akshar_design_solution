@@ -21,7 +21,7 @@ class Student extends CI_Controller {
 		$this -> load -> view('backend/master_page/header');
 		$this -> load -> view('backend/branch_manager/dashboard');
 		$this -> load -> view('backend/master_page/footer');
-		$this -> load -> view('backend/js/dashboard_js');
+		$this -> load -> view('backend/js/dashboard_stud_js');
 		$this -> load -> view('backend/master_page/bottom');
 	}
 
