@@ -214,6 +214,7 @@ var Staff = function() {
 				$('#street_1').val("");
 				$('#street_2').val("");
 				$("#stateid").select2("val", 0);
+				$("#stateid").change();
 				$("#cityid").select2("val", 0);
 				$('#pin_code').val("");
 				$('#staffId').val("");

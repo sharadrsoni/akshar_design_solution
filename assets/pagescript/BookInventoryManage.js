@@ -9,11 +9,11 @@ var BookInventory = function() {
 			$('#tblinventory').dataTable({
 				"aoColumns" : [{
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : false
 				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
@@ -64,18 +64,18 @@ var BookInventory = function() {
 				focusInvalid : false, // do not focus the last invalid input
 				ignore : "",
 				rules : {
-					course_id:{
+					course_id : {
 						required : true,
 					},
-					inventory_quantity:{
+					inventory_quantity : {
 						required : true,
-						digits:true,
-						min:0,
+						digits : true,
+						min : 0,
 					},
-					inward_date:{
-						required:true,
+					inward_date : {
+						required : true,
 					}
-					
+
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
@@ -114,17 +114,18 @@ var BookInventory = function() {
 				$('#course_id option:nth(0)').attr("selected", "selected");
 				$('#inventory_quantity').val("");
 				$('#inventoryInwardId').val("");
+				$('#inward_date').val("");
 				$("#submitInventory").text("Add Inventory");
 				$('.alert-error', $('#form_inventory')).hide();
 				$("#form_inventory").validate().resetForm();
-  				$(".error").removeClass("error");
-  				$(".success").removeClass("success");
+				$(".error").removeClass("error");
+				$(".success").removeClass("success");
 			});
 			$("#inward_date_datepicker input").datepicker({
 				isRTL : App.isRTL(),
 				dateFormat : 'dd-mm-yy'
 			});
-	
+
 			$("#inward_date_datepicker .add-on").click(function() {
 				$("#inward_date_datepicker input").datepicker("show");
 			});
@@ -132,7 +133,6 @@ var BookInventory = function() {
 	};
 }();
 function updatebookinventory(inventoryInwardid) {
-	alert();
 	$.ajax({
 		url : "../branch_manager_counsellor/book_inventory/" + inventoryInwardid,
 		dataType : 'json',
@@ -141,6 +141,8 @@ function updatebookinventory(inventoryInwardid) {
 			if (json) {
 				$('#course_id').val(json.inventory[0].courseId);
 				$('#inventory_quantity').val(json.inventory[0].inventoryInwardQuantity);
+				arr_date = json.inventory[0].inventoryInwardDate.split('-');
+				$('#inward_date').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");
 				$('#tab2').addClass("active");

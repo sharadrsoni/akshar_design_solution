@@ -152,13 +152,6 @@
 										<?php endif; ?>
 										<a href='<?php echo base_url() . $href . "/staff" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Staff</span> </a></li>
 
-										<?php if(strtolower($menu) == "role"): ?> 
-											<li class='accordion-group active'>
-										<?php else: ?>
-											<li class='accordion-group'>
-										<?php endif; ?>
-										<a href='<?php echo base_url() . $href . "/role" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>role</span> </a></li>
-
 										<?php if(strtolower($menu) == "course" || strtolower($menu) == "course category"): ?> 
 											<li class='accordion-group active'>
 										<?php else: ?>
@@ -195,27 +188,28 @@
 										<!--/ END Submenu Menu -->
 										</li>
 
-										<?php if(strtolower($menu) == "event type"): ?> 
+									
+									<?php if(strtolower($menu) == "role"||strtolower($menu) == "state" || strtolower($menu) == "city"): ?> 
 											<li class='accordion-group active'>
 										<?php else: ?>
 											<li class='accordion-group'>
 										<?php endif; ?>
-										<a href='<?php echo base_url() . $href . "/event_type" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a></li>
-
-										<?php if(strtolower($menu) == "state"): ?> 
-											<li class='accordion-group active'>
-										<?php else: ?>
-											<li class='accordion-group'>
-										<?php endif; ?>
-										<a href='<?php echo base_url() . $href . "/state" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>State</span> </a></li>
-
-										<?php if(strtolower($menu) == "city"): ?> 
-											<li class='accordion-group active'>
-										<?php else: ?>
-											<li class='accordion-group'>
-										<?php endif; ?>
-										<a href='<?php echo base_url() . $href . "/city" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>City</span></a></li>							
-									<?php endif; ?>
+										<a data-toggle='collapse' data-parent='#navigation' href='#submenuother'> <span class='icon icone-beaker'></span> <span class='text'>others</span> <span class='arrow icone-caret-down'></span> </a>
+										<!-- START Submenu Menu -->
+										<ul id='submenuother' class='collapse <?php if(strtolower($menu) == "role"||strtolower($menu) == "state" || strtolower($menu) == "city"): echo "in"; endif; ?> '>
+											<li class='<?php if(strtolower($menu) == "role"): echo "active"; endif; ?>'>
+											<a href='<?php echo base_url() . $href . "/role" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>role</span> </a></li>											
+											<li class='<?php if(strtolower($menu) == "state"): echo "active"; endif; ?>'>
+												<a href='<?php echo base_url() . $href . "/state" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>State</span> </a>
+											</li>
+											<li class='<?php if(strtolower($menu) == "city"): echo "active"; endif; ?>'>
+												<a href='<?php echo base_url() . $href . "/city" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>City</span></a>
+											</li>
+										</ul>
+										<!--/ END Submenu Menu -->
+										</li>
+							
+									<?php endif; ?>									
 									
 									<?php if ($roleId == 2): ?>						
 										<?php if(strtolower($menu) == "batch"): ?>
@@ -258,6 +252,13 @@
 											<li class='accordion-group'>
 										<?php endif; ?>
 											<a href='<?php echo base_url() . $href . "/book_inventory" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Book Inventory</span> </a></li>
+
+										<?php if(strtolower($menu) == "event type"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/event_type" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Event Type</span> </a></li>
 
 										<?php if(strtolower($menu) == "event"): ?>
 											<li class='accordion-group active'>
