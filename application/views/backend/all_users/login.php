@@ -81,7 +81,7 @@
 									<!-- Register Link -->
 									<div class="control-group">
 										<div class="controls">
-											<a href="page-register.html">Forgot Password? Click Here!</a>
+											<a href="<?php echo base_url() . "login/forgot_password" ?>">Forgot Password? Click Here!</a>
 										</div>
 									</div><!--/ Register Link -->
 								</div>
