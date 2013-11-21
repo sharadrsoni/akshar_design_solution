@@ -14,13 +14,16 @@ class attendance_model extends CI_Model {
 		return $this -> db -> get('attendance') -> result();
 	}
 
-	public function getDetails($studentId,$batchId) {
+	public function getDetails($studentId, $batchId) {
 		$this -> db -> where("batchId", $batchId);
 		$this -> db -> where("student_batch.studentId", $studentId);
 		$this -> db -> join('student_batch', 'attendance.studentBatchId = student_batch.studentBatchId');
 		return $this -> db -> get('attendance') -> result();
 	}
 
+	public function studentAttendanceList($studentId) {
+		return $this -> db -> query("select c.courseCode, c.courseName, count(*) as attendanceCount,100 * count(*)/(select count(*) from attendance a1,batch b1,student_batch sb1 where sb1.studentId = '" . $studentId . "' and b1.batchId = sb1.batchId and b1.courseCode = c.courseCode and sb1.studentBatchId = a1.studentBatchId) as attendancePercent from attendance a,batch b,course c,student_batch sb where attendanceIsPresent = 1 and studentId = '" . $studentId . "' and b.batchId = sb.batchId and b.courseCode = c.courseCode and sb.studentBatchId = a.studentBatchId group by c.courseCode") -> result();
+	}
 
 	public function getCountByDate($batchId, $date) {
 		$this -> db -> select('attendanceId');
@@ -34,8 +37,7 @@ class attendance_model extends CI_Model {
 		}
 		return NULL;
 	}
-	
-	
+
 	public function getAttendanceCount($studentId) {
 		$this -> db -> select('attendanceId');
 		$this -> db -> from('attendance');
