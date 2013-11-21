@@ -173,8 +173,10 @@ function viewtarget(targetId) {
 			if (json) {
 				$('#viewTargetName').text(json.target[0].targetSubject);
 				$('#viewTargetDescription').text(json.target[0].targetDescription);
-				$('#viewTargetStartDate').text(json.target[0].targetStartDate);
-				$('#viewTargetEndDate').text(json.target[0].targetEndDate);
+				arr_date = json.target[0].targetStartDate.split('-');
+				$('#viewTargetStartDate').text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
+				arr_date = json.target[0].targetEndDate.split('-');
+				$('#viewTargetEndDate').text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#viewStatus').text(json.target[0].targetIsAchieved);
 				$('#viewTargetType').text(json.target[0].targetTypeName);
 				$('#viewBranchCode').text(json.target[0].branchCode);

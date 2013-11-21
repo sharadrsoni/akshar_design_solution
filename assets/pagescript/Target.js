@@ -184,8 +184,10 @@ function updatetarget(targetid) {
 				$('#branch').val(json.target[0].branchCode);
 				$('#target_name').val(json.target[0].targetSubject);
 				$('#target_type').val(json.target[0].targetTypeId);
-				$('#start_date').val(json.target[0].targetStartDate);
-				$('#end_date').val(json.target[0].targetEndDate);
+				arr_date = json.target[0].targetStartDate.split('-');	
+				$('#start_date').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
+				arr_date = json.target[0].targetEndDate.split('-');	
+				$('#end_date').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#description').val(json.target[0].targetDescription);
 				$('#tablink1').parent().removeClass("active");
 				$('#tab1').removeClass("active");

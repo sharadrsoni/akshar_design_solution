@@ -221,9 +221,7 @@
 						<button type="submit" class="btn btn-primary" name="submitTestMarks" id="submitTestMarks">
 							Save Test Marks
 						</button>
-						<button type="button" class="btn">
-							Cancel
-						</button>
+						<a href="<?php echo base_url() . "faculty/test"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 					</div><!--/ Form Action -->
 				</div>
 				</form>
