@@ -281,7 +281,10 @@ function updateinquiry(inquiryid) {
 				$('#first_name').val(json.inquiry[0].inquiryStudentFirstName);
 				$('#middle_name').val(json.inquiry[0].inquiryStudentMiddleName);
 				$('#last_name').val(json.inquiry[0].inquiryStudentLastName);
-				$('#date_of_birth').val(json.inquiry[0].inquiryDOB);
+				arr_date = json.inquiry[0].inquiryDate.split('-');
+				$('#date_of_doj').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
+				arr_date = json.inquiry[0].inquiryDOB.split('-');
+				$('#date_of_birth').val(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#mobile_no').val(json.inquiry[0].inquiryContactNumber);
 				$('#email').val(json.inquiry[0].inquiryEmailAddress);
 				$('#qualification').val(json.inquiry[0].inquiryQualification);
@@ -291,7 +294,6 @@ function updateinquiry(inquiryid) {
 				$('#city').val(json.inquiry[0].inquiryCity);
 				$('#pin_code').val(json.inquiry[0].inquiryPostalCode);
 				$('#course').val(json.inquiry[0].courseCode);
-				$('#date_of_doj').val(json.inquiry[0].inquiryExpectedDOJ);
 				$('#occupation_of_student').val(json.inquiry[0].inquiryStudentOccupation);
 				$('#name_of_institute').val(json.inquiry[0].inquiryInstituteName);
 				$('#occupation_of_guardian').val(json.inquiry[0].inquiryGuardianOccupation);
@@ -314,9 +316,11 @@ function viewinquiry(inquiryId) {
 			if (json) {
 				$('#viewInquiryDate').text(json.inquiry[0].inquiryDate);
 				$('#viewCourseCode').text(json.inquiry[0].courseCode);
-				$('#viewDOJ').text(json.inquiry[0].inquiryDate);
+				arr_date = json.inquiry[0].inquiryDate.split('-');
+				$('#viewDOJ').text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#viewStudentName').text(json.inquiry[0].inquiryStudentFirstName+" "+json.inquiry[0].inquiryStudentMiddleName+" "+json.inquiry[0].inquiryStudentLastName);
-				$('#viewDOB').text(json.inquiry[0].inquiryDOB);
+				arr_date = json.inquiry[0].inquiryDOB.split('-');
+				$('#viewDOB').text(arr_date[2] + '-' + arr_date[1] + '-' + arr_date[0]);
 				$('#viewContactNumber').text(json.inquiry[0].inquiryContactNumber);
 				$('#viewEmail').text(json.inquiry[0].inquiryEmailAddress);
 				$('#viewQualification').text(json.inquiry[0].inquiryQualification);
