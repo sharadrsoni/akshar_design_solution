@@ -51,7 +51,7 @@
 									<select class="span4" name="batch_name" id="batch_name">
 										<option value="">Select...</option>
 										<?php
-										foreach ($batch as $key) {
+										foreach ($batch_list as $key) {
 											echo "<option value='{$key->batchId}'>{$key->batchId}</option>";
 										}
 										?>

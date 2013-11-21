@@ -16,6 +16,9 @@ class Student extends CI_Controller {
 	public function index() {
 		$this->data['menu'] = "Dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
+		$this -> load -> model("user_model");
+		$batch_data = $this -> user_model -> getStudentBatchs($this -> userId);
+		$this -> data['batch_list'] = $batch_data;
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
 		$this -> load -> view('backend/master_page/header');

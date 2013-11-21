@@ -160,6 +160,16 @@ class Ajax_manager extends CI_Controller {
 		$this->data['target_report']=$this->target_report_model->getTargetReports($targetId);
 		echo json_encode($this -> data);
 	}
+	
+	public function getbatchstudent($batchId){
+		$this->load->model('batch_model');
+		$this->load->model('batch_timing_model');
+		$batch_data = $this -> batch_model -> getDetailsByBranchAndBatch($this -> branchCode, $batchId);
+			$this -> data['batch_list'] = $batch_data;
+			$weekdays = $this -> batch_timing_model -> getBatchTiming($batchId);
+			$this -> data['weekdays'] = $weekdays;
+			echo json_encode($this -> data);
+	} 
 
 }
 ?>
