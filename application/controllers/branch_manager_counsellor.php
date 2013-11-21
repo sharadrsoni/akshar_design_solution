@@ -91,7 +91,7 @@ class Branch_manager_counsellor extends CI_Controller {
 			} else {
 				$userData = array();
 				$userData['userId'] = $this -> user_model -> getMaxId(date('Y'), $this -> branchCode, 5);
-				$userData['userPassword'] = $this -> user_model -> randomPassword();
+				$userData['userPassword'] = md5($this -> user_model -> randomPassword());
 				$userData['userFirstName'] = $_POST['firstname'];
 				$userData['branchCode'] = $this -> branchCode;
 				$userData['roleId'] = 5;

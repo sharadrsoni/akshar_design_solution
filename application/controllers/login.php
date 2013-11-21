@@ -18,7 +18,7 @@ class Login extends CI_Controller {
 				$this -> data['validate'] = true;
 				$this -> load -> view("backend/all_users/login", $this -> data);
 			} else {
-				$loginData = array("userId" => $_POST['username'], "userPassword" => $_POST['password']);
+				$loginData = array("userId" => $_POST['username'], "userPassword" => md5($_POST['password']));
 				$this -> load -> model("user_model");
 				$response = $this -> user_model -> authenticate($loginData);
 				if ($response) {
@@ -85,8 +85,7 @@ class Login extends CI_Controller {
 					$this -> email -> subject('Email Test');
 					$text = 'Hello ' . $userDetail -> userFirstName . ' ' . $userDetail -> userMiddleName . ' ' . $userDetail -> userLastName . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution</b> for reseting your password.' . "<br><br>" . 'Your Temporary Password is:' . "<br>" . 'password - ' . $randomPassword . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 					$this -> email -> message($text);
-					$forgot_key = sha1(uniqid());
-					$insertData = array("userPassword" => $randomPassword);
+					$insertData = array("userPassword" => md5($randomPassword));
 					if ($this -> email -> send() && $this -> user_model -> forgot_password($insertData, $_POST['email'])) {
 						redirect(base_url() . "login");
 					}
