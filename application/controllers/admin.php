@@ -12,7 +12,7 @@ class Admin extends CI_Controller {
 
 	//Dashboard
 	public function index() {
-		$this->data['menu'] = "Dashboard";
+		$this -> data['menu'] = "Dashboard";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/dashboard_css');
@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 		$this -> load -> model("user_model");
 		$this -> data['StudentResigsterCount'] = $this -> user_model -> getUserCount(5);
 		$this -> data['FacultyCount'] = $this -> user_model -> getUserCount(3);
-		$this->data['chart1']=$this -> user_model -> getstudentRegisterCountOfMonth();
+		$this -> data['chart1'] = $this -> user_model -> getstudentRegisterCountOfMonth();
 		$this -> data['chart2'] = $this -> inquiry_model -> getstudentinquiryCountOfMonth();
 		$this -> load -> model("fee_model");
 		$this -> data['chart3'] = $this -> fee_model -> getpaymentOfMonth();
@@ -77,7 +77,7 @@ class Admin extends CI_Controller {
 
 	//Branch
 	public function branch($branchCode = '') {
-		$this->data['menu'] = "branch";
+		$this -> data['menu'] = "branch";
 		$this -> load -> model("branch_model");
 		if ($branchCode != '') {
 			$this -> data['branch'] = $this -> branch_model -> getDetailsByBranch($branchCode);
@@ -90,7 +90,7 @@ class Admin extends CI_Controller {
 			$this -> load -> view('backend/master_page/top', $this -> data);
 			$this -> load -> view('backend/css/batch_css');
 			$this -> load -> view('backend/master_page/header');
-		    if (isset($_POST['submitBranch'])) {
+			if (isset($_POST['submitBranch'])) {
 				$this -> load -> library("form_validation");
 				$this -> form_validation -> set_rules('branchCode', 'Branch Code', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('branch_name', 'Branch Name', 'required|trim|alpha_numeric|max_length[100]');
@@ -121,7 +121,7 @@ class Admin extends CI_Controller {
 
 	//Course Category
 	public function course_category($coursecategoryId = '') {
-		$this->data['menu'] = "course";
+		$this -> data['menu'] = "course category";
 		$this -> load -> model("course_category_model");
 		if ($coursecategoryId != '') {
 			$this -> data['coursecategory'] = $this -> course_category_model -> getDetailsByCourseCategory($coursecategoryId);
@@ -146,6 +146,7 @@ class Admin extends CI_Controller {
 					}
 				}
 			}
+			$this -> load -> view('backend/admin/course_category.php', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/coursecategory_js');
 			$this -> load -> view('backend/master_page/bottom');
@@ -160,7 +161,7 @@ class Admin extends CI_Controller {
 
 	//Course
 	public function course($courseId = '') {
-		$this->data['menu'] = "course";
+		$this -> data['menu'] = "course";
 		$this -> load -> model('course_model');
 		if ($courseId != '') {
 			$this -> data['course'] = $this -> course_model -> getDetailsByCourse($courseId);
@@ -182,45 +183,44 @@ class Admin extends CI_Controller {
 				//$this -> form_validation -> set_rules('total_books', 'Total Books', 'required|trim|numeric');
 				//$this -> form_validation -> set_rules('description', 'Course description', 'required|trim');
 				/*if ($this -> form_validation -> run() == FALSE) {
-					$this -> data['validate'] = true;
-					die("in validate");
-				} else {
+				 $this -> data['validate'] = true;
+				 die("in validate");
+				 } else {
 				 * */
-				 
+
 				$this -> load -> model('book_inventory_model');
 				$config['upload_path'] = './images/avatar';
 				$config['allowed_types'] = 'gif|jpg|png';
 				$config['max_size'] = '10000';
-				$config['file_name'] =$_POST['courseCode'];
+				$config['file_name'] = $_POST['courseCode'];
 				$this -> load -> library('upload', $config);
 				$filed_name = "course_avtar";
-				if(!$this -> upload -> do_upload($filed_name))
-				{
-					die($this->upload->display_errors());
+				if (!$this -> upload -> do_upload($filed_name)) {
+					die($this -> upload -> display_errors());
 					die("problem in upload");
 				}
 				$fileData = $this -> upload -> data();
-				
+
 				//$studentData = array('avtar' => $fileData['file_name']);
-				$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description'],'coursePhotograph'=>$fileData['file_name']);
-					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])<=0) {
-						
-						$courseValue['courseCode'] = $_POST['courseCode'];
-					}
-					if ($this -> course_model ->getCountByCourse($_POST['courseCode'])>0 ? $this -> course_model -> updateCourse($courseValue, $_POST['courseCode']): $this -> course_model -> addCourse($courseValue)) {
-						die("in if");
-						redirect(base_url() . "admin/course");
-					} else {
-						$this -> data['error'] = "An Error Occured.";
-					}
+				$courseValue = array('courseCategoryId' => $_POST['courseCategory_id'], 'courseName' => $_POST['course_name'], 'courseDuration' => $_POST['course_duration'], 'courseMaterialTotalBooks' => $_POST['total_books'], 'courseDescription' => $_POST['description'], 'coursePhotograph' => $fileData['file_name']);
+				if ($this -> course_model -> getCountByCourse($_POST['courseCode']) <= 0) {
+
+					$courseValue['courseCode'] = $_POST['courseCode'];
+				}
+				if ($this -> course_model -> getCountByCourse($_POST['courseCode']) > 0 ? $this -> course_model -> updateCourse($courseValue, $_POST['courseCode']) : $this -> course_model -> addCourse($courseValue)) {
+					die("in if");
+					redirect(base_url() . "admin/course");
+				} else {
+					$this -> data['error'] = "An Error Occured.";
 				}
 			}
+
 			$this -> load -> view('backend/admin/course', $this -> data);
 			$this -> load -> view('backend/master_page/footer');
 			$this -> load -> view('backend/js/course_js');
 			$this -> load -> view('backend/master_page/bottom');
 		}
-	
+	}
 
 	public function delete_course($courseCode) {
 		$this -> load -> model('course_model');
@@ -230,7 +230,7 @@ class Admin extends CI_Controller {
 
 	//State
 	public function state($stateId = '') {
-		$this->data['menu'] = "state";
+		$this -> data['menu'] = "state";
 		$this -> load -> model("state_model");
 		if ($stateId != '') {
 			$this -> data['state'] = $this -> state_model -> getDetailsByState($stateId);
@@ -270,7 +270,7 @@ class Admin extends CI_Controller {
 
 	//City
 	public function city($cityId = '') {
-		$this->data['menu'] = "city";
+		$this -> data['menu'] = "city";
 		$this -> load -> model('city_model');
 		if ($cityId != '') {
 			$this -> data['city'] = $this -> city_model -> getDetailsByCity($cityId);
@@ -312,7 +312,7 @@ class Admin extends CI_Controller {
 
 	//Target Type
 	public function target_type($trgettypeId = '') {
-		$this->data['menu'] = "target type";
+		$this -> data['menu'] = "target type";
 		$this -> load -> model("target_type_model");
 		if ($trgettypeId != '') {
 			$this -> data['targettype'] = $this -> target_type_model -> getDetailsByTargetType($trgettypeId);
@@ -352,7 +352,7 @@ class Admin extends CI_Controller {
 
 	//Target
 	public function target($targetId = '') {
-		$this->data['menu'] = "target";
+		$this -> data['menu'] = "target";
 		$this -> load -> model('target_model');
 		if ($targetId != '') {
 			$this -> data['target'] = $this -> target_model -> getDetailsByTarget($targetId);
@@ -401,7 +401,7 @@ class Admin extends CI_Controller {
 
 	//Staff
 	public function staff($staffID = '') {
-		$this->data['menu'] = "staff";
+		$this -> data['menu'] = "staff";
 		$this -> load -> model("user_model");
 		if ($staffID != '') {
 			$this -> data['staff'] = $this -> user_model -> getDetailsbyUser($staffID);
@@ -419,11 +419,10 @@ class Admin extends CI_Controller {
 			$this -> load -> model("state_model");
 			$this -> data['State'] = $this -> state_model -> getDetailsOfState();
 			$this -> load -> model('user_model');
-		    $data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
+			$data['profile'] = $this -> user_model -> getDetailsbyUser($this -> userId);
 			if (isset($_POST['submitStaff'])) {
-				$this -> load -> library("form_validation" );
-				$this ->form_validation -> set_rules(
-			'branchCode', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> load -> library("form_validation");
+				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim|numeric|max_length[11]');
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|alpha|max_length[100]');
 				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim|numeric|max_length[100]');
@@ -446,8 +445,7 @@ class Admin extends CI_Controller {
 						$staffData['userPassword'] = $this -> user_model -> randomPassword();
 						$staffData['userPhotograph'] = "profile.png";
 						$staffData['userJoiningDate'] = date("Y-m-d");
-						
-						
+
 						$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
 						$this -> load -> library('email', $config);
 						$this -> email -> set_newline("\r\n");
@@ -455,19 +453,8 @@ class Admin extends CI_Controller {
 						$this -> email -> to($_POST['email']);
 						$this -> email -> subject('Email Test');
 
-	  $text = 'Hi '.$_POST['first_name'].' '.$_POST['middle_name'].' '.$_POST['last_name'].','
-      . "<br>"
-      . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.'
-      . "<br><br>"
-      . 'Your Login Credentials are:'
-      . "<br>"
-      . 'LoginId - ' . $staffData['userId']
-      . "<br>"
-      . 'LoginId - ' . $staffData['userPassword']
-      . "<br><br><br>"
-      . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';				
+						$text = 'Hi ' . $_POST['first_name'] . ' ' . $_POST['middle_name'] . ' ' . $_POST['last_name'] . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.' . "<br><br>" . 'Your Login Credentials are:' . "<br>" . 'LoginId - ' . $staffData['userId'] . "<br>" . 'LoginId - ' . $staffData['userPassword'] . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 						$this -> email -> message($text);
-
 
 					}
 					if ($_POST['staffId'] != "" ? $this -> user_model -> updateUser($staffData, $_POST['staffId']) : $this -> user_model -> addUser($staffData) && $this -> email -> send()) {
@@ -489,5 +476,6 @@ class Admin extends CI_Controller {
 		$this -> user_model -> deleteUser($userId);
 		redirect(base_url() . "admin/staff");
 	}
+
 }
 ?>

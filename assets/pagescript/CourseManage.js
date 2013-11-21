@@ -156,6 +156,7 @@ function updateCourse(couseid) {
 		success : function(json) {
 			if (json) {
 				$('#courseCode').val(json.course.courseCode);
+				alert(json.course.courseCode);
 				$('#courseCode').attr("readonly","readonly");
 				$('#course_name').val(json.course.courseName);
 				$('#courseCategory_id').val(json.course.courseCategoryId);
