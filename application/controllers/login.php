@@ -71,4 +71,11 @@ class Login extends CI_Controller {
 	    $this -> load -> view('backend/all_users/forgot_password');
 	}
 	
+	//reset password
+	public function resetpassword() {
+		$this->data['title'] = "ADS | Reset Password";
+		$this -> load -> view('backend/master_page/top', $this->data);
+	    $this -> load -> view('backend/all_users/reset_password');
+	}
+	
 }
