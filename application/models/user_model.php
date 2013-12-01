@@ -214,8 +214,8 @@ class user_model extends CI_Model {
 				$j++;
 			}
 			$data[$k++] = array("Name" => $key -> userFirstName . " " . $key -> userMiddleName . " " . $key -> userLastName, "Username" => $key -> userId, "Joined" => $key -> userJoiningDate, "Courses" => $courseName, "Batch" => $batchName);
-			return $data;
 		}
+		return $data;
 	}
 
 }

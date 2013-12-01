@@ -112,10 +112,10 @@
 				$('#site_statistics_content').show();
 				var plot_statistics = $.plot($("#site_statistics"), [{
 					data : pageviews,
-					label : "Student Register"
+					label : "Students Registered"
 				}, {
 					data : visitors,
-					label : "Studes Inquiry"
+					label : "Students Inquiry"
 				}], {
 					series : {
 						lines : {

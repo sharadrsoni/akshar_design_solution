@@ -134,7 +134,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Conatact No</label>
+									<label class="control-label">Contact No</label>
 									<div class="controls">
 										<input type="text" name="conatct_no" id="conatct_no" class="span8" value="<?php echo set_value("conatct_no"); ?>">
 										<span for="conatct_no" class="help-inline"><?php echo form_error('conatct_no'); ?></span>
