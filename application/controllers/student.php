@@ -129,7 +129,7 @@ class Student extends CI_Controller {
 			$filed_name = "student_resume";
 			$this -> upload -> do_upload($filed_name);
 			$fileData = $this -> upload -> data();
-			$otherData = array('resume' => $fileData['file_name']);
+			$otherData = array('studentResume' => $fileData['file_name']);
 			$this -> user_model -> updateStudetDetails($otherData, $this -> userId);
 			redirect(base_url() . "student/profile");
 		} elseif (isset($_POST['change_password'])) {

@@ -173,6 +173,14 @@ class user_model extends CI_Model {
 		}
 		return false;
 	}
+	//update user details
+	public function updateStudetDetails($userData, $userId) {
+		if (isset($userData)) {
+			$this -> db -> where("studentUserId", $userId);
+			return $this -> db -> update('student_profile', $userData);
+		}
+		return false;
+	}
 
 	public function deleteUser($userId) {
 		if (isset($userId)) {
