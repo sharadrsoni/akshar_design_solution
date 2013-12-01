@@ -242,15 +242,13 @@
 														<div class="controls" >
 															<input type="text" name="first_name" id="first_name" class="span6" value="<?php echo $profile -> userFirstName; ?>">
 														</div>
-													</div></td>
-													<td>
+													</div>
 													<div class="control-group">
 														<label class="control-label">Middle Name:</label>
 														<div class="controls" >
 															<input type="text" name="middle_name" id="middle_name" class="span6" value="<?php echo $profile -> userMiddleName; ?>">
 														</div>
-													</div></td>
-													<td>
+													</div>
 													<div class="control-group">
 														<label class="control-label">Last Name:</label>
 														<div class="controls" >
@@ -298,24 +296,24 @@
 													<div class="control-group">
 														<label class="control-label">State<span class="required"></span></label>
 														<div class="controls">
-															<select class="select2 span6" name="stateid" id="stateid" value=<?php echo $profile -> stateId; ?>>
+															<select class="select2 span6" name="stateid" id="stateid" value="<?php echo $profile -> stateId; ?>">
 											<option value="">Select...</option>
 												<?php
 												foreach ($State as $key) {
 													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
 												}
 												?>
-											</select>
-											<div class=" span6"></div>
+														</select>
+											
 														</div>
 													</div><br/><br/>
 													<div class="control-group">
 														<label class="control-label">City<span class="required"></span></label>
 														<div class="controls">
-															<select class="select2 span6" name="cityid" id="cityid"  value=<?php echo $profile -> cityId; ?>>
+															<select class="select2 span6" name="cityid" id="cityid"  value="<?php echo $profile -> cityId; ?>">
 												<option value="">Select...</option>
 											</select>
-											<div class=" span6"></div>
+											
 														</div>
 													</div><br/><br/>
 													
@@ -367,7 +365,6 @@
 											<div style="height: auto;" id="accordion2-2" class="accordion collapse">
 												<?php
 												$attributes = array('id' => 'form_change_avtar', 'class' => 'form-horizontal');
-
 												echo form_open_multipart('student/profile', $attributes);
 												?>
 													<div class="alert alert-error hide">
@@ -406,8 +403,8 @@
 															Change Avtar
 														</button>
 													</div><!--/ Form Action -->
-												</form>
 											</div>
+												</form>
 											</div>
 										</div>
 										<div id="tab_3-3" class="tab-pane">
@@ -509,4 +506,5 @@
 		<!--Page Content End  -->
 	</div>
 	<!--/ END Content -->
+	</div>
 </section>

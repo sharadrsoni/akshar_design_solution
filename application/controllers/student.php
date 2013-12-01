@@ -84,7 +84,11 @@ class Student extends CI_Controller {
 			$sum = $sum + $key -> testPercent;
 			$count++;
 		}
-		$this -> data['testPercentage'] = $sum / $count;		
+		if($count!=0){
+			$this -> data['testPercentage'] = $sum / $count;		
+		}else{
+			$this -> data['testPercentage'] = 0;
+		}
 		$count = 0;
 		$sum = 0;
 		foreach($attendanceList as $key)
@@ -92,7 +96,11 @@ class Student extends CI_Controller {
 			$sum = $sum + $key -> attendancePercent;
 			$count++;
 		}
-		$this -> data['attendancePercentage'] = $sum / $count;
+		if($count!=0){
+			$this -> data['attendancePercentage'] = $sum / $count;
+		}else{
+			$this -> data['attendancePercentage'] = 0;
+		}
 		$this -> load -> view('backend/master_page/header');
 		if (isset($_POST['edit_profile'])) {
 			$studentData = array('userFirstName' => $_POST['first_name'], 'userMiddleName' => $_POST['middle_name'], 'userLastName' => $_POST['last_name'], 'userDOB' =>	date("Y-m-d", strtotime($_POST['date_of_birth'])), 'userContactNumber' => $_POST['mobile_no'], 'userEmailAddress' => $_POST['email'], 'userQualification' => $_POST['qualification'], 'userStreet1' => $_POST['street_1'], 'userStreet2' => $_POST['street_2'], 'userPostalCode' => $_POST['pin_code'], 'stateId' => $_POST['stateid'], 'cityId' => $_POST['cityid']);

@@ -118,8 +118,8 @@ class user_model extends CI_Model {
 		$this -> db -> where("user.userId", $studentId);
 		$this -> db -> join('student_profile', 'student_profile.studentUserId=user.userId', 'left');
 		$this -> db -> join('branch', 'branch.branchCode=user.branchCode');
-		$this -> db -> join('city', 'city.cityId = user.cityId');
-		$this -> db -> join('state', 'state.stateId = user.stateId');
+		$this -> db -> join('city', 'city.cityId = user.cityId', 'left');
+		$this -> db -> join('state', 'state.stateId = user.stateId', 'left');
 		return $this -> db -> get('user') -> row();
 	}
 
