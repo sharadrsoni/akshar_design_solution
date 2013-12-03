@@ -141,6 +141,13 @@ class Ajax_manager extends CI_Controller {
 		echo json_encode($this -> data);
 	}
 
+	//Get Remaining Fee
+	public function studentRemainingFee($studentId) {
+		$this -> load -> model('fee_model');
+		$fee_data = $this -> fee_model -> getRemainingFee($studentId);
+		$this -> data['fee_list'] = $fee_data;
+		echo json_encode($this -> data);
+	}
 
 
 	public function search($value = '') {

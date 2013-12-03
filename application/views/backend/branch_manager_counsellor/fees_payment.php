@@ -226,9 +226,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								<div class="control-group">
 									<label class="control-label"><span class="required"></span></label>
 									<div class="controls pull-right">
-										<div class="input-append flot-right">
-											<input type="text" name="total_amount" readonly="" value="0" id="total_amount" class="span6 m-wrap">
-											<span class="add-on">Rs <span id="remianing_amount">10000</span> /-</span>
+										<div class="input-append flot-right" id="feeRemaining">
 										</div>
 									</div>
 								</div><!-- /Amount -->
