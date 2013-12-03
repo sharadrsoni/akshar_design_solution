@@ -45,7 +45,8 @@
 											Pending Targets
 										</div>
 									</div>
-									<a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a>
+									<div class="more"></div>
+									<!--a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a-->
 								</div>
 							</div>
 							<div class="span3">
@@ -58,7 +59,8 @@
 											New Inquiry
 										</div>
 									</div>
-									<a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a>
+									<div class="more"></div>
+									<!--a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a-->
 								</div>
 							</div>
 							<div class="span3">
@@ -71,7 +73,8 @@
 											Student Register
 										</div>
 									</div>
-									<a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a>
+									<div class="more"></div>
+									<!--a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a-->
 								</div>
 							</div>
 							<div class="span3">
@@ -84,7 +87,8 @@
 											Total Faculty
 										</div>
 									</div>
-									<a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a>
+									<div class="more"></div>
+									<!--a class="more" href="#"> View more <i class="m-icon-swapright m-icon-white"></i> </a-->
 								</div>
 							</div>
 						</div>
