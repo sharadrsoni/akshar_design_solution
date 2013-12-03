@@ -67,7 +67,8 @@ var Course= function() {
                     },
                     course_name: {
                         required: true,
-                        alphanumeric:true,
+                        //alphanumeric:true,
+                        lettersonly:true,
                         maxlength:100,
                         minlength:2,
                     },

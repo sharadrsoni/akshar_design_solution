@@ -63,6 +63,7 @@ var TargetType = function() {
 					targettype_name:{
 						required : true,
 						lettersonly:true,
+						
 						minlength: 4,
 						maxlength:100,
 					}

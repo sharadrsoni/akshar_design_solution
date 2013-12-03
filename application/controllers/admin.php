@@ -400,6 +400,11 @@ class Admin extends CI_Controller {
 		redirect(base_url() . "admin/target");
 	}
 
+	// Function to check space
+	function _alpha_dash_space($str)
+	{
+    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+	}
 	//Staff
 	public function staff($staffID = '') {
 		$this -> data['menu'] = "staff";
@@ -426,14 +431,15 @@ class Admin extends CI_Controller {
 				$this -> form_validation -> set_rules('branchCode', 'Branch', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('userroleId', 'User Role', 'required|trim|numeric|max_length[11]');
 				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|alpha|max_length[100]');
-				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'required|trim|numeric|max_length[100]');
+				$this -> form_validation -> set_rules('middle_name', 'Middle Name', 'trim|numeric|max_length[100]');
 				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim|alpha|max_length[100]');
 				$this -> form_validation -> set_rules('contact_number', 'Contact Number', 'required|trim|min_length[10]|max_length[15]');
 				$this -> form_validation -> set_rules('email', 'Email', 'required|trim|valid_email');
 				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim|callback__checkingDate');
 				$this -> form_validation -> set_rules('qualification', 'Qualification', 'required|trim');
+				$this -> form_validation -> set_rules('qualification', 'Qualification', 'trim|xss_clean|callback__alpha_dash_space');
 				$this -> form_validation -> set_rules('street_1', 'Street1', 'required|trim|alpha_numeric|max_length[100]');
-				$this -> form_validation -> set_rules('street_2', 'Street2', 'required|trim|alpha_numeric|max_length[100]');
+				$this -> form_validation -> set_rules('street_2', 'Street2', 'trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('cityid', 'City', 'required|trim|numeric|max_length[11]');
 				$this -> form_validation -> set_rules('stateid', 'State', 'required|trim|numeric|max_length[11]');
 				$this -> form_validation -> set_rules('pin_code', 'Postal Code', 'required|trim|exact_length[6]|numeric');

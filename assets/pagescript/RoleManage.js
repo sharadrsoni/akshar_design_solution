@@ -62,6 +62,7 @@ var Role = function() {
 				rules : {
 					role_name:{
 						required : true,
+						lettersonly:true,
 					}
 				},
 
