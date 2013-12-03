@@ -198,7 +198,9 @@
 								</tr>
 							</thead>
 
-							<tbody id="lst_students"></tbody>
+							<tbody id="lst_students">
+								
+							</tbody>
 						</table>
 					</div><!--/ List-->
 					<!-- Form Action -->

@@ -32,14 +32,14 @@ class Branch_manager_counsellor extends CI_Controller {
 			if (isset($_POST['submitInquiry'])) {
 				$this -> load -> library("form_validation");
 
-				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|min_length[2]|max_length[50]|alpha');
-				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim|min_length[2]|max_length[50]|alpha');
+				$this -> form_validation -> set_rules('first_name', 'First Name', 'required|trim|min_length[2]|max_length[50]');
+				$this -> form_validation -> set_rules('last_name', 'Last Name', 'required|trim|min_length[2]|max_length[50]');
 				$this -> form_validation -> set_rules('date_of_birth', 'Date Of Birth', 'required|trim|callback__checkingDate');
 				$this -> form_validation -> set_rules('mobile_no', 'Mobile No', 'required|trim|numeric|min_length[10]|max_length[15]');
 				$this -> form_validation -> set_rules('email', 'email', 'required|trim|valid_email');
-				$this -> form_validation -> set_rules('qualification', 'qualification', 'required|trim|min_length[2]|max_length[50]|alpha_numeric');
+				$this -> form_validation -> set_rules('qualification', 'qualification', 'required|trim|min_length[2]|max_length[50]');
 				$this -> form_validation -> set_rules('email', 'email', 'required|trim|valid_email');
-				$this -> form_validation -> set_rules('occupation_of_student', 'Ocuupation of self', 'required|trim|alpha_numeric|max_length[50]');
+				$this -> form_validation -> set_rules('occupation_of_student', 'Ocuupation of self', 'required|trim|max_length[50]');
 				$this -> form_validation -> set_rules('street_1', 'Street', 'required|trim|max_length[100]');
 				$this -> form_validation -> set_rules('street_2', 'Street', 'required|trim|max_length[100]');
 				$this -> form_validation -> set_rules('cityid', 'City', 'required');
@@ -48,8 +48,8 @@ class Branch_manager_counsellor extends CI_Controller {
 				$this -> form_validation -> set_rules('course', 'Course', 'required|trim|alpha_numeric|max_length[100]');
 				$this -> form_validation -> set_rules('date_of_doj', 'Date of Joining', 'required|trim|callback__checkingDate');
 				$this -> form_validation -> set_rules('name_of_institute', 'Institute Name', 'required|trim|min_length[5]');
-				$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim|alpha|max_length[50]');
-				$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim|alpha');
+				$this -> form_validation -> set_rules('occupation_of_guardian', 'Ocuupation of Gurdian', 'required|trim|max_length[50]');
+				$this -> form_validation -> set_rules('reference', 'Reference', 'required|trim');
 
 				if ($this -> form_validation -> run() == FALSE) {
 					die(validation_errors());

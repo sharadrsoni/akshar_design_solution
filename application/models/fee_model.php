@@ -46,9 +46,9 @@ class fee_model extends CI_Model {
 	//dashboard
 	public function getpaymentOfMonth($branchcode = '') {
 		if ($branchcode == '') {
-			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` WHERE `feesDate`<now()-30 group by `feesDate` order by feesDate") -> result();
+			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` WHERE `feesDate`<now()-30 group by `feesDate` order by Day") -> result();
 		} else {
-			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` f, `user` u WHERE `feesDate`<now()-30 and u.userId=f.studentId and branchCode='" . $branchcode . "' group by `feesDate` order by feesDate") -> result();
+			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` f, `user` u WHERE `feesDate`<now()-30 and u.userId=f.studentId and branchCode='" . $branchcode . "' group by `feesDate` order by Day") -> result();
 		}
 	}
 
