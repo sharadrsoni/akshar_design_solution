@@ -80,10 +80,10 @@ class Login extends CI_Controller {
 					$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
 					$this -> load -> library('email', $config);
 					$this -> email -> set_newline("\r\n");
-					$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Sharad Soni');
+					$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Akshar Design Solution');
 					$this -> email -> to($_POST['email']);
-					$this -> email -> subject('Email Test');
-					$text = 'Hello ' . $userDetail -> userFirstName . ' ' . $userDetail -> userMiddleName . ' ' . $userDetail -> userLastName . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution</b> for reseting your password.' . "<br><br>" . 'Your Temporary Password is:' . "<br>" . 'password - ' . $randomPassword . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
+					$this -> email -> subject('Reset Password');
+					$text = 'Hello ' . $userDetail -> userFirstName . ' ' . $userDetail -> userMiddleName . ' ' . $userDetail -> userLastName . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution</b> for reseting your password.' . "<br><br>" . 'Your Temporary Password is:' . "<br>" . 'password - ' . $randomPassword . "<br><br><br>" . 'You are Required to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 					$this -> email -> message($text);
 					$insertData = array("userPassword" => md5($randomPassword));
 					if ($this -> email -> send() && $this -> user_model -> forgot_password($insertData, $_POST['email'])) {

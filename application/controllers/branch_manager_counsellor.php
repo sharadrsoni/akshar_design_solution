@@ -104,11 +104,11 @@ class Branch_manager_counsellor extends CI_Controller {
 				$config = array('protocol' => 'smtp', 'smtp_host' => 'ssl://smtp.googlemail.com', 'smtp_port' => 465, 'smtp_user' => 'swegroup3@gmail.com', 'smtp_pass' => '@SweGroup3@', 'mailtype' => 'html', 'charset' => 'iso-8859-1');
 				$this -> load -> library('email', $config);
 				$this -> email -> set_newline("\r\n");
-				$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Sharad Soni');
+				$this -> email -> from('swegroup3@gmail.com@gmail.com', 'Akshar Design Solution');
 				$this -> email -> to($_POST['email']);
-				$this -> email -> subject('Email Test');
+				$this -> email -> subject('Registration');
 
-				$text = 'Hi ' . $_POST['firstname'] . ' ' . $_POST['middlename'] . ' ' . $_POST['lastname'] . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution<b> to provide you confirmation that your registration has been done successfully.' . "<br><br>" . 'Your Login Credentials are:' . "<br>" . 'LoginId - ' . $userData['userId'] . "<br>" . 'LoginId - ' . $userData['userPassword'] . "<br><br><br>" . 'You are Rrequired to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
+				$text = 'Hi ' . $_POST['firstname'] . ' ' . $_POST['middlename'] . ' ' . $_POST['lastname'] . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution</b> to provide you confirmation that your registration has been done successfully.' . "<br><br>" . 'Your Login Credentials are:' . "<br>" . 'LoginId - ' . $userData['userId'] . "<br>" . 'LoginId - ' . $userData['userPassword'] . "<br><br><br>" . 'You are Required to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 				$this -> email -> message($text);
 				if ($this -> user_model -> addUser($userData) && $this -> email -> send())
 				{
