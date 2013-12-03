@@ -11,8 +11,8 @@ class test_model extends CI_Model {
 	}
 
 	public function getTestStudentDetails($testId) {
-		$this -> db -> join('student_batch', 'test.batchId = student_batch.batchId');
 		$this -> db -> where('testId', $testId);
+		$this -> db -> join('student_batch', 'test.batchId = student_batch.batchId');
 		return $this -> db -> get('test') -> result();
 	}
 
