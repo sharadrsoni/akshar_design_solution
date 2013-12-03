@@ -117,7 +117,7 @@ class Staff extends CI_Controller {
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
 						$size = sizeof($_POST["branch_name"]);						
-						for ($i = 1; $i < $size; $i++) {
+						for ($i = 0; $i < $size; $i++) {
 							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}
@@ -150,7 +150,8 @@ class Staff extends CI_Controller {
 						$this -> notification_model -> addNotification($notificationData);
 						$notificationId = $this -> notification_model -> getId($notificationData);
 						$size = sizeof($_POST["branch_name"]);
-						for ($i = 1; $i < $size; $i++) {
+						for ($i = 0; $i < $size; $i++) {
+							
 							$receiverData = array('notificationId' => $notificationId['notificationId'], 'notificationReceiverCategory' => 1, 'userId' => $_POST["branch_name"][$i]);
 							$this -> notification_receiver_model -> addReceiver($receiverData);
 						}

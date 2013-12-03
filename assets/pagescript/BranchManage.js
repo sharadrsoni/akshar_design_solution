@@ -67,7 +67,7 @@ var Branch = function() {
 					branchCode : {
 						required : true,
 						maxlength : 100,
-						lettersonly : true,
+						lettersonlywithoutspecial : true,
 					},
 					branch_name : {
 
