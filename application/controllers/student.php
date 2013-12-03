@@ -117,7 +117,7 @@ class Student extends CI_Controller {
 			$filed_name = "student_avtar";
 			$this -> upload -> do_upload($filed_name);
 			$fileData = $this -> upload -> data();
-			$studentData = array('avtar' => $fileData['file_name']);
+			$studentData = array('userPhotograph' => $fileData['file_name']);
 			$this -> user_model -> updateUser($studentData, $this -> userId);
 			redirect(base_url() . "student/profile");
 		}elseif (isset($_POST['change_resume'])) {
@@ -125,6 +125,7 @@ class Student extends CI_Controller {
 			$config['allowed_types'] = 'pdf';
 			$config['max_size'] = '10000';
 			$config['file_name'] = $this -> userId;
+			$config['overwrite'] ='TRUE';
 			$this -> load -> library('upload', $config);
 			$filed_name = "student_resume";
 			$this -> upload -> do_upload($filed_name);

@@ -20,6 +20,7 @@ var StudentProfile = function() {
 				},
 				date_of_birth : {
 					required : true,
+					maxDate:true,
 				},
 				mobile_no : {
 					required : true,
@@ -250,8 +251,10 @@ var StudentProfile = function() {
 				isRTL : App.isRTL(),
 				changeMonth : true,
 				changeYear : true,
-				yearRange : "c-60:c",
+				yearRange : "1920:2000",
+				defaultDate: '1-1-2000',
 				dateFormat: 'dd-mm-yy'
+
 			});
 			$("#dob_datepicker .add-on").click(function() {
 				$("#dob_datepicker input").datepicker("show");

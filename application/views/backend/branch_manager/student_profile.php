@@ -69,9 +69,9 @@
 												<br>
 												<?php echo $profile -> userStreet2; ?>												
 												<br>
-												<?php echo $profile -> cityName; ?> - <?php echo $profile -> userPostalCode; ?>												
+												<?php echo $profile -> cityId; ?>-<?php echo $profile -> userPostalCode; ?>												
 												<br>
-												<?php echo $profile -> stateName; ?>												
+												<?php echo $profile -> stateId; ?>												
 												<br>
 											
 												<abbr title="Phone">P:</abbr> <?php echo $profile -> userContactNumber; ?>
@@ -81,14 +81,16 @@
 												<br>
 												<a href="mailto:#"><?php echo $profile -> userEmailAddress; ?></a>
 											</address>
+											
+											
 										</div>
 
 										<ul class="unstyled inline">
 											<li>
-												<i class="icon-map-marker"></i> <?php echo $profile -> cityName; ?>
+												<i class="icon-map-marker"></i> <?php echo $profile -> cityId; ?>
 											</li>
 											<li>
-												<i class="icon-calendar"></i><?php echo date("d-m-Y", strtotime($profile -> userDOB)); ?>
+												<i class="icon-calendar"></i><?php echo $profile -> userDOB; ?>
 											</li>
 										</ul>
 									</div>
@@ -99,11 +101,11 @@
 												<ul class="unstyled">
 													<li>
 														<span class="sale-info">Attendence<i class="icon-img-up"></i></span>
-														<span class="sale-num"><?php echo $attendancePercentage; ?>%</span>
+														<span class="sale-num">23%</span>
 													</li>
 													<li>
 														<span class="sale-info">Performance<i class="icon-img-down"></i></span>
-														<span class="sale-num"><?php echo $testPercentage; ?>%</span>
+														<span class="sale-num">0%</span>
 													</li>
 													<li>
 														<span class="sale-info"><i class="icon-img-down"></i></span>
@@ -131,35 +133,17 @@
 												<table class="table table-striped table-bordered table-advance table-hover">
 													<thead>
 														<tr>
-															<th><i class="icon-star"></i> Test Name</th>
 															<th><i class="icon-star"></i> Test Date</th>
 															<th class="hidden-phone"><i class="icon-question-sign"></i> Course</th>
 															<th><i class="icon-bookmark"></i> Marks</th>
-															<th><i class="icon-bookmark"></i> Percentage</th>
 														</tr>
 													</thead>
 													<tbody>
-														
-														<?php
-														
-														foreach($testresult as $key)
-														{
-															echo "<tr>
-															<td><a href=\"#\">{$key->testName}</a></td>
-															<td><a href=\"#\">{$key->testDate}</a></td>
-															<td><a href=\"#\">{$key->courseName}</a></td>
-															<td><a href=\"#\">{$key->testResultObtainedMarks}</a></td>
-															<td><a href=\"#\">{$key->testPercent}%</a></td>
-															</tr>";
-														}
-														
-														?>
-														
-														
-															
-															
-															
-															
+														<tr>
+															<td><a href="#">Pixel Ltd</a></td>
+															<td class="hidden-phone">Server hardware purchase</td>
+															<td>52560.10$ <span class="label label-success label-mini">Paid</span></td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -172,21 +156,13 @@
 														<tr>
 															<th><i class="icon-star"></i> Course</th>
 															<th class="hidden-phone"><i class="icon-question-sign"></i> Attendence</th>
-															<th class="hidden-phone"><i class="icon-question-sign"></i> Attendence Percentage</th>
 														</tr>
 													</thead>
 													<tbody>
-														<?php
-														foreach($attendanceList as $key)
-														{
-															echo "<tr>
-															<td><a href=\"#\">{$key->courseName}</a></td>
-															<td><a href=\"#\">{$key->attendanceCount}</a></td>
-															<td><a href=\"#\">{$key->attendancePercent}</a></td>
-															</tr>";
-														}
-														
-														?>
+														<tr>
+															<td><a href="#">Pixel Ltd</a></td>
+															<td class="hidden-phone">Server hardware purchase</td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -242,13 +218,15 @@
 														<div class="controls" >
 															<input type="text" name="first_name" id="first_name" class="span6" value="<?php echo $profile -> userFirstName; ?>">
 														</div>
-													</div>
+													</div></td>
+													<td>
 													<div class="control-group">
 														<label class="control-label">Middle Name:</label>
 														<div class="controls" >
 															<input type="text" name="middle_name" id="middle_name" class="span6" value="<?php echo $profile -> userMiddleName; ?>">
 														</div>
-													</div>
+													</div></td>
+													<td>
 													<div class="control-group">
 														<label class="control-label">Last Name:</label>
 														<div class="controls" >
@@ -296,24 +274,24 @@
 													<div class="control-group">
 														<label class="control-label">State<span class="required"></span></label>
 														<div class="controls">
-															<select class="select2 span6" name="stateid" id="stateid" value="<?php echo $profile -> stateId; ?>">
+															<select class="select2 span6" name="stateid" id="stateid" value=<?php echo $profile -> stateId; ?>>
 											<option value="">Select...</option>
 												<?php
 												foreach ($State as $key) {
 													echo "<option value='{$key->stateId}'>{$key->stateName}</option>";
 												}
 												?>
-														</select>
-											
+											</select>
+											<div class=" span6"></div>
 														</div>
 													</div><br/><br/>
 													<div class="control-group">
 														<label class="control-label">City<span class="required"></span></label>
 														<div class="controls">
-															<select class="select2 span6" name="cityid" id="cityid"  value="<?php echo $profile -> cityId; ?>">
+															<select class="select2 span6" name="cityid" id="cityid"  value=<?php echo $profile -> cityId; ?>>
 												<option value="">Select...</option>
 											</select>
-											
+											<div class=" span6"></div>
 														</div>
 													</div><br/><br/>
 													
@@ -365,6 +343,7 @@
 											<div style="height: auto;" id="accordion2-2" class="accordion collapse">
 												<?php
 												$attributes = array('id' => 'form_change_avtar', 'class' => 'form-horizontal');
+
 												echo form_open_multipart('student/profile', $attributes);
 												?>
 													<div class="alert alert-error hide">
@@ -375,17 +354,15 @@
 														<button class="close" data-dismiss="alert"></button>
 														Your form validation is successful!
 													</div>
-													<div class="control-group">
+													
+														<div class="control-group">
 														<label class="control-label">Select Avtar</label>
 														<div class="controls">
 															<div class="fileupload fileupload-new" data-provides="fileupload">
 																<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 																	<img src="" alt="" />
 																</div>
-																<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-																	<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-																	
-																</div>
+																<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 																<div>
 																	<span class="btn btn-file"><span class="fileupload-new">Select image</span> <span class="fileupload-exists">Change</span>
 																		<input type="file" id="student_avtar" name="student_avtar" class="default" />
@@ -397,15 +374,15 @@
 															<span> Attach file should be less than 2MB and jpg, jpeg and png format. </span>
 														</div>
 													</div>
-													<!-- Form Action -->
+															<!-- Form Action -->
 													<div class="form-actions">
 														<button type="submit" class="btn yellow" name="change_avatar" id="change_avatar">
 															Change Avtar
 														</button>
 													</div><!--/ Form Action -->
-											</div>
 												</form>
 											</div>
+											
 										</div>
 										<div id="tab_3-3" class="tab-pane">
 											<div style="height: auto;" id="accordion3-3" class="accordion collapse">
@@ -506,5 +483,4 @@
 		<!--Page Content End  -->
 	</div>
 	<!--/ END Content -->
-	</div>
 </section>
