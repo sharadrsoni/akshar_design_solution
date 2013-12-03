@@ -227,6 +227,14 @@ else {
 									<?php endif; ?>
 
 									<?php if ($roleId == 2 || $roleId == 4): ?>
+										
+										<?php if(strtolower($menu) == "student inquiry"): ?> 
+											<li class='accordion-group active'>
+										<?php else: ?>
+											<li class='accordion-group'>
+										<?php endif; ?>
+										<a href='<?php echo base_url() . $href . "/inquiry" ?>'> <span class='icon icone-dashboard'></span> <span class='text'>Student Inquiry</span></a></li>
+										
 										<?php if(strtolower($menu) == "student registration" || strtolower($menu) == "fees payment"): ?> 
 											<li class='accordion-group active'>
 										<?php else: ?>
