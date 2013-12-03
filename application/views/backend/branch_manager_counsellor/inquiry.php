@@ -243,7 +243,7 @@
 									}
 									 ?>
 									
-										<label class="control-label"><span class="required"></span></label>
+										<label class="control-label"></label>
 										<div class="controls">
 											<input type="text" name="street_2" id="street_2" class="span8" value="<?php echo set_value("street_2"); ?>"/>
 											<span for="street_2" class="help-inline"><?php echo form_error('street_2'); ?></span>
@@ -378,7 +378,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Name of Institute/Industry<span class="required"><font color='red'>*</font></span></label>
+										<label class="control-label">Name of Institute/Industry</label>
 										<div class="controls">
 											<input type="text" name="name_of_institute" id="name_of_institute" class="span8" value="<?php echo set_value("name_of_institute"); ?>">
 											<span for="name_of_institute" class="help-inline"><?php echo form_error('name_of_institute'); ?></span>
@@ -410,7 +410,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Occupation of Guardian<span class="required"><font color='red'>*</font></span></label>
+										<label class="control-label">Occupation of Guardian</label>
 										<div class="controls">
 											<input type="text" name="occupation_of_guardian" id="occupation_of_guardian" class="span8" value="<?php echo set_value("occupation_of_guardian"); ?>">
 											<span for="occupation_of_guardian" class="help-inline"><?php echo form_error('occupation_of_guardian'); ?></span>
@@ -426,7 +426,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Reference<span class="required"><font color='red'>*</font></span></label>
+										<label class="control-label">Reference</label>
 										<div class="controls">
 											<input type="text" name="reference" id="reference" class="span8" value="<?php echo set_value("reference"); ?>">
 											<span for="reference" class="help-inline"><?php echo form_error('reference'); ?></span>

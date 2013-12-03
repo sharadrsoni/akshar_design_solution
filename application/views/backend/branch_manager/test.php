@@ -154,7 +154,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">Test Name</label>
+						<label class="control-label">Test Name<span class="required"><font color='red'>*</font></span></label>
 						<div class="controls">
 							<input type="text" name="test_name" id="test_name" class="span4">
 						</div>
@@ -164,9 +164,7 @@
 						<button type="submit" class="btn btn-primary" name="submitTest" id="submitTest">
 							Add Test
 						</button>
-						<button type="button" class="btn">
-							Cancel
-						</button>
+						<a href="<?php echo base_url() . "faculty/test"; ?>" name="cancel" id="cancel" class="btn btn-primary" >Cancel</a>
 					</div><!--/ Form Action -->
 				</div>
 				</form>

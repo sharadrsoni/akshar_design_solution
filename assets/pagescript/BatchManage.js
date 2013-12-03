@@ -74,10 +74,17 @@ var Batch = function() {
 					},
 					start_date : {
 						required : true,
+						minDate : true,
 					},
 					strength : {
 						required : true,
 						digits : true,
+						min : 1,
+					},
+					duration : {
+						required : true,
+						digits : true,
+						min : 1,
 					},
 					
 				},

@@ -50,6 +50,22 @@ class Ajax_manager extends CI_Controller {
 		echo json_encode($this -> data);
 	}
 
+	//Check Mail ID
+	public function checkMailId() {
+		$flag = 0;
+		$this -> load -> model('user_model');
+		$student_data = $this -> user_model -> checkMailId($_GET["email"]);
+		foreach ($student_data as $key) {
+			if($key -> available == '1')
+				$flag = 1;
+		}
+		if($flag == 1)
+			echo "false";
+		else
+			echo "true";
+	}
+
+
 	//StudentList Event
 	public function studentlistEvent($batchId) {
 		

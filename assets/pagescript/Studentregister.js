@@ -32,6 +32,10 @@ var StudentRegistration = function() {
 					required : true,
 					email:true,
 					maxlength:50,
+					remote:{
+		                url: "../ajax_manager/checkMailId?email="+$("#email").val(), //make sure to return true or false with a 200 status code
+		                type: "get",
+		            }
 				},
 				
 				contact_number : {
