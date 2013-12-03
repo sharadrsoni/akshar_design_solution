@@ -275,6 +275,10 @@ var Event = function() {
 				$('#organize_by').val("");
 				$('#faculty_id option:nth(0)').attr("selected", "selected");
 				$('#eventId').val("");
+				$('.alert-error', $('#form_event')).hide();
+				$("#form_event").validate().resetForm();
+				$(".error").removeClass("error");
+				$(".success").removeClass("success");
 			});
 			
 			$("#batch_id").change(function() {

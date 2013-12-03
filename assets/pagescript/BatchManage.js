@@ -151,6 +151,7 @@ var Batch = function() {
 			});
 
 			$("#tablink2").click(function() {
+				alert();
 				$('#course_id option:nth(0)').attr("selected", "selected");
 				$('#faculty_id option:nth(0)').attr("selected", "selected");
 				$("#start_date").val("");
@@ -160,6 +161,10 @@ var Batch = function() {
 				$("#batchId").val("");
 				$("#flagbtalter").val("");
 				$("#register").text("Add Batch");
+				$('.alert-error', $('#form_batch')).hide();
+				$("#form_batch").validate().resetForm();
+				$(".error").removeClass("error");
+				$(".success").removeClass("success");
 			});
 		}
 	};
