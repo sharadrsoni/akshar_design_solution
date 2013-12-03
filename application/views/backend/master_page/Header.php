@@ -68,7 +68,7 @@ else {
 							</header>
 							
 							<footer>
-								<a href="<?php echo base_url() . 'login'; ?>" class="text"><span class="icon icone-off"></span> Sign Off</a>
+								<a href="<?php echo base_url() . 'login/logout'; ?>" class="text"><span class="icon icone-off"></span> Log Out</a>
 							</footer>
 						</div>
 						<!--/ END Dropdown Menu -->

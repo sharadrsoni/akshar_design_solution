@@ -13,7 +13,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Inquiry
 	public function inquiry($inquiryID = '') {
-		$this->data['menu'] = "inquiry";
+		$this->data['menu'] = "student inquiry";
 		$this -> load -> model("inquiry_model");
 		$this -> load -> model("course_category_model");
 		$this -> load -> model("state_model");
