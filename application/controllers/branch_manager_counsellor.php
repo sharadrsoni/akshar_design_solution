@@ -263,6 +263,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Fees Receipt
 	public function fees_receipt() {
+		$this->data['menu'] = "fees payment";
 		$this -> data['title'] = "ADS | Dashboard";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/feesreceipt_css');
