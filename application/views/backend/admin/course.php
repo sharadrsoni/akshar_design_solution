@@ -101,7 +101,7 @@
                                                                 }
                                                                 ?>
 
-                                                                <label class="control-label">Course Code<span class="required">*</span></label>
+                                                                <label class="control-label">Course Code<span class="required"><font color='red'>*</font></span></label>
                                                                 <div class="controls">
                                                                         <input type="text" name="courseCode" id="courseCode" class="span4" value="<?php echo set_value("courseCode"); ?>"/>
                                                                         <span for="courseCode" class="help-inline"><?php echo form_error('courseCode'); ?></span>
@@ -117,7 +117,7 @@
                                                         }
                                                         ?>
 
-                                                        <label class="control-label">Course Category ID<span class="required">*</span></label>
+                                                        <label class="control-label">Course Category ID<span class="required"><font color='red'>*</font></span></label>
                                                         <div class="controls">
                                                                 <select class="span4" name="courseCategory_id" id="courseCategory_id">
                                                                         <option value="">Select...</option>
@@ -141,7 +141,7 @@
                                                 }
                                                 ?>
 
-                                                <label class="control-label">Course Name<span class="required">*</span></label>
+                                                <label class="control-label">Course Name<span class="required"><font color='red'>*</font></span></label>
                                                 <div class="controls">
                                                         <input type="text" name="course_name" id="course_name" class="span8" value="<?php echo set_value("course_name"); ?>">
                                                         <span for="course_name" class="help-inline"><?php echo form_error('course_name'); ?></span>
@@ -157,7 +157,7 @@
                                         }
                                         ?>
 
-                                        <label class="control-label">Course Duration<span class="required">*</span></label>
+                                        <label class="control-label">Course Duration<span class="required"><font color='red'>*</font></span></label>
                                         <div class="controls">
                                                 <input type="text" name="course_duration" id="course_duration" class="span8" value="<?php echo set_value("course_duration"); ?>"/>
                                                 <span for="course_duration" class="help-inline"><?php echo form_error('course_duration'); ?></span>
@@ -173,7 +173,7 @@
                                 }
                                 ?>
 
-                                <label class="control-label">Material Total Books<span class="required">*</span></label>
+                                <label class="control-label">Material Total Books<span class="required"><font color='red'>*</font></span></label>
                                 <div class="controls">
                                         <input type="text" name="total_books" id="total_books" class="span8" value="<?php echo set_value("total_books"); ?>"/>
                                         <span for="total_books" class="help-inline"><?php echo form_error('total_books'); ?></span>
@@ -189,7 +189,7 @@
                         }
                         ?>
 
-                        <label class="control-label">Description<span class="required">*</span></label>
+                        <label class="control-label">Description<span class="required"><font color='red'>*</font></span></label>
                         <div class="controls">
                                 <input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
                                 <span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
@@ -197,7 +197,7 @@
                 </div><!--/ Course Description -->
                 
                 <div class="control-group">
-									<label class="control-label">Select Avtar</label>
+									<label class="control-label">Select Avtar<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 									<div class="fileupload fileupload-new" data-provides="fileupload">
 									<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">

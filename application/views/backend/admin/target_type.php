@@ -97,7 +97,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Target Type Name<span class="required">*</span></label>
+										<label class="control-label">Target Type Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="targettype_name" id="targettype_name" class="span8" value="<?php echo set_value("targettype_name"); ?>">
 											<span for="targettype_name" class="help-inline"><?php echo form_error('targettype_name'); ?></span>

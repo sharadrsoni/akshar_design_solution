@@ -108,7 +108,7 @@
 									}
 									 ?>
 							
-									<label class="control-label">Event Name<span class="required">*</span></label>
+									<label class="control-label">Event Name<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="event_name" id="event_name" class="span8" value="<?php echo set_value("event_name"); ?>"/>
 										<span for="event_name" class="help-inline"><?php echo form_error('event_name'); ?></span>
@@ -117,7 +117,7 @@
 
 								<!-- Event Type -->
 								<div class="control-group">
-									<label class="control-label">Event Type<span class="required">*</span></label>
+									<label class="control-label">Event Type<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<select class="span4" name="event_type_id" id="event_type_id" >
 											<option value="">Select...</option>
@@ -140,7 +140,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Start Date<span class="required">*</span></label>
+									<label class="control-label">Start Date<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<div class="input-append span6" id="start_date_datepicker">
 											<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7" value="<?php echo set_value("start_date"); ?>">
@@ -160,7 +160,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">End Date<span class="required">*</span></label>
+									<label class="control-label">End Date<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<div class="input-append span6" id="end_date_datepicker">
 											<input type="text" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7" value="<?php echo set_value("end_date"); ?>">
@@ -180,7 +180,7 @@
 									}
 									 ?>
 							
-									<label class="control-label">Description<span class="required">*</span></label>
+									<label class="control-label">Description<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
 										<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>
@@ -199,7 +199,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Street<span class="required">*</span></label>
+									<label class="control-label">Street<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8" value="<?php echo set_value("street_1"); ?>"/>
 										<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?></span>
@@ -230,7 +230,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-									<label class="control-label">State<span class="required">*</span></label>
+									<label class="control-label">State<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 											<option value="">Select...</option>
@@ -252,7 +252,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-									<label class="control-label">City<span class="required">*</span></label>
+									<label class="control-label">City<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
@@ -270,7 +270,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Postal Code<span class="required">*</span></label>
+									<label class="control-label">Postal Code<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
 										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
@@ -287,7 +287,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Organize By<span class="required">*</span></label>
+									<label class="control-label">Organize By<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="organize_by" id="organize_by" class="span8" value="<?php echo set_value("first_name"); ?>"/>
 										<span for="organize_by" class="help-inline"><?php echo form_error('inventory_quantity'); ?></span>
@@ -296,7 +296,7 @@
 
 								<!-- Faculty -->
 								<div class="control-group">
-									<label class="control-label">Responsible Person <span class="required">*</span></label>
+									<label class="control-label">Responsible Person <span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<select class="span4" name="faculty_id" id="faculty_id">
 											<option value="">Select...</option>
@@ -344,7 +344,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Event Name<span class="required">*</span></label>
+									<label class="control-label">Event Name<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<select class="span4" name="event_id" id="event_id" value="<?php echo set_value("event_id"); ?>">
 											<option value="">Select...</option>
@@ -367,7 +367,7 @@
 									}
 									 ?>
 							
-									<label class="control-label">Batch ID<span class="required">*</span></label>
+									<label class="control-label">Batch ID<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
 												<option value="">Select...</option>

@@ -105,7 +105,7 @@
 								}
 								?>
 
-								<label class="control-label">Batch ID<span class="required">*</span></label>
+								<label class="control-label">Batch ID<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 
 									<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
@@ -130,7 +130,7 @@
 							}
 							?>
 
-							<label class="control-label">Test Date<span class="required">*</span></label>
+							<label class="control-label">Test Date<span class="required"><font color='red'>*</font></span></label>
 							<div class="controls">
 								<div class="input-append span4" id="test_date_datepicker">
 									<input type="text" name="test_date" id="test_date" class="m-wrap" value="<?php echo set_value("test_date"); ?>">
@@ -147,7 +147,7 @@
 							echo "<div class='control-group'>";
 						}
 						?>
-						<label class="control-label">Test Marks</label>
+						<label class="control-label">Test Marks<span class="required"><font color='red'>*</font></span></label>
 						<div class="controls">
 							<input type="text" name="test_marks" id="test_marks" class="span4" value="<?php echo set_value("test_marks"); ?>">
 							<span for="test_marks" class="help-inline"><?php echo form_error('test_marks'); ?></span>
