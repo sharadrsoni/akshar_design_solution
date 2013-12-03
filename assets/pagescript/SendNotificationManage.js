@@ -213,7 +213,7 @@ var SendNotification = function() {
 					success : function(json) {
 						if (json) {
 							$.each(json.batch_list, function(i, item) {
-								$('#batch_name').append("<option value=" + item.batchId + ">" + item.batchStartDate + "</option>");
+								$('#batch_name').append("<option value=" + item.batchId + ">" + item.batchId + "</option>");
 							});
 							$.each(json.staff_list, function(i, item) {
 								$('#user_name').append("<option value=" + item.userId + ">" + item.userFirstName + ' ' + item.userMiddleName + ' ' + item.userLastName + "</option>");

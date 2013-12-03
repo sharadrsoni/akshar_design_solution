@@ -135,7 +135,6 @@ var Inquiry = function() {
 					},
 					date_of_doj : {
 						required : true,
-						minDate:true,
 					},
 					name_of_institute : {
 						required : true,

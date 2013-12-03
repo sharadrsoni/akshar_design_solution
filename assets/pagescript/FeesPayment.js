@@ -16,7 +16,6 @@ var StudentFees = function() {
 					required : true
 				},
 				course_amount:{
-					required:true,
 				},
 				cheque_number : {
 					required : function() {

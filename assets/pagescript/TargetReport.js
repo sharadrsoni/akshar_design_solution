@@ -148,6 +148,7 @@ function updatetarget(targetid) {
 	});
 }
 function viewtargetreports(targetid) {
+	$('#viewtbltarget1').html('');
 	$.ajax({
 		url : "../ajax_manager/targetReports/" + targetid,
 		dataType : 'json',
@@ -165,6 +166,7 @@ function viewtargetreports(targetid) {
 	});		
 }
 function viewtarget(targetId) {
+	$('#viewtbltarget1').html('');
 	$.ajax({
 		url : "target_report/" + targetId,
 		dataType : 'json',
