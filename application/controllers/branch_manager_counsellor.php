@@ -203,7 +203,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Fees Payment
 	public function fees_payment() {
-		$this->data['menu'] = "fee recipt";
+		$this->data['menu'] = "fees payment";
 		if (isset($_POST['submitPayment'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('payment_date', 'Payment Date', 'required|trim|callback__checkingDate');
