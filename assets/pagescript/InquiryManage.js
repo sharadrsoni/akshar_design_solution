@@ -113,8 +113,6 @@ var Inquiry = function() {
 						maxlength:100,
 					},
 					street_2 : {
-						required : true,
-						minlength : 4,
 						maxlength:100,
 					},
 					cityid : {
@@ -137,18 +135,12 @@ var Inquiry = function() {
 						required : true,
 					},
 					name_of_institute : {
-						required : true,
-						minlength:3,
 						maxlength:100,
 					},
 					occupation_of_guardian : {
-						required : true,
-						minlength:2,
 						maxlength:100,
 					},
 					reference : {
-						required : true,
-						minlength:3,
 						maxlength:100,
 					}
 				},
@@ -289,12 +281,19 @@ function updateinquiry(inquiryid) {
 				$('#qualification').val(json.inquiry[0].inquiryQualification);
 				$('#street_1').val(json.inquiry[0].inquiryStreet1);
 				$('#street_2').val(json.inquiry[0].inquiryStreet2);
+				$("#stateid").select2("val", json.inquiry[0].stateId);
+				$("#stateid").change();
+				$("#cityid").select2("val", json.inquiry[0].cityId);
 				$('#state').val(json.inquiry[0].inquiryState);
 				$('#city').val(json.inquiry[0].inquiryCity);
 				$('#pin_code').val(json.inquiry[0].inquiryPostalCode);
+//				$('#course').val(json.inquiry[0].courseCode);
+				$('#coursecategory').val(json.inquiry[0].courseCategoryId);
+				$("#coursecategory").change();
 				$('#course').val(json.inquiry[0].courseCode);
 				$('#occupation_of_student').val(json.inquiry[0].inquiryStudentOccupation);
 				$('#name_of_institute').val(json.inquiry[0].inquiryInstituteName);
+				$('#name_of_guardian').val(json.inquiry[0].inquiryGuardianName);
 				$('#occupation_of_guardian').val(json.inquiry[0].inquiryGuardianOccupation);
 				$('#reference').val(json.inquiry[0].inquiryReferenceName);
 				$('#tablink1').parent().removeClass("active");

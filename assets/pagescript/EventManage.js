@@ -92,10 +92,10 @@ var Event = function() {
 					required : false,
 						maxlength:100,
 				},
-				city : {
+				cityid : {
 					required : true,
 				},
-				state : {
+				stateid : {
 					required : true
 				},
 				pin_code : {

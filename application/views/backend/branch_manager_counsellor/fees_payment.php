@@ -201,7 +201,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								<div class="control-group">
 									<label class="control-label"></label>
 									<div class="controls">
-										<button type="button" name="add_payment_details" id="add_payment_details" class="btn purple-stripe">
+										<button type="submit" name="add_payment_details" id="add_payment_details" class="btn purple-stripe">
 											Add Payment Details
 										</button>
 									</div>

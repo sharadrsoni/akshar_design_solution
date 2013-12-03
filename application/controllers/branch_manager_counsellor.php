@@ -13,7 +13,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Inquiry
 	public function inquiry($inquiryID = '') {
-		$this->data['menu'] = "inquiry";
+		$this -> data['menu'] = "inquiry";
 		$this -> load -> model("inquiry_model");
 		$this -> load -> model("course_category_model");
 		$this -> load -> model("state_model");
@@ -78,7 +78,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Student Registration
 	public function studentregistration() {
-		$this->data['menu'] = "student registration";
+		$this -> data['menu'] = "student registration";
 		$this -> load -> model('user_model');
 		if (isset($_POST['registerStudent'])) {
 			$this -> load -> library("form_validation");
@@ -110,8 +110,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 				$text = 'Hi ' . $_POST['firstname'] . ' ' . $_POST['middlename'] . ' ' . $_POST['lastname'] . ',' . "<br>" . 'This mail is from <b>Akshar Design Solution</b> to provide you confirmation that your registration has been done successfully.' . "<br><br>" . 'Your Login Credentials are:' . "<br>" . 'LoginId - ' . $userData['userId'] . "<br>" . 'LoginId - ' . $userData['userPassword'] . "<br><br><br>" . 'You are Required to login and change password <a href="localhost/akshar_design_solution/login/" target="_blank">Login Here</a>';
 				$this -> email -> message($text);
-				if ($this -> user_model -> addUser($userData) && $this -> email -> send())
-				{
+				if ($this -> user_model -> addUser($userData) && $this -> email -> send()) {
 					$profile = array();
 					$profile['studentUserId'] = $userData['userId'];
 					$this -> load -> model('student_profile_model');
@@ -161,7 +160,7 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Book_Inventory
 	public function book_inventory($bookinventoryId = '') {
-		$this->data['menu'] = "book inventory";
+		$this -> data['menu'] = "book inventory";
 		$this -> load -> model("book_inventory_model");
 		if ($bookinventoryId != '') {
 			$this -> data['inventory'] = $this -> book_inventory_model -> getDetailsByInventory($this -> branchCode, $bookinventoryId);
@@ -203,11 +202,12 @@ class Branch_manager_counsellor extends CI_Controller {
 
 	//Fees Payment
 	public function fees_payment() {
-		$this->data['menu'] = "fee recipt";
+		$this -> data['menu'] = "fee recipt";
 		if (isset($_POST['submitPayment'])) {
 			$this -> load -> library("form_validation");
 			$this -> form_validation -> set_rules('payment_date', 'Payment Date', 'required|trim|callback__checkingDate');
-			if ($this -> form_validation -> run() == FALSE) {
+			if ($this -> form_validation -> run() == FALSE || $_POST['total_amount'] == 0) {
+				redirect(base_url() . "branch_manager/fees_payment");
 				$this -> data['validate'] = true;
 			} else {
 				if (isset($_POST['paymemt_mode']))
@@ -264,6 +264,7 @@ class Branch_manager_counsellor extends CI_Controller {
 	//Fees Receipt
 	public function fees_receipt() {
 		$this -> data['title'] = "ADS | Dashboard";
+		$this -> data['menu'] = "fee recipt";
 		$this -> load -> view('backend/master_page/top', $this -> data);
 		$this -> load -> view('backend/css/feesreceipt_css');
 		$this -> load -> view('backend/master_page/header');

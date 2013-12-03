@@ -130,6 +130,22 @@ class user_model extends CI_Model {
 	 return $this -> db -> get() -> result();
 	 }*/
 
+	public function checkMailId($emailId) {
+		return $this -> db -> query("select count(*) as available from user where userEmailAddress like'".$emailId."'")->result();
+//		return $this -> db -> query("select course.* from course where courseCategoryId = " . $courseCategoryId . " and courseCode Not In(Select courseCode from student_batch s,batch b where s.batchId = b.batchId and s.studentId = '" . $studentId . "')")->result();
+
+//		return $this -> db -> select('userId') -> get('user') -> row_array();
+//		$this -> db -> select('userEmailAddress');
+//		$this -> db -> from('user');
+//		$this -> db -> where("userEmailAddress", $emailId);
+//		$count = $this -> db -> count_all_results();
+//		if ($count > 0) {
+//			return $count;
+//		}
+//		return NULL;
+	}
+	 
+	 
 	public function getDetailsByBatch($batchCode, $roleId, $branchCode) {
 		$this -> db -> where("branchCode", $branchCode);
 		$this -> db -> where("roleId", $roleId);

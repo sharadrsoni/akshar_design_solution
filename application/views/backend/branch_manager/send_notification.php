@@ -166,7 +166,7 @@ if($role==1)
 								<h3 class="form-section">Send Notification Info.</h3>
 								<!-- Student/Staff -->
 								<div class="control-group">
-									<label class="control-label">Student/Staff<span class="required"><font color='red'>*</font></span></label>
+									<label class="control-label">Student/Staff</label>
 									<div class="controls">
 										<div class="text-toggle-Userrole" data-on="Student" data-off="Staff" >
 											<input type="checkbox" data-role_id = "<?php echo $this -> session -> userdata('roleId'); ?>" checked="" name="user_role" id="user_role"  class="toggle" />
@@ -175,7 +175,7 @@ if($role==1)
 								</div><!--/ Student/Staff -->
 								<!-- Individual/All -->
 								<div class="control-group" id="check_box_staff" style="display: none">
-									<label class="control-label">Individual/All<span class="required"><font color='red'>*</font></span></label>
+									<label class="control-label">Individual/All</label>
 									<div class="controls">
 										<div class="text-toggle-Branch_Batch" data-on="Individual" data-off="All">
 											<input type="checkbox" name="individual_all" id="individual_all"  class="toggle" />
@@ -184,7 +184,7 @@ if($role==1)
 								</div><!--/ Branch/All -->
 								<!-- Individual/Batch -->
 								<div class="control-group" id="check_box_studnetBatch">
-									<label class="control-label">Individual/Batch<span class="required"><font color='red'>*</font></span></label>
+									<label class="control-label">Individual/Batch</label>
 									<div class="controls">
 										<div class="text-toggle-Individual_Batch" data-on="Individual" data-off="Batch">
 											<input type="checkbox" name="individual_Batch" id="individual_Batch"  class="toggle" />
@@ -193,7 +193,7 @@ if($role==1)
 								</div><!--/ Individual/Batch -->
 								<!-- Batch -->
 								<div class="control-group" id="lst_batch_div">
-									<label class="control-label">Batch<span class="required"><font color='red'>*</font></span></label>
+									<label class="control-label">Batch</label>
 									<div class="controls">
 										<select class="span4 select2" name="batch_name[]" multiple="" id="batch_name">
 											<option value="">Select...</option>
@@ -208,14 +208,14 @@ if($role==1)
 
 								<!-- Individual Name -->
 								<div class="control-group" style="display:none" id="lst_user_div">
-									<label class="control-label">Name<span class="required"><font color='red'>*</font></span></label>
+									<label class="control-label">Name</label>
 									<div class="controls">
 										<select name="user_name[]" id="user_name" multiple="" class="span4 select2"></select>
 									</div>
 								</div><!--/ Individual Name -->
 								<!-- Faculty Name -->
 								<div class="control-group" style="display:none" id="lst_user_div">
-									<label class="control-label">Name<span class="required"><font color='red'>*</font></span></label>
+									<label class="control-label">Name</label>
 									<div class="controls">
 										<select name="faculty_name[]" id="faculty_name" multiple="" class="span4 select2">
 											<option value="">Select...</option>
