@@ -136,7 +136,7 @@ $this->data['menu'] = "test";
 			$this -> data['title'] = "ADS | Test";
 			$this -> load -> model("test_model");
 			$this -> load -> model("batch_model");
-			$this -> data['test_list'] = $this -> test_model -> getDetailsBytest();
+			$this -> data['test_list'] = $this -> test_model -> getDetailsBytest($this -> userId);
 			$batch_data = $this -> batch_model -> getDetailsByBranch($this -> branchCode);
 			$this -> data['batch_list'] = $this -> batch_model -> getDetailsByBranchAndFaculty($this -> branchCode, $this -> userId);
 
