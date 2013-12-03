@@ -16,9 +16,6 @@ var SendNotification = function() {
 						maxlength : 100,
 						minlength : 5,
 					},
-					branch_Batch : {
-						required : true,
-					},
 				},
 
 				invalidHandler : function(event, validator) {//display error alert on form submit
