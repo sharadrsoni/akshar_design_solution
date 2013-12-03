@@ -323,7 +323,7 @@ function viewinquiry(inquiryId) {
 				$('#viewContactNumber').text(json.inquiry[0].inquiryContactNumber);
 				$('#viewEmail').text(json.inquiry[0].inquiryEmailAddress);
 				$('#viewQualification').text(json.inquiry[0].inquiryQualification);
-				$('#viewAddress').html(json.inquiry[0].inquiryStreet1+",<br/>"+json.inquiry[0].inquiryStreet2+",<br/>"+json.inquiry[0].inquiryCity+","+json.inquiry[0].inquiryState+"-"+json.inquiry[0].inquiryPostalCode);
+				$('#viewAddress').html(json.inquiry[0].inquiryStreet1+",<br/>"+json.inquiry[0].inquiryStreet2+",<br/>"+json.inquiry[0].cityName+","+json.inquiry[0].stateName+"-"+json.inquiry[0].inquiryPostalCode);
 				$('#viewOccupation').text(json.inquiry[0].inquiryStudentOccupation);
 				$('#viewInstituteName').text(json.inquiry[0].inquiryInstituteName);
 				$('#viewGuardianName').text(json.inquiry[0].inquiryGuardianName);

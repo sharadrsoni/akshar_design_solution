@@ -13,6 +13,8 @@ class inquiry_model extends CI_Model {
 		$this -> db -> where('inquiryId', $inquiryId);
 		$this -> db -> where("inquiry.inquirybranchCode", $branchCode);
 		$this -> db -> join('course', 'course.courseCode = inquiry.courseCode');
+		$this -> db -> join('city', 'city.cityId = inquiry.cityId');
+		$this -> db -> join('state', 'state.stateId = inquiry.stateId');
 		return $this -> db -> get('inquiry') -> result();
 	}
 
