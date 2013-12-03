@@ -216,6 +216,7 @@ var StudentFees = function() {
 
 			$("#studentid").change(function() {
 				$("#course").children().remove();
+				$('#feeRemaining').html('');
 				$('#course').append("<option value=\"\">Select...</option>");
 				$.ajax({
 					url : "../ajax_manager/studentBatch/" + $("#studentid").val(),
