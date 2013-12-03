@@ -78,8 +78,8 @@ var Staff = function() {
 						lettersonly:true,
 					},
 					middle_name : {
-						required : true,
-						minlength : 2,
+					
+						
 						maxlength:50,
 						lettersonly:true,
 					},
@@ -106,7 +106,9 @@ var Staff = function() {
 					},
 					qualification : {
 						required : true,
+						minlength : 2,
 						maxlength:50,
+						lettersonly:true,
 					},
 					street_1 : {
 						required : true,
@@ -114,7 +116,7 @@ var Staff = function() {
 						maxlength:100,
 					},
 					street_2 : {
-						required : true,
+						
 						minlength : 4,
 						maxlength:100,
 					},
@@ -172,7 +174,8 @@ var Staff = function() {
 				isRTL : App.isRTL(),
 				changeMonth : true,
 				changeYear : true,
-				yearRange : "c-60:c",
+				yearRange : "1920:2000",
+				defaultDate: '1-1-2000',
 				dateFormat: 'dd-mm-yy'
 			});
 

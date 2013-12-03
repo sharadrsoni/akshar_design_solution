@@ -74,7 +74,7 @@ var Target = function() {
 					target_name : {
 						required : true,
 						maxlength:100,
-                        alphanumeric:true,
+                        lettersonly:true,
 					},
 					target_type : {
 						required : true,

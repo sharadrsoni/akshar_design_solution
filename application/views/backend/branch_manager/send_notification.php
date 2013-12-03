@@ -70,7 +70,7 @@ if($role==1)
 							<h3 class="form-section">Send Notification Info.</h3>
 							<!-- Student/Staff -->
 							<div class="control-group">
-							<label class="control-label">Student/Staff<span class="required"><font color='red'>*</font></span></label>
+							<label class="control-label">Student/Staff</label>
 							<div class="controls">
 							<div class="text-toggle-Userrole" data-on="Student" data-off="Staff" >
 							<input type="checkbox" data-role_id = "<?php echo $this -> session -> userdata('roleId'); ?>"  checked="" name="user_role" id="user_role"  class="toggle" />
@@ -79,7 +79,7 @@ if($role==1)
 							</div><!--/ Student/Staff -->
 							<!-- Branch/Batch -->
 							<div class="control-group" id="check_box_studnet">
-							<label class="control-label">Branch/Batch<span class="required"><font color='red'>*</font></span></label>
+							<label class="control-label">Branch/Batch</label>
 							<div class="controls">
 							<div class="text-toggle-Branch_Batch" data-on="Branch" data-off="Batch">
 							<input type="checkbox" name="branch_Batch" id="branch_Batch"  class="toggle" />
@@ -88,7 +88,7 @@ if($role==1)
 							</div><!--/ Branch/Batch -->
 							<!-- Individual/Branch -->
 							<div class="control-group"  id="check_box_staff" style="display: none">
-							<label class="control-label">Individual/Branch<span class="required"><font color='red'>*</font></span></label>
+							<label class="control-label">Individual/Branch</label>
 							<div class="controls">
 							<div class="text-toggle-Individual_Branch" data-on="Individual" data-off="Branch">
 							<input type="checkbox" name="individual_Branch" id="individual_Branch"  class="toggle" />
@@ -97,7 +97,7 @@ if($role==1)
 							</div><!--/ Individual/Branch -->
 							<!-- Branch -->
 							<div class="control-group">
-							<label class="control-label">Branch<span class="required"><font color='red'>*</font></span></label>
+							<label class="control-label">Branch</label>
 							<div class="controls">
 							<select class="span4 select2" name="branch_name[]" multiple="" id="branch_name">
 							<option value="">Select...</option>
@@ -113,7 +113,7 @@ if($role==1)
 							</div><!--/ Branch -->
 							<!-- Batch -->
 							<div class="control-group" id="lst_batch_div">
-							<label class="control-label">Batch<span class="required"><font color='red'>*</font></span></label>
+							<label class="control-label">Batch</label>
 							<div class="controls">
 							<select class="span4 select2" name="batch_name" multiple="" id="batch_name">
 							</select>
@@ -122,7 +122,7 @@ if($role==1)
 
 							<!-- Individual Name -->
 							<div class="control-group" style="display:none" id="lst_user_div">
-							<label class="control-label">Name<span class="required"><font color='red'>*</font></span></label>
+							<label class="control-label">Name</label>
 							<div class="controls">
 							<select name="user_name[]" id="user_name" multiple="" class="span4 select2">
 							</select>

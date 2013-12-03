@@ -176,7 +176,7 @@
 					}
 					?>
 
-					<label class="control-label">Middle Name<span class="required"><font color='red'>*</font></span></label>
+					<label class="control-label">Middle Name</label>
 					<div class="controls">
 						<input type="text" name="middle_name" id="middle_name" class="span8" value="<?php echo set_value("middle_name"); ?>">
 						<span for="middle_name" class="help-inline"><?php echo form_error('middle_name'); ?></span>
