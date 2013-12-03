@@ -215,9 +215,9 @@ class user_model extends CI_Model {
 				}
 				$i++;
 				if ($j == 1) {
-					$courseName .= $key -> courseName;
+					$courseName .= $key2 -> courseName;
 				} else {
-					$courseName .= "," . $key -> courseName;
+					$courseName .= "," . $key2 -> courseName;
 				}
 				$j++;
 			}
