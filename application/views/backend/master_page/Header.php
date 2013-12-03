@@ -52,7 +52,7 @@
 
 					<!-- START Profile -->
 					<li class="profile">
-						<a href="#" data-toggle="dropdown"> <span class="avatar"><img src="<?php echo base_url() . "img/avatar/avatar4.jpg"; ?>"  alt=""></span> <span class="text hidden-phone"><?php echo $username; ?>
+						<a href="#" data-toggle="dropdown"> <span class="avatar"><img src="<?php echo base_url() . "images/avatar/".$avtar; ?>"  alt=""></span> <span class="text hidden-phone"><?php echo $username; ?>
 							<span class="role"><?php echo $role; ?></span></span> <span class="arrow icone-caret-down"></span> </a>
 						<!-- START Dropdown Menu -->
 						<div class="dropdown-menu" role="menu">

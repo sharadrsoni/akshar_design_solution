@@ -50,6 +50,7 @@ class CI_Controller {
 				$userDetail = $this -> user_model -> getUserDetails($this -> userId);
 				$this -> branchCode = $userDetail -> branchCode;
 				$this -> data['username'] = $userDetail -> userFirstName . " " . $userDetail -> userMiddleName . " " . $userDetail -> userLastName;
+				$this -> data['avtar'] = $userDetail -> userPhotograph;
 				$this -> load -> model("role_model");
 				$this -> data['role'] = $this -> role_model -> getDetailsByRole($this -> roleId) -> roleName;
 				$this -> data['roleId'] = $this -> roleId;
