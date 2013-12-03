@@ -4,7 +4,9 @@ if (!defined('BASEPATH'))
 
 class test_model extends CI_Model {
 
-	public function getDetailsBytest() {
+	public function getDetailsBytest($facultyId) {
+		$this -> db -> where('facultyId', $facultyId);
+		$this -> db -> join('batch', 'test.batchId = batch.batchId');
 		return $this -> db -> get('test') -> result();
 	}
 
