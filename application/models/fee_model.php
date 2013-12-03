@@ -17,7 +17,14 @@ class fee_model extends CI_Model {
 		$this -> db -> join('user', 'fees.studentId = user.userId');
 		$this -> db -> where('branchCode', $branchCode);
 		return $this -> db -> get() -> result();
+	}
 
+	public function getRemainingFee($studentId) {
+		$laterPert = $this->db->query("select sum(feesAmount) as fees from fees where studentId like '" . $studentId . "'")->row();
+		if($laterPert->fees == null) {
+			$laterPert->fees = 0;
+		}
+		return $this -> db -> query("Select distinct(studentId),(sum(studentBatchFeeAmount) -" . $laterPert->fees .") as feeLeft from student_batch where studentId like '" . $studentId . "'") -> result();
 	}
 
 	public function addFee($data) {
@@ -41,7 +48,7 @@ class fee_model extends CI_Model {
 		if ($branchcode == '') {
 			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` WHERE `feesDate`<now()-30 group by `feesDate` order by feesDate") -> result();
 		} else {
-			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` f, `user` u WHERE `feesDate`<now()-30 and u.userId=f.studentId and branchCode='".$branchcode."' group by `feesDate` order by feesDate") -> result();
+			return $this -> db -> query("SELECT sum(`feesAmount`)as amount,Day(feesDate) as day FROM `fees` f, `user` u WHERE `feesDate`<now()-30 and u.userId=f.studentId and branchCode='" . $branchcode . "' group by `feesDate` order by feesDate") -> result();
 		}
 	}
 

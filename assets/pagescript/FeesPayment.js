@@ -15,7 +15,7 @@ var StudentFees = function() {
 				payment_date : {
 					required : true
 				},
-				course_amount:{
+				course_amount : {
 				},
 				cheque_number : {
 					required : function() {
@@ -25,8 +25,9 @@ var StudentFees = function() {
 							return false;
 						}
 					},
-					digits:true,
-					
+					digits : true,
+					minlength : 6,
+					maxlength : 6,
 				},
 				cheque_issue_date : {
 					required : function() {
@@ -36,7 +37,6 @@ var StudentFees = function() {
 							return false;
 						}
 					},
-					maxDate:true,
 				},
 				bankname : {
 					required : function() {
@@ -46,9 +46,9 @@ var StudentFees = function() {
 							return false;
 						}
 					},
-					minlength:3,
-					maxlength:100,
-					lettersonly:true,
+					minlength : 3,
+					maxlength : 100,
+					lettersonly : true,
 				},
 				branchname : {
 					required : function() {
@@ -58,8 +58,8 @@ var StudentFees = function() {
 							return false;
 						}
 					},
-					minlength:3,
-					maxlength:100,
+					minlength : 3,
+					maxlength : 100,
 				},
 				ifrc_code : {
 					required : function() {
@@ -68,7 +68,9 @@ var StudentFees = function() {
 						} else {
 							return false;
 						}
-					}
+					},
+					minlength : 11,
+					maxlength : 11,
 				}
 			},
 
@@ -114,13 +116,13 @@ var StudentFees = function() {
 			$('#tblfeespyament').dataTable({
 				"aoColumns" : [{
 					"bSortable" : true
-				},{
+				}, {
 					"bSortable" : false
-				},{
+				}, {
 					"bSortable" : false
-				},{
+				}, {
 					"bSortable" : false
-				},{
+				}, {
 					"bSortable" : false
 				}],
 				"aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"] // change per page values here
@@ -190,7 +192,7 @@ var StudentFees = function() {
 					$("#cheque_details").attr("style", "display:none");
 				}
 			});
-			
+
 			$("#add_payment_details").click(function() {
 				if ($('#course').val() != "" && $('#course').val() != "null") {
 					if ($('#course_amount').val() != "") {
@@ -211,9 +213,10 @@ var StudentFees = function() {
 				$('#course option:nth(0)').attr("selected", "selected");
 				$('#course_amount').val('');
 			});
-			
+
 			$("#studentid").change(function() {
 				$("#course").children().remove();
+				$('#feeRemaining').html('');
 				$('#course').append("<option value=\"\">Select...</option>");
 				$.ajax({
 					url : "../ajax_manager/studentBatch/" + $("#studentid").val(),
@@ -227,9 +230,20 @@ var StudentFees = function() {
 						}
 					}
 				});
+				$.ajax({
+					url : "../ajax_manager/studentRemainingFee/" + $("#studentid").val(),
+					dataType : 'json',
+					async : true,
+					success : function(json) {
+						if (json) {
+							$.each(json.fee_list, function(i, item) {
+								$('#feeRemaining').append("<input type='text' name='total_amount' readonly='' value='0' id='total_amount' class='span6 m-wrap'><span class='add-on'>Rs <span id=remianing_amount>" + item.feeLeft + "</span> /-</span>");
+							});
+						}
+					}
+				});
 			});
-			
-			
+
 		}
 	};
 }();
