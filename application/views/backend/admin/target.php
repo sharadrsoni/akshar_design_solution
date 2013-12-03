@@ -105,7 +105,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Branch<span class="required">*</span></label>
+										<label class="control-label">Branch<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="branch" id="branch" value="<?php echo set_value("branch"); ?>">
 												<option value="">Select...</option>
@@ -130,7 +130,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Target Name<span class="required">*</span></label>
+										<label class="control-label">Target Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="target_name" id="target_name" class="span8" value="<?php echo set_value("target_name"); ?>"/>
 											<span for="target_name" class="help-inline"><?php echo form_error('target_name'); ?></span>
@@ -147,7 +147,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Target Type<span class="required">*</span></label>
+										<label class="control-label">Target Type<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="target_type" id="target_type" value="<?php echo set_value("target_type"); ?>">
 												<option value="">Select...</option>
@@ -172,7 +172,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Start Date<span class="required">*</span></label>
+										<label class="control-label">Start Date<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
 												<input type="text" readonly="" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7" value="<?php echo set_value("start_date"); ?>">
@@ -192,7 +192,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">End Date<span class="required">*</span></label>
+										<label class="control-label">End Date<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="input-append span6" id="end_date_datepicker">
 												<input type="text" readonly="" data-format="dd-MM-yyyy" name="end_date" id="end_date" class="m-wrap span7" value="<?php echo set_value("end_date"); ?>">
@@ -212,7 +212,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Description<span class="required">*</span></label>
+										<label class="control-label">Description<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="description" id="description" class="span8" value="<?php echo set_value("description"); ?>"/>
 											<span for="description" class="help-inline"><?php echo form_error('description'); ?></span>

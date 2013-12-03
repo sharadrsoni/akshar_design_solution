@@ -97,7 +97,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Course Category Name<span class="required">*</span></label>
+										<label class="control-label">Course Category Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="coursecategory_name" id="coursecategory_name" class="span8" value="<?php echo set_value("coursecategory_name"); ?>">
 											<span for="coursecategory_name" class="help-inline"><?php echo form_error('coursecategory_name'); ?></span>

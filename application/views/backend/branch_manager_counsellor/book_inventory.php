@@ -102,7 +102,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Course Name<span class="required">*</span></label>
+										<label class="control-label">Course Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="course_id" id="course_id" value="<?php echo set_value("course_id"); ?>">
 												<option value="">Select...</option>
@@ -125,7 +125,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Inventory Inward Quantity<span class="required">*</span></label>
+									<label class="control-label">Inventory Inward Quantity<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="inventory_quantity" id="inventory_quantity" class="span8" value="<?php echo set_value("inventory_quantity"); ?>">
 										<span for="inventory_quantity" class="help-inline"><?php echo form_error('inventory_quantity'); ?></span>
@@ -133,7 +133,7 @@
 								</div><!--/ Inventory Quantity -->
 								<!-- Inward Date -->
 								<div class="control-group">
-									<label class="control-label">Inward Date<span class="required">*</span></label>
+									<label class="control-label">Inward Date<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<div class="input-append span6" id="inward_date_datepicker">
 											<input type="text" readonly="" name="inward_date" id="inward_date" class="m-wrap span7">

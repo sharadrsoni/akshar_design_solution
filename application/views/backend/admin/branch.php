@@ -102,7 +102,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Branch Code</label>
+									<label class="control-label">Branch Code<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="branchCode" id="branchCode" class="span8" value="<?php echo set_value("branchCode"); ?>">
 										<span for="branchCode" class="help-inline"><?php echo form_error('branchCode'); ?></span>
@@ -118,7 +118,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Branch Name</label>
+									<label class="control-label">Branch Name<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="branch_name" id="branch_name" class="span8" value="<?php echo set_value("branch_name"); ?>">
 										<span for="branch_name" class="help-inline"><?php echo form_error('branch_name'); ?></span>
@@ -134,7 +134,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Contact No</label>
+									<label class="control-label">Contact No<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="conatct_no" id="conatct_no" class="span8" value="<?php echo set_value("conatct_no"); ?>">
 										<span for="conatct_no" class="help-inline"><?php echo form_error('conatct_no'); ?></span>
@@ -151,7 +151,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Street<span class="required">*</span></label>
+									<label class="control-label">Street<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="street_1" id="street_1" placeholder="Street1" class="span8" value="<?php echo set_value("street_1"); ?>"/>
 										<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?></span>
@@ -182,7 +182,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-									<label class="control-label">State<span class="required">*</span></label>
+									<label class="control-label">State<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 											<option value="">Select...</option>
@@ -204,7 +204,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-									<label class="control-label">City<span class="required">*</span></label>
+									<label class="control-label">City<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
@@ -222,7 +222,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Postal Code<span class="required">*</span></label>
+									<label class="control-label">Postal Code<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
 										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>

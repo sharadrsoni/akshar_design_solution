@@ -99,7 +99,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">State<span class="required">*</span></label>
+										<label class="control-label">State<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="state_id" id="state_id" value="<?php echo set_value("state_id"); ?>">
 												<option value="">Select...</option>
@@ -122,7 +122,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">City Name<span class="required">*</span></label>
+										<label class="control-label">City Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="city_name" id="city_name" class="span8" value="<?php echo set_value("city_name"); ?>">
 											<span for="city_name" class="help-inline"><?php echo form_error('city_name'); ?></span>

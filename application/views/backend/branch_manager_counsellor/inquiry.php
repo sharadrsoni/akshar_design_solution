@@ -107,7 +107,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">First Name</label>
+										<label class="control-label">First Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="first_name" id="first_name" class="span8" value="<?php echo set_value("first_name"); ?>">
 											<span for="first_name" class="help-inline"><?php echo form_error('first_name'); ?></span>
@@ -139,7 +139,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Last Name</label>
+										<label class="control-label">Last Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="last_name" id="last_name" class="span8" value="<?php echo set_value("last_name"); ?>">
 											<span for="last_name" class="help-inline"><?php echo form_error('last_name'); ?></span>
@@ -155,7 +155,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Date of Birth</label>
+										<label class="control-label">Date of Birth<span class="required"><font color='red'>*</font></span></label>
 										<div class="input-append span6" id="dob_datepicker">
 											<input type="text" readonly="" data-format="dd-MM-yyyy" name="date_of_birth" id="date_of_birth" class="m-wrap span7" value="<?php echo set_value("date_of_birth"); ?>">
 											<span for="date_of_birth" class="help-inline"><?php echo form_error('date_of_birth'); ?></span>
@@ -172,7 +172,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Mobile No.</label>
+										<label class="control-label">Mobile No.<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="mobile_no" id="mobile_no" class="span8" value="<?php echo set_value("mobile_no"); ?>">
 											<span for="mobile_no" class="help-inline"><?php echo form_error('mobile_no'); ?></span>
@@ -188,7 +188,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">E-mail</label>
+										<label class="control-label">E-mail<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="email" id="email" class="span8" value="<?php echo set_value("email"); ?>">
 											<span for="email" class="help-inline"><?php echo form_error('email'); ?></span>
@@ -204,7 +204,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Qualification</label>
+										<label class="control-label">Qualification<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="qualification" id="qualification" class="span8" value="<?php echo set_value("qualification"); ?>">
 											<span for="qualification" class="help-inline"><?php echo form_error('qualification'); ?></span>
@@ -228,7 +228,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Street<span class="required">*</span></label>
+										<label class="control-label">Street<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="street_1" id="street_1" class="span8" value="<?php echo set_value("street_1"); ?>"/>
 											<span for="street_1" class="help-inline"><?php echo form_error('street_1'); ?></span>
@@ -258,7 +258,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-									<label class="control-label">State<span class="required">*</span></label>
+									<label class="control-label">State<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 											<select class="span4 select2" name="stateid" id="stateid" value="<?php echo set_value("stateid"); ?>">
 											<option value="">Select...</option>
@@ -280,7 +280,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-									<label class="control-label">City<span class="required">*</span></label>
+									<label class="control-label">City<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 											<select class="span4 select2" name="cityid" id="cityid" value="<?php echo set_value("cityid"); ?>">
 												<option value="">Select...</option>
@@ -298,7 +298,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Postal Code<span class="required">*</span></label>
+									<label class="control-label">Postal Code<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="pin_code" id="pin_code" class="span8" value="<?php echo set_value("pin_code"); ?>"/>
 										<span for="pin_code" class="help-inline"><?php echo form_error('pin_code'); ?></span>
@@ -315,7 +315,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Course Category<span class="required">*</span></label>
+										<label class="control-label">Course Category<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="coursecategory" id="coursecategory" value="<?php echo set_value("coursecategory"); ?>">
@@ -341,7 +341,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Course Name<span class="required">*</span></label>
+										<label class="control-label">Course Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="course" id="course" value="<?php echo set_value("course"); ?>">
@@ -361,7 +361,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Expected Date of Joining</label>
+										<label class="control-label">Expected Date of Joining<span class="required"><font color='red'>*</font></span></label>
 										<div class="input-append span6" id="doj_datepicker">
 											<input type="text" readonly="" data-format="dd-MM-yyyy" name="date_of_doj" id="date_of_doj" class="m-wrap span7" value="<?php echo set_value("date_of_doj"); ?>">
 											<span for="date_of_doj" class="help-inline"><?php echo form_error('date_of_doj'); ?></span>
@@ -378,7 +378,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Name of Institute/Industry</label>
+										<label class="control-label">Name of Institute/Industry<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="name_of_institute" id="name_of_institute" class="span8" value="<?php echo set_value("name_of_institute"); ?>">
 											<span for="name_of_institute" class="help-inline"><?php echo form_error('name_of_institute'); ?></span>
@@ -410,7 +410,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Occupation of Guardian</label>
+										<label class="control-label">Occupation of Guardian<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="occupation_of_guardian" id="occupation_of_guardian" class="span8" value="<?php echo set_value("occupation_of_guardian"); ?>">
 											<span for="occupation_of_guardian" class="help-inline"><?php echo form_error('occupation_of_guardian'); ?></span>
@@ -426,7 +426,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Reference</label>
+										<label class="control-label">Reference<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="reference" id="reference" class="span8" value="<?php echo set_value("reference"); ?>">
 											<span for="reference" class="help-inline"><?php echo form_error('reference'); ?></span>
