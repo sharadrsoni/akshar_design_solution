@@ -101,7 +101,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								<h4 class="form-section">Payment Info</h4>
 								<!-- Student -->
 								<div class="control-group">
-									<label class="control-label">Select Student<span class="required">*</span></label>
+									<label class="control-label">Select Student<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<select name="studentid" id="studentid" class="span6">
 											<option value="">Select</option>
@@ -115,7 +115,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								</div><!-- /Student -->
 								<!-- Payment Mode -->
 								<div class="control-group">
-									<label class="control-label">Payment Mode<span class="required">*</span></label>
+									<label class="control-label">Payment Mode<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<div class="switch" data-on="info" data-off="success" data-on-label="Cheque" data-off-label="Cash">
 											<input name="paymemt_mode" id="paymemt_mode" type="checkbox" class="toggle"/>
@@ -124,7 +124,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								</div><!-- /Payment Mode -->
 								<!-- Payment Date -->
 								<div class="control-group">
-									<label class="control-label">Payment Date<span class="required">*</span></label>
+									<label class="control-label">Payment Date<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<div class="input-append span6" id="payment_date_datepicker">
 											<input type="text" readonly="" name="payment_date" id="payment_date" class="m-wrap span7">
@@ -138,7 +138,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 									<h4 class="form-section">Cheque Details</h4>
 									<!-- Cheque Number -->
 									<div class="control-group">
-										<label class="control-label">Cheque Number<span class="required">*</span></label>
+										<label class="control-label">Cheque Number<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="cheque_number" id="cheque_number" placeholder="" class="m-wrap">
 											<span class="help-inline"></span>
@@ -146,7 +146,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 									</div><!-- /Cheque Number -->
 									<!-- SCheque Issue Date -->
 									<div class="control-group">
-										<label class="control-label">Cheque Issue Date<span class="required">*</span></label>
+										<label class="control-label">Cheque Issue Date<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="input-append span6" id="cheque_issue_datepicker">
 												<input type="text" readonly="" name="cheque_issue_date" id="cheque_issue_date" class="m-wrap span7">
@@ -156,7 +156,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 									</div><!--/ Cheque Issue Date -->
 									<!-- Bank name -->
 									<div class="control-group">
-										<label class="control-label">Bank name<span class="required">*</span></label>
+										<label class="control-label">Bank name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="bankname" name="bankname" placeholder="" class="m-wrap">
 											<span class="help-inline"></span>
@@ -164,7 +164,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 									</div><!-- /Bank name -->
 									<!-- Banch Name -->
 									<div class="control-group">
-										<label class="control-label">Banch Name of Bank<span class="required">*</span></label>
+										<label class="control-label">Banch Name of Bank<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="branchname" id="branchname" placeholder="" class="m-wrap">
 											<span class="help-inline"></span>
@@ -172,7 +172,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 									</div><!-- /Banch Name -->
 									<!-- IFSC Code -->
 									<div class="control-group">
-										<label class="control-label">IFSC Code<span class="required">*</span></label>
+										<label class="control-label">IFSC Code<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="ifrc_code" is="ifrc_code" placeholder="" class="m-wrap">
 											<span class="help-inline"></span>
@@ -182,7 +182,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								<h4 class="form-section">Payment Details</h4>
 								<!-- Course -->
 								<div class="control-group">
-									<label class="control-label">Course<span class="required">*</span></label>
+									<label class="control-label">Course<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<select name="course" id="course" class="span6 ">
 											<option value="null">Select</option>
@@ -191,7 +191,7 @@ echo "<td ><span class=\"label label-success\"><a href='" . base_url() . "branch
 								</div><!-- /Course -->
 								<!-- Amount -->
 								<div class="control-group">
-									<label class="control-label">Amount<span class="required">*</span></label>
+									<label class="control-label">Amount<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" placeholder="" class="m-wrap" name="course_amount" id="course_amount">
 										<span class="help-inline"></span>

@@ -106,7 +106,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Course<span class="required">*</span></label>
+										<label class="control-label">Course<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="course_id" id="course_id" value="<?php echo set_value("course_id"); ?>">
 												<option value="">Select...</option>
@@ -129,7 +129,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-										<label class="control-label">Faculty<span class="required">*</span></label>
+										<label class="control-label">Faculty<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="faculty_id" id="faculty_id" value="<?php echo set_value("faculty_id"); ?>">
 												<option value="">Select...</option>
@@ -153,7 +153,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Start Date<span class="required">*</span></label>
+										<label class="control-label">Start Date<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="input-append span6" id="start_date_datepicker">
 												<input type="text" data-format="dd-MM-yyyy" name="start_date" id="start_date" class="m-wrap span7" value="<?php echo set_value("start_date"); ?>">
@@ -172,7 +172,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Duration <small>(in months)</small><span class="required">*</span></label>
+										<label class="control-label">Duration <small>(in months)</small></label>
 										<div class="controls">
 											<input type="text" name="duration" id="duration" class="span2" value="<?php echo set_value("duration"); ?>"/>
 											<span for="duration" class="help-inline"><?php echo form_error('duration'); ?></span>
@@ -188,7 +188,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Strength<span class="required">*</span></label>
+										<label class="control-label">Strength<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="strength" id="strength" class="span2" value="<?php echo set_value("strength"); ?>"/>
 											<span for="strength" class="help-inline"><?php echo form_error('strength'); ?></span>
@@ -207,7 +207,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">weekday<span class="required">*</span></label>
+										<label class="control-label">weekday<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="weekday" id="weekday" value="<?php echo set_value("weekday"); ?>">
 												<option value="">Select...</option>
@@ -233,7 +233,7 @@
 									}
 									 ?>
 									<div class="control-group">
-										<label class="control-label">Batch Time<span class="required">*</span></label>
+										<label class="control-label">Batch Time<span class="required"><font color='red'>*</font></span></label>
 										<div id="start_time_picker" class="input-append span3">
 											<input type="text" name="start_time" id="start_time" placeholder="Start Time" readonly="" class="m-wrap small" data-format="hh:mm:ss" value="<?php echo set_value("start_time"); ?>"/>
 											<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>

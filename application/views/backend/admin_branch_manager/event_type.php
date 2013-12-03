@@ -98,7 +98,7 @@
 									}
 									 ?>
 									
-										<label class="control-label">Event Type Name<span class="required">*</span></label>
+										<label class="control-label">Event Type Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<input type="text" name="eventtype_name" id="eventtype_name" class="span8" value="<?php echo set_value("eventtype_name"); ?>">
 											<span for="eventtype_name" class="help-inline"><?php echo form_error('eventtype_name'); ?></span>

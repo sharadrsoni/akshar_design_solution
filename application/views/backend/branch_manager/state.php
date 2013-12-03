@@ -97,7 +97,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">State Name<span class="required">*</span></label>
+									<label class="control-label">State Name<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="state_name" id="state_name" class="span8" value="<?php echo set_value("state_name"); ?>">
 										<span for="state_name" class="help-inline"><?php echo form_error('state_name'); ?></span>

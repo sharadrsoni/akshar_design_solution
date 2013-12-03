@@ -68,7 +68,7 @@
 									}
 									 ?>
 							
-								<label class="control-label">First Name<span class="required">*</span></label>
+								<label class="control-label">First Name<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<input type="text" class="m-wrap span6" name="firstname" id="firstname" placeholder="First Name" value="<?php echo set_value("firstname"); ?>">
 									<span for="firstname" class="help-inline"><?php echo form_error('firstname'); ?></span>
@@ -100,7 +100,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-								<label class="control-label">Last Name</label>
+								<label class="control-label">Last Name<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<input type="text" class="m-wrap span6" name="lastname" id="lastname" placeholder="Last Name" value="<?php echo set_value("lastname"); ?>">
 									<span for="lastname" class="help-inline"><?php echo form_error('lastname'); ?></span>
@@ -116,7 +116,7 @@
 										echo "<div class='control-group'>";
 									}
 									 ?>
-								<label class="control-label">Email Address</label>
+								<label class="control-label">Email Address<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">@</span>
@@ -135,7 +135,7 @@
 									}
 									 ?>
 							
-								<label class="control-label">Contact Number</label>
+								<label class="control-label">Contact Number<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">MO/LL</span>
@@ -176,7 +176,7 @@
 									}
 									 ?>
 							
-								<label class="control-label">Select Student<span class="required">*</span></label>
+								<label class="control-label">Select Student<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<select name="studentid" id="studentid" class="span6" value="<?php echo set_value("studentid"); ?>">
 											<option value="">Select...</option>
@@ -199,7 +199,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Course Category<span class="required">*</span></label>
+										<label class="control-label">Course Category<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="coursecategory" id="coursecategory" value="<?php echo set_value("coursecategory"); ?>">
@@ -225,7 +225,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Course Name<span class="required">*</span></label>
+										<label class="control-label">Course Name<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="span4">
 												<select class="span12" name="courseid" id="courseid" value="<?php echo set_value("course"); ?>">
@@ -245,7 +245,7 @@
 									}
 									 ?>
 							
-								<label class="control-label">Batch<span class="required">*</span></label>
+								<label class="control-label">Batch<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<select name="batchid" id="batchid" class="span6 " value="<?php echo set_value("batchid"); ?>">
 									</select>
@@ -254,7 +254,7 @@
 							</div><!-- /Batch -->
 							<!-- Book receive or not -->
 							<div class="control-group">
-								<label class="control-label">Books issue<span class="required">*</span></label>
+								<label class="control-label">Books issue<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<div class="switch" id="isbookissuetogglediv" data-on="info" data-off="success" data-on-label="Yes" data-off-label="No">
 										<input name="isbookissue" id="isbookissue" value="1" type="checkbox" class="toggle"/>
@@ -263,7 +263,7 @@
 							</div><!-- /Book receive or not -->
 							<!-- Course Fee -->
 							<div class="control-group">
-								<label class="control-label">Course Fees</label>
+								<label class="control-label">Course Fees<span class="required"><font color='red'>*</font></span></label>
 								<div class="controls">
 									<div class="input-prepend">
 										<input class="m-wrap span12" type="text" name="course_fees" id="course_fees"/>

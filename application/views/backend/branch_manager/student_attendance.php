@@ -67,7 +67,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Batch ID<span class="required">*</span></label>
+										<label class="control-label">Batch ID<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<select class="span4" name="batch_id" id="batch_id" value="<?php echo set_value("batch_id"); ?>">
 												<option value="">Select...</option>
@@ -90,7 +90,7 @@
 									}
 									 ?>
 								
-										<label class="control-label">Date<span class="required">*</span></label>
+										<label class="control-label">Date<span class="required"><font color='red'>*</font></span></label>
 										<div class="controls">
 											<div class="input-append span6" id="Attendance_date_datepicker">
 												<input type="text" data-format="dd-MM-yyyy" name="Attendance_date" id="Attendance_date" class="m-wrap span7" value="<?php echo set_value("Attendance_date"); ?>">

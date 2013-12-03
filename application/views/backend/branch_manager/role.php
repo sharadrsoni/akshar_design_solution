@@ -97,7 +97,7 @@
 									}
 									 ?>
 								
-									<label class="control-label">Role Name<span class="required">*</span></label>
+									<label class="control-label">Role Name<span class="required"><font color='red'>*</font></span></label>
 									<div class="controls">
 										<input type="text" name="role_name" id="role_name" class="span8" value="<?php echo set_value("role_name"); ?>">
 										<span for="role_name" class="help-inline"><?php echo form_error('role_name'); ?></span>
