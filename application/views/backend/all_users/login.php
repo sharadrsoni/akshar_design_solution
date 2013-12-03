@@ -47,6 +47,7 @@
  ?>
 							<section class="body">
 								<div class="body-inner">
+									<a href="<?php echo base_url();?>">Home</a>
 									<!-- START Logo -->
 									<!--
 									<div class="logo" align="center">
@@ -58,7 +59,7 @@
 									<!-- Avatar -->
 									<div class="avatar">
 										<!--<span class="mask"></span>-->
-										<img src="img/avatar/avatar1.jpg">
+										<img src="assets/img/logo.png" id="logoimg" alt="">
 										<!--<h5 align="center">Hye john!</h5>-->
 									</div><!--/ Avatar -->
 
