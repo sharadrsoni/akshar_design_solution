@@ -112,7 +112,7 @@
 												<option value="">Select...</option>
 												<?php
 												foreach ($course as $key) {
-													echo "<option value='{$key->courseCode}'>{$key->courseName} - {$key->courseCode}</option>";
+													echo "<option value='{$key->courseCode}'>{$key->courseName}</option>";
 												}
 												?>
 											</select>

@@ -17,8 +17,11 @@ class fee_model extends CI_Model {
 		$this -> db -> join('user', 'fees.studentId = user.userId');
 		$this -> db -> where('branchCode', $branchCode);
 		return $this -> db -> get() -> result();
-
 	}
+	
+	public function getRemainingFee($studentId) {
+		return $this -> db -> query("SELECT distinct(studentId),((select sum(studentBatchFeeAmount) from student_batch where studentId like '".$studentId."') - (select sum(feesAmount) from fees where studentId like '".$studentId."')) as feeLeft FROM `fees` where studentId like '".$studentId."'") -> result();
+	}	
 
 	public function addFee($data) {
 		if (isset($data)) {
